@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>keowee.club — The unofficial guide to Lake Keowee</title>
+<meta name="description" content="Where to eat, drink, swim, and wander around Lake Keowee, Seneca & Salem. One newsletter a month. Zero spam, all lake.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --keowee-deep:#0A3A34;
+  --keowee-dusk:#062821;
+  --clearwater:#52D6C4;
+  --clearwater-pale:#BFF3EA;
+  --shallows:#EFF8F3;
+  --sunset:#FF6E52;
+  --goldhour:#FFC24B;
+  --ink:#0E2622;
+  --ink-soft:#3E5A54;
+  --card:#FFFFFF;
+  --radius-lg:24px;
+  --radius-md:16px;
+  --radius-sm:10px;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'Instrument Sans',system-ui,sans-serif;
+  --mono:'Space Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--shallows);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sunset);outline-offset:2px;border-radius:4px}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,58,52,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px}
+.wordmark{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.wordmark span{color:var(--clearwater)}
+.wordmark svg{margin-top:4px}
+.nav-links{display:none;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.nav-links a{text-decoration:none;opacity:.85}
+.nav-links a:hover{opacity:1;color:var(--clearwater)}
+.nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
+.nav-cta:hover{background:#ff5a3a}
+@media(min-width:760px){.nav-links{display:flex}}
+
+/* ---------- HERO ---------- */
+.hero{background:var(--keowee-deep);color:#fff;position:relative;overflow:hidden;padding:64px 20px 88px}
+.hero-inner{max-width:1100px;margin:0 auto;position:relative}
+.eyebrow{font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;color:var(--clearwater);margin-bottom:18px}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.9rem,11vw,6.5rem);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;max-width:11ch}
+.hero h1 em{font-style:italic;color:var(--clearwater)}
+.hero p{margin-top:22px;max-width:46ch;font-size:1.05rem;color:#CFE8E1}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{font-family:var(--mono);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;padding:14px 22px;border-radius:999px;display:inline-block;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-coral{background:var(--sunset);color:#fff}
+.btn-ghost{border:2px solid var(--clearwater);color:var(--clearwater)}
+.sticker{position:absolute;font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);pointer-events:none}
+.sticker-gold{background:var(--goldhour);color:var(--ink);transform:rotate(6deg);top:6px;right:4px}
+.sticker-aqua{background:var(--clearwater);color:var(--keowee-dusk);transform:rotate(-5deg);bottom:-46px;right:12%}
+@media(max-width:600px){.sticker-aqua{display:none}}
+.hero-wave{position:absolute;left:0;right:0;bottom:-1px;display:block;width:100%}
+
+/* ---------- TICKER ---------- */
+.ticker{background:var(--keowee-dusk);color:var(--clearwater);overflow:hidden;border-top:1px solid rgba(82,214,196,.25);border-bottom:1px solid rgba(82,214,196,.25)}
+.ticker-track{display:flex;width:max-content;animation:scroll 32s linear infinite;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;padding:11px 0}
+.ticker-track span{padding:0 26px;white-space:nowrap}
+.ticker-track b{color:var(--goldhour);font-weight:700}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;width:100%}}
+
+/* ---------- SECTIONS ---------- */
+.section{max-width:1100px;margin:0 auto;padding:64px 20px 8px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:8px}
+.section-head h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,6vw,3.2rem);letter-spacing:-.02em;text-transform:uppercase}
+.section-head h2::before{content:'≈ ';color:var(--clearwater)}
+.section-sub{font-size:.98rem;color:var(--ink-soft);max-width:52ch;margin-bottom:26px}
+.count{font-family:var(--mono);font-size:.75rem;color:var(--ink-soft);white-space:nowrap}
+
+/* card rows: swipe on mobile, grid on desktop */
+.cards{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.cards::-webkit-scrollbar{display:none}
+.card{scroll-snap-align:start;flex:0 0 78%;max-width:320px;background:var(--card);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 6px 20px rgba(10,58,52,.08);display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(10,58,52,.14)}
+.card-art{height:130px;display:flex;align-items:center;justify-content:center;font-size:3.2rem}
+.art-a{background:linear-gradient(135deg,#0A3A34,#177E6F)}
+.art-b{background:linear-gradient(135deg,#52D6C4,#1B9C8A)}
+.art-c{background:linear-gradient(135deg,#FFC24B,#FF8A50)}
+.art-d{background:linear-gradient(135deg,#FF6E52,#C63A5A)}
+.card-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tag{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--clearwater-pale);color:var(--keowee-deep);align-self:flex-start;padding:4px 9px;border-radius:999px}
+.card h3{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;line-height:1.15}
+.card p{font-size:.92rem;color:var(--ink-soft)}
+@media(min-width:900px){
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);overflow:visible}
+  .card{max-width:none;flex:auto}
+}
+
+/* ---------- NEWSLETTER ---------- */
+.dispatch{background:var(--keowee-deep);color:#fff;margin-top:72px;position:relative;overflow:hidden}
+.dispatch-inner{max-width:760px;margin:0 auto;padding:80px 20px 88px;text-align:center;position:relative}
+.dispatch h2{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,7vw,3.6rem);letter-spacing:-.02em;text-transform:uppercase;line-height:1}
+.dispatch h2 em{font-style:italic;color:var(--goldhour)}
+.dispatch p{margin:18px auto 30px;max-width:44ch;color:#CFE8E1}
+.dispatch form{display:flex;flex-direction:column;gap:12px;max-width:420px;margin:0 auto}
+.dispatch input{font-family:var(--body);font-size:1rem;padding:16px 20px;border-radius:999px;border:2px solid rgba(82,214,196,.4);background:rgba(255,255,255,.06);color:#fff;width:100%}
+.dispatch input::placeholder{color:#8FBFB5}
+.dispatch input:focus{border-color:var(--clearwater);outline:none}
+.dispatch button{font-family:var(--mono);font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:16px 24px;border-radius:999px;border:none;background:var(--sunset);color:#fff;cursor:pointer;transition:transform .15s ease}
+.dispatch button:hover{transform:translateY(-2px);background:#ff5a3a}
+.fine{font-family:var(--mono);font-size:.68rem;color:#8FBFB5;margin-top:16px}
+.success{display:none;font-family:var(--display);font-weight:700;font-size:1.3rem;color:var(--clearwater);margin-top:10px}
+@media(min-width:520px){.dispatch form{flex-direction:row}.dispatch input{flex:1}}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
+.foot-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.foot-inner a{text-decoration:none}
+.foot-inner a:hover{color:var(--clearwater)}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="wordmark" href="#top">keowee<span>.club</span>
+      <svg width="86" height="6" viewBox="0 0 86 6" fill="none" aria-hidden="true"><path d="M1 4C6 .5 11 .5 16 4s10 3.5 15 0 10-3.5 15 0 10 3.5 15 0 10-3.5 15 0 8 3 8 3" stroke="#52D6C4" stroke-width="2" stroke-linecap="round"/></svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#eat">Eat</a></li>
+      <li><a href="#drink">Drink</a></li>
+      <li><a href="#water">On the Water</a></li>
+      <li><a href="#drive">Worth the Drive</a></li>
+    </ul>
+    <a class="nav-cta" href="#dispatch">Get the Dispatch</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <p class="eyebrow">The unofficial guide to Lake Keowee · Seneca · Salem</p>
+    <h1>Go jump in a <em>lake.</em>
+      <span class="sticker sticker-gold">est. full pond</span>
+    </h1>
+    <p>Every good spot to eat, drink, float, and wander in the Golden Corner — curated by people who actually live on this water, not a tourism board.</p>
+    <div class="hero-actions">
+      <a class="btn btn-coral" href="#eat">Find a spot</a>
+      <a class="btn btn-ghost" href="#dispatch">Get the newsletter</a>
+      <span class="sticker sticker-aqua">no boat required*</span>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C180 60 360 0 540 20s360 40 540 15 300-25 360-10V60H0Z" fill="#062821"/></svg>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>🌊 Water temp <b>84°</b></span><span>🌅 Sunset <b>8:52 pm</b></span><span>📏 Lake level <b>full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🤿 Jocassee visibility <b>very yes</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+    <span>🌊 Water temp <b>84°</b></span><span>🌅 Sunset <b>8:52 pm</b></span><span>📏 Lake level <b>full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🤿 Jocassee visibility <b>very yes</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+  </div>
+</div>
+
+<main>
+
+<section class="section" id="eat">
+  <div class="section-head"><h2>Eat</h2><span class="count">04 spots</span></div>
+  <p class="section-sub">From boat-up dinners to the BBQ you earn after a day on the water.</p>
+  <div class="cards">
+    <article class="card">
+      <div class="card-art art-a" aria-hidden="true">🦞</div>
+      <div class="card-body"><span class="tag">Salem · Waterfront</span><h3>The Lighthouse</h3><p>Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-c" aria-hidden="true">🍖</div>
+      <div class="card-body"><span class="tag">Pendleton · BBQ</span><h3>The Smokin' Pig</h3><p>The post-lake ritual. Get the hash over rice and don't ask questions.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-b" aria-hidden="true">🍝</div>
+      <div class="card-body"><span class="tag">Seneca · Date night</span><h3>Vangeli's Bistro</h3><p>White tablecloth on Ram Cat Alley. Where you go when it's an anniversary, not a Tuesday.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-d" aria-hidden="true">🍦</div>
+      <div class="card-body"><span class="tag">Hwy 11 · Classic</span><h3>Aunt Sue's Country Corner</h3><p>Scenic-drive ice cream since before you were born. The waffle cone is non-negotiable.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="drink">
+  <div class="section-head"><h2>Drink</h2><span class="count">04 spots</span></div>
+  <p class="section-sub">Patios, pours, and one surprisingly legit vineyard in the foothills.</p>
+  <div class="cards">
+    <article class="card">
+      <div class="card-art art-b" aria-hidden="true">🍺</div>
+      <div class="card-body"><span class="tag">Seneca · Brewery</span><h3>Keowee Brewing Co.</h3><p>The de facto clubhouse. Dog-friendly patio, rotating taps, everyone you know is already there.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-c" aria-hidden="true">🍷</div>
+      <div class="card-body"><span class="tag">Hwy 11 · Winery</span><h3>Victoria Valley Vineyards</h3><p>A French-style château casually sitting in the Blue Ridge foothills. Golden hour hits different here.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-d" aria-hidden="true">🎸</div>
+      <div class="card-body"><span class="tag">Seneca · Live music</span><h3>The Spot on the Alley</h3><p>Ram Cat Alley's living room. Live bands, cold beer, zero pretense.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-a" aria-hidden="true">☕</div>
+      <div class="card-body"><span class="tag">Seneca · Coffee</span><h3>Ram Cat Alley Cafés</h3><p>Morning fuel before the boat ramp. Order the cold brew, take the walk down the alley.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="water">
+  <div class="section-head"><h2>On the Water</h2><span class="count">04 spots</span></div>
+  <p class="section-sub">Two lakes, absurdly clear water, and more coves than you'll ever finish exploring.</p>
+  <div class="cards">
+    <article class="card">
+      <div class="card-art art-b" aria-hidden="true">🤿</div>
+      <div class="card-body"><span class="tag">Devils Fork · Jocassee</span><h3>Dive Lake Jocassee</h3><p>Some of the clearest freshwater in the Southeast. Dive it, paddle it, or just float and stare.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-a" aria-hidden="true">🛶</div>
+      <div class="card-body"><span class="tag">Seneca · Launch</span><h3>South Cove County Park</h3><p>Paddleboard launch, swim beach, campsites on the point. The easy-button lake day.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-c" aria-hidden="true">⛵</div>
+      <div class="card-body"><span class="tag">Salem · Boat trip</span><h3>Jocassee Waterfalls Run</h3><p>Boat-access-only waterfalls pouring straight into the lake. Yes, you can swim under them.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-d" aria-hidden="true">🏄</div>
+      <div class="card-body"><span class="tag">Seneca · Rentals</span><h3>Kayak &amp; SUP Rentals</h3><p>No boat? No problem. Grab a board or kayak in town and pick a cove — asterisk resolved.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="drive">
+  <div class="section-head"><h2>Worth the Drive</h2><span class="count">04 spots</span></div>
+  <p class="section-sub">When you need a break from the water. It happens. Rarely.</p>
+  <div class="cards">
+    <article class="card">
+      <div class="card-art art-a" aria-hidden="true">⛰️</div>
+      <div class="card-body"><span class="tag">Pickens Co. · Summit</span><h3>Sassafras Mountain</h3><p>The highest point in South Carolina, with a 360° observation tower straddling the NC line.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-b" aria-hidden="true">🕳️</div>
+      <div class="card-body"><span class="tag">Walhalla · Weird history</span><h3>Stumphouse Tunnel + Issaqueena Falls</h3><p>An abandoned 1850s railroad tunnel and a waterfall with a legend attached. One parking lot, two adventures.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-c" aria-hidden="true">🥾</div>
+      <div class="card-body"><span class="tag">Sunset · State park</span><h3>Keowee-Toxaway State Park</h3><p>The Natural Bridge loop is the best short hike on the lake — granite views straight over the water.</p></div>
+    </article>
+    <article class="card">
+      <div class="card-art art-d" aria-hidden="true">💦</div>
+      <div class="card-body"><span class="tag">NC line · Waterfall</span><h3>Whitewater Falls</h3><p>411 feet of showing off, ten minutes past Bad Creek. Bring the good camera.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="dispatch" id="dispatch">
+  <div class="dispatch-inner">
+    <p class="eyebrow">Once a month · Zero spam · All lake</p>
+    <h2>The Dock <em>Dispatch</em></h2>
+    <p>New spots, lake levels, events worth leaving the cove for, and the occasional hot take about pontoon etiquette. Free, monthly, unsubscribe whenever.</p>
+    <form id="signup" novalidate>
+      <input type="email" id="email" placeholder="you@somewhere.com" aria-label="Email address" required>
+      <button type="submit">Sign me up</button>
+    </form>
+    <p class="success" id="success">🌊 You're in. See you at full pond.</p>
+    <p class="fine">One email a month. We'd rather be on the water too.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 keowee.club</span>
+    <span>Made on the dock 🛥️</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById('signup').addEventListener('submit',function(e){
+  e.preventDefault();
+  var email=document.getElementById('email');
+  if(!email.value||!email.value.includes('@')){email.focus();email.style.borderColor='#FF6E52';return;}
+  // TODO: wire to your newsletter provider (Beehiiv / Buttondown / Mailchimp)
+  this.style.display='none';
+  document.getElementById('success').style.display='block';
+});
+</script>
+</body>
+</html>
