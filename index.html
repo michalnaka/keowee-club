@@ -236,10 +236,10 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
     <div class="ticker-set">
-      <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+      <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span class="js-event">🎷 Jazz Night in Seneca <b>Thursdays</b></span><span>🎣 Fishing report <b>they're biting</b></span>
     </div>
     <div class="ticker-set ticker-dup" aria-hidden="true">
-      <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+      <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span class="js-event">🎷 Jazz Night in Seneca <b>Thursdays</b></span><span>🎣 Fishing report <b>they're biting</b></span>
     </div>
   </div>
 </div>
@@ -424,6 +424,16 @@ document.getElementById('signup').addEventListener('submit',function(e){
   try{
     var s=sunset(34.85,-82.93,new Date());
     if(s) setAll('.js-sunset',s.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'}).toLowerCase());
+  }catch(e){}
+
+  // Thursday events: Jazz on the Alley runs April–October; show trivia off-season
+  try{
+    var mo=new Date().getMonth(); // 0=Jan … 11=Dec
+    if(mo<3||mo>9){
+      Array.prototype.forEach.call(document.querySelectorAll('.js-event'),function(el){
+        el.innerHTML='🍺 Trivia @ Keowee Brewing <b>Thursday</b>';
+      });
+    }
   }catch(e){}
 
   // Weather at the lake — National Weather Service (station KCEU, Clemson-Oconee)
