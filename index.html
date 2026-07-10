@@ -94,10 +94,16 @@ a{color:inherit}
 /* ---------- TICKER ---------- */
 .ticker{background:var(--keowee-dusk);color:var(--clearwater);overflow:hidden;border-top:1px solid rgba(82,214,196,.25);border-bottom:1px solid rgba(82,214,196,.25)}
 .ticker-track{display:flex;width:max-content;animation:scroll 32s linear infinite;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;padding:11px 0}
+.ticker-set{display:flex}
 .ticker-track span{padding:0 26px;white-space:nowrap}
 .ticker-track b{color:var(--goldhour);font-weight:700}
 @keyframes scroll{to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;width:100%}}
+@media(prefers-reduced-motion:reduce){
+  .ticker-track{animation:none;width:100%;padding:8px 0}
+  .ticker-dup{display:none}
+  .ticker-set{flex-wrap:wrap;justify-content:center;width:100%}
+  .ticker-set span{padding:4px 14px}
+}
 
 /* ---------- SECTIONS ---------- */
 .section{max-width:1100px;margin:0 auto;padding:64px 20px 8px}
@@ -229,8 +235,12 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🎣 Fishing report <b>they're biting</b></span>
-    <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+    <div class="ticker-set">
+      <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+    </div>
+    <div class="ticker-set ticker-dup" aria-hidden="true">
+      <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+    </div>
   </div>
 </div>
 
