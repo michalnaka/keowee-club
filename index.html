@@ -226,8 +226,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>🌊 Water temp <b>84°</b></span><span>🌅 Sunset <b>8:52 pm</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🤿 Jocassee visibility <b>very yes</b></span><span>🎣 Fishing report <b>they're biting</b></span>
-    <span>🌊 Water temp <b>84°</b></span><span>🌅 Sunset <b>8:52 pm</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🤿 Jocassee visibility <b>very yes</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+    <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+    <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🎣 Fishing report <b>they're biting</b></span>
   </div>
 </div>
 
@@ -360,9 +360,12 @@ document.getElementById('signup').addEventListener('submit',function(e){
   document.getElementById('success').style.display='block';
 });
 
-// Live Lake Keowee level from Duke Energy. Fails silently to the static "full pond" text.
+// Live lake + sky data for the hero badge and ticker. Each piece fails silently to its static text.
 (function(){
-  function verdict(p){
+  function setAll(sel,txt){Array.prototype.forEach.call(document.querySelectorAll(sel),function(el){el.textContent=txt;});}
+
+  // Lake levels — Duke Energy
+  function kVerdict(p){
     if(p>=97) return {tick:'full pond',hero:'basically full pond. Go.',low:false};
     if(p>=95) return {tick:'plenty deep',hero:'plenty of water. Go.',low:false};
     if(p>=93.5) return {tick:'holding',hero:'a little low, still good.',low:false};
@@ -372,16 +375,64 @@ document.getElementById('signup').addEventListener('submit',function(e){
     .then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(lakes){
       var k=lakes.find(function(l){return l.LakeName==='KEOWEE';});
-      var p=k&&parseFloat(k.Actual);
-      if(!p||isNaN(p))return;
-      var v=verdict(p),pct=(Math.round(p*10)/10)+'%';
-      Array.prototype.forEach.call(document.querySelectorAll('.js-level'),function(el){
-        el.textContent=pct+' · '+v.tick;
+      var kp=k&&parseFloat(k.Actual);
+      if(kp&&!isNaN(kp)){
+        var v=kVerdict(kp),pct=(Math.round(kp*10)/10)+'%';
+        setAll('.js-level',pct+' · '+v.tick);
+        var rpt=document.getElementById('lakeReport');
+        rpt.querySelector('.lake-report-text').innerHTML='Keowee’s at <b>'+pct+'</b> — '+v.hero;
+        if(v.low)rpt.setAttribute('data-state','low');
+        rpt.hidden=false;
+      }
+      var j=lakes.find(function(l){return l.LakeName==='JOCASSEE';});
+      var jp=j&&parseFloat(j.Actual);
+      if(jp&&!isNaN(jp)) setAll('.js-joco',(Math.round(jp*10)/10)+'%');
+    })
+    .catch(function(){/* keep static fallback */});
+
+  // Sunset over the lake — computed locally, no network needed
+  function sunset(lat,lng,date){
+    var rad=Math.PI/180,deg=180/Math.PI;
+    var start=Date.UTC(date.getUTCFullYear(),0,0);
+    var doy=Math.floor((Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate())-start)/86400000);
+    var zenith=90.833,lngHour=lng/15,t=doy+((18-lngHour)/24);
+    var M=(0.9856*t)-3.289;
+    var L=M+(1.916*Math.sin(M*rad))+(0.020*Math.sin(2*M*rad))+282.634;L=((L%360)+360)%360;
+    var RA=deg*Math.atan(0.91764*Math.tan(L*rad));RA=((RA%360)+360)%360;
+    RA=(RA+((Math.floor(L/90)*90)-(Math.floor(RA/90)*90)))/15;
+    var sinDec=0.39782*Math.sin(L*rad),cosDec=Math.cos(Math.asin(sinDec));
+    var cosH=(Math.cos(zenith*rad)-(sinDec*Math.sin(lat*rad)))/(cosDec*Math.cos(lat*rad));
+    if(cosH>1||cosH<-1)return null;
+    var H=deg*Math.acos(cosH)/15,T=H+RA-(0.06571*t)-6.622;
+    var UT=((((T-lngHour)%24)+24)%24),hh=Math.floor(UT),mm=Math.round((UT-hh)*60);
+    if(mm===60){hh=(hh+1)%24;mm=0;}
+    return new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate(),hh,mm));
+  }
+  try{
+    var s=sunset(34.85,-82.93,new Date());
+    if(s) setAll('.js-sunset',s.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'}).toLowerCase());
+  }catch(e){}
+
+  // Weather at the lake — National Weather Service (station KCEU, Clemson-Oconee)
+  function wxEmoji(d){d=(d||'').toLowerCase();
+    if(/thunder|storm/.test(d))return '⛈️';
+    if(/snow|sleet|ice/.test(d))return '❄️';
+    if(/rain|shower|drizzle/.test(d))return '🌧️';
+    if(/fog|mist|haze|smoke/.test(d))return '🌫️';
+    if(/cloud|overcast/.test(d))return '☁️';
+    if(/clear|sunny|fair/.test(d))return '☀️';
+    return '🌤️';}
+  fetch('https://api.weather.gov/stations/KCEU/observations/latest')
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(o){
+      var p=o.properties,c=p.temperature&&p.temperature.value,desc=(p.textDescription||'').trim();
+      if(c==null&&!desc)return;
+      var f=(c!=null)?Math.round(c*9/5+32)+'°':'';
+      setAll('.js-wx',(desc+(desc&&f?' · ':'')+f)||'clear skies');
+      var em=wxEmoji(desc)+' ';
+      Array.prototype.forEach.call(document.querySelectorAll('.js-wx'),function(el){
+        if(el.parentNode&&el.parentNode.firstChild)el.parentNode.firstChild.nodeValue=em;
       });
-      var rpt=document.getElementById('lakeReport');
-      rpt.querySelector('.lake-report-text').innerHTML='Keowee’s at <b>'+pct+'</b> — '+v.hero;
-      if(v.low)rpt.setAttribute('data-state','low');
-      rpt.hidden=false;
     })
     .catch(function(){/* keep static fallback */});
 })();
