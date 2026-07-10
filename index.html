@@ -77,7 +77,10 @@ a{color:inherit}
 .sticker{position:absolute;font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);pointer-events:none}
 .sticker-gold{background:var(--goldhour);color:var(--ink);transform:rotate(6deg);top:6px;right:4px}
 .sticker-aqua{background:var(--clearwater);color:var(--keowee-dusk);transform:rotate(-5deg);bottom:-46px;right:12%}
-@media(max-width:600px){.sticker-aqua{display:none}}
+@media(max-width:600px){
+  .sticker-aqua{display:none}
+  .sticker-gold{position:static;display:inline-block;margin-left:10px;vertical-align:middle;transform:rotate(6deg) translateY(-6px)}
+}
 .hero-wave{position:absolute;left:0;right:0;bottom:-1px;display:block;width:100%}
 .lake-report{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:10px 16px;border-radius:999px;background:rgba(82,214,196,.1);border:1px solid rgba(82,214,196,.35);text-decoration:none;font-family:var(--mono);font-size:.8rem;color:#CFE8E1;transition:background .15s ease,border-color .15s ease}
 .lake-report:hover{background:rgba(82,214,196,.18);border-color:var(--clearwater)}
