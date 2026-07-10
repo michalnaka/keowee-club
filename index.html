@@ -79,6 +79,14 @@ a{color:inherit}
 .sticker-aqua{background:var(--clearwater);color:var(--keowee-dusk);transform:rotate(-5deg);bottom:-46px;right:12%}
 @media(max-width:600px){.sticker-aqua{display:none}}
 .hero-wave{position:absolute;left:0;right:0;bottom:-1px;display:block;width:100%}
+.lake-report{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:10px 16px;border-radius:999px;background:rgba(82,214,196,.1);border:1px solid rgba(82,214,196,.35);text-decoration:none;font-family:var(--mono);font-size:.8rem;color:#CFE8E1;transition:background .15s ease,border-color .15s ease}
+.lake-report:hover{background:rgba(82,214,196,.18);border-color:var(--clearwater)}
+.lake-report-text b{color:var(--clearwater);font-weight:700}
+.lake-report-dot{width:9px;height:9px;border-radius:50%;background:var(--clearwater);box-shadow:0 0 0 0 rgba(82,214,196,.6);animation:pulse 2.4s infinite}
+.lake-report[data-state="low"] .lake-report-dot{background:var(--goldhour);box-shadow:0 0 0 0 rgba(255,194,75,.6)}
+.lake-report[data-state="low"] .lake-report-text b{color:var(--goldhour)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(82,214,196,.5)}70%{box-shadow:0 0 0 7px rgba(82,214,196,0)}100%{box-shadow:0 0 0 0 rgba(82,214,196,0)}}
+@media(prefers-reduced-motion:reduce){.lake-report-dot{animation:none}}
 
 /* ---------- TICKER ---------- */
 .ticker{background:var(--keowee-dusk);color:var(--clearwater);overflow:hidden;border-top:1px solid rgba(82,214,196,.25);border-bottom:1px solid rgba(82,214,196,.25)}
@@ -190,6 +198,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
       <li><a href="#drink">Drink</a></li>
       <li><a href="#water">On the Water</a></li>
       <li><a href="#drive">Worth the Drive</a></li>
+      <li><a href="/lake-level/">Lake Level</a></li>
     </ul>
     <a class="nav-cta" href="#dispatch">Get the Dispatch</a>
   </div>
@@ -207,14 +216,18 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
       <a class="btn btn-ghost" href="#dispatch">Get the newsletter</a>
       <span class="sticker sticker-aqua">no boat required*</span>
     </div>
+    <a class="lake-report" id="lakeReport" href="/lake-level/" hidden>
+      <span class="lake-report-dot" aria-hidden="true"></span>
+      <span class="lake-report-text"></span>
+    </a>
   </div>
   <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C180 60 360 0 540 20s360 40 540 15 300-25 360-10V60H0Z" fill="#062821"/></svg>
 </header>
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>🌊 Water temp <b>84°</b></span><span>🌅 Sunset <b>8:52 pm</b></span><span>📏 Lake level <b>full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🤿 Jocassee visibility <b>very yes</b></span><span>🎣 Fishing report <b>they're biting</b></span>
-    <span>🌊 Water temp <b>84°</b></span><span>🌅 Sunset <b>8:52 pm</b></span><span>📏 Lake level <b>full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🤿 Jocassee visibility <b>very yes</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+    <span>🌊 Water temp <b>84°</b></span><span>🌅 Sunset <b>8:52 pm</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🤿 Jocassee visibility <b>very yes</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+    <span>🌊 Water temp <b>84°</b></span><span>🌅 Sunset <b>8:52 pm</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>🍺 Trivia @ Keowee Brewing <b>Thursday</b></span><span>🤿 Jocassee visibility <b>very yes</b></span><span>🎣 Fishing report <b>they're biting</b></span>
   </div>
 </div>
 
@@ -345,6 +358,32 @@ document.getElementById('signup').addEventListener('submit',function(e){
   this.style.display='none';
   document.getElementById('success').style.display='block';
 });
+
+// Live Lake Keowee level from Duke Energy. Fails silently to the static "full pond" text.
+(function(){
+  function verdict(p){
+    if(p>=97) return {tick:'full pond',hero:'basically full pond. Go.',low:false};
+    if(p>=95) return {tick:'plenty deep',hero:'plenty of water. Go.',low:false};
+    if(p>=93.5) return {tick:'holding',hero:'a little low, still good.',low:false};
+    return {tick:'running low',hero:'getting skinny — launch at South Cove.',low:true};
+  }
+  fetch('https://api.hydro-derived.duke-energy.app/lakes/current-level')
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(lakes){
+      var k=lakes.find(function(l){return l.LakeName==='KEOWEE';});
+      var p=k&&parseFloat(k.Actual);
+      if(!p||isNaN(p))return;
+      var v=verdict(p),pct=(Math.round(p*10)/10)+'%';
+      Array.prototype.forEach.call(document.querySelectorAll('.js-level'),function(el){
+        el.textContent=pct+' · '+v.tick;
+      });
+      var rpt=document.getElementById('lakeReport');
+      rpt.querySelector('.lake-report-text').innerHTML='Keowee’s at <b>'+pct+'</b> — '+v.hero;
+      if(v.low)rpt.setAttribute('data-state','low');
+      rpt.hidden=false;
+    })
+    .catch(function(){/* keep static fallback */});
+})();
 </script>
 </body>
 </html>

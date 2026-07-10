@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lake Keowee Water Level — Live Reading | keowee.club</title>
+<meta name="description" content="Live Lake Keowee and Lake Jocassee water levels, updated straight from Duke Energy. See how close the lake is to full pond and whether the boat ramps are good to go.">
+<link rel="canonical" href="https://keowee.club/lake-level/">
+<meta name="theme-color" content="#0A3A34">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A3A34'/%3E%3Cpath d='M15 44c10-12 20-12 30 0s20 12 30 0' stroke='%2352D6C4' stroke-width='9' fill='none' stroke-linecap='round'/%3E%3Cpath d='M15 66c10-12 20-12 30 0s20 12 30 0' stroke='%23FFC24B' stroke-width='9' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="keowee.club">
+<meta property="og:title" content="Lake Keowee Water Level — Live Reading">
+<meta property="og:description" content="Live Lake Keowee & Lake Jocassee levels from Duke Energy — how close to full pond, and whether the ramps are good.">
+<meta property="og:url" content="https://keowee.club/lake-level/">
+<meta property="og:image" content="https://keowee.club/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lake Keowee Water Level — Live Reading">
+<meta name="twitter:description" content="Live Lake Keowee & Lake Jocassee levels from Duke Energy.">
+<meta name="twitter:image" content="https://keowee.club/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --keowee-deep:#0A3A34;--keowee-dusk:#062821;--clearwater:#52D6C4;--clearwater-pale:#BFF3EA;
+  --shallows:#EFF8F3;--sunset:#FF6E52;--goldhour:#FFC24B;--ink:#0E2622;--ink-soft:#3E5A54;--card:#FFFFFF;
+  --radius-lg:24px;--radius-md:16px;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;--body:'Instrument Sans',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--shallows);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sunset);outline-offset:2px;border-radius:4px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,58,52,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px}
+.wordmark{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.wordmark span{color:var(--clearwater)}
+.wordmark svg{margin-top:4px}
+.nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
+.nav-cta:hover{background:#ff5a3a}
+.hero{background:var(--keowee-deep);color:#fff;padding:52px 20px 64px}
+.hero-inner{max-width:1100px;margin:0 auto}
+.crumb{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--clearwater);margin-bottom:16px}
+.crumb a{text-decoration:none;opacity:.85}.crumb a:hover{opacity:1}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,7vw,4rem);line-height:1;letter-spacing:-.02em;text-transform:uppercase;max-width:16ch}
+.hero .sub{margin-top:18px;max-width:56ch;color:#CFE8E1;font-size:1.05rem}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.levels{display:grid;gap:18px;grid-template-columns:1fr;margin-top:-36px;position:relative;z-index:2}
+@media(min-width:720px){.levels{grid-template-columns:1fr 1fr}}
+.level{background:var(--card);border-radius:var(--radius-lg);padding:26px 28px 24px;box-shadow:0 10px 30px rgba(10,58,52,.12)}
+.level .name{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft)}
+.level .pct{font-family:var(--display);font-weight:800;font-size:clamp(3rem,9vw,4.4rem);line-height:1;letter-spacing:-.02em;color:var(--keowee-deep);margin-top:6px}
+.level .pct small{font-size:1.4rem;color:var(--ink-soft);font-weight:700}
+.level .verdict{font-family:var(--mono);font-size:.9rem;font-weight:700;margin-top:8px;color:var(--keowee-deep)}
+.level[data-state="low"] .verdict{color:#C0651E}
+.meter{height:12px;border-radius:999px;background:var(--clearwater-pale);margin:16px 0 12px;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#52D6C4,#1B9C8A);width:0;transition:width .8s ease}
+.level[data-state="low"] .meter i{background:linear-gradient(90deg,#FFC24B,#FF8A50)}
+.stats{display:flex;gap:20px;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);flex-wrap:wrap}
+.stats b{color:var(--ink);display:block;font-size:1rem}
+.asof{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);margin-top:16px}
+.asof .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--clearwater);margin-right:6px;vertical-align:middle}
+.prose{max-width:66ch;margin:56px auto 0;padding:0 20px}
+.prose h2{font-family:var(--display);font-weight:800;font-size:1.7rem;letter-spacing:-.01em;margin:36px 0 12px;color:var(--keowee-deep)}
+.prose p{margin-bottom:14px;color:#26443E}
+.prose a{color:#127a6b;font-weight:600}
+.faq dt{font-family:var(--display);font-weight:700;font-size:1.1rem;margin-top:22px;color:var(--keowee-deep)}
+.faq dd{margin:6px 0 0;color:#26443E}
+.backhome{display:inline-block;margin:40px 0 10px;font-family:var(--mono);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;background:var(--sunset);color:#fff;padding:14px 22px;border-radius:999px}
+footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px;margin-top:56px}
+.foot-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.foot-inner a{text-decoration:none}.foot-inner a:hover{color:var(--clearwater)}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is full pond on Lake Keowee?","acceptedAnswer":{"@type":"Answer","text":"Full pond on Lake Keowee is an elevation of 800 feet above sea level, which Duke Energy reports as 100%. The lake normally sits within a few feet of full pond year-round, so readings in the high 90s percent are typical and mean the water is in great shape for boating and swimming."}},
+    {"@type":"Question","name":"Why is the Lake Keowee water level low?","acceptedAnswer":{"@type":"Answer","text":"Lake Keowee is a Duke Energy reservoir used for hydroelectric and Oconee Nuclear Station cooling, so the level rises and falls as water is moved between Keowee and Lake Jocassee upstream. Levels can also drop during drought or a declared Low Inflow Protocol. Keowee is more stable than most reservoirs, rarely dropping more than a few feet below full pond."}},
+    {"@type":"Question","name":"Where can I launch a boat when Lake Keowee is low?","acceptedAnswer":{"@type":"Answer","text":"South Cove County Park in Seneca has a deep, well-maintained ramp that stays usable even when the lake drops. High Falls County Park and the Mile Creek Park ramp are also good bets during lower water."}},
+    {"@type":"Question","name":"How is the Lake Jocassee level different from Keowee?","acceptedAnswer":{"@type":"Answer","text":"Lake Jocassee sits upstream of Keowee at a full pond of 1,110 feet and swings much more than Keowee because Duke moves water down to Keowee for power generation. It is normal to see Jocassee well below full pond even when Keowee is nearly full."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="wordmark" href="/">keowee<span>.club</span>
+      <svg width="86" height="6" viewBox="0 0 86 6" fill="none" aria-hidden="true"><path d="M1 4C6 .5 11 .5 16 4s10 3.5 15 0 10-3.5 15 0 10 3.5 15 0 10-3.5 15 0 8 3 8 3" stroke="#52D6C4" stroke-width="2" stroke-linecap="round"/></svg>
+    </a>
+    <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="crumb"><a href="/">← keowee.club</a></p>
+    <h1>Lake Keowee Water Level</h1>
+    <p class="sub">Live from Duke Energy's gauges — how close Keowee and Jocassee are to full pond right now, and whether it's a good day to drop the boat in.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="levels">
+    <section class="level" id="keowee" aria-label="Lake Keowee level">
+      <p class="name">Lake Keowee</p>
+      <p class="pct"><span data-fill="pct">—</span><small>% of full pond</small></p>
+      <p class="verdict" data-fill="verdict">Checking the gauge…</p>
+      <div class="meter"><i data-fill="bar"></i></div>
+      <div class="stats">
+        <span>Full pond<b>800 ft</b></span>
+        <span>Normal range<b data-fill="range">93–100%</b></span>
+      </div>
+      <p class="asof"><span class="dot"></span><span data-fill="asof">Loading…</span></p>
+    </section>
+    <section class="level" id="jocassee" aria-label="Lake Jocassee level">
+      <p class="name">Lake Jocassee</p>
+      <p class="pct"><span data-fill="pct">—</span><small>% of full pond</small></p>
+      <p class="verdict" data-fill="verdict">Checking the gauge…</p>
+      <div class="meter"><i data-fill="bar"></i></div>
+      <div class="stats">
+        <span>Full pond<b>1,110 ft</b></span>
+        <span>Normal range<b data-fill="range">77–100%</b></span>
+      </div>
+      <p class="asof"><span class="dot"></span><span data-fill="asof">Loading…</span></p>
+    </section>
+  </div>
+</div>
+
+<article class="prose">
+  <h2>What "full pond" actually means</h2>
+  <p>On Lake Keowee, <strong>full pond is 800 feet above sea level</strong>, and Duke Energy reports it as 100%. Keowee is one of the most stable reservoirs in the Southeast — it usually sits within a few feet of full pond all year, so a reading in the high 90s is exactly what you want to see. That's why locals just say the lake is "at full pond" and go.</p>
+  <p>Lake Jocassee, upstream at a full pond of <strong>1,110 feet</strong>, is a different animal. Duke moves water down from Jocassee to Keowee to spin turbines and cool the Oconee Nuclear Station, so Jocassee's level swings a lot more. Seeing Jocassee well below full pond while Keowee is nearly topped off is completely normal.</p>
+  <h2>Reading the ramp</h2>
+  <p>For most of Keowee, anything in the mid-90s and up means every public ramp is good and the swim spots are deep. If the lake dips lower during a dry stretch, head for <a href="/#water">South Cove County Park</a> in Seneca — its ramp is deep and stays usable when shallower ones start showing mud.</p>
+  <h2>Common questions</h2>
+  <dl class="faq">
+    <dt>What is full pond on Lake Keowee?</dt>
+    <dd>Full pond is 800 feet above sea level (100%). Keowee normally stays within a few feet of it year-round.</dd>
+    <dt>Why is the lake level low?</dt>
+    <dd>Keowee is a working hydro reservoir, so the level moves as Duke shifts water to and from Jocassee. Drought or a declared Low Inflow Protocol can pull it down further — but rarely more than a few feet.</dd>
+    <dt>Where do I launch when it's low?</dt>
+    <dd>South Cove County Park, High Falls County Park, and Mile Creek Park all have deep ramps that hold up in lower water.</dd>
+  </dl>
+  <a class="backhome" href="/">← Back to the guide</a>
+</article>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 keowee.club</span>
+    <span>Levels via Duke Energy</span>
+    <a href="/">Home ↑</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var FULL={KEOWEE:'800 ft',JOCASSEE:'1,110 ft'};
+  function verdict(name,p){
+    if(name==='KEOWEE'){
+      if(p>=97)return{t:'Full pond. Go.',low:false};
+      if(p>=95)return{t:'Plenty of water. Go.',low:false};
+      if(p>=93.5)return{t:'A little low, still good.',low:false};
+      return{t:'Running low — launch at South Cove.',low:true};
+    }
+    if(p>=95)return{t:'Brimming. Rare and beautiful.',low:false};
+    if(p>=88)return{t:'Healthy — waterfalls are running.',low:false};
+    if(p>=82)return{t:'Down a bit, still gorgeous.',low:false};
+    return{t:'Drawn down — mind the rocks.',low:true};
+  }
+  function fmtDate(s){
+    var d=new Date(s);if(isNaN(d))return '';
+    return d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+  }
+  function set(id,field,val){
+    var el=document.querySelector('#'+id+' [data-fill="'+field+'"]');
+    if(el){if(field==='bar')el.style.width=val;else el.textContent=val;}
+  }
+  function fail(){
+    ['keowee','jocassee'].forEach(function(id){
+      set(id,'asof','Live reading unavailable — check lakes.duke-energy.com');
+    });
+  }
+  fetch('https://api.hydro-derived.duke-energy.app/lakes/current-level')
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(lakes){
+      [['keowee','KEOWEE'],['jocassee','JOCASSEE']].forEach(function(pair){
+        var id=pair[0],key=pair[1];
+        var l=lakes.find(function(x){return x.LakeName===key;});
+        var p=l&&parseFloat(l.Actual);
+        if(!p||isNaN(p)){set(id,'asof','Live reading unavailable');return;}
+        var pct=(Math.round(p*10)/10);
+        var v=verdict(key,p);
+        set(id,'pct',pct);
+        set(id,'verdict',v.t);
+        set(id,'bar',Math.max(0,Math.min(100,p))+'%');
+        set(id,'asof','Live · updated '+fmtDate(l.Date));
+        if(v.low)document.getElementById(id).setAttribute('data-state','low');
+      });
+    })
+    .catch(fail);
+})();
+</script>
+</body>
+</html>
