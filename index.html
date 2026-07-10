@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>keowee.club — The unofficial guide to Lake Keowee</title>
 <meta name="description" content="Where to eat, drink, swim, and wander around Lake Keowee, Seneca & Salem. One newsletter a month. Zero spam, all lake.">
+<link rel="canonical" href="https://keowee.club/">
+<meta name="theme-color" content="#0A3A34">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A3A34'/%3E%3Cpath d='M15 44c10-12 20-12 30 0s20 12 30 0' stroke='%2352D6C4' stroke-width='9' fill='none' stroke-linecap='round'/%3E%3Cpath d='M15 66c10-12 20-12 30 0s20 12 30 0' stroke='%23FFC24B' stroke-width='9' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="keowee.club">
+<meta property="og:title" content="keowee.club — The unofficial guide to Lake Keowee">
+<meta property="og:description" content="Where to eat, drink, swim, and wander around Lake Keowee, Seneca & Salem. Curated by people who actually live on this water.">
+<meta property="og:url" content="https://keowee.club/">
+<meta property="og:image" content="https://keowee.club/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="keowee.club — The unofficial guide to Lake Keowee">
+<meta name="twitter:description" content="Where to eat, drink, swim, and wander around Lake Keowee, Seneca & Salem.">
+<meta name="twitter:image" content="https://keowee.club/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -50,9 +65,9 @@ a{color:inherit}
 /* ---------- HERO ---------- */
 .hero{background:var(--keowee-deep);color:#fff;position:relative;overflow:hidden;padding:64px 20px 88px}
 .hero-inner{max-width:1100px;margin:0 auto;position:relative}
-.eyebrow{font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;color:var(--clearwater);margin-bottom:18px}
-.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.9rem,11vw,6.5rem);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;max-width:11ch}
-.hero h1 em{font-style:italic;color:var(--clearwater)}
+.eyebrow{font-family:var(--mono);font-size:.75rem;font-weight:400;text-transform:uppercase;letter-spacing:.14em;color:var(--clearwater);margin-bottom:18px}
+.hero .display-title{font-family:var(--display);font-weight:800;font-size:clamp(2.9rem,11vw,6.5rem);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;max-width:11ch}
+.hero .display-title em{font-style:italic;color:var(--clearwater)}
 .hero p{margin-top:22px;max-width:46ch;font-size:1.05rem;color:#CFE8E1}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .btn{font-family:var(--mono);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;padding:14px 22px;border-radius:999px;display:inline-block;transition:transform .15s ease}
@@ -122,6 +137,46 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 .foot-inner a{text-decoration:none}
 .foot-inner a:hover{color:var(--clearwater)}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://keowee.club/#website",
+      "url": "https://keowee.club/",
+      "name": "keowee.club",
+      "alternateName": "The Unofficial Guide to Lake Keowee",
+      "description": "Where to eat, drink, swim, and wander around Lake Keowee, Seneca & Salem, South Carolina.",
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://keowee.club/#guide",
+      "name": "Lake Keowee Guide: Where to Eat, Drink, and Play",
+      "numberOfItems": 16,
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "item": {"@type": "Restaurant", "name": "The Lighthouse", "description": "Waterfront dinner on Lake Keowee you can arrive at by boat.", "address": {"@type": "PostalAddress", "addressLocality": "Salem", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 2, "item": {"@type": "Restaurant", "name": "The Smokin' Pig", "description": "South Carolina BBQ — hash over rice after a day on the lake.", "address": {"@type": "PostalAddress", "addressLocality": "Pendleton", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 3, "item": {"@type": "Restaurant", "name": "Vangeli's Bistro", "description": "White-tablecloth dining on Ram Cat Alley in downtown Seneca.", "address": {"@type": "PostalAddress", "addressLocality": "Seneca", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 4, "item": {"@type": "Restaurant", "name": "Aunt Sue's Country Corner", "description": "Classic ice cream stop on the Highway 11 scenic byway.", "address": {"@type": "PostalAddress", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 5, "item": {"@type": "Brewery", "name": "Keowee Brewing Co.", "description": "Dog-friendly brewery patio with rotating taps in Seneca.", "address": {"@type": "PostalAddress", "addressLocality": "Seneca", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 6, "item": {"@type": "Winery", "name": "Victoria Valley Vineyards", "description": "French-style château winery in the Blue Ridge foothills off Highway 11.", "address": {"@type": "PostalAddress", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 7, "item": {"@type": "BarOrPub", "name": "The Spot on the Alley", "description": "Live music venue and bar on Ram Cat Alley in Seneca.", "address": {"@type": "PostalAddress", "addressLocality": "Seneca", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 8, "item": {"@type": "CafeOrCoffeeShop", "name": "Ram Cat Alley Cafés", "description": "Coffee shops in downtown Seneca near the Lake Keowee boat ramps.", "address": {"@type": "PostalAddress", "addressLocality": "Seneca", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 9, "item": {"@type": "TouristAttraction", "name": "Lake Jocassee Diving", "description": "Some of the clearest freshwater diving in the Southeast, at Devils Fork State Park.", "address": {"@type": "PostalAddress", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 10, "item": {"@type": "Park", "name": "South Cove County Park", "description": "Swim beach, paddleboard launch, and campsites on Lake Keowee.", "address": {"@type": "PostalAddress", "addressLocality": "Seneca", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 11, "item": {"@type": "TouristAttraction", "name": "Lake Jocassee Waterfalls", "description": "Boat-access-only waterfalls pouring directly into Lake Jocassee.", "address": {"@type": "PostalAddress", "addressLocality": "Salem", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 12, "item": {"@type": "LocalBusiness", "name": "Kayak & SUP Rentals", "description": "Kayak and paddleboard rentals near Lake Keowee in Seneca.", "address": {"@type": "PostalAddress", "addressLocality": "Seneca", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 13, "item": {"@type": "TouristAttraction", "name": "Sassafras Mountain", "description": "Highest point in South Carolina with a 360-degree observation tower.", "address": {"@type": "PostalAddress", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 14, "item": {"@type": "TouristAttraction", "name": "Stumphouse Tunnel & Issaqueena Falls", "description": "Abandoned 1850s railroad tunnel and waterfall near Walhalla.", "address": {"@type": "PostalAddress", "addressLocality": "Walhalla", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 15, "item": {"@type": "Park", "name": "Keowee-Toxaway State Park", "description": "Natural Bridge loop trail with granite overlooks above Lake Keowee.", "address": {"@type": "PostalAddress", "addressLocality": "Sunset", "addressRegion": "SC"}}},
+        {"@type": "ListItem", "position": 16, "item": {"@type": "TouristAttraction", "name": "Whitewater Falls", "description": "411-foot waterfall just past Bad Creek on the NC state line.", "address": {"@type": "PostalAddress", "addressRegion": "NC"}}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -142,10 +197,10 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 
 <header class="hero" id="top">
   <div class="hero-inner">
-    <p class="eyebrow">The unofficial guide to Lake Keowee · Seneca · Salem</p>
-    <h1>Go jump in a <em>lake.</em>
+    <h1 class="eyebrow">The unofficial guide to Lake Keowee · Seneca · Salem</h1>
+    <p class="display-title">Go jump in a <em>lake.</em>
       <span class="sticker sticker-gold">est. full pond</span>
-    </h1>
+    </p>
     <p>Every good spot to eat, drink, float, and wander in the Golden Corner — curated by people who actually live on this water, not a tourism board.</p>
     <div class="hero-actions">
       <a class="btn btn-coral" href="#eat">Find a spot</a>
