@@ -330,10 +330,12 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
     <p class="eyebrow">Once a month · Zero spam · All lake</p>
     <h2>The Dock <em>Dispatch</em></h2>
     <p>New spots, lake levels, events worth leaving the cove for, and the occasional hot take about pontoon etiquette. Free, monthly, unsubscribe whenever.</p>
-    <form id="signup" novalidate>
-      <input type="email" id="email" placeholder="you@somewhere.com" aria-label="Email address" required>
+    <form id="signup" action="https://buttondown.com/api/emails/embed-subscribe/keowee" method="post" target="bd-frame" novalidate>
+      <input type="email" id="email" name="email" placeholder="you@somewhere.com" aria-label="Email address" required>
+      <input type="hidden" name="embed" value="1">
       <button type="submit">Sign me up</button>
     </form>
+    <iframe name="bd-frame" title="Newsletter signup" style="display:none" aria-hidden="true"></iframe>
     <p class="success" id="success">🌊 You're in. See you at full pond.</p>
     <p class="fine">One email a month. We'd rather be on the water too.</p>
   </div>
@@ -351,10 +353,9 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 
 <script>
 document.getElementById('signup').addEventListener('submit',function(e){
-  e.preventDefault();
   var email=document.getElementById('email');
-  if(!email.value||!email.value.includes('@')){email.focus();email.style.borderColor='#FF6E52';return;}
-  // TODO: wire to your newsletter provider (Beehiiv / Buttondown / Mailchimp)
+  if(!email.value||!email.value.includes('@')){e.preventDefault();email.focus();email.style.borderColor='#FF6E52';return;}
+  // Valid: the form POSTs to Buttondown via the hidden iframe (no page reload); swap to the confirmation.
   this.style.display='none';
   document.getElementById('success').style.display='block';
 });
