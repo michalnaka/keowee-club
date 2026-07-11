@@ -89,24 +89,21 @@ a{color:inherit}
 .lake-report[data-state="low"] .lake-report-dot{background:var(--goldhour);box-shadow:0 0 0 0 rgba(255,194,75,.6)}
 .lake-report[data-state="low"] .lake-report-text b{color:var(--goldhour)}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(82,214,196,.5)}70%{box-shadow:0 0 0 7px rgba(82,214,196,0)}100%{box-shadow:0 0 0 0 rgba(82,214,196,0)}}
-.lake-gauge{position:absolute;right:3%;top:92px;width:215px;height:280px;border:2px solid rgba(82,214,196,.35);border-radius:26px;background:rgba(82,214,196,.05);overflow:hidden;text-decoration:none;display:none;transition:border-color .2s ease,transform .2s ease}
-.lake-gauge:hover{border-color:var(--clearwater);transform:translateY(-3px)}
-@media(min-width:900px){
-  .lake-gauge:not([hidden]){display:block}
-  .lake-report{display:none}
-}
-.gauge-water{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,rgba(82,214,196,.9),#177E6F);transition:height 1.4s cubic-bezier(.22,1,.36,1)}
-.gauge-wave{position:absolute;top:-10px;left:0;width:200%;height:12px;animation:waveslide 7s linear infinite}
-.gauge-wave path{fill:rgba(82,214,196,.9)}
+/* The hero background IS the lake: water fills to the live level */
+.hero-inner{z-index:2}
+.hero-water{position:absolute;left:0;right:0;bottom:0;height:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(82,214,196,.30) 0,rgba(38,150,131,.34) 45%,rgba(23,126,111,.40));box-shadow:inset 0 14px 30px -12px rgba(191,243,234,.35);transition:height 1.8s cubic-bezier(.22,1,.36,1)}
+.water-wave{position:absolute;top:-11px;left:0;width:200%;height:12px;animation:waveslide 8s linear infinite}
+.water-wave path{fill:rgba(82,214,196,.30)}
 @keyframes waveslide{to{transform:translateX(-50%)}}
-.lake-gauge[data-state="low"] .gauge-water{background:linear-gradient(180deg,rgba(255,194,75,.92),#E07A3E)}
-.lake-gauge[data-state="low"] .gauge-wave path{fill:rgba(255,194,75,.92)}
-.gauge-read{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:0 16px}
-.gauge-read b{font-family:var(--display);font-weight:800;font-size:2.7rem;letter-spacing:-.02em;line-height:1;color:#fff;text-shadow:0 2px 12px rgba(6,40,33,.4)}
-.gauge-read span{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.12em;color:#EAF7F2;text-shadow:0 1px 6px rgba(6,40,33,.35)}
-.gauge-read em{font-style:normal;font-family:var(--mono);font-size:.68rem;color:var(--keowee-dusk);background:rgba(255,255,255,.85);padding:5px 10px;border-radius:999px;margin-top:10px}
-.gauge-live{position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:#CFE8E1;z-index:2}
-@media(prefers-reduced-motion:reduce){.lake-report-dot{animation:none}.gauge-wave{animation:none}.gauge-water{transition:none}}
+.hero[data-lake="low"] .hero-water{background:linear-gradient(180deg,rgba(255,194,75,.14),rgba(224,122,62,.18))}
+.hero[data-lake="low"] .water-wave path{fill:rgba(255,194,75,.14)}
+.waterline-chip{position:absolute;right:22px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--keowee-dusk);border:1.5px solid rgba(82,214,196,.55);font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#CFE8E1;text-decoration:none;transform:translateY(50%);transition:border-color .15s ease}
+.waterline-chip:hover{border-color:var(--clearwater);color:#fff}
+.waterline-chip b{color:var(--clearwater)}
+.hero[data-lake="low"] .waterline-chip{border-color:rgba(255,194,75,.6)}
+.hero[data-lake="low"] .waterline-chip b{color:var(--goldhour)}
+@media(min-width:900px){.lake-report{display:none}}
+@media(prefers-reduced-motion:reduce){.lake-report-dot{animation:none}.water-wave{animation:none}.hero-water{transition:none}}
 
 /* ---------- TICKER ---------- */
 .ticker{background:var(--keowee-dusk);color:var(--clearwater);overflow:hidden;border-top:1px solid rgba(82,214,196,.25);border-bottom:1px solid rgba(82,214,196,.25)}
@@ -280,18 +277,14 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
       <span class="lake-report-dot" aria-hidden="true"></span>
       <span class="lake-report-text"></span>
     </a>
-    <a class="lake-gauge" id="lakeGauge" href="/lake-level/" hidden aria-label="Live Lake Keowee water level">
-      <div class="gauge-water" id="gaugeWater">
-        <svg class="gauge-wave" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 Q6 2 12.5 6 T25 6 T37.5 6 T50 6 T62.5 6 T75 6 T87.5 6 T100 6 T112.5 6 T125 6 T137.5 6 T150 6 T162.5 6 T175 6 T187.5 6 T200 6 V12 Z"/></svg>
-      </div>
-      <span class="gauge-live"><span class="lake-report-dot" aria-hidden="true"></span>live</span>
-      <div class="gauge-read">
-        <b id="gaugePct">–</b>
-        <span>of full pond</span>
-        <em id="gaugeVerdict"></em>
-      </div>
-    </a>
   </div>
+  <div class="hero-water" id="heroWater" aria-hidden="true">
+    <svg class="water-wave" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 12 Q6 2 12.5 6 T25 6 T37.5 6 T50 6 T62.5 6 T75 6 T87.5 6 T100 6 T112.5 6 T125 6 T137.5 6 T150 6 T162.5 6 T175 6 T187.5 6 T200 6 V12 Z"/></svg>
+  </div>
+  <a class="waterline-chip" id="waterChip" href="/lake-level/" hidden>
+    <span class="lake-report-dot" aria-hidden="true"></span>
+    <span id="waterChipText"></span>
+  </a>
   <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C180 60 360 0 540 20s360 40 540 15 300-25 360-10V60H0Z" fill="#062821"/></svg>
 </header>
 
@@ -493,13 +486,16 @@ document.addEventListener('click',function(e){
         rpt.querySelector('.lake-report-text').innerHTML='Keowee’s at <b>'+pct+'</b> — '+v.hero;
         if(v.low)rpt.setAttribute('data-state','low');
         rpt.hidden=false;
-        var g=document.getElementById('lakeGauge');
-        if(g){
-          document.getElementById('gaugePct').textContent=pct;
-          document.getElementById('gaugeVerdict').textContent=v.hero;
-          document.getElementById('gaugeWater').style.height=Math.max(6,Math.min(100,kp))+'%';
-          if(v.low)g.setAttribute('data-state','low');
-          g.hidden=false;
+        var hw=document.getElementById('heroWater'),chip=document.getElementById('waterChip');
+        if(hw){
+          var lvl=Math.max(4,Math.min(100,kp));
+          hw.style.height=lvl+'%';
+          if(v.low)document.querySelector('.hero').setAttribute('data-lake','low');
+          if(chip){
+            document.getElementById('waterChipText').innerHTML='<b>'+pct+'</b>&nbsp;· '+v.tick;
+            chip.style.bottom=lvl+'%';
+            chip.hidden=false;
+          }
         }
       }
       var j=lakes.find(function(l){return l.LakeName==='JOCASSEE';});
