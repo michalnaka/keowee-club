@@ -2,8 +2,8 @@
   "sections": [
     {
       "id": "eat",
-      "title": "Eat",
-      "sub": "From boat-up dinners to the BBQ you earn after a day on the water.",
+      "title": "Eat &amp; Drink",
+      "sub": "Boat-up dinners, breakfast biscuits, and every tap worth pulling up a stool for.",
       "spots": [
         {
           "name": "The Cabana",
@@ -173,6 +173,25 @@
           "website": "https://www.facebook.com/sisterssalem/",
           "maps": "Sisters Restaurant, 281 Stamp Creek Rd, Salem, SC",
           "schema": "Restaurant",
+          "locality": "Salem"
+        },
+        {
+          "name": "Jocassee Valley Brewing",
+          "emoji": "🍻",
+          "art": "b",
+          "tag": "Salem · Brewery",
+          "town": "Salem",
+          "category": "Brewery",
+          "blurb": "Coffee in the morning, beers on tap the rest of the day — plus weekly food carts and live music.",
+          "tip": "Last stop before Lake Jocassee, or the first one after.",
+          "badges": [
+            "☕ morning coffee",
+            "🎸 live music",
+            "🚚 weekly food carts"
+          ],
+          "website": "https://jocasseevalleybrewing.com",
+          "maps": "Jocassee Valley Brewing Company, Salem, SC",
+          "schema": "Brewery",
           "locality": "Salem"
         }
       ]
