@@ -1,0 +1,241 @@
+{
+  "sections": [
+    {
+      "id": "eat",
+      "title": "Eat",
+      "sub": "From boat-up dinners to the BBQ you earn after a day on the water.",
+      "spots": [
+        {
+          "name": "The Lighthouse",
+          "emoji": "🦞",
+          "art": "a",
+          "tag": "Salem · Waterfront",
+          "blurb": "Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.",
+          "tip": null,
+          "badges": ["🛥️ boat-up"],
+          "website": null,
+          "maps": "The Lighthouse Restaurant, Salem, SC",
+          "schema": "Restaurant",
+          "locality": "Salem"
+        },
+        {
+          "name": "The Smokin' Pig",
+          "emoji": "🍖",
+          "art": "c",
+          "tag": "Pendleton · BBQ",
+          "blurb": "The post-lake ritual.",
+          "tip": "Get the hash over rice and don't ask questions.",
+          "badges": [],
+          "website": null,
+          "maps": "The Smokin Pig, Pendleton, SC",
+          "schema": "Restaurant",
+          "locality": "Pendleton"
+        },
+        {
+          "name": "Vangeli's Bistro",
+          "emoji": "🍝",
+          "art": "b",
+          "tag": "Seneca · Date night",
+          "blurb": "White tablecloth on Ram Cat Alley. Where you go when it's an anniversary, not a Tuesday.",
+          "tip": null,
+          "badges": [],
+          "website": null,
+          "maps": "Vangeli's Bistro, Seneca, SC",
+          "schema": "Restaurant",
+          "locality": "Seneca"
+        },
+        {
+          "name": "Aunt Sue's Country Corner",
+          "emoji": "🍦",
+          "art": "d",
+          "tag": "Hwy 11 · Classic",
+          "blurb": "Scenic-drive ice cream since before you were born.",
+          "tip": "The waffle cone is non-negotiable.",
+          "badges": [],
+          "website": null,
+          "maps": "Aunt Sue's Country Corner, Pickens, SC",
+          "schema": "Restaurant",
+          "locality": null
+        }
+      ]
+    },
+    {
+      "id": "drink",
+      "title": "Drink",
+      "sub": "Patios, pours, and one surprisingly legit vineyard in the foothills.",
+      "spots": [
+        {
+          "name": "Keowee Brewing Co.",
+          "emoji": "🍺",
+          "art": "b",
+          "tag": "Seneca · Brewery",
+          "blurb": "The de facto clubhouse. Dog-friendly patio, rotating taps, everyone you know is already there.",
+          "tip": "Trivia Mondays, Music Bingo Wednesdays, burger &amp; beer special Thursdays, live music Fri–Sat — and growlers to go for the dock.",
+          "badges": ["🐕 dog-friendly patio", "🎸 live music Fri–Sat", "🍺 growlers to go"],
+          "website": "https://keoweebrewing.com",
+          "maps": "Keowee Brewing Company, 401 E Main St, Seneca, SC",
+          "schema": "Brewery",
+          "locality": "Seneca"
+        },
+        {
+          "name": "Victoria Valley Vineyards",
+          "emoji": "🍷",
+          "art": "c",
+          "tag": "Hwy 11 · Winery",
+          "blurb": "A French-style château casually sitting in the Blue Ridge foothills. Golden hour hits different here.",
+          "tip": null,
+          "badges": ["🌅 sunset views"],
+          "website": null,
+          "maps": "Victoria Valley Vineyards, Cleveland, SC",
+          "schema": "Winery",
+          "locality": null
+        },
+        {
+          "name": "The Spot on the Alley",
+          "emoji": "🎸",
+          "art": "d",
+          "tag": "Seneca · Live music",
+          "blurb": "Ram Cat Alley's living room. Live bands, cold beer, zero pretense.",
+          "tip": null,
+          "badges": ["🎸 live music"],
+          "website": null,
+          "maps": "The Spot on the Alley, Seneca, SC",
+          "schema": "BarOrPub",
+          "locality": "Seneca"
+        },
+        {
+          "name": "Ram Cat Alley Cafés",
+          "emoji": "☕",
+          "art": "a",
+          "tag": "Seneca · Coffee",
+          "blurb": "Morning fuel before the boat ramp. Order the cold brew, take the walk down the alley.",
+          "tip": null,
+          "badges": [],
+          "website": null,
+          "maps": "Ram Cat Alley, Seneca, SC",
+          "schema": "CafeOrCoffeeShop",
+          "locality": "Seneca"
+        }
+      ]
+    },
+    {
+      "id": "water",
+      "title": "On the Water",
+      "sub": "Two lakes, absurdly clear water, and more coves than you'll ever finish exploring.",
+      "spots": [
+        {
+          "name": "Dive Lake Jocassee",
+          "emoji": "🤿",
+          "art": "b",
+          "tag": "Devils Fork · Jocassee",
+          "blurb": "Some of the clearest freshwater in the Southeast. Dive it, paddle it, or just float and stare.",
+          "tip": null,
+          "badges": [],
+          "website": null,
+          "maps": "Devils Fork State Park, Salem, SC",
+          "schema": "TouristAttraction",
+          "locality": "Salem"
+        },
+        {
+          "name": "South Cove County Park",
+          "emoji": "🛶",
+          "art": "a",
+          "tag": "Seneca · Launch",
+          "blurb": "Paddleboard launch, swim beach, campsites on the point. The easy-button lake day.",
+          "tip": "The deep ramp here stays usable even when the lake drops.",
+          "badges": ["👶 kid-friendly"],
+          "website": null,
+          "maps": "South Cove County Park, Seneca, SC",
+          "schema": "Park",
+          "locality": "Seneca"
+        },
+        {
+          "name": "Jocassee Waterfalls Run",
+          "emoji": "⛵",
+          "art": "c",
+          "tag": "Salem · Boat trip",
+          "blurb": "Boat-access-only waterfalls pouring straight into the lake. Yes, you can swim under them.",
+          "tip": null,
+          "badges": ["🛥️ boat required"],
+          "website": null,
+          "maps": "Lake Jocassee, Salem, SC",
+          "schema": "TouristAttraction",
+          "locality": "Salem"
+        },
+        {
+          "name": "Kayak &amp; SUP Rentals",
+          "emoji": "🏄",
+          "art": "d",
+          "tag": "Seneca · Rentals",
+          "blurb": "No boat? No problem. Grab a board or kayak in town and pick a cove — asterisk resolved.",
+          "tip": null,
+          "badges": [],
+          "website": null,
+          "maps": "kayak rental Seneca SC",
+          "schema": "LocalBusiness",
+          "locality": "Seneca"
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "title": "Worth the Drive",
+      "sub": "When you need a break from the water. It happens. Rarely.",
+      "spots": [
+        {
+          "name": "Sassafras Mountain",
+          "emoji": "⛰️",
+          "art": "a",
+          "tag": "Pickens Co. · Summit",
+          "blurb": "The highest point in South Carolina, with a 360° observation tower straddling the NC line.",
+          "tip": null,
+          "badges": ["🌅 sunset views"],
+          "website": null,
+          "maps": "Sassafras Mountain, Sunset, SC",
+          "schema": "TouristAttraction",
+          "locality": null
+        },
+        {
+          "name": "Stumphouse Tunnel + Issaqueena Falls",
+          "emoji": "🕳️",
+          "art": "b",
+          "tag": "Walhalla · Weird history",
+          "blurb": "An abandoned 1850s railroad tunnel and a waterfall with a legend attached. One parking lot, two adventures.",
+          "tip": null,
+          "badges": ["👶 kid-friendly"],
+          "website": null,
+          "maps": "Stumphouse Tunnel, Walhalla, SC",
+          "schema": "TouristAttraction",
+          "locality": "Walhalla"
+        },
+        {
+          "name": "Keowee-Toxaway State Park",
+          "emoji": "🥾",
+          "art": "c",
+          "tag": "Sunset · State park",
+          "blurb": "The Natural Bridge loop is the best short hike on the lake — granite views straight over the water.",
+          "tip": null,
+          "badges": [],
+          "website": null,
+          "maps": "Keowee-Toxaway State Park, Sunset, SC",
+          "schema": "Park",
+          "locality": "Sunset"
+        },
+        {
+          "name": "Whitewater Falls",
+          "emoji": "💦",
+          "art": "d",
+          "tag": "NC line · Waterfall",
+          "blurb": "411 feet of showing off, ten minutes past Bad Creek. Bring the good camera.",
+          "tip": null,
+          "badges": [],
+          "website": null,
+          "maps": "Upper Whitewater Falls, Sapphire, NC",
+          "schema": "TouristAttraction",
+          "locality": null,
+          "region": "NC"
+        }
+      ]
+    }
+  ]
+}

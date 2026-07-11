@@ -33,6 +33,12 @@ jobs:
           ref: preview
           path: preview
 
+      - name: Render spot cards from data
+        run: |
+          for d in main preview; do
+            if [ -f "$d/scripts/render_spots.py" ]; then python3 "$d/scripts/render_spots.py" "$d"; fi
+          done
+
       - name: Assemble site (main at root, preview under /preview/)
         run: |
           mkdir -p _site/preview
