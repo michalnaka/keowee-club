@@ -56,6 +56,19 @@
           "maps": "Aunt Sue's Country Corner, Pickens, SC",
           "schema": "Restaurant",
           "locality": null
+        },
+        {
+          "name": "California's Mexican Grill",
+          "emoji": "🌮",
+          "art": "b",
+          "tag": "Salem · Mexican",
+          "blurb": "A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.",
+          "tip": "Weekly live music. It's near the lake but there's no public dock access — arrive by road.",
+          "badges": ["🎸 live music", "🍹 full bar"],
+          "website": null,
+          "maps": "Californias Mexican Grill, Salem, SC",
+          "schema": "Restaurant",
+          "locality": "Salem"
         }
       ]
     },
@@ -104,15 +117,15 @@
           "locality": "Seneca"
         },
         {
-          "name": "Ram Cat Alley Cafés",
+          "name": "Daydrinkers Coffee",
           "emoji": "☕",
           "art": "a",
           "tag": "Seneca · Coffee",
-          "blurb": "Morning fuel before the boat ramp. Order the cold brew, take the walk down the alley.",
+          "blurb": "Third-wave coffee downtown. Grab a cup and wander, or post up with a laptop — half of Clemson does during the school year.",
           "tip": null,
-          "badges": [],
-          "website": null,
-          "maps": "Ram Cat Alley, Seneca, SC",
+          "badges": ["💻 laptop-friendly"],
+          "website": "https://daydrinkers.co",
+          "maps": "Daydrinkers, 307 E North 1st St, Seneca, SC",
           "schema": "CafeOrCoffeeShop",
           "locality": "Seneca"
         }
