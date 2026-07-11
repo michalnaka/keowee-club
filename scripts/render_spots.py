@@ -14,6 +14,7 @@ in the detail sheet (see the inline script in index.html).
 """
 import html
 import json
+import os
 import pathlib
 import re
 import sys
@@ -28,7 +29,7 @@ page = index.read_text()
 def card(spot_id, s, num):
     return "\n".join(
         [
-            f'    <article class="card" data-spot="{spot_id}" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about {html.escape(html.unescape(s["name"]))}">',
+            f'    <article class="card" data-spot="{spot_id}" data-town="{html.escape(s.get("town", ""))}" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about {html.escape(html.unescape(s["name"]))}">',
             f'      <div class="card-art art-{s["art"]}" aria-hidden="true"><span class="card-num">{num:02d}</span><span class="card-emoji">{s["emoji"]}</span></div>',
             '      <div class="card-body">',
             f'        <span class="tag">{s["tag"]}</span>',
@@ -67,6 +68,20 @@ for sec in data["sections"]:
         f'  <div class="section-head"><h2>{sec["title"]}</h2><span class="count">{n:02d} spots</span></div>'
     )
     out.append(f'  <p class="section-sub">{sec["sub"]}</p>')
+    # Town filter chips appear once a section is big enough to need them
+    towns = []
+    for _, s in visible:
+        t = s.get("town")
+        if t and t not in towns:
+            towns.append(t)
+    filter_min = int(os.environ.get("FILTER_MIN", "6"))
+    if n >= filter_min and len(towns) > 1:
+        chips = ['  <div class="filters" role="group" aria-label="Filter by town">']
+        chips.append('    <button class="chip is-active" data-town="">All</button>')
+        for t in towns:
+            chips.append(f'    <button class="chip" data-town="{html.escape(t)}">{html.escape(t)}</button>')
+        chips.append("  </div>")
+        out.append("\n".join(chips))
     out.append('  <div class="cards">')
     for num, (i, s) in enumerate(visible, start=1):
         spot_id = f"{sec['id']}-{i}"

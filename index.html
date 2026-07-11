@@ -131,6 +131,10 @@ a{color:inherit}
 .tag{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--clearwater-pale);color:var(--keowee-deep);align-self:flex-start;padding:4px 9px;border-radius:999px}
 .card h3{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;line-height:1.15}
 .card p{font-size:.92rem;color:var(--ink-soft)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 20px}
+.chip{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;border-radius:999px;border:1.5px solid var(--clearwater);background:transparent;color:var(--keowee-deep);cursor:pointer;transition:background .15s ease,color .15s ease}
+.chip:hover{background:var(--clearwater-pale)}
+.chip.is-active{background:var(--keowee-deep);border-color:var(--keowee-deep);color:#fff}
 .card{cursor:pointer}
 .card-body h3{margin-top:2px}
 .card .more{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--keowee-deep);margin-top:auto;padding-top:12px;display:inline-flex;align-items:center;gap:6px}
@@ -326,7 +330,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
   <div class="section-head"><h2>Eat</h2><span class="count">04 spots</span></div>
   <p class="section-sub">From boat-up dinners to the BBQ you earn after a day on the water.</p>
   <div class="cards">
-    <article class="card" data-spot="eat-0" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Lighthouse">
+    <article class="card" data-spot="eat-0" data-town="Salem" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Lighthouse">
       <div class="card-art art-a" aria-hidden="true"><span class="card-num">01</span><span class="card-emoji">🦞</span></div>
       <div class="card-body">
         <span class="tag">Salem · Waterfront</span>
@@ -335,7 +339,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
         <span class="more" aria-hidden="true">Details <i>→</i></span>
       </div>
     </article>
-    <article class="card" data-spot="eat-1" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Smokin&#x27; Pig">
+    <article class="card" data-spot="eat-1" data-town="Pendleton" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Smokin&#x27; Pig">
       <div class="card-art art-c" aria-hidden="true"><span class="card-num">02</span><span class="card-emoji">🍖</span></div>
       <div class="card-body">
         <span class="tag">Pendleton · BBQ</span>
@@ -344,7 +348,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
         <span class="more" aria-hidden="true">Details <i>→</i></span>
       </div>
     </article>
-    <article class="card" data-spot="eat-2" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about Vangeli&#x27;s Bistro">
+    <article class="card" data-spot="eat-2" data-town="Seneca" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about Vangeli&#x27;s Bistro">
       <div class="card-art art-b" aria-hidden="true"><span class="card-num">03</span><span class="card-emoji">🍝</span></div>
       <div class="card-body">
         <span class="tag">Seneca · Date night</span>
@@ -353,7 +357,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
         <span class="more" aria-hidden="true">Details <i>→</i></span>
       </div>
     </article>
-    <article class="card" data-spot="eat-4" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about California&#x27;s Mexican Grill">
+    <article class="card" data-spot="eat-4" data-town="Salem" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about California&#x27;s Mexican Grill">
       <div class="card-art art-b" aria-hidden="true"><span class="card-num">04</span><span class="card-emoji">🌮</span></div>
       <div class="card-body">
         <span class="tag">Salem · Mexican</span>
@@ -459,6 +463,24 @@ document.getElementById('signup').addEventListener('submit',function(e){
     }
   });
 })();
+
+// Town filter chips (rendered only when a section has enough spots)
+document.addEventListener('click',function(e){
+  var chip=e.target.closest('.filters .chip');
+  if(!chip)return;
+  var section=chip.closest('.section');
+  var town=chip.getAttribute('data-town');
+  section.querySelectorAll('.filters .chip').forEach(function(c){c.classList.remove('is-active');});
+  chip.classList.add('is-active');
+  var n=0;
+  section.querySelectorAll('.card[data-spot]').forEach(function(c){
+    var show=!town||c.getAttribute('data-town')===town;
+    c.style.display=show?'':'none';
+    if(show)n++;
+  });
+  var count=section.querySelector('.count');
+  if(count)count.textContent=(n<10?'0':'')+n+' spots';
+});
 
 // Live lake + sky data for the hero badge and ticker. Each piece fails silently to its static text.
 (function(){

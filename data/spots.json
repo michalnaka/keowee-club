@@ -18,7 +18,8 @@
           "website": null,
           "maps": "The Lighthouse Restaurant, Salem, SC",
           "schema": "Restaurant",
-          "locality": "Salem"
+          "locality": "Salem",
+          "town": "Salem"
         },
         {
           "name": "The Smokin' Pig",
@@ -31,7 +32,8 @@
           "website": null,
           "maps": "The Smokin Pig, Pendleton, SC",
           "schema": "Restaurant",
-          "locality": "Pendleton"
+          "locality": "Pendleton",
+          "town": "Pendleton"
         },
         {
           "name": "Vangeli's Bistro",
@@ -44,7 +46,8 @@
           "website": null,
           "maps": "Vangeli's Bistro, Seneca, SC",
           "schema": "Restaurant",
-          "locality": "Seneca"
+          "locality": "Seneca",
+          "town": "Seneca"
         },
         {
           "name": "Aunt Sue's Country Corner",
@@ -58,7 +61,8 @@
           "maps": "Aunt Sue's Country Corner, Pickens, SC",
           "schema": "Restaurant",
           "locality": null,
-          "hidden": true
+          "hidden": true,
+          "town": "Hwy 11"
         },
         {
           "name": "California's Mexican Grill",
@@ -74,7 +78,8 @@
           "website": null,
           "maps": "Californias Mexican Grill, Salem, SC",
           "schema": "Restaurant",
-          "locality": "Salem"
+          "locality": "Salem",
+          "town": "Salem"
         }
       ]
     },
@@ -98,7 +103,8 @@
           "website": "https://keoweebrewing.com",
           "maps": "Keowee Brewing Company, 401 E Main St, Seneca, SC",
           "schema": "Brewery",
-          "locality": "Seneca"
+          "locality": "Seneca",
+          "town": "Seneca"
         },
         {
           "name": "Victoria Valley Vineyards",
@@ -113,7 +119,8 @@
           "website": null,
           "maps": "Victoria Valley Vineyards, Cleveland, SC",
           "schema": "Winery",
-          "locality": null
+          "locality": null,
+          "town": "Hwy 11"
         },
         {
           "name": "The Spot on the Alley",
@@ -128,7 +135,8 @@
           "website": null,
           "maps": "The Spot on the Alley, Seneca, SC",
           "schema": "BarOrPub",
-          "locality": "Seneca"
+          "locality": "Seneca",
+          "town": "Seneca"
         },
         {
           "name": "Daydrinkers Coffee",
@@ -143,7 +151,8 @@
           "website": "https://daydrinkers.co",
           "maps": "Daydrinkers, 307 E North 1st St, Seneca, SC",
           "schema": "CafeOrCoffeeShop",
-          "locality": "Seneca"
+          "locality": "Seneca",
+          "town": "Seneca"
         }
       ],
       "hidden": true
@@ -164,7 +173,8 @@
           "website": null,
           "maps": "Devils Fork State Park, Salem, SC",
           "schema": "TouristAttraction",
-          "locality": "Salem"
+          "locality": "Salem",
+          "town": "Salem"
         },
         {
           "name": "South Cove County Park",
@@ -179,7 +189,8 @@
           "website": null,
           "maps": "South Cove County Park, Seneca, SC",
           "schema": "Park",
-          "locality": "Seneca"
+          "locality": "Seneca",
+          "town": "Seneca"
         },
         {
           "name": "Jocassee Waterfalls Run",
@@ -194,7 +205,8 @@
           "website": null,
           "maps": "Lake Jocassee, Salem, SC",
           "schema": "TouristAttraction",
-          "locality": "Salem"
+          "locality": "Salem",
+          "town": "Salem"
         },
         {
           "name": "Kayak &amp; SUP Rentals",
@@ -207,7 +219,8 @@
           "website": null,
           "maps": "kayak rental Seneca SC",
           "schema": "LocalBusiness",
-          "locality": "Seneca"
+          "locality": "Seneca",
+          "town": "Seneca"
         }
       ],
       "hidden": true
@@ -230,7 +243,8 @@
           "website": null,
           "maps": "Sassafras Mountain, Sunset, SC",
           "schema": "TouristAttraction",
-          "locality": null
+          "locality": null,
+          "town": "Pickens Co."
         },
         {
           "name": "Stumphouse Tunnel + Issaqueena Falls",
@@ -245,7 +259,8 @@
           "website": null,
           "maps": "Stumphouse Tunnel, Walhalla, SC",
           "schema": "TouristAttraction",
-          "locality": "Walhalla"
+          "locality": "Walhalla",
+          "town": "Walhalla"
         },
         {
           "name": "Keowee-Toxaway State Park",
@@ -258,7 +273,8 @@
           "website": null,
           "maps": "Keowee-Toxaway State Park, Sunset, SC",
           "schema": "Park",
-          "locality": "Sunset"
+          "locality": "Sunset",
+          "town": "Sunset"
         },
         {
           "name": "Whitewater Falls",
@@ -272,7 +288,8 @@
           "maps": "Upper Whitewater Falls, Sapphire, NC",
           "schema": "TouristAttraction",
           "locality": null,
-          "region": "NC"
+          "region": "NC",
+          "town": "NC line"
         }
       ],
       "hidden": true
