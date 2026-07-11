@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lake Keowee Food &amp; Drink Map — Every Spot, Pinned | keowee.club</title>
+<meta name="description" content="An interactive map of the best places to eat and drink around Lake Keowee and Lake Jocassee — boat-up bars, breweries, breakfast joints, and more, pinned by locals.">
+<link rel="canonical" href="https://keowee.club/map/">
+<meta name="theme-color" content="#0A3A34">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230A3A34'/%3E%3Cpath d='M15 44c10-12 20-12 30 0s20 12 30 0' stroke='%2352D6C4' stroke-width='9' fill='none' stroke-linecap='round'/%3E%3Cpath d='M15 66c10-12 20-12 30 0s20 12 30 0' stroke='%23FFC24B' stroke-width='9' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="keowee.club">
+<meta property="og:title" content="Lake Keowee Food &amp; Drink Map">
+<meta property="og:description" content="Every spot in the guide, pinned — boat-up bars, breweries, breakfast joints around Lake Keowee &amp; Lake Jocassee.">
+<meta property="og:url" content="https://keowee.club/map/">
+<meta property="og:image" content="https://keowee.club/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lake Keowee Food &amp; Drink Map">
+<meta name="twitter:image" content="https://keowee.club/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+:root{
+  --keowee-deep:#0A3A34;--keowee-dusk:#062821;--clearwater:#52D6C4;--clearwater-pale:#BFF3EA;
+  --shallows:#EFF8F3;--sunset:#FF6E52;--goldhour:#FFC24B;--ink:#0E2622;--ink-soft:#3E5A54;--card:#FFFFFF;
+  --radius-lg:24px;--radius-md:16px;--radius-sm:10px;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;--body:'Instrument Sans',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:var(--body);color:var(--ink);background:var(--shallows);display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sunset);outline-offset:2px;border-radius:4px}
+.nav{background:rgba(10,58,52,.97);color:#fff;z-index:1002}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:12px}
+.wordmark{font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.02em;text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.wordmark span{color:var(--clearwater)}
+.wordmark svg{margin-top:4px}
+.nav-links{display:flex;gap:18px;list-style:none;font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}
+.nav-links a{text-decoration:none;opacity:.85}
+.nav-links a:hover{opacity:1;color:var(--clearwater)}
+.mapbar{background:var(--keowee-deep);color:#fff;padding:0 20px 14px;z-index:1001}
+.mapbar-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mapbar h1{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;text-transform:uppercase;margin-right:10px}
+.mapbar h1 em{font-style:italic;color:var(--clearwater)}
+.chip{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:7px 12px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);background:transparent;color:#CFE8E1;cursor:pointer;transition:background .15s ease,color .15s ease}
+.chip:hover{background:rgba(82,214,196,.15)}
+.chip.is-active{background:var(--clearwater);border-color:var(--clearwater);color:var(--keowee-dusk)}
+.chip-count{font-family:var(--mono);font-size:.68rem;color:#8FBFB5;margin-left:auto}
+#map{flex:1;min-height:320px;background:#D7E8E3}
+.pin{width:38px;height:38px;border-radius:50% 50% 50% 6px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;border:2.5px solid #fff;box-shadow:0 3px 10px rgba(6,40,33,.4);transform:rotate(0deg);cursor:pointer;transition:transform .15s ease}
+.pin:hover{transform:scale(1.12)}
+.pin.art-a{background:linear-gradient(135deg,#0A3A34,#177E6F)}
+.pin.art-b{background:linear-gradient(135deg,#52D6C4,#1B9C8A)}
+.pin.art-c{background:linear-gradient(135deg,#FFC24B,#FF8A50)}
+.pin.art-d{background:linear-gradient(135deg,#FF6E52,#C63A5A)}
+.leaflet-popup-content-wrapper{border-radius:var(--radius-md);box-shadow:0 12px 30px rgba(6,40,33,.3);font-family:var(--body)}
+.leaflet-popup-content{margin:14px 16px;line-height:1.45}
+.pop-name{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--keowee-deep)}
+.pop-meta{font-family:var(--mono);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:2px 0 6px}
+.pop-blurb{font-size:.85rem;color:var(--ink-soft)}
+.pop-more{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--keowee-deep);cursor:pointer;border:none;background:none;padding:0}
+.pop-more:hover{color:#127a6b}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--clearwater-pale);color:var(--keowee-deep);align-self:flex-start;padding:4px 9px;border-radius:999px}
+.tag.t1{background:#BFF3EA}
+.tag.t2{background:#FFE7B8}
+.tag.t3{background:#FFD9CE}
+.tag.t4{background:#D9EED2}
+.tag.t5{background:#CFE7FA}
+.tag.t6{background:#E6DCF7}
+.tag.tag-cat{background:transparent;border:1.5px solid;padding:2.5px 8px}
+.tag.tag-cat.t1{border-color:#52D6C4}
+.tag.tag-cat.t2{border-color:#FFC24B}
+.tag.tag-cat.t3{border-color:#FF8A6B}
+.tag.tag-cat.t4{border-color:#8CC17B}
+.tag.tag-cat.t5{border-color:#6FAEE8}
+.tag.tag-cat.t6{border-color:#A88FE0}
+.sheet-overlay{position:fixed;inset:0;background:rgba(6,40,33,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}
+.sheet-overlay.open{display:flex}
+.sheet{background:var(--card);border-radius:var(--radius-lg);max-width:440px;width:100%;max-height:85vh;overflow-y:auto;position:relative;box-shadow:0 24px 60px rgba(6,40,33,.35);animation:sheetIn .22s ease}
+@keyframes sheetIn{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.sheet-art{height:120px;display:flex;align-items:center;justify-content:center;font-size:3.4rem}
+.sheet-art.art-a{background:linear-gradient(135deg,#0A3A34,#177E6F)}
+.sheet-art.art-b{background:linear-gradient(135deg,#52D6C4,#1B9C8A)}
+.sheet-art.art-c{background:linear-gradient(135deg,#FFC24B,#FF8A50)}
+.sheet-art.art-d{background:linear-gradient(135deg,#FF6E52,#C63A5A)}
+.sheet-body{padding:20px 24px 26px;display:flex;flex-direction:column;gap:10px}
+.sheet-body h3{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em;line-height:1.1}
+.sheet-body>p{font-size:.95rem;color:var(--ink-soft)}
+.sheet .tip{font-size:.88rem;color:var(--ink-soft);background:var(--shallows);border-radius:var(--radius-sm);padding:10px 12px}
+.sheet .tip b{color:var(--keowee-deep)}
+.sheet .badges{font-family:var(--mono);font-size:.68rem;letter-spacing:.02em;color:var(--ink-soft)}
+.card-links{display:flex;gap:8px;padding-top:6px}
+.card-links a{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;padding:9px 14px;border-radius:999px;border:1.5px solid var(--clearwater);color:var(--keowee-deep);transition:background .15s ease}
+.card-links a:hover{background:var(--clearwater-pale)}
+.sheet-close{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(6,40,33,.35);color:#fff;font-size:1.05rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.sheet-close:hover{background:rgba(6,40,33,.55)}
+@media(max-width:600px){
+  .sheet-overlay{align-items:flex-end;padding:0}
+  .sheet{max-width:none;border-radius:var(--radius-lg) var(--radius-lg) 0 0;animation-name:sheetUp}
+  .sheet::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:38px;height:4px;border-radius:999px;background:rgba(255,255,255,.6);z-index:2}
+  @keyframes sheetUp{from{transform:translateY(40%)}to{transform:none}}
+  .nav-links{gap:12px}
+  .mapbar h1{width:100%;margin-bottom:4px}
+  .chip-count{display:none}
+}
+@media(prefers-reduced-motion:reduce){.sheet{animation:none}.pin{transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="wordmark" href="/">keowee<span>.club</span>
+      <svg width="86" height="6" viewBox="0 0 86 6" fill="none" aria-hidden="true"><path d="M1 4C6 .5 11 .5 16 4s10 3.5 15 0 10-3.5 15 0 10 3.5 15 0 10-3.5 15 0 8 3 8 3" stroke="#52D6C4" stroke-width="2" stroke-linecap="round"/></svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
+      <li><a href="/lake-level/">Lake Level</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="mapbar">
+  <div class="mapbar-inner" id="mapChips">
+    <h1>The <em>map</em></h1>
+    <span class="chip-count" id="chipCount"></span>
+  </div>
+</div>
+
+<div id="map" role="application" aria-label="Map of eat and drink spots around Lake Keowee"></div>
+
+<div class="sheet-overlay" id="sheetOverlay" role="dialog" aria-modal="true" aria-label="Spot details">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<!-- spots-data:start -->
+<script type="application/json" id="spotData">{"eat-0": {"name": "The Cabana", "emoji": "🍹", "art": "a", "town": "Seneca", "townClass": "t1", "category": "Waterfront", "catClass": "tag-cat t4", "blurb": "Drive the boat right up to their dock, grab a drink at the bar, and let the afternoon do its thing. Lakeside casual, done right.", "tip": "The Orange Crush is the move.", "badges": ["🛥️ boat-up dock", "🎸 live entertainment"], "website": "https://lighthousekeowee.com/cabana-lake-keowee/", "maps": "https://www.google.com/maps/search/?api=1&query=Cabana%20Lake%20Keowee%2C%201285%20Doug%20Hollow%20Rd%2C%20Seneca%2C%20SC", "lat": 34.776226, "lng": -82.92054}, "eat-1": {"name": "Brooklyn Style Pizza", "emoji": "🍕", "art": "c", "town": "Pendleton", "townClass": "t3", "category": "Pizza", "catClass": "tag-cat t2", "blurb": "Brooklyn-style pies worth leaving the lake for — some of the best pizza in the area, full stop.", "tip": "The wings are the sleeper hit: 10 juicy wings for under ten bucks.", "badges": [], "website": "https://www.facebook.com/Brooklynstylepizzasc/", "maps": "https://www.google.com/maps/search/?api=1&query=Brooklyn%20Pizza%2C%20Pendleton%2C%20SC", "lat": 34.651119, "lng": -82.783118}, "eat-3": {"name": "Vangeli's Bistro", "emoji": "🍝", "art": "b", "town": "Seneca", "townClass": "t1", "category": "Date night", "catClass": "tag-cat t2", "blurb": "White tablecloth on Ram Cat Alley. Where you go when it's an anniversary, not a Tuesday.", "tip": null, "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Vangeli%27s%20Bistro%2C%20Seneca%2C%20SC", "lat": 34.68485, "lng": -82.95384}, "eat-5": {"name": "California's Mexican Grill", "emoji": "🌮", "art": "b", "town": "Salem", "townClass": "t2", "category": "Mexican", "catClass": "tag-cat t5", "blurb": "A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.", "tip": "Weekly live music. It's near the lake but there's no public dock access — arrive by road.", "badges": ["🎸 live music", "🍹 full bar"], "website": "https://californiasmexicangrillsalem.com/", "maps": "https://www.google.com/maps/search/?api=1&query=Californias%20Mexican%20Grill%2C%20305%20McCall%20Brothers%20Dr%2C%20Salem%2C%20SC", "lat": 34.81605, "lng": -82.9128}, "eat-6": {"name": "Keowee Brewing Co.", "emoji": "🍺", "art": "d", "town": "Seneca", "townClass": "t1", "category": "Brewery", "catClass": "tag-cat t2", "blurb": "The de facto clubhouse. Dog-friendly patio, rotating taps, everyone you know is already there.", "tip": "Trivia Mondays, Music Bingo Wednesdays, burger &amp; beer special Thursdays, live music Fri–Sat — and growlers to go for the dock.", "badges": ["🐕 dog-friendly patio", "🎸 live music Fri–Sat", "🍺 growlers to go"], "website": "https://keoweebrewing.com", "maps": "https://www.google.com/maps/search/?api=1&query=Keowee%20Brewing%20Company%2C%20401%20E%20Main%20St%2C%20Seneca%2C%20SC", "lat": 34.685504, "lng": -82.949671}, "eat-7": {"name": "Keowee Shores Grill", "emoji": "🌴", "art": "a", "town": "Seneca", "townClass": "t1", "category": "Waterfront", "catClass": "tag-cat t4", "blurb": "Decks hanging over the lake, draft beer in hand. The best part: you can dock right there.", "tip": "Tie up at the dock, order a draft, stay longer than you planned.", "badges": ["🛥️ dock &amp; dine", "🍺 draft beer"], "website": "https://www.facebook.com/TikiHut/", "maps": "https://www.google.com/maps/search/?api=1&query=Keowee%20Shores%20Grill%2C%20Seneca%2C%20SC", "lat": 34.711383, "lng": -82.947}, "eat-8": {"name": "Ram Cat Cellars", "emoji": "🥩", "art": "d", "town": "Seneca", "townClass": "t1", "category": "Wine bar", "catClass": "tag-cat t4", "blurb": "Wine bar meets date night with a show: you sear your own steak on a hot plate at the table, sourced from the butcher shop upstairs.", "tip": "Higher end, big fun. Book it for date night and come hungry.", "badges": ["🍷 wine &amp; bourbon bar", "🥩 cook-your-own steak"], "website": "https://www.ramcatcellars.com", "maps": "https://www.google.com/maps/search/?api=1&query=Ram%20Cat%20Cellars%2C%20Seneca%2C%20SC", "lat": 34.68501, "lng": -82.95404}, "eat-9": {"name": "Sisters Cafe", "emoji": "🍳", "art": "c", "town": "Salem", "townClass": "t2", "category": "Breakfast", "catClass": "tag-cat t1", "blurb": "The breakfast gem of Salem. Great biscuits, great prices, zero pretense.", "tip": "The biscuits. That's it. That's the tip.", "badges": ["💰 easy on the wallet"], "website": "https://www.facebook.com/sisterssalem/", "maps": "https://www.google.com/maps/search/?api=1&query=Sisters%20Restaurant%2C%20281%20Stamp%20Creek%20Rd%2C%20Salem%2C%20SC", "lat": 34.871008, "lng": -82.970328}, "eat-10": {"name": "Jocassee Valley Brewing", "emoji": "🍻", "art": "b", "town": "Salem", "townClass": "t2", "category": "Brewery", "catClass": "tag-cat t2", "blurb": "Coffee in the morning, beers on tap the rest of the day — plus weekly food carts and live music.", "tip": "Last stop before Lake Jocassee, or the first one after.", "badges": ["☕ morning coffee", "🎸 live music", "🚚 weekly food carts"], "website": "https://jocasseevalleybrewing.com", "maps": "https://www.google.com/maps/search/?api=1&query=Jocassee%20Valley%20Brewing%20Company%2C%20Salem%2C%20SC", "lat": 34.907354, "lng": -82.971642}, "eat-11": {"name": "Crave Kitchen", "emoji": "🍽️", "art": "a", "town": "Salem", "townClass": "t2", "category": "Fine dining", "catClass": "tag-cat t5", "blurb": "The fancy one — a seasonal menu that actually changes with the seasons, and food worth dressing up (a little) for.", "tip": "Dinner Tuesday–Sunday, brunch on Sunday.", "badges": ["🍂 seasonal menu", "🥂 Sunday brunch"], "website": "https://www.cravesc.com", "maps": "https://www.google.com/maps/search/?api=1&query=Crave%20Kitchen%2C%2015740%20N%20Highway%2011%2C%20Salem%2C%20SC", "lat": 34.913697, "lng": -82.923293}, "eat-12": {"name": "Daydrinkers Coffee", "emoji": "☕", "art": "a", "town": "Seneca", "townClass": "t1", "category": "Coffee", "catClass": "tag-cat t6", "blurb": "Third-wave coffee downtown. Grab a cup and wander, or post up with a laptop — half of Clemson does during the school year.", "tip": "They rotate roasters, so the cup you loved last month has a new rival.", "badges": ["💻 laptop-friendly"], "website": "https://daydrinkers.co", "maps": "https://www.google.com/maps/search/?api=1&query=Daydrinkers%2C%20307%20E%20North%201st%20St%2C%20Seneca%2C%20SC", "lat": 34.685969, "lng": -82.951348}, "eat-13": {"name": "Free Hand Coffee", "emoji": "☕", "art": "d", "town": "Pendleton", "townClass": "t3", "category": "Coffee", "catClass": "tag-cat t6", "blurb": "Pendleton's coffee stop — they brew Filigree Coffee out of Florida, and it is exceptional.", "tip": null, "badges": [], "website": "https://www.facebook.com/p/FreeHand-Coffee-100063954013028/", "maps": "https://www.google.com/maps/search/?api=1&query=FreeHand%20Coffee%2C%20220%20E%20Main%20St%2C%20Pendleton%2C%20SC", "lat": 34.649982, "lng": -82.781174}, "eat-14": {"name": "Dimas Brothers Cafe", "emoji": "🥞", "art": "b", "town": "Seneca", "townClass": "t1", "category": "Breakfast", "catClass": "tag-cat t1", "blurb": "From the founders of Vangeli's — a breakfast-and-lunch cafe with the same touch, minus the white tablecloth.", "tip": "Order the Breakfast Armageddon. Trust the name.", "badges": [], "website": "https://dimasbrotherscafe.com", "maps": "https://www.google.com/maps/search/?api=1&query=Dimas%20Brothers%20Cafe%2C%20400%20S%20Fairplay%20St%2C%20Seneca%2C%20SC", "lat": 34.678858, "lng": -82.954378}}</script>
+<!-- spots-data:end -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+(function(){
+  var dataEl=document.getElementById('spotData');
+  if(!dataEl||typeof L==='undefined')return;
+  var spots=JSON.parse(dataEl.textContent);
+
+  var map=L.map('map',{scrollWheelZoom:true});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    maxZoom:19
+  }).addTo(map);
+
+  // Sheet (same experience as the rest of the site)
+  var overlay=document.getElementById('sheetOverlay'),sheetEl=document.getElementById('sheet'),lastFocus=null;
+  function openSheet(id){
+    var s=spots[id];if(!s)return;
+    var h='<div class="sheet-art art-'+s.art+'" aria-hidden="true">'+s.emoji+'</div>';
+    h+='<button class="sheet-close" aria-label="Close">✕</button>';
+    h+='<div class="sheet-body">';
+    h+='<div class="tags">';
+    if(s.town)h+='<span class="tag '+s.townClass+'">'+s.town+'</span>';
+    if(s.category)h+='<span class="tag '+s.catClass+'">'+s.category+'</span>';
+    h+='</div>';
+    h+='<h3>'+s.name+'</h3>';
+    h+='<p>'+s.blurb+'</p>';
+    if(s.tip)h+='<p class="tip"><b>Pro tip:</b> '+s.tip+'</p>';
+    if(s.badges.length)h+='<p class="badges">'+s.badges.join(' · ')+'</p>';
+    h+='<div class="card-links">';
+    if(s.website)h+='<a href="'+s.website+'" target="_blank" rel="noopener">'+(s.website.indexOf('facebook.com')>-1?'Facebook':'Website')+'</a>';
+    h+='<a href="'+s.maps+'" target="_blank" rel="noopener">Directions</a>';
+    h+='</div></div>';
+    sheetEl.innerHTML=h;
+    lastFocus=document.activeElement;
+    overlay.classList.add('open');
+    sheetEl.querySelector('.sheet-close').focus();
+  }
+  function closeSheet(){
+    overlay.classList.remove('open');
+    if(lastFocus)lastFocus.focus();
+  }
+  document.addEventListener('click',function(e){
+    if(e.target.closest('.sheet-close')){closeSheet();return;}
+    if(e.target===overlay){closeSheet();return;}
+    var more=e.target.closest('.pop-more');
+    if(more)openSheet(more.getAttribute('data-spot'));
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&overlay.classList.contains('open'))closeSheet();
+  });
+
+  // Markers
+  var markers={};
+  Object.keys(spots).forEach(function(id){
+    var s=spots[id];
+    if(!s.lat||!s.lng)return;
+    var icon=L.divIcon({className:'',html:'<div class="pin art-'+s.art+'">'+s.emoji+'</div>',iconSize:[38,38],iconAnchor:[19,34],popupAnchor:[0,-30]});
+    var m=L.marker([s.lat,s.lng],{icon:icon,title:s.name.replace(/&amp;/g,'&')});
+    var pop='<div class="pop-name">'+s.name+'</div>';
+    pop+='<div class="pop-meta">'+s.town+' · '+s.category+'</div>';
+    pop+='<div class="pop-blurb">'+s.blurb+'</div>';
+    pop+='<button class="pop-more" data-spot="'+id+'">Details →</button>';
+    m.bindPopup(pop,{maxWidth:260});
+    markers[id]=m;
+    m.addTo(map);
+  });
+
+  function fitVisible(){
+    var pts=[];
+    Object.keys(markers).forEach(function(id){
+      if(map.hasLayer(markers[id]))pts.push(markers[id].getLatLng());
+    });
+    if(pts.length)map.fitBounds(L.latLngBounds(pts).pad(0.18));
+  }
+
+  // Filter chips (towns; generated from data)
+  var bar=document.getElementById('mapChips'),countEl=document.getElementById('chipCount');
+  var towns=[];
+  Object.keys(spots).forEach(function(id){
+    var t=spots[id].town;
+    if(t&&towns.indexOf(t)<0)towns.push(t);
+  });
+  function addChip(label,value){
+    var b=document.createElement('button');
+    b.className='chip'+(value===''?' is-active':'');
+    b.textContent=label;
+    b.setAttribute('data-town',value);
+    bar.insertBefore(b,countEl);
+  }
+  addChip('All','');
+  towns.forEach(function(t){addChip(t,t);});
+  function updateCount(n){countEl.textContent=(n<10?'0':'')+n+' spots';}
+  updateCount(Object.keys(markers).length);
+  bar.addEventListener('click',function(e){
+    var chip=e.target.closest('.chip');
+    if(!chip)return;
+    bar.querySelectorAll('.chip').forEach(function(c){c.classList.remove('is-active');});
+    chip.classList.add('is-active');
+    var town=chip.getAttribute('data-town'),n=0;
+    Object.keys(markers).forEach(function(id){
+      var show=!town||spots[id].town===town;
+      if(show){markers[id].addTo(map);n++;}
+      else map.removeLayer(markers[id]);
+    });
+    updateCount(n);
+    fitVisible();
+  });
+
+  // Fit after layout settles (fitting too early computes zoom for a 0-height box)
+  function initialView(){
+    map.invalidateSize();
+    var hash=location.hash.replace('#','');
+    if(hash&&markers[hash]){
+      map.setView(markers[hash].getLatLng(),15);
+      markers[hash].openPopup();
+    }else{
+      fitVisible();
+    }
+  }
+  requestAnimationFrame(function(){requestAnimationFrame(initialView);});
+  window.addEventListener('load',initialView,{once:true});
+})();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6ffce0786eb54943b7422d812178fe84"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -107,6 +107,8 @@ def island_entry(s):
         "badges": s.get("badges") or [],
         "website": s.get("website"),
         "maps": maps_url(s),
+        "lat": s.get("lat"),
+        "lng": s.get("lng"),
     }
 
 
@@ -159,12 +161,17 @@ def render_page(path, pick, rich, with_filters, see_all_total=None, schema_graph
     island = {}
     for sec in data["sections"]:
         start, end = f"<!-- spots:{sec['id']}:start -->", f"<!-- spots:{sec['id']}:end -->"
-        if start not in page:
-            continue
+        has_markers = start in page
         if sec.get("hidden"):
-            page = replace_between(page, start, end, "")
+            if has_markers:
+                page = replace_between(page, start, end, "")
             continue
         chosen = [(i, s) for i, s in enumerate(sec["spots"]) if not s.get("hidden") and pick(s)]
+        # island entries exist even on pages without card sections (e.g. the map)
+        for i, s in chosen:
+            island[f"{sec['id']}-{i}"] = island_entry(s)
+        if not has_markers:
+            continue
         if not chosen:
             page = replace_between(page, start, end, "")
             continue
@@ -189,9 +196,7 @@ def render_page(path, pick, rich, with_filters, see_all_total=None, schema_graph
                 out.append(chips_row("Vibe", "category", cats))
         out.append('  <div class="cards">')
         for num, (i, s) in enumerate(chosen, start=1):
-            spot_id = f"{sec['id']}-{i}"
-            out.append(card(spot_id, s, num, rich=rich))
-            island[spot_id] = island_entry(s)
+            out.append(card(f"{sec['id']}-{i}", s, num, rich=rich))
         out.append("  </div>")
         if see_all_total is not None and see_all_total > n:
             out.append(f'  <a class="see-all" href="{GUIDE_URL}">See all {see_all_total} spots <i>→</i></a>')
@@ -242,4 +247,12 @@ n_guide = render_page(
     },
 )
 
-print(f"rendered homepage ({n_home} featured) + guide page ({n_guide} spots)")
+n_map = render_page(
+    root / "map" / "index.html",
+    pick=lambda s: True,
+    rich=False,
+    with_filters=False,
+    schema_graph=None,
+)
+
+print(f"rendered homepage ({n_home} featured) + guide page ({n_guide} spots) + map ({n_map} pins)")
