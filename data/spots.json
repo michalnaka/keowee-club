@@ -24,7 +24,7 @@
           "category": "Waterfront"
         },
         {
-          "name": "Brooklyn Pizza",
+          "name": "Brooklyn Style Pizza",
           "emoji": "🍕",
           "art": "c",
           "tag": "Pendleton · Pizza",
@@ -102,18 +102,11 @@
           "locality": "Salem",
           "town": "Salem",
           "category": "Mexican"
-        }
-      ]
-    },
-    {
-      "id": "drink",
-      "title": "Drink",
-      "sub": "Patios, pours, and one surprisingly legit vineyard in the foothills.",
-      "spots": [
+        },
         {
           "name": "Keowee Brewing Co.",
           "emoji": "🍺",
-          "art": "b",
+          "art": "d",
           "tag": "Seneca · Brewery",
           "blurb": "The de facto clubhouse. Dog-friendly patio, rotating taps, everyone you know is already there.",
           "tip": "Trivia Mondays, Music Bingo Wednesdays, burger &amp; beer special Thursdays, live music Fri–Sat — and growlers to go for the dock.",
@@ -128,7 +121,14 @@
           "locality": "Seneca",
           "town": "Seneca",
           "category": "Brewery"
-        },
+        }
+      ]
+    },
+    {
+      "id": "drink",
+      "title": "Drink",
+      "sub": "Patios, pours, and one surprisingly legit vineyard in the foothills.",
+      "spots": [
         {
           "name": "Victoria Valley Vineyards",
           "emoji": "🍷",
