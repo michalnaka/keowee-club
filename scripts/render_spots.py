@@ -156,7 +156,7 @@ WEBSITE_NODE = {
 }
 
 
-def render_page(path, pick, rich, with_filters, see_all_total=None, schema_graph=None):
+def render_page(path, pick, rich, with_filters, see_all_total=None, schema_graph=None, nosnippet=False):
     page = path.read_text()
     island = {}
     for sec in data["sections"]:
@@ -177,7 +177,7 @@ def render_page(path, pick, rich, with_filters, see_all_total=None, schema_graph
             continue
         n = len(chosen)
         shown_count = see_all_total if see_all_total is not None else n
-        out = [f'<section class="section" id="{sec["id"]}">']
+        out = [f'<section class="section" id="{sec["id"]}"{" data-nosnippet" if nosnippet else ""}>']
         out.append(
             f'  <div class="section-head"><h2>{sec["title"]}</h2><span class="count">{shown_count:02d} spots</span></div>'
         )
@@ -225,6 +225,7 @@ n_home = render_page(
     pick=lambda s: s.get("featured"),
     rich=False,
     with_filters=False,
+    nosnippet=True,
     see_all_total=len(visible_spots),
     schema_graph={"@context": "https://schema.org", "@graph": [WEBSITE_NODE]},
 )
