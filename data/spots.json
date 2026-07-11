@@ -57,7 +57,8 @@
           "website": null,
           "maps": "Aunt Sue's Country Corner, Pickens, SC",
           "schema": "Restaurant",
-          "locality": null
+          "locality": null,
+          "hidden": true
         },
         {
           "name": "California's Mexican Grill",
@@ -144,7 +145,8 @@
           "schema": "CafeOrCoffeeShop",
           "locality": "Seneca"
         }
-      ]
+      ],
+      "hidden": true
     },
     {
       "id": "water",

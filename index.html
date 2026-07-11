@@ -117,8 +117,12 @@ a{color:inherit}
 .cards{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .cards::-webkit-scrollbar{display:none}
 .card{scroll-snap-align:start;flex:0 0 78%;max-width:320px;background:var(--card);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 6px 20px rgba(10,58,52,.08);display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
-.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(10,58,52,.14)}
-.card-art{height:130px;display:flex;align-items:center;justify-content:center;font-size:3.2rem}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(10,58,52,.16)}
+.card:active{transform:translateY(-1px) scale(.995)}
+.card-art{height:130px;display:flex;align-items:center;justify-content:center;font-size:3.2rem;position:relative;overflow:hidden}
+.card-emoji{transition:transform .3s ease;display:block}
+.card:hover .card-emoji{transform:scale(1.12) rotate(-3deg)}
+.card-num{position:absolute;top:10px;left:14px;font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.05em;color:rgba(255,255,255,.55)}
 .art-a{background:linear-gradient(135deg,#0A3A34,#177E6F)}
 .art-b{background:linear-gradient(135deg,#52D6C4,#1B9C8A)}
 .art-c{background:linear-gradient(135deg,#FFC24B,#FF8A50)}
@@ -128,8 +132,11 @@ a{color:inherit}
 .card h3{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;line-height:1.15}
 .card p{font-size:.92rem;color:var(--ink-soft)}
 .card{cursor:pointer}
-.card .more{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--keowee-deep);margin-top:auto;padding-top:8px}
+.card-body h3{margin-top:2px}
+.card .more{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--keowee-deep);margin-top:auto;padding-top:12px;display:inline-flex;align-items:center;gap:6px}
+.card .more i{font-style:normal;transition:transform .18s ease;display:inline-block}
 .card:hover .more{color:#127a6b}
+.card:hover .more i{transform:translateX(4px)}
 
 /* ---------- SPOT DETAIL SHEET ---------- */
 .sheet-overlay{position:fixed;inset:0;background:rgba(6,40,33,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
@@ -152,6 +159,7 @@ a{color:inherit}
 @media(max-width:600px){
   .sheet-overlay{align-items:flex-end;padding:0}
   .sheet{max-width:none;border-radius:var(--radius-lg) var(--radius-lg) 0 0;animation-name:sheetUp}
+  .sheet::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:38px;height:4px;border-radius:999px;background:rgba(255,255,255,.6);z-index:2}
   @keyframes sheetUp{from{transform:translateY(40%)}to{transform:none}}
 }
 @media(prefers-reduced-motion:reduce){.sheet{animation:none}}
@@ -200,7 +208,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
       "@type": "ItemList",
       "@id": "https://keowee.club/#guide",
       "name": "Lake Keowee Guide: Where to Eat and Drink",
-      "numberOfItems": 9,
+      "numberOfItems": 4,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -249,19 +257,6 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
           "position": 4,
           "item": {
             "@type": "Restaurant",
-            "name": "Aunt Sue's Country Corner",
-            "description": "Scenic-drive ice cream since before you were born.",
-            "address": {
-              "@type": "PostalAddress",
-              "addressRegion": "SC"
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "item": {
-            "@type": "Restaurant",
             "name": "California's Mexican Grill",
             "description": "A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.",
             "address": {
@@ -269,63 +264,6 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
               "addressRegion": "SC",
               "addressLocality": "Salem"
             }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "item": {
-            "@type": "Brewery",
-            "name": "Keowee Brewing Co.",
-            "description": "The de facto clubhouse. Dog-friendly patio, rotating taps, everyone you know is already there.",
-            "address": {
-              "@type": "PostalAddress",
-              "addressRegion": "SC",
-              "addressLocality": "Seneca"
-            },
-            "url": "https://keoweebrewing.com"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 7,
-          "item": {
-            "@type": "Winery",
-            "name": "Victoria Valley Vineyards",
-            "description": "A French-style château casually sitting in the Blue Ridge foothills. Golden hour hits different here.",
-            "address": {
-              "@type": "PostalAddress",
-              "addressRegion": "SC"
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 8,
-          "item": {
-            "@type": "BarOrPub",
-            "name": "The Spot on the Alley",
-            "description": "Ram Cat Alley's living room. Live bands, cold beer, zero pretense.",
-            "address": {
-              "@type": "PostalAddress",
-              "addressRegion": "SC",
-              "addressLocality": "Seneca"
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 9,
-          "item": {
-            "@type": "CafeOrCoffeeShop",
-            "name": "Daydrinkers Coffee",
-            "description": "Third-wave coffee downtown. Grab a cup and wander, or post up with a laptop — half of Clemson does during the school year.",
-            "address": {
-              "@type": "PostalAddress",
-              "addressRegion": "SC",
-              "addressLocality": "Seneca"
-            },
-            "url": "https://daydrinkers.co"
           }
         }
       ]
@@ -344,7 +282,6 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
     </a>
     <ul class="nav-links">
       <li><a href="#eat">Eat</a></li>
-      <li><a href="#drink">Drink</a></li>
       <li><a href="/lake-level/">Lake Level</a></li>
     </ul>
     <a class="nav-cta" href="#dispatch">Get the Dispatch</a>
@@ -386,102 +323,50 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 
 <!-- spots:eat:start -->
 <section class="section" id="eat">
-  <div class="section-head"><h2>Eat</h2><span class="count">05 spots</span></div>
+  <div class="section-head"><h2>Eat</h2><span class="count">04 spots</span></div>
   <p class="section-sub">From boat-up dinners to the BBQ you earn after a day on the water.</p>
   <div class="cards">
     <article class="card" data-spot="eat-0" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Lighthouse">
-      <div class="card-art art-a" aria-hidden="true">🦞</div>
+      <div class="card-art art-a" aria-hidden="true"><span class="card-num">01</span><span class="card-emoji">🦞</span></div>
       <div class="card-body">
         <span class="tag">Salem · Waterfront</span>
         <h3>The Lighthouse</h3>
         <p>Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.</p>
-        <span class="more" aria-hidden="true">More +</span>
+        <span class="more" aria-hidden="true">Details <i>→</i></span>
       </div>
     </article>
     <article class="card" data-spot="eat-1" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Smokin&#x27; Pig">
-      <div class="card-art art-c" aria-hidden="true">🍖</div>
+      <div class="card-art art-c" aria-hidden="true"><span class="card-num">02</span><span class="card-emoji">🍖</span></div>
       <div class="card-body">
         <span class="tag">Pendleton · BBQ</span>
         <h3>The Smokin' Pig</h3>
         <p>The post-lake ritual.</p>
-        <span class="more" aria-hidden="true">More +</span>
+        <span class="more" aria-hidden="true">Details <i>→</i></span>
       </div>
     </article>
     <article class="card" data-spot="eat-2" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about Vangeli&#x27;s Bistro">
-      <div class="card-art art-b" aria-hidden="true">🍝</div>
+      <div class="card-art art-b" aria-hidden="true"><span class="card-num">03</span><span class="card-emoji">🍝</span></div>
       <div class="card-body">
         <span class="tag">Seneca · Date night</span>
         <h3>Vangeli's Bistro</h3>
         <p>White tablecloth on Ram Cat Alley. Where you go when it's an anniversary, not a Tuesday.</p>
-        <span class="more" aria-hidden="true">More +</span>
-      </div>
-    </article>
-    <article class="card" data-spot="eat-3" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about Aunt Sue&#x27;s Country Corner">
-      <div class="card-art art-d" aria-hidden="true">🍦</div>
-      <div class="card-body">
-        <span class="tag">Hwy 11 · Classic</span>
-        <h3>Aunt Sue's Country Corner</h3>
-        <p>Scenic-drive ice cream since before you were born.</p>
-        <span class="more" aria-hidden="true">More +</span>
+        <span class="more" aria-hidden="true">Details <i>→</i></span>
       </div>
     </article>
     <article class="card" data-spot="eat-4" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about California&#x27;s Mexican Grill">
-      <div class="card-art art-b" aria-hidden="true">🌮</div>
+      <div class="card-art art-b" aria-hidden="true"><span class="card-num">04</span><span class="card-emoji">🌮</span></div>
       <div class="card-body">
         <span class="tag">Salem · Mexican</span>
         <h3>California's Mexican Grill</h3>
         <p>A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.</p>
-        <span class="more" aria-hidden="true">More +</span>
+        <span class="more" aria-hidden="true">Details <i>→</i></span>
       </div>
     </article>
   </div>
 </section>
 <!-- spots:eat:end -->
 
-<!-- spots:drink:start -->
-<section class="section" id="drink">
-  <div class="section-head"><h2>Drink</h2><span class="count">04 spots</span></div>
-  <p class="section-sub">Patios, pours, and one surprisingly legit vineyard in the foothills.</p>
-  <div class="cards">
-    <article class="card" data-spot="drink-0" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about Keowee Brewing Co.">
-      <div class="card-art art-b" aria-hidden="true">🍺</div>
-      <div class="card-body">
-        <span class="tag">Seneca · Brewery</span>
-        <h3>Keowee Brewing Co.</h3>
-        <p>The de facto clubhouse. Dog-friendly patio, rotating taps, everyone you know is already there.</p>
-        <span class="more" aria-hidden="true">More +</span>
-      </div>
-    </article>
-    <article class="card" data-spot="drink-1" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about Victoria Valley Vineyards">
-      <div class="card-art art-c" aria-hidden="true">🍷</div>
-      <div class="card-body">
-        <span class="tag">Hwy 11 · Winery</span>
-        <h3>Victoria Valley Vineyards</h3>
-        <p>A French-style château casually sitting in the Blue Ridge foothills. Golden hour hits different here.</p>
-        <span class="more" aria-hidden="true">More +</span>
-      </div>
-    </article>
-    <article class="card" data-spot="drink-2" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Spot on the Alley">
-      <div class="card-art art-d" aria-hidden="true">🎸</div>
-      <div class="card-body">
-        <span class="tag">Seneca · Live music</span>
-        <h3>The Spot on the Alley</h3>
-        <p>Ram Cat Alley's living room. Live bands, cold beer, zero pretense.</p>
-        <span class="more" aria-hidden="true">More +</span>
-      </div>
-    </article>
-    <article class="card" data-spot="drink-3" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about Daydrinkers Coffee">
-      <div class="card-art art-a" aria-hidden="true">☕</div>
-      <div class="card-body">
-        <span class="tag">Seneca · Coffee</span>
-        <h3>Daydrinkers Coffee</h3>
-        <p>Third-wave coffee downtown. Grab a cup and wander, or post up with a laptop — half of Clemson does during the school year.</p>
-        <span class="more" aria-hidden="true">More +</span>
-      </div>
-    </article>
-  </div>
-</section>
-<!-- spots:drink:end -->
+<!-- spots:drink:start --><!-- spots:drink:end -->
 
 <!-- spots:water:start --><!-- spots:water:end -->
 
@@ -518,7 +403,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 </div>
 
 <!-- spots-data:start -->
-<script type="application/json" id="spotData">{"eat-0": {"name": "The Lighthouse", "emoji": "🦞", "art": "a", "tag": "Salem · Waterfront", "blurb": "Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.", "tip": null, "badges": ["🛥️ boat-up"], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=The%20Lighthouse%20Restaurant%2C%20Salem%2C%20SC"}, "eat-1": {"name": "The Smokin' Pig", "emoji": "🍖", "art": "c", "tag": "Pendleton · BBQ", "blurb": "The post-lake ritual.", "tip": "Get the hash over rice and don't ask questions.", "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=The%20Smokin%20Pig%2C%20Pendleton%2C%20SC"}, "eat-2": {"name": "Vangeli's Bistro", "emoji": "🍝", "art": "b", "tag": "Seneca · Date night", "blurb": "White tablecloth on Ram Cat Alley. Where you go when it's an anniversary, not a Tuesday.", "tip": null, "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Vangeli%27s%20Bistro%2C%20Seneca%2C%20SC"}, "eat-3": {"name": "Aunt Sue's Country Corner", "emoji": "🍦", "art": "d", "tag": "Hwy 11 · Classic", "blurb": "Scenic-drive ice cream since before you were born.", "tip": "The waffle cone is non-negotiable.", "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Aunt%20Sue%27s%20Country%20Corner%2C%20Pickens%2C%20SC"}, "eat-4": {"name": "California's Mexican Grill", "emoji": "🌮", "art": "b", "tag": "Salem · Mexican", "blurb": "A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.", "tip": "Weekly live music. It's near the lake but there's no public dock access — arrive by road.", "badges": ["🎸 live music", "🍹 full bar"], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Californias%20Mexican%20Grill%2C%20Salem%2C%20SC"}, "drink-0": {"name": "Keowee Brewing Co.", "emoji": "🍺", "art": "b", "tag": "Seneca · Brewery", "blurb": "The de facto clubhouse. Dog-friendly patio, rotating taps, everyone you know is already there.", "tip": "Trivia Mondays, Music Bingo Wednesdays, burger &amp; beer special Thursdays, live music Fri–Sat — and growlers to go for the dock.", "badges": ["🐕 dog-friendly patio", "🎸 live music Fri–Sat", "🍺 growlers to go"], "website": "https://keoweebrewing.com", "maps": "https://www.google.com/maps/search/?api=1&query=Keowee%20Brewing%20Company%2C%20401%20E%20Main%20St%2C%20Seneca%2C%20SC"}, "drink-1": {"name": "Victoria Valley Vineyards", "emoji": "🍷", "art": "c", "tag": "Hwy 11 · Winery", "blurb": "A French-style château casually sitting in the Blue Ridge foothills. Golden hour hits different here.", "tip": null, "badges": ["🌅 sunset views"], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Victoria%20Valley%20Vineyards%2C%20Cleveland%2C%20SC"}, "drink-2": {"name": "The Spot on the Alley", "emoji": "🎸", "art": "d", "tag": "Seneca · Live music", "blurb": "Ram Cat Alley's living room. Live bands, cold beer, zero pretense.", "tip": null, "badges": ["🎸 live music"], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=The%20Spot%20on%20the%20Alley%2C%20Seneca%2C%20SC"}, "drink-3": {"name": "Daydrinkers Coffee", "emoji": "☕", "art": "a", "tag": "Seneca · Coffee", "blurb": "Third-wave coffee downtown. Grab a cup and wander, or post up with a laptop — half of Clemson does during the school year.", "tip": null, "badges": ["💻 laptop-friendly"], "website": "https://daydrinkers.co", "maps": "https://www.google.com/maps/search/?api=1&query=Daydrinkers%2C%20307%20E%20North%201st%20St%2C%20Seneca%2C%20SC"}}</script>
+<script type="application/json" id="spotData">{"eat-0": {"name": "The Lighthouse", "emoji": "🦞", "art": "a", "tag": "Salem · Waterfront", "blurb": "Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.", "tip": null, "badges": ["🛥️ boat-up"], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=The%20Lighthouse%20Restaurant%2C%20Salem%2C%20SC"}, "eat-1": {"name": "The Smokin' Pig", "emoji": "🍖", "art": "c", "tag": "Pendleton · BBQ", "blurb": "The post-lake ritual.", "tip": "Get the hash over rice and don't ask questions.", "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=The%20Smokin%20Pig%2C%20Pendleton%2C%20SC"}, "eat-2": {"name": "Vangeli's Bistro", "emoji": "🍝", "art": "b", "tag": "Seneca · Date night", "blurb": "White tablecloth on Ram Cat Alley. Where you go when it's an anniversary, not a Tuesday.", "tip": null, "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Vangeli%27s%20Bistro%2C%20Seneca%2C%20SC"}, "eat-4": {"name": "California's Mexican Grill", "emoji": "🌮", "art": "b", "tag": "Salem · Mexican", "blurb": "A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.", "tip": "Weekly live music. It's near the lake but there's no public dock access — arrive by road.", "badges": ["🎸 live music", "🍹 full bar"], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Californias%20Mexican%20Grill%2C%20Salem%2C%20SC"}}</script>
 <!-- spots-data:end -->
 
 <script>
