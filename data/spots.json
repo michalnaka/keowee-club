@@ -121,6 +121,24 @@
           "locality": "Seneca",
           "town": "Seneca",
           "category": "Brewery"
+        },
+        {
+          "name": "Keowee Shores Grill",
+          "emoji": "🌴",
+          "art": "a",
+          "tag": "Seneca · Waterfront",
+          "town": "Seneca",
+          "category": "Waterfront",
+          "blurb": "Decks hanging over the lake, draft beer in hand. The best part: you can dock right there.",
+          "tip": "Tie up at the dock, order a draft, stay longer than you planned.",
+          "badges": [
+            "🛥️ dock &amp; dine",
+            "🍺 draft beer"
+          ],
+          "website": "https://www.facebook.com/TikiHut/",
+          "maps": "Keowee Shores Grill, Seneca, SC",
+          "schema": "Restaurant",
+          "locality": "Seneca"
         }
       ]
     },
