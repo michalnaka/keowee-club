@@ -243,6 +243,21 @@
           "maps": "Free Hand Coffee, Pendleton, SC",
           "schema": "CafeOrCoffeeShop",
           "locality": "Pendleton"
+        },
+        {
+          "name": "Dimas Brothers Cafe",
+          "emoji": "🥞",
+          "art": "b",
+          "tag": "Seneca · Breakfast",
+          "town": "Seneca",
+          "category": "Breakfast",
+          "blurb": "From the founders of Vangeli's — a breakfast-and-lunch cafe with the same touch, minus the white tablecloth.",
+          "tip": "Order the Breakfast Armageddon. Trust the name.",
+          "badges": [],
+          "website": "https://dimasbrotherscafe.com",
+          "maps": "Dimas Brothers Cafe, Seneca, SC",
+          "schema": "CafeOrCoffeeShop",
+          "locality": "Seneca"
         }
       ]
     },
