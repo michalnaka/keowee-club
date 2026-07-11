@@ -26,13 +26,44 @@ index = root / "index.html"
 page = index.read_text()
 
 
+TINTS = ["t1", "t2", "t3", "t4", "t5", "t6"]
+TOWN_TINT = {"Seneca": "t1", "Salem": "t2", "Pendleton": "t3", "Hwy 11": "t4", "Walhalla": "t5", "Sunset": "t6"}
+
+
+def tint_for(value, semantic=None, offset=0):
+    if semantic and value in semantic:
+        return semantic[value]
+    return TINTS[(sum(ord(c) for c in value) + offset) % len(TINTS)]
+
+
+def town_class(s):
+    return tint_for(s.get("town", ""), TOWN_TINT)
+
+
+def cat_class(s):
+    # Cuisine/category pills are outlined (towns are filled) so the two
+    # dimensions stay distinguishable even when hues repeat.
+    return "tag-cat " + tint_for(s.get("category", ""), offset=3)
+
+
+def pills(s):
+    town, cat = s.get("town", ""), s.get("category", "")
+    out = ['<div class="tags">']
+    if town:
+        out.append(f'<span class="tag {town_class(s)}">{html.escape(town)}</span>')
+    if cat:
+        out.append(f'<span class="tag {cat_class(s)}">{html.escape(cat)}</span>')
+    out.append("</div>")
+    return "".join(out)
+
+
 def card(spot_id, s, num):
     return "\n".join(
         [
             f'    <article class="card" data-spot="{spot_id}" data-town="{html.escape(s.get("town", ""))}" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about {html.escape(html.unescape(s["name"]))}">',
             f'      <div class="card-art art-{s["art"]}" aria-hidden="true"><span class="card-num">{num:02d}</span><span class="card-emoji">{s["emoji"]}</span></div>',
             '      <div class="card-body">',
-            f'        <span class="tag">{s["tag"]}</span>',
+            f'        {pills(s)}',
             f'        <h3>{s["name"]}</h3>',
             f'        <p>{s["blurb"]}</p>',
             '        <span class="more" aria-hidden="true">Details <i>→</i></span>',
@@ -90,7 +121,10 @@ for sec in data["sections"]:
             "name": s["name"],
             "emoji": s["emoji"],
             "art": s["art"],
-            "tag": s["tag"],
+            "town": s.get("town", ""),
+            "townClass": town_class(s),
+            "category": s.get("category", ""),
+            "catClass": cat_class(s),
             "blurb": s["blurb"],
             "tip": s.get("tip"),
             "badges": s.get("badges") or [],

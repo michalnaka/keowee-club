@@ -6,20 +6,22 @@
       "sub": "From boat-up dinners to the BBQ you earn after a day on the water.",
       "spots": [
         {
-          "name": "The Lighthouse",
-          "emoji": "🦞",
+          "name": "The Cabana",
+          "emoji": "🍹",
           "art": "a",
-          "tag": "Salem · Waterfront",
-          "blurb": "Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.",
-          "tip": null,
+          "tag": "Seneca · Waterfront",
+          "blurb": "Drive the boat right up to their dock, grab a drink at the bar, and let the afternoon do its thing. Lakeside casual, done right.",
+          "tip": "The Orange Crush is the move.",
           "badges": [
-            "🛥️ boat-up"
+            "🛥️ boat-up dock",
+            "🎸 live entertainment"
           ],
-          "website": null,
-          "maps": "The Lighthouse Restaurant, Salem, SC",
+          "website": "https://lighthousekeowee.com/cabana-lake-keowee/",
+          "maps": "Cabana Lake Keowee, 1285 Doug Hollow Rd, Seneca, SC",
           "schema": "Restaurant",
-          "locality": "Salem",
-          "town": "Salem"
+          "locality": "Seneca",
+          "town": "Seneca",
+          "category": "Waterfront"
         },
         {
           "name": "The Smokin' Pig",
@@ -33,7 +35,8 @@
           "maps": "The Smokin Pig, Pendleton, SC",
           "schema": "Restaurant",
           "locality": "Pendleton",
-          "town": "Pendleton"
+          "town": "Pendleton",
+          "category": "BBQ"
         },
         {
           "name": "Vangeli's Bistro",
@@ -47,7 +50,8 @@
           "maps": "Vangeli's Bistro, Seneca, SC",
           "schema": "Restaurant",
           "locality": "Seneca",
-          "town": "Seneca"
+          "town": "Seneca",
+          "category": "Date night"
         },
         {
           "name": "Aunt Sue's Country Corner",
@@ -62,7 +66,8 @@
           "schema": "Restaurant",
           "locality": null,
           "hidden": true,
-          "town": "Hwy 11"
+          "town": "Hwy 11",
+          "category": "Classic"
         },
         {
           "name": "California's Mexican Grill",
@@ -79,7 +84,8 @@
           "maps": "Californias Mexican Grill, Salem, SC",
           "schema": "Restaurant",
           "locality": "Salem",
-          "town": "Salem"
+          "town": "Salem",
+          "category": "Mexican"
         }
       ]
     },
@@ -104,7 +110,8 @@
           "maps": "Keowee Brewing Company, 401 E Main St, Seneca, SC",
           "schema": "Brewery",
           "locality": "Seneca",
-          "town": "Seneca"
+          "town": "Seneca",
+          "category": "Brewery"
         },
         {
           "name": "Victoria Valley Vineyards",
@@ -120,7 +127,8 @@
           "maps": "Victoria Valley Vineyards, Cleveland, SC",
           "schema": "Winery",
           "locality": null,
-          "town": "Hwy 11"
+          "town": "Hwy 11",
+          "category": "Winery"
         },
         {
           "name": "The Spot on the Alley",
@@ -136,7 +144,8 @@
           "maps": "The Spot on the Alley, Seneca, SC",
           "schema": "BarOrPub",
           "locality": "Seneca",
-          "town": "Seneca"
+          "town": "Seneca",
+          "category": "Live music"
         },
         {
           "name": "Daydrinkers Coffee",
@@ -152,7 +161,8 @@
           "maps": "Daydrinkers, 307 E North 1st St, Seneca, SC",
           "schema": "CafeOrCoffeeShop",
           "locality": "Seneca",
-          "town": "Seneca"
+          "town": "Seneca",
+          "category": "Coffee"
         }
       ],
       "hidden": true
@@ -174,7 +184,8 @@
           "maps": "Devils Fork State Park, Salem, SC",
           "schema": "TouristAttraction",
           "locality": "Salem",
-          "town": "Salem"
+          "town": "Salem",
+          "category": "Jocassee"
         },
         {
           "name": "South Cove County Park",
@@ -190,7 +201,8 @@
           "maps": "South Cove County Park, Seneca, SC",
           "schema": "Park",
           "locality": "Seneca",
-          "town": "Seneca"
+          "town": "Seneca",
+          "category": "Launch"
         },
         {
           "name": "Jocassee Waterfalls Run",
@@ -206,7 +218,8 @@
           "maps": "Lake Jocassee, Salem, SC",
           "schema": "TouristAttraction",
           "locality": "Salem",
-          "town": "Salem"
+          "town": "Salem",
+          "category": "Boat trip"
         },
         {
           "name": "Kayak &amp; SUP Rentals",
@@ -220,7 +233,8 @@
           "maps": "kayak rental Seneca SC",
           "schema": "LocalBusiness",
           "locality": "Seneca",
-          "town": "Seneca"
+          "town": "Seneca",
+          "category": "Rentals"
         }
       ],
       "hidden": true
@@ -244,7 +258,8 @@
           "maps": "Sassafras Mountain, Sunset, SC",
           "schema": "TouristAttraction",
           "locality": null,
-          "town": "Pickens Co."
+          "town": "Pickens Co.",
+          "category": "Summit"
         },
         {
           "name": "Stumphouse Tunnel + Issaqueena Falls",
@@ -260,7 +275,8 @@
           "maps": "Stumphouse Tunnel, Walhalla, SC",
           "schema": "TouristAttraction",
           "locality": "Walhalla",
-          "town": "Walhalla"
+          "town": "Walhalla",
+          "category": "Weird history"
         },
         {
           "name": "Keowee-Toxaway State Park",
@@ -274,7 +290,8 @@
           "maps": "Keowee-Toxaway State Park, Sunset, SC",
           "schema": "Park",
           "locality": "Sunset",
-          "town": "Sunset"
+          "town": "Sunset",
+          "category": "State park"
         },
         {
           "name": "Whitewater Falls",
@@ -289,7 +306,8 @@
           "schema": "TouristAttraction",
           "locality": null,
           "region": "NC",
-          "town": "NC line"
+          "town": "NC line",
+          "category": "Waterfall"
         }
       ],
       "hidden": true

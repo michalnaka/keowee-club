@@ -128,7 +128,21 @@ a{color:inherit}
 .art-c{background:linear-gradient(135deg,#FFC24B,#FF8A50)}
 .art-d{background:linear-gradient(135deg,#FF6E52,#C63A5A)}
 .card-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--clearwater-pale);color:var(--keowee-deep);align-self:flex-start;padding:4px 9px;border-radius:999px}
+.tag.t1{background:#BFF3EA}
+.tag.t2{background:#FFE7B8}
+.tag.t3{background:#FFD9CE}
+.tag.t4{background:#D9EED2}
+.tag.t5{background:#CFE7FA}
+.tag.t6{background:#E6DCF7}
+.tag.tag-cat{background:transparent;border:1.5px solid;padding:2.5px 8px}
+.tag.tag-cat.t1{border-color:#52D6C4}
+.tag.tag-cat.t2{border-color:#FFC24B}
+.tag.tag-cat.t3{border-color:#FF8A6B}
+.tag.tag-cat.t4{border-color:#8CC17B}
+.tag.tag-cat.t5{border-color:#6FAEE8}
+.tag.tag-cat.t6{border-color:#A88FE0}
 .card h3{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;line-height:1.15}
 .card p{font-size:.92rem;color:var(--ink-soft)}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 20px}
@@ -219,13 +233,14 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
           "position": 1,
           "item": {
             "@type": "Restaurant",
-            "name": "The Lighthouse",
-            "description": "Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.",
+            "name": "The Cabana",
+            "description": "Drive the boat right up to their dock, grab a drink at the bar, and let the afternoon do its thing. Lakeside casual, done right.",
             "address": {
               "@type": "PostalAddress",
               "addressRegion": "SC",
-              "addressLocality": "Salem"
-            }
+              "addressLocality": "Seneca"
+            },
+            "url": "https://lighthousekeowee.com/cabana-lake-keowee/"
           }
         },
         {
@@ -330,19 +345,19 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
   <div class="section-head"><h2>Eat</h2><span class="count">04 spots</span></div>
   <p class="section-sub">From boat-up dinners to the BBQ you earn after a day on the water.</p>
   <div class="cards">
-    <article class="card" data-spot="eat-0" data-town="Salem" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Lighthouse">
-      <div class="card-art art-a" aria-hidden="true"><span class="card-num">01</span><span class="card-emoji">🦞</span></div>
+    <article class="card" data-spot="eat-0" data-town="Seneca" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Cabana">
+      <div class="card-art art-a" aria-hidden="true"><span class="card-num">01</span><span class="card-emoji">🍹</span></div>
       <div class="card-body">
-        <span class="tag">Salem · Waterfront</span>
-        <h3>The Lighthouse</h3>
-        <p>Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.</p>
+        <div class="tags"><span class="tag t1">Seneca</span><span class="tag tag-cat t4">Waterfront</span></div>
+        <h3>The Cabana</h3>
+        <p>Drive the boat right up to their dock, grab a drink at the bar, and let the afternoon do its thing. Lakeside casual, done right.</p>
         <span class="more" aria-hidden="true">Details <i>→</i></span>
       </div>
     </article>
     <article class="card" data-spot="eat-1" data-town="Pendleton" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about The Smokin&#x27; Pig">
       <div class="card-art art-c" aria-hidden="true"><span class="card-num">02</span><span class="card-emoji">🍖</span></div>
       <div class="card-body">
-        <span class="tag">Pendleton · BBQ</span>
+        <div class="tags"><span class="tag t3">Pendleton</span><span class="tag tag-cat t1">BBQ</span></div>
         <h3>The Smokin' Pig</h3>
         <p>The post-lake ritual.</p>
         <span class="more" aria-hidden="true">Details <i>→</i></span>
@@ -351,7 +366,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
     <article class="card" data-spot="eat-2" data-town="Seneca" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about Vangeli&#x27;s Bistro">
       <div class="card-art art-b" aria-hidden="true"><span class="card-num">03</span><span class="card-emoji">🍝</span></div>
       <div class="card-body">
-        <span class="tag">Seneca · Date night</span>
+        <div class="tags"><span class="tag t1">Seneca</span><span class="tag tag-cat t2">Date night</span></div>
         <h3>Vangeli's Bistro</h3>
         <p>White tablecloth on Ram Cat Alley. Where you go when it's an anniversary, not a Tuesday.</p>
         <span class="more" aria-hidden="true">Details <i>→</i></span>
@@ -360,7 +375,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
     <article class="card" data-spot="eat-4" data-town="Salem" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about California&#x27;s Mexican Grill">
       <div class="card-art art-b" aria-hidden="true"><span class="card-num">04</span><span class="card-emoji">🌮</span></div>
       <div class="card-body">
-        <span class="tag">Salem · Mexican</span>
+        <div class="tags"><span class="tag t2">Salem</span><span class="tag tag-cat t5">Mexican</span></div>
         <h3>California's Mexican Grill</h3>
         <p>A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.</p>
         <span class="more" aria-hidden="true">Details <i>→</i></span>
@@ -407,7 +422,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 </div>
 
 <!-- spots-data:start -->
-<script type="application/json" id="spotData">{"eat-0": {"name": "The Lighthouse", "emoji": "🦞", "art": "a", "tag": "Salem · Waterfront", "blurb": "Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.", "tip": null, "badges": ["🛥️ boat-up"], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=The%20Lighthouse%20Restaurant%2C%20Salem%2C%20SC"}, "eat-1": {"name": "The Smokin' Pig", "emoji": "🍖", "art": "c", "tag": "Pendleton · BBQ", "blurb": "The post-lake ritual.", "tip": "Get the hash over rice and don't ask questions.", "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=The%20Smokin%20Pig%2C%20Pendleton%2C%20SC"}, "eat-2": {"name": "Vangeli's Bistro", "emoji": "🍝", "art": "b", "tag": "Seneca · Date night", "blurb": "White tablecloth on Ram Cat Alley. Where you go when it's an anniversary, not a Tuesday.", "tip": null, "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Vangeli%27s%20Bistro%2C%20Seneca%2C%20SC"}, "eat-4": {"name": "California's Mexican Grill", "emoji": "🌮", "art": "b", "tag": "Salem · Mexican", "blurb": "A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.", "tip": "Weekly live music. It's near the lake but there's no public dock access — arrive by road.", "badges": ["🎸 live music", "🍹 full bar"], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Californias%20Mexican%20Grill%2C%20Salem%2C%20SC"}}</script>
+<script type="application/json" id="spotData">{"eat-0": {"name": "The Cabana", "emoji": "🍹", "art": "a", "town": "Seneca", "townClass": "t1", "category": "Waterfront", "catClass": "tag-cat t4", "blurb": "Drive the boat right up to their dock, grab a drink at the bar, and let the afternoon do its thing. Lakeside casual, done right.", "tip": "The Orange Crush is the move.", "badges": ["🛥️ boat-up dock", "🎸 live entertainment"], "website": "https://lighthousekeowee.com/cabana-lake-keowee/", "maps": "https://www.google.com/maps/search/?api=1&query=Cabana%20Lake%20Keowee%2C%201285%20Doug%20Hollow%20Rd%2C%20Seneca%2C%20SC"}, "eat-1": {"name": "The Smokin' Pig", "emoji": "🍖", "art": "c", "town": "Pendleton", "townClass": "t3", "category": "BBQ", "catClass": "tag-cat t1", "blurb": "The post-lake ritual.", "tip": "Get the hash over rice and don't ask questions.", "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=The%20Smokin%20Pig%2C%20Pendleton%2C%20SC"}, "eat-2": {"name": "Vangeli's Bistro", "emoji": "🍝", "art": "b", "town": "Seneca", "townClass": "t1", "category": "Date night", "catClass": "tag-cat t2", "blurb": "White tablecloth on Ram Cat Alley. Where you go when it's an anniversary, not a Tuesday.", "tip": null, "badges": [], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Vangeli%27s%20Bistro%2C%20Seneca%2C%20SC"}, "eat-4": {"name": "California's Mexican Grill", "emoji": "🌮", "art": "b", "town": "Salem", "townClass": "t2", "category": "Mexican", "catClass": "tag-cat t5", "blurb": "A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.", "tip": "Weekly live music. It's near the lake but there's no public dock access — arrive by road.", "badges": ["🎸 live music", "🍹 full bar"], "website": null, "maps": "https://www.google.com/maps/search/?api=1&query=Californias%20Mexican%20Grill%2C%20Salem%2C%20SC"}}</script>
 <!-- spots-data:end -->
 
 <script>
@@ -430,7 +445,10 @@ document.getElementById('signup').addEventListener('submit',function(e){
     var h='<div class="sheet-art art-'+s.art+'" aria-hidden="true">'+s.emoji+'</div>';
     h+='<button class="sheet-close" aria-label="Close">✕</button>';
     h+='<div class="sheet-body">';
-    h+='<span class="tag">'+s.tag+'</span>';
+    h+='<div class="tags">';
+    if(s.town)h+='<span class="tag '+s.townClass+'">'+s.town+'</span>';
+    if(s.category)h+='<span class="tag '+s.catClass+'">'+s.category+'</span>';
+    h+='</div>';
     h+='<h3>'+s.name+'</h3>';
     h+='<p>'+s.blurb+'</p>';
     if(s.tip)h+='<p class="tip"><b>Pro tip:</b> '+s.tip+'</p>';
