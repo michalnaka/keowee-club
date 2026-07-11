@@ -12,7 +12,9 @@
           "tag": "Salem · Waterfront",
           "blurb": "Dinner you can arrive at by boat. Sunset tables go fast — this is the flex reservation of the lake.",
           "tip": null,
-          "badges": ["🛥️ boat-up"],
+          "badges": [
+            "🛥️ boat-up"
+          ],
           "website": null,
           "maps": "The Lighthouse Restaurant, Salem, SC",
           "schema": "Restaurant",
@@ -64,7 +66,10 @@
           "tag": "Salem · Mexican",
           "blurb": "A food cart that kept leveling up — now with a patio, full bar, stage, and margaritas on draft. Locals, lake people, game-day crowds: a total vibe.",
           "tip": "Weekly live music. It's near the lake but there's no public dock access — arrive by road.",
-          "badges": ["🎸 live music", "🍹 full bar"],
+          "badges": [
+            "🎸 live music",
+            "🍹 full bar"
+          ],
           "website": null,
           "maps": "Californias Mexican Grill, Salem, SC",
           "schema": "Restaurant",
@@ -84,7 +89,11 @@
           "tag": "Seneca · Brewery",
           "blurb": "The de facto clubhouse. Dog-friendly patio, rotating taps, everyone you know is already there.",
           "tip": "Trivia Mondays, Music Bingo Wednesdays, burger &amp; beer special Thursdays, live music Fri–Sat — and growlers to go for the dock.",
-          "badges": ["🐕 dog-friendly patio", "🎸 live music Fri–Sat", "🍺 growlers to go"],
+          "badges": [
+            "🐕 dog-friendly patio",
+            "🎸 live music Fri–Sat",
+            "🍺 growlers to go"
+          ],
           "website": "https://keoweebrewing.com",
           "maps": "Keowee Brewing Company, 401 E Main St, Seneca, SC",
           "schema": "Brewery",
@@ -97,7 +106,9 @@
           "tag": "Hwy 11 · Winery",
           "blurb": "A French-style château casually sitting in the Blue Ridge foothills. Golden hour hits different here.",
           "tip": null,
-          "badges": ["🌅 sunset views"],
+          "badges": [
+            "🌅 sunset views"
+          ],
           "website": null,
           "maps": "Victoria Valley Vineyards, Cleveland, SC",
           "schema": "Winery",
@@ -110,7 +121,9 @@
           "tag": "Seneca · Live music",
           "blurb": "Ram Cat Alley's living room. Live bands, cold beer, zero pretense.",
           "tip": null,
-          "badges": ["🎸 live music"],
+          "badges": [
+            "🎸 live music"
+          ],
           "website": null,
           "maps": "The Spot on the Alley, Seneca, SC",
           "schema": "BarOrPub",
@@ -123,7 +136,9 @@
           "tag": "Seneca · Coffee",
           "blurb": "Third-wave coffee downtown. Grab a cup and wander, or post up with a laptop — half of Clemson does during the school year.",
           "tip": null,
-          "badges": ["💻 laptop-friendly"],
+          "badges": [
+            "💻 laptop-friendly"
+          ],
           "website": "https://daydrinkers.co",
           "maps": "Daydrinkers, 307 E North 1st St, Seneca, SC",
           "schema": "CafeOrCoffeeShop",
@@ -156,7 +171,9 @@
           "tag": "Seneca · Launch",
           "blurb": "Paddleboard launch, swim beach, campsites on the point. The easy-button lake day.",
           "tip": "The deep ramp here stays usable even when the lake drops.",
-          "badges": ["👶 kid-friendly"],
+          "badges": [
+            "👶 kid-friendly"
+          ],
           "website": null,
           "maps": "South Cove County Park, Seneca, SC",
           "schema": "Park",
@@ -169,7 +186,9 @@
           "tag": "Salem · Boat trip",
           "blurb": "Boat-access-only waterfalls pouring straight into the lake. Yes, you can swim under them.",
           "tip": null,
-          "badges": ["🛥️ boat required"],
+          "badges": [
+            "🛥️ boat required"
+          ],
           "website": null,
           "maps": "Lake Jocassee, Salem, SC",
           "schema": "TouristAttraction",
@@ -188,7 +207,8 @@
           "schema": "LocalBusiness",
           "locality": "Seneca"
         }
-      ]
+      ],
+      "hidden": true
     },
     {
       "id": "drive",
@@ -202,7 +222,9 @@
           "tag": "Pickens Co. · Summit",
           "blurb": "The highest point in South Carolina, with a 360° observation tower straddling the NC line.",
           "tip": null,
-          "badges": ["🌅 sunset views"],
+          "badges": [
+            "🌅 sunset views"
+          ],
           "website": null,
           "maps": "Sassafras Mountain, Sunset, SC",
           "schema": "TouristAttraction",
@@ -215,7 +237,9 @@
           "tag": "Walhalla · Weird history",
           "blurb": "An abandoned 1850s railroad tunnel and a waterfall with a legend attached. One parking lot, two adventures.",
           "tip": null,
-          "badges": ["👶 kid-friendly"],
+          "badges": [
+            "👶 kid-friendly"
+          ],
           "website": null,
           "maps": "Stumphouse Tunnel, Walhalla, SC",
           "schema": "TouristAttraction",
@@ -248,7 +272,8 @@
           "locality": null,
           "region": "NC"
         }
-      ]
+      ],
+      "hidden": true
     }
   ]
 }
