@@ -211,6 +211,38 @@
           "maps": "Crave Kitchen, Salem, SC",
           "schema": "Restaurant",
           "locality": "Salem"
+        },
+        {
+          "name": "Daydrinkers Coffee",
+          "emoji": "☕",
+          "art": "a",
+          "tag": "Seneca · Coffee",
+          "blurb": "Third-wave coffee downtown. Grab a cup and wander, or post up with a laptop — half of Clemson does during the school year.",
+          "tip": "They rotate roasters, so the cup you loved last month has a new rival.",
+          "badges": [
+            "💻 laptop-friendly"
+          ],
+          "website": "https://daydrinkers.co",
+          "maps": "Daydrinkers, 307 E North 1st St, Seneca, SC",
+          "schema": "CafeOrCoffeeShop",
+          "locality": "Seneca",
+          "town": "Seneca",
+          "category": "Coffee"
+        },
+        {
+          "name": "Free Hand Coffee",
+          "emoji": "☕",
+          "art": "d",
+          "tag": "Pendleton · Coffee",
+          "town": "Pendleton",
+          "category": "Coffee",
+          "blurb": "Pendleton's coffee stop — they brew Filigree Coffee out of Florida, and it is exceptional.",
+          "tip": null,
+          "badges": [],
+          "website": "https://www.facebook.com/p/FreeHand-Coffee-100063954013028/",
+          "maps": "Free Hand Coffee, Pendleton, SC",
+          "schema": "CafeOrCoffeeShop",
+          "locality": "Pendleton"
         }
       ]
     },
@@ -252,23 +284,6 @@
           "locality": "Seneca",
           "town": "Seneca",
           "category": "Live music"
-        },
-        {
-          "name": "Daydrinkers Coffee",
-          "emoji": "☕",
-          "art": "a",
-          "tag": "Seneca · Coffee",
-          "blurb": "Third-wave coffee downtown. Grab a cup and wander, or post up with a laptop — half of Clemson does during the school year.",
-          "tip": null,
-          "badges": [
-            "💻 laptop-friendly"
-          ],
-          "website": "https://daydrinkers.co",
-          "maps": "Daydrinkers, 307 E North 1st St, Seneca, SC",
-          "schema": "CafeOrCoffeeShop",
-          "locality": "Seneca",
-          "town": "Seneca",
-          "category": "Coffee"
         }
       ],
       "hidden": true
