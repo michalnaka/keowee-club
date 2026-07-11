@@ -56,12 +56,15 @@ a{color:inherit}
 .wordmark{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;text-decoration:none;display:flex;flex-direction:column;line-height:1}
 .wordmark span{color:var(--clearwater)}
 .wordmark svg{margin-top:4px}
-.nav-links{display:none;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
 .nav-links a{text-decoration:none;opacity:.85}
 .nav-links a:hover{opacity:1;color:var(--clearwater)}
 .nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
 .nav-cta:hover{background:#ff5a3a}
-@media(min-width:760px){.nav-links{display:flex}}
+@media(max-width:759px){
+  .nav-inner{flex-wrap:wrap;row-gap:2px}
+  .nav-links{order:3;width:100%;justify-content:center;gap:18px;padding-top:8px;font-size:.7rem}
+}
 
 /* ---------- HERO ---------- */
 .hero{background:var(--keowee-deep);color:#fff;position:relative;overflow:hidden;padding:64px 20px 88px}
