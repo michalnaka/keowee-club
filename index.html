@@ -74,13 +74,6 @@ a{color:inherit}
 .btn:hover{transform:translateY(-2px)}
 .btn-coral{background:var(--sunset);color:#fff}
 .btn-ghost{border:2px solid var(--clearwater);color:var(--clearwater)}
-.sticker{position:absolute;font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25);pointer-events:none}
-.sticker-gold{background:var(--goldhour);color:var(--ink);transform:rotate(6deg);top:6px;right:4px}
-.sticker-aqua{background:var(--clearwater);color:var(--keowee-dusk);transform:rotate(-5deg);bottom:-46px;right:12%}
-@media(max-width:600px){
-  .sticker-aqua{display:none}
-  .sticker-gold{position:static;display:inline-block;margin-left:10px;vertical-align:middle;transform:rotate(6deg) translateY(-6px)}
-}
 .hero-wave{position:absolute;left:0;right:0;bottom:-1px;display:block;width:100%}
 .lake-report{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:10px 16px;border-radius:999px;background:rgba(82,214,196,.1);border:1px solid rgba(82,214,196,.35);text-decoration:none;font-family:var(--mono);font-size:.8rem;color:#CFE8E1;transition:background .15s ease,border-color .15s ease}
 .lake-report:hover{background:rgba(82,214,196,.18);border-color:var(--clearwater)}
@@ -97,7 +90,7 @@ a{color:inherit}
 @keyframes waveslide{to{transform:translateX(-50%)}}
 .hero[data-lake="low"] .hero-water{background:linear-gradient(180deg,rgba(255,194,75,.14),rgba(224,122,62,.18))}
 .hero[data-lake="low"] .water-wave path{fill:rgba(255,194,75,.14)}
-.waterline-chip{position:absolute;right:22px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--keowee-dusk);border:1.5px solid rgba(82,214,196,.55);font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#CFE8E1;text-decoration:none;transform:translateY(50%);transition:border-color .15s ease}
+.waterline-chip{position:absolute;left:20px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--keowee-dusk);border:1.5px solid rgba(82,214,196,.55);font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#CFE8E1;text-decoration:none;transform:translateY(50%);transition:border-color .15s ease}
 .waterline-chip:hover{border-color:var(--clearwater);color:#fff}
 .waterline-chip b{color:var(--clearwater)}
 .hero[data-lake="low"] .waterline-chip{border-color:rgba(255,194,75,.6)}
@@ -264,14 +257,11 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 <header class="hero" id="top">
   <div class="hero-inner">
     <h1 class="eyebrow">The unofficial guide to Lake Keowee · Seneca · Salem</h1>
-    <p class="display-title">Go jump in a <em>lake.</em>
-      <span class="sticker sticker-gold">est. full pond</span>
-    </p>
+    <p class="display-title">Go jump in a <em>lake.</em></p>
     <p>Every good spot to eat, drink, float, and wander in the Golden Corner — curated by people who actually live on this water, not a tourism board.</p>
     <div class="hero-actions">
       <a class="btn btn-coral" href="#eat">Find a spot</a>
       <a class="btn btn-ghost" href="#dispatch">Get the newsletter</a>
-      <span class="sticker sticker-aqua">no boat required*</span>
     </div>
     <a class="lake-report" id="lakeReport" href="/lake-level/" hidden>
       <span class="lake-report-dot" aria-hidden="true"></span>
