@@ -139,6 +139,41 @@
           "maps": "Keowee Shores Grill, Seneca, SC",
           "schema": "Restaurant",
           "locality": "Seneca"
+        },
+        {
+          "name": "Ram Cat Cellars",
+          "emoji": "🥩",
+          "art": "d",
+          "tag": "Seneca · Wine bar",
+          "town": "Seneca",
+          "category": "Wine bar",
+          "blurb": "Wine bar meets date night with a show: you sear your own steak on a hot plate at the table, sourced from the butcher shop upstairs.",
+          "tip": "Higher end, big fun. Book it for date night and come hungry.",
+          "badges": [
+            "🍷 wine &amp; bourbon bar",
+            "🥩 cook-your-own steak"
+          ],
+          "website": "https://www.ramcatcellars.com",
+          "maps": "Ram Cat Cellars, Seneca, SC",
+          "schema": "Restaurant",
+          "locality": "Seneca"
+        },
+        {
+          "name": "Sisters Cafe",
+          "emoji": "🍳",
+          "art": "c",
+          "tag": "Salem · Breakfast",
+          "town": "Salem",
+          "category": "Breakfast",
+          "blurb": "The breakfast gem of Salem. Great biscuits, great prices, zero pretense.",
+          "tip": "The biscuits. That's it. That's the tip.",
+          "badges": [
+            "💰 easy on the wallet"
+          ],
+          "website": "https://www.facebook.com/sisterssalem/",
+          "maps": "Sisters Restaurant, 281 Stamp Creek Rd, Salem, SC",
+          "schema": "Restaurant",
+          "locality": "Salem"
         }
       ]
     },
