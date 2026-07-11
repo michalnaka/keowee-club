@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-"""Render the guide sections and structured data in index.html from data/spots.json.
+"""Render the guide from data/spots.json into TWO pages:
+
+  index.html               — featured spots only (curated homepage row) + "See all" link
+  eat-and-drink/index.html — every visible spot, with town + category filter chips
 
 Usage: python3 scripts/render_spots.py [repo-root]
 
-index.html must contain marker pairs:
+Both files must contain marker pairs:
   <!-- spots:<section-id>:start --> ... <!-- spots:<section-id>:end -->
   <!-- spots-data:start --> ... <!-- spots-data:end -->
   <!-- spots-schema:start --> ... <!-- spots-schema:end -->
 Everything between a pair is regenerated; edit data/spots.json, not the HTML.
-Sections with "hidden": true render nothing (their spots stay in the data file).
-Card faces are minimal; full details live in the JSON data island and open
-in the detail sheet (see the inline script in index.html).
+Sections/spots with "hidden": true render nowhere. Spots with "featured": true
+appear on the homepage (all visible spots appear on the guide page).
 """
 import html
 import json
@@ -22,12 +24,11 @@ import urllib.parse
 
 root = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else ".")
 data = json.loads((root / "data" / "spots.json").read_text())
-index = root / "index.html"
-page = index.read_text()
-
 
 TINTS = ["t1", "t2", "t3", "t4", "t5", "t6"]
 TOWN_TINT = {"Seneca": "t1", "Salem": "t2", "Pendleton": "t3", "Hwy 11": "t4", "Walhalla": "t5", "Sunset": "t6"}
+GUIDE_URL = "/eat-and-drink/"
+FILTER_MIN = int(os.environ.get("FILTER_MIN", "6"))
 
 
 def tint_for(value, semantic=None, offset=0):
@@ -41,36 +42,72 @@ def town_class(s):
 
 
 def cat_class(s):
-    # Cuisine/category pills are outlined (towns are filled) so the two
-    # dimensions stay distinguishable even when hues repeat.
+    # Category pills are outlined (towns are filled) so the two dimensions
+    # stay distinguishable even when hues repeat.
     return "tag-cat " + tint_for(s.get("category", ""), offset=3)
 
 
 def pills(s):
-    town, cat = s.get("town", ""), s.get("category", "")
     out = ['<div class="tags">']
-    if town:
-        out.append(f'<span class="tag {town_class(s)}">{html.escape(town)}</span>')
-    if cat:
-        out.append(f'<span class="tag {cat_class(s)}">{html.escape(cat)}</span>')
+    if s.get("town"):
+        out.append(f'<span class="tag {town_class(s)}">{html.escape(s["town"])}</span>')
+    if s.get("category"):
+        out.append(f'<span class="tag {cat_class(s)}">{html.escape(s["category"])}</span>')
     out.append("</div>")
     return "".join(out)
 
 
-def card(spot_id, s, num):
-    return "\n".join(
-        [
-            f'    <article class="card" data-spot="{spot_id}" data-town="{html.escape(s.get("town", ""))}" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about {html.escape(html.unescape(s["name"]))}">',
-            f'      <div class="card-art art-{s["art"]}" aria-hidden="true"><span class="card-num">{num:02d}</span><span class="card-emoji">{s["emoji"]}</span></div>',
-            '      <div class="card-body">',
-            f'        {pills(s)}',
-            f'        <h3>{s["name"]}</h3>',
-            f'        <p>{s["blurb"]}</p>',
-            '        <span class="more" aria-hidden="true">Details <i>→</i></span>',
-            "      </div>",
-            "    </article>",
-        ]
-    )
+def card(spot_id, s, num, rich=False):
+    lines = [
+        f'    <article class="card" data-spot="{spot_id}" data-town="{html.escape(s.get("town", ""))}" data-category="{html.escape(s.get("category", ""))}" tabindex="0" role="button" aria-haspopup="dialog" aria-label="More about {html.escape(html.unescape(s["name"]))}">',
+        f'      <div class="card-art art-{s["art"]}" aria-hidden="true"><span class="card-num">{num:02d}</span><span class="card-emoji">{s["emoji"]}</span></div>',
+        '      <div class="card-body">',
+        f'        {pills(s)}',
+        f'        <h3>{s["name"]}</h3>',
+        f'        <p>{s["blurb"]}</p>',
+    ]
+    if rich:
+        if s.get("tip"):
+            lines.append(f'        <p class="tip"><b>Pro tip:</b> {s["tip"]}</p>')
+        if s.get("badges"):
+            lines.append(f'        <p class="badges">{" · ".join(s["badges"])}</p>')
+    lines += [
+        '        <span class="more" aria-hidden="true">Details <i>→</i></span>',
+        "      </div>",
+        "    </article>",
+    ]
+    return "\n".join(lines)
+
+
+def chips_row(label, dim, values):
+    out = [f'  <div class="filters" role="group" aria-label="Filter by {label.lower()}">']
+    out.append(f'    <span class="filter-label">{label}</span>')
+    out.append(f'    <button class="chip is-active" data-dim="{dim}" data-value="">All</button>')
+    for v in values:
+        out.append(f'    <button class="chip" data-dim="{dim}" data-value="{html.escape(v)}">{html.escape(v)}</button>')
+    out.append("  </div>")
+    return "\n".join(out)
+
+
+def maps_url(s):
+    return "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(s["maps"])
+
+
+def island_entry(s):
+    return {
+        "name": s["name"],
+        "emoji": s["emoji"],
+        "art": s["art"],
+        "town": s.get("town", ""),
+        "townClass": town_class(s),
+        "category": s.get("category", ""),
+        "catClass": cat_class(s),
+        "blurb": s["blurb"],
+        "tip": s.get("tip"),
+        "badges": s.get("badges") or [],
+        "website": s.get("website"),
+        "maps": maps_url(s),
+    }
 
 
 def replace_between(text, start, end, block):
@@ -80,82 +117,17 @@ def replace_between(text, start, end, block):
     return pattern.sub(lambda _: f"{start}\n{block}\n{end}" if block else f"{start}{end}", text)
 
 
-def maps_url(s):
-    return "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(s["maps"])
-
-
-total = 0
-island = {}
-for sec in data["sections"]:
-    start, end = f"<!-- spots:{sec['id']}:start -->", f"<!-- spots:{sec['id']}:end -->"
-    if sec.get("hidden"):
-        page = replace_between(page, start, end, "")
-        continue
-    visible = [(i, s) for i, s in enumerate(sec["spots"]) if not s.get("hidden")]
-    n = len(visible)
-    total += n
-    out = [f'<section class="section" id="{sec["id"]}">']
-    out.append(
-        f'  <div class="section-head"><h2>{sec["title"]}</h2><span class="count">{n:02d} spots</span></div>'
-    )
-    out.append(f'  <p class="section-sub">{sec["sub"]}</p>')
-    # Town filter chips appear once a section is big enough to need them
-    towns = []
-    for _, s in visible:
-        t = s.get("town")
-        if t and t not in towns:
-            towns.append(t)
-    filter_min = int(os.environ.get("FILTER_MIN", "6"))
-    if n >= filter_min and len(towns) > 1:
-        chips = ['  <div class="filters" role="group" aria-label="Filter by town">']
-        chips.append('    <button class="chip is-active" data-town="">All</button>')
-        for t in towns:
-            chips.append(f'    <button class="chip" data-town="{html.escape(t)}">{html.escape(t)}</button>')
-        chips.append("  </div>")
-        out.append("\n".join(chips))
-    out.append('  <div class="cards">')
-    for num, (i, s) in enumerate(visible, start=1):
-        spot_id = f"{sec['id']}-{i}"
-        out.append(card(spot_id, s, num))
-        island[spot_id] = {
-            "name": s["name"],
-            "emoji": s["emoji"],
-            "art": s["art"],
-            "town": s.get("town", ""),
-            "townClass": town_class(s),
-            "category": s.get("category", ""),
-            "catClass": cat_class(s),
-            "blurb": s["blurb"],
-            "tip": s.get("tip"),
-            "badges": s.get("badges") or [],
-            "website": s.get("website"),
-            "maps": maps_url(s),
-        }
-    out.append("  </div>")
-    out.append("</section>")
-    page = replace_between(page, start, end, "\n".join(out))
-
-# Data island for the detail sheet
-island_block = (
-    '<script type="application/json" id="spotData">'
-    + json.dumps(island, ensure_ascii=False).replace("</", "<\\/")
-    + "</script>"
-)
-page = replace_between(page, "<!-- spots-data:start -->", "<!-- spots-data:end -->", island_block)
-
-
-# Structured data: WebSite + ItemList of every visible spot
 def plain(s):
     return html.unescape(re.sub("<[^>]+>", "", s))
 
-items, pos = [], 0
-for sec in data["sections"]:
-    if sec.get("hidden"):
-        continue
-    for s in sec["spots"]:
-        if s.get("hidden"):
-            continue
-        pos += 1
+
+def schema_block(graph):
+    return '<script type="application/ld+json">\n' + json.dumps(graph, indent=2, ensure_ascii=False) + "\n</script>"
+
+
+def item_list(spots, list_id, name):
+    items = []
+    for pos, s in enumerate(spots, start=1):
         item = {
             "@type": s.get("schema", "LocalBusiness"),
             "name": plain(s["name"]),
@@ -168,32 +140,106 @@ for sec in data["sections"]:
         if s.get("website"):
             item["url"] = s["website"]
         items.append({"@type": "ListItem", "position": pos, "item": item})
+    return {"@type": "ItemList", "@id": list_id, "name": name, "numberOfItems": len(items), "itemListElement": items}
 
-graph = {
-    "@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": "WebSite",
-            "@id": "https://keowee.club/#website",
-            "url": "https://keowee.club/",
-            "name": "keowee.club",
-            "alternateName": "The Unofficial Guide to Lake Keowee",
-            "description": "Where to eat, drink, swim, and wander around Lake Keowee, Seneca & Salem, South Carolina.",
-            "inLanguage": "en-US",
-        },
-        {
-            "@type": "ItemList",
-            "@id": "https://keowee.club/#guide",
-            "name": "Lake Keowee Guide: Where to Eat and Drink",
-            "numberOfItems": total,
-            "itemListElement": items,
-        },
-    ],
+
+WEBSITE_NODE = {
+    "@type": "WebSite",
+    "@id": "https://keowee.club/#website",
+    "url": "https://keowee.club/",
+    "name": "keowee.club",
+    "alternateName": "The Unofficial Guide to Lake Keowee",
+    "description": "Where to eat, drink, swim, and wander around Lake Keowee, Seneca & Salem, South Carolina.",
+    "inLanguage": "en-US",
 }
-schema_block = (
-    '<script type="application/ld+json">\n' + json.dumps(graph, indent=2, ensure_ascii=False) + "\n</script>"
-)
-page = replace_between(page, "<!-- spots-schema:start -->", "<!-- spots-schema:end -->", schema_block)
 
-index.write_text(page)
-print(f"rendered {total} visible spots into {index}")
+
+def render_page(path, pick, rich, with_filters, see_all_total=None, schema_graph=None):
+    page = path.read_text()
+    island = {}
+    for sec in data["sections"]:
+        start, end = f"<!-- spots:{sec['id']}:start -->", f"<!-- spots:{sec['id']}:end -->"
+        if start not in page:
+            continue
+        if sec.get("hidden"):
+            page = replace_between(page, start, end, "")
+            continue
+        chosen = [(i, s) for i, s in enumerate(sec["spots"]) if not s.get("hidden") and pick(s)]
+        if not chosen:
+            page = replace_between(page, start, end, "")
+            continue
+        n = len(chosen)
+        shown_count = see_all_total if see_all_total is not None else n
+        out = [f'<section class="section" id="{sec["id"]}">']
+        out.append(
+            f'  <div class="section-head"><h2>{sec["title"]}</h2><span class="count">{shown_count:02d} spots</span></div>'
+        )
+        out.append(f'  <p class="section-sub">{sec["sub"]}</p>')
+        if with_filters and n >= FILTER_MIN:
+            towns, cats = [], []
+            for _, s in chosen:
+                t, c = s.get("town"), s.get("category")
+                if t and t not in towns:
+                    towns.append(t)
+                if c and c not in cats:
+                    cats.append(c)
+            if len(towns) > 1:
+                out.append(chips_row("Town", "town", towns))
+            if len(cats) > 1:
+                out.append(chips_row("Vibe", "category", cats))
+        out.append('  <div class="cards">')
+        for num, (i, s) in enumerate(chosen, start=1):
+            spot_id = f"{sec['id']}-{i}"
+            out.append(card(spot_id, s, num, rich=rich))
+            island[spot_id] = island_entry(s)
+        out.append("  </div>")
+        if see_all_total is not None and see_all_total > n:
+            out.append(f'  <a class="see-all" href="{GUIDE_URL}">See all {see_all_total} spots <i>→</i></a>')
+        out.append("</section>")
+        page = replace_between(page, start, end, "\n".join(out))
+
+    island_block = (
+        '<script type="application/json" id="spotData">'
+        + json.dumps(island, ensure_ascii=False).replace("</", "<\\/")
+        + "</script>"
+    )
+    page = replace_between(page, "<!-- spots-data:start -->", "<!-- spots-data:end -->", island_block)
+    if schema_graph is not None:
+        page = replace_between(page, "<!-- spots-schema:start -->", "<!-- spots-schema:end -->", schema_block(schema_graph))
+    path.write_text(page)
+    return len(island)
+
+
+visible_spots = [
+    s for sec in data["sections"] if not sec.get("hidden")
+    for s in sec["spots"] if not s.get("hidden")
+]
+
+n_home = render_page(
+    root / "index.html",
+    pick=lambda s: s.get("featured"),
+    rich=False,
+    with_filters=False,
+    see_all_total=len(visible_spots),
+    schema_graph={"@context": "https://schema.org", "@graph": [WEBSITE_NODE]},
+)
+
+n_guide = render_page(
+    root / "eat-and-drink" / "index.html",
+    pick=lambda s: True,
+    rich=True,
+    with_filters=True,
+    schema_graph={
+        "@context": "https://schema.org",
+        "@graph": [
+            WEBSITE_NODE,
+            item_list(
+                visible_spots,
+                "https://keowee.club/eat-and-drink/#guide",
+                "Where to Eat & Drink near Lake Keowee",
+            ),
+        ],
+    },
+)
+
+print(f"rendered homepage ({n_home} featured) + guide page ({n_guide} spots)")

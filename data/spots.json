@@ -21,7 +21,8 @@
           "schema": "Restaurant",
           "locality": "Seneca",
           "town": "Seneca",
-          "category": "Waterfront"
+          "category": "Waterfront",
+          "featured": true
         },
         {
           "name": "Brooklyn Style Pizza",
@@ -36,7 +37,8 @@
           "website": "https://www.facebook.com/Brooklynstylepizzasc/",
           "maps": "Brooklyn Pizza, Pendleton, SC",
           "schema": "Restaurant",
-          "locality": "Pendleton"
+          "locality": "Pendleton",
+          "featured": true
         },
         {
           "name": "The Smokin' Pig",
@@ -52,7 +54,8 @@
           "maps": "The Smokin Pig, Pendleton, SC",
           "schema": "Restaurant",
           "locality": "Pendleton",
-          "hidden": true
+          "hidden": true,
+          "featured": false
         },
         {
           "name": "Vangeli's Bistro",
@@ -67,7 +70,8 @@
           "schema": "Restaurant",
           "locality": "Seneca",
           "town": "Seneca",
-          "category": "Date night"
+          "category": "Date night",
+          "featured": false
         },
         {
           "name": "Aunt Sue's Country Corner",
@@ -83,7 +87,8 @@
           "locality": null,
           "hidden": true,
           "town": "Hwy 11",
-          "category": "Classic"
+          "category": "Classic",
+          "featured": false
         },
         {
           "name": "California's Mexican Grill",
@@ -101,7 +106,8 @@
           "schema": "Restaurant",
           "locality": "Salem",
           "town": "Salem",
-          "category": "Mexican"
+          "category": "Mexican",
+          "featured": false
         },
         {
           "name": "Keowee Brewing Co.",
@@ -120,7 +126,8 @@
           "schema": "Brewery",
           "locality": "Seneca",
           "town": "Seneca",
-          "category": "Brewery"
+          "category": "Brewery",
+          "featured": true
         },
         {
           "name": "Keowee Shores Grill",
@@ -138,7 +145,8 @@
           "website": "https://www.facebook.com/TikiHut/",
           "maps": "Keowee Shores Grill, Seneca, SC",
           "schema": "Restaurant",
-          "locality": "Seneca"
+          "locality": "Seneca",
+          "featured": false
         },
         {
           "name": "Ram Cat Cellars",
@@ -156,7 +164,8 @@
           "website": "https://www.ramcatcellars.com",
           "maps": "Ram Cat Cellars, Seneca, SC",
           "schema": "Restaurant",
-          "locality": "Seneca"
+          "locality": "Seneca",
+          "featured": false
         },
         {
           "name": "Sisters Cafe",
@@ -173,7 +182,8 @@
           "website": "https://www.facebook.com/sisterssalem/",
           "maps": "Sisters Restaurant, 281 Stamp Creek Rd, Salem, SC",
           "schema": "Restaurant",
-          "locality": "Salem"
+          "locality": "Salem",
+          "featured": true
         },
         {
           "name": "Jocassee Valley Brewing",
@@ -192,7 +202,8 @@
           "website": "https://jocasseevalleybrewing.com",
           "maps": "Jocassee Valley Brewing Company, Salem, SC",
           "schema": "Brewery",
-          "locality": "Salem"
+          "locality": "Salem",
+          "featured": false
         },
         {
           "name": "Crave Kitchen",
@@ -210,7 +221,8 @@
           "website": "https://www.cravesc.com",
           "maps": "Crave Kitchen, Salem, SC",
           "schema": "Restaurant",
-          "locality": "Salem"
+          "locality": "Salem",
+          "featured": false
         },
         {
           "name": "Daydrinkers Coffee",
@@ -227,7 +239,8 @@
           "schema": "CafeOrCoffeeShop",
           "locality": "Seneca",
           "town": "Seneca",
-          "category": "Coffee"
+          "category": "Coffee",
+          "featured": false
         },
         {
           "name": "Free Hand Coffee",
@@ -242,7 +255,8 @@
           "website": "https://www.facebook.com/p/FreeHand-Coffee-100063954013028/",
           "maps": "Free Hand Coffee, Pendleton, SC",
           "schema": "CafeOrCoffeeShop",
-          "locality": "Pendleton"
+          "locality": "Pendleton",
+          "featured": false
         },
         {
           "name": "Dimas Brothers Cafe",
@@ -257,7 +271,8 @@
           "website": "https://dimasbrotherscafe.com",
           "maps": "Dimas Brothers Cafe, Seneca, SC",
           "schema": "CafeOrCoffeeShop",
-          "locality": "Seneca"
+          "locality": "Seneca",
+          "featured": false
         }
       ]
     },
