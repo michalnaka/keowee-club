@@ -193,6 +193,24 @@
           "maps": "Jocassee Valley Brewing Company, Salem, SC",
           "schema": "Brewery",
           "locality": "Salem"
+        },
+        {
+          "name": "Crave Kitchen",
+          "emoji": "🍽️",
+          "art": "a",
+          "tag": "Salem · Fine dining",
+          "town": "Salem",
+          "category": "Fine dining",
+          "blurb": "The fancy one — a seasonal menu that actually changes with the seasons, and food worth dressing up (a little) for.",
+          "tip": "Dinner Tuesday–Sunday, brunch on Sunday.",
+          "badges": [
+            "🍂 seasonal menu",
+            "🥂 Sunday brunch"
+          ],
+          "website": "https://www.cravesc.com",
+          "maps": "Crave Kitchen, Salem, SC",
+          "schema": "Restaurant",
+          "locality": "Salem"
         }
       ]
     },
