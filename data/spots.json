@@ -24,10 +24,27 @@
           "category": "Waterfront"
         },
         {
+          "name": "Brooklyn Pizza",
+          "emoji": "🍕",
+          "art": "c",
+          "tag": "Pendleton · Pizza",
+          "town": "Pendleton",
+          "category": "Pizza",
+          "blurb": "Brooklyn-style pies worth leaving the lake for — some of the best pizza in the area, full stop.",
+          "tip": "The wings are the sleeper hit: 10 juicy wings for under ten bucks.",
+          "badges": [],
+          "website": "https://www.facebook.com/Brooklynstylepizzasc/",
+          "maps": "Brooklyn Pizza, Pendleton, SC",
+          "schema": "Restaurant",
+          "locality": "Pendleton"
+        },
+        {
           "name": "The Smokin' Pig",
           "emoji": "🍖",
           "art": "c",
           "tag": "Pendleton · BBQ",
+          "town": "Pendleton",
+          "category": "BBQ",
           "blurb": "The post-lake ritual.",
           "tip": "Get the hash over rice and don't ask questions.",
           "badges": [],
@@ -35,8 +52,7 @@
           "maps": "The Smokin Pig, Pendleton, SC",
           "schema": "Restaurant",
           "locality": "Pendleton",
-          "town": "Pendleton",
-          "category": "BBQ"
+          "hidden": true
         },
         {
           "name": "Vangeli's Bistro",
