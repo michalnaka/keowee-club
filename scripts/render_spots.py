@@ -150,8 +150,8 @@ WEBSITE_NODE = {
     "@id": "https://keowee.club/#website",
     "url": "https://keowee.club/",
     "name": "keowee.club",
-    "alternateName": "The Unofficial Guide to Lake Keowee",
-    "description": "Where to eat, drink, swim, and wander around Lake Keowee, Seneca & Salem, South Carolina.",
+    "alternateName": "The Unofficial Guide to Lake Keowee & Lake Jocassee",
+    "description": "The unofficial guide to Lake Keowee and Lake Jocassee, South Carolina — where locals eat and drink, live lake levels, and a map of every spot worth docking at.",
     "inLanguage": "en-US",
 }
 
