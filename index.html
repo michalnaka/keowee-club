@@ -56,6 +56,7 @@ a{color:inherit}
 .wordmark{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;text-decoration:none;display:flex;flex-direction:column;line-height:1}
 .wordmark span{color:var(--clearwater)}
 .wordmark svg{margin-top:4px}
+.pennant-logo{width:92px;height:auto;display:block;margin:0}
 .nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
 .nav-links a{text-decoration:none;opacity:.85}
 .nav-links a:hover{opacity:1;color:var(--clearwater)}
@@ -246,8 +247,15 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
-    <a class="wordmark" href="#top">keowee<span>.club</span>
-      <svg width="86" height="6" viewBox="0 0 86 6" fill="none" aria-hidden="true"><path d="M1 4C6 .5 11 .5 16 4s10 3.5 15 0 10-3.5 15 0 10 3.5 15 0 10-3.5 15 0 8 3 8 3" stroke="#52D6C4" stroke-width="2" stroke-linecap="round"/></svg>
+    <a class="wordmark" href="#top" aria-label="keowee.club home">
+      <svg class="pennant-logo" viewBox="0 0 212 164" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Keowee Club">
+        <g font-family="'Bricolage Grotesque',sans-serif" font-weight="800">
+          <path d="M14 34 Q100 12 196 14 L176 38 L198 58 Q98 64 16 72 Z" fill="#F3EDDE" stroke="#0A3A34" stroke-width="7" stroke-linejoin="round"/>
+          <text x="94" y="52" text-anchor="middle" font-size="31" fill="#0A3A34" transform="rotate(-6 94 52)" letter-spacing="0.5">KEOWEE</text>
+          <path d="M18 76 Q98 70 192 80 L166 100 L190 122 Q96 136 20 124 Z" fill="#F3EDDE" stroke="#0A3A34" stroke-width="7" stroke-linejoin="round"/>
+          <text x="90" y="114" text-anchor="middle" font-size="36" fill="#0A3A34" transform="rotate(2 90 114)" letter-spacing="3">CLUB</text>
+        </g>
+      </svg>
     </a>
     <ul class="nav-links">
       <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
