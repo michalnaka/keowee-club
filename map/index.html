@@ -42,6 +42,7 @@ a{color:inherit}
 .nav-links{display:flex;gap:18px;list-style:none;font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}
 .nav-links a{text-decoration:none;opacity:.85}
 .nav-links a:hover{opacity:1;color:var(--clearwater)}
+.pennant-logo{width:96px;height:auto;display:block;filter:drop-shadow(0 4px 10px rgba(6,40,33,.4))}
 .mapbar{background:var(--keowee-deep);color:#fff;padding:0 20px 14px;z-index:1001}
 .mapbar-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .mapbar h1{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;text-transform:uppercase;margin-right:10px}
@@ -115,8 +116,8 @@ a{color:inherit}
 
 <nav class="nav" aria-label="Main">
   <div class="nav-inner">
-    <a class="wordmark" href="/">keowee<span>.club</span>
-      <svg width="86" height="6" viewBox="0 0 86 6" fill="none" aria-hidden="true"><path d="M1 4C6 .5 11 .5 16 4s10 3.5 15 0 10-3.5 15 0 10 3.5 15 0 10-3.5 15 0 8 3 8 3" stroke="#52D6C4" stroke-width="2" stroke-linecap="round"/></svg>
+    <a class="wordmark" href="/" aria-label="Keowee Club home">
+      <img class="pennant-logo" src="../brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
