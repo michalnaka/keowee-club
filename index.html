@@ -56,7 +56,8 @@ a{color:inherit}
 .wordmark{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;text-decoration:none;display:flex;flex-direction:column;line-height:1}
 .wordmark span{color:var(--clearwater)}
 .wordmark svg{margin-top:4px}
-.pennant-logo{width:92px;height:auto;display:block;margin:0}
+.pennant-logo{width:112px;height:auto;display:block;filter:drop-shadow(0 5px 12px rgba(6,40,33,.4))}
+@media(min-width:760px){.pennant-logo{width:152px;margin:-10px 0 -52px}}
 .nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
 .nav-links a{text-decoration:none;opacity:.85}
 .nav-links a:hover{opacity:1;color:var(--clearwater)}
@@ -95,7 +96,7 @@ a{color:inherit}
 @keyframes waveslide{to{transform:translateX(-50%)}}
 .hero[data-lake="low"] .hero-water{background:linear-gradient(180deg,rgba(255,194,75,.14),rgba(224,122,62,.18))}
 .hero[data-lake="low"] .water-wave path{fill:rgba(255,194,75,.14)}
-.waterline-chip{position:absolute;left:20px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--keowee-dusk);border:1.5px solid rgba(82,214,196,.55);font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#CFE8E1;text-decoration:none;transform:translateY(50%);transition:border-color .15s ease}
+.waterline-chip{position:absolute;left:50%;margin-left:-90px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--keowee-dusk);border:1.5px solid rgba(82,214,196,.55);font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#CFE8E1;text-decoration:none;transform:translateY(50%);transition:border-color .15s ease}
 .waterline-chip:hover{border-color:var(--clearwater);color:#fff}
 .waterline-chip b{color:var(--clearwater)}
 .hero[data-lake="low"] .waterline-chip{border-color:rgba(255,194,75,.6)}
