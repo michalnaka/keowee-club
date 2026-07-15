@@ -362,7 +362,9 @@
           "schema": "TouristAttraction",
           "locality": "Salem",
           "town": "Salem",
-          "category": "Jocassee"
+          "category": "Jocassee",
+          "lat": 34.9587,
+          "lng": -82.9485
         },
         {
           "name": "South Cove County Park",
@@ -379,7 +381,9 @@
           "schema": "Park",
           "locality": "Seneca",
           "town": "Seneca",
-          "category": "Launch"
+          "category": "Launch",
+          "lat": 34.714,
+          "lng": -82.9633
         },
         {
           "name": "Jocassee Waterfalls Run",
@@ -396,7 +400,9 @@
           "schema": "TouristAttraction",
           "locality": "Salem",
           "town": "Salem",
-          "category": "Boat trip"
+          "category": "Boat trip",
+          "lat": 34.978,
+          "lng": -82.92
         },
         {
           "name": "Kayak &amp; SUP Rentals",
@@ -411,7 +417,85 @@
           "schema": "LocalBusiness",
           "locality": "Seneca",
           "town": "Seneca",
-          "category": "Rentals"
+          "category": "Rentals",
+          "hidden": true
+        },
+        {
+          "name": "High Falls County Park",
+          "emoji": "🏖️",
+          "art": "b",
+          "tag": "Seneca · County park",
+          "town": "Seneca",
+          "category": "County park",
+          "blurb": "Swim beach, deep public boat ramp, and campsites on the west shore — the easy-button lake day.",
+          "tip": null,
+          "badges": [
+            "🚤 public ramp",
+            "👶 swim beach"
+          ],
+          "website": null,
+          "maps": "High Falls County Park, Seneca, SC",
+          "schema": "Park",
+          "locality": "Seneca",
+          "lat": 34.796,
+          "lng": -82.9291
+        },
+        {
+          "name": "Mile Creek County Park",
+          "emoji": "🚤",
+          "art": "c",
+          "tag": "Six Mile · County park",
+          "town": "Six Mile",
+          "category": "County park",
+          "blurb": "East-shore ramp, campground, and quick access to the middle of the lake.",
+          "tip": null,
+          "badges": [
+            "🚤 public ramp"
+          ],
+          "website": null,
+          "maps": "Mile Creek County Park, Six Mile, SC",
+          "schema": "Park",
+          "locality": "Six Mile",
+          "lat": 34.8519,
+          "lng": -82.8832
+        },
+        {
+          "name": "Keowee Town Landing",
+          "emoji": "🚤",
+          "art": "a",
+          "tag": "Six Mile · Boat ramp",
+          "town": "Six Mile",
+          "category": "Boat ramp",
+          "blurb": "No-frills public ramp on the east shore. In, out, on the water.",
+          "tip": null,
+          "badges": [
+            "🚤 public ramp"
+          ],
+          "website": null,
+          "maps": "Keowee Town Landing, Salem, SC",
+          "schema": "Park",
+          "locality": null,
+          "lat": 34.8565,
+          "lng": -82.9085
+        },
+        {
+          "name": "Stamp Creek Landing",
+          "emoji": "🚤",
+          "art": "d",
+          "tag": "Salem · Boat ramp",
+          "town": "Salem",
+          "category": "Boat ramp",
+          "blurb": "Public ramp tucked up the west shore near Stamp Creek.",
+          "tip": null,
+          "badges": [
+            "🚤 public ramp"
+          ],
+          "website": null,
+          "maps": "Stamp Creek Landing, Salem, SC",
+          "schema": "Park",
+          "locality": "Salem",
+          "lat": 34.8048,
+          "lng": -82.9728
         }
       ],
       "hidden": true
@@ -436,7 +520,9 @@
           "schema": "TouristAttraction",
           "locality": null,
           "town": "Pickens Co.",
-          "category": "Summit"
+          "category": "Summit",
+          "lat": 35.0648,
+          "lng": -82.7772
         },
         {
           "name": "Stumphouse Tunnel + Issaqueena Falls",
@@ -453,7 +539,9 @@
           "schema": "TouristAttraction",
           "locality": "Walhalla",
           "town": "Walhalla",
-          "category": "Weird history"
+          "category": "Weird history",
+          "lat": 34.8123,
+          "lng": -83.1254
         },
         {
           "name": "Keowee-Toxaway State Park",
@@ -468,7 +556,9 @@
           "schema": "Park",
           "locality": "Sunset",
           "town": "Sunset",
-          "category": "State park"
+          "category": "State park",
+          "lat": 34.9316,
+          "lng": -82.8815
         },
         {
           "name": "Whitewater Falls",
@@ -484,7 +574,9 @@
           "locality": null,
           "region": "NC",
           "town": "NC line",
-          "category": "Waterfall"
+          "category": "Waterfall",
+          "lat": 35.0361,
+          "lng": -83.0178
         }
       ],
       "hidden": true

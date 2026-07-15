@@ -28,6 +28,12 @@ data = json.loads((root / "data" / "spots.json").read_text())
 TINTS = ["t1", "t2", "t3", "t4", "t5", "t6"]
 TOWN_TINT = {"Seneca": "t1", "Salem": "t2", "Pendleton": "t3", "Hwy 11": "t4", "Walhalla": "t5", "Sunset": "t6"}
 GUIDE_URL = "/eat-and-drink/"
+SECTION_TYPE = {
+    "eat": ("Eat & Drink", "ty-eat"),
+    "drink": ("Eat & Drink", "ty-eat"),
+    "water": ("On the Water", "ty-water"),
+    "drive": ("Sights", "ty-sights"),
+}
 FILTER_MIN = int(os.environ.get("FILTER_MIN", "6"))
 
 
@@ -93,7 +99,7 @@ def maps_url(s):
     return "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(s["maps"])
 
 
-def island_entry(s):
+def island_entry(s, sec_id=""):
     return {
         "name": s["name"],
         "emoji": s["emoji"],
@@ -109,6 +115,8 @@ def island_entry(s):
         "maps": maps_url(s),
         "lat": s.get("lat"),
         "lng": s.get("lng"),
+        "type": SECTION_TYPE.get(sec_id, ("Other", "ty-eat"))[0],
+        "typeClass": SECTION_TYPE.get(sec_id, ("Other", "ty-eat"))[1],
     }
 
 
@@ -156,21 +164,23 @@ WEBSITE_NODE = {
 }
 
 
-def render_page(path, pick, rich, with_filters, see_all_total=None, schema_graph=None, nosnippet=False):
+def render_page(path, pick, rich, with_filters, see_all_total=None, schema_graph=None, nosnippet=False, include_hidden_sections=False):
     page = path.read_text()
     island = {}
     for sec in data["sections"]:
         start, end = f"<!-- spots:{sec['id']}:start -->", f"<!-- spots:{sec['id']}:end -->"
         has_markers = start in page
-        if sec.get("hidden"):
+        if sec.get("hidden") and not include_hidden_sections:
             if has_markers:
                 page = replace_between(page, start, end, "")
             continue
         chosen = [(i, s) for i, s in enumerate(sec["spots"]) if not s.get("hidden") and pick(s)]
         # island entries exist even on pages without card sections (e.g. the map)
         for i, s in chosen:
-            island[f"{sec['id']}-{i}"] = island_entry(s)
-        if not has_markers:
+            island[f"{sec['id']}-{i}"] = island_entry(s, sec["id"])
+        if sec.get("hidden") or not has_markers:
+            if has_markers:
+                page = replace_between(page, start, end, "")
             continue
         if not chosen:
             page = replace_between(page, start, end, "")
@@ -254,6 +264,7 @@ n_map = render_page(
     rich=False,
     with_filters=False,
     schema_graph=None,
+    include_hidden_sections=True,
 )
 
 print(f"rendered homepage ({n_home} featured) + guide page ({n_guide} spots) + map ({n_map} pins)")
