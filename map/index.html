@@ -51,7 +51,20 @@ a{color:inherit}
 .chip:hover{background:rgba(82,214,196,.15)}
 .chip.is-active{background:var(--clearwater);border-color:var(--clearwater);color:var(--keowee-dusk)}
 .chip-count{font-family:var(--mono);font-size:.68rem;color:#8FBFB5;margin-left:auto}
+.map-wrap{flex:1;display:flex;min-height:0}
 #map{flex:1;min-height:320px;background:#D7E8E3}
+.map-panel{display:none}
+@media(min-width:1000px){
+  .map-panel{display:block;width:360px;overflow-y:auto;background:var(--shallows);border-left:1px solid rgba(10,58,52,.1)}
+}
+.panel-head{font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);padding:16px 18px 10px}
+.prow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 18px;border:none;background:none;cursor:pointer;border-bottom:1px solid rgba(10,58,52,.06);transition:background .12s ease}
+.prow:hover{background:#E4F2EC}
+.prow.is-active{background:#DDEFE7}
+.prow-art{flex:0 0 40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+.prow-name{font-family:var(--display);font-weight:700;font-size:.98rem;color:var(--ink);line-height:1.15}
+.prow-meta{font-family:var(--mono);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-top:3px}
+.prow-go{margin-left:auto;font-family:var(--mono);font-size:.8rem;color:var(--clearwater)}
 .pin{width:32px;height:32px;border-radius:50% 50% 50% 5px;display:flex;align-items:center;justify-content:center;font-size:.95rem;border:3px solid #F3EDDE;box-shadow:0 3px 10px rgba(6,40,33,.4);cursor:pointer;transition:transform .15s ease}
 .pin:hover{transform:scale(1.12)}
 .pin.art-a{background:linear-gradient(135deg,#0A3A34,#177E6F)}
@@ -136,7 +149,10 @@ a{color:inherit}
   </div>
 </div>
 
-<div id="map" role="application" aria-label="Map of places to eat, drink, and get on the water around Lake Keowee"></div>
+<div class="map-wrap">
+  <div id="map" role="application" aria-label="Map of places to eat, drink, and get on the water around Lake Keowee"></div>
+  <aside class="map-panel" id="mapPanel" aria-label="Spots on the map"></aside>
+</div>
 
 <div class="sheet-overlay" id="sheetOverlay" role="dialog" aria-modal="true" aria-label="Spot details">
   <div class="sheet" id="sheet"></div>
@@ -261,8 +277,53 @@ a{color:inherit}
     });
     updateCount(n);
     fitVisible();
+    buildPanel();
   });
 
+
+  // Side panel (desktop): browsable list synced with the map
+  var panel=document.getElementById('mapPanel');
+  function pinEl(id){var el=markers[id].getElement();return el?el.querySelector('.pin'):null;}
+  function buildPanel(){
+    if(!panel)return;
+    var ids=Object.keys(markers).filter(function(id){return map.hasLayer(markers[id]);});
+    var h2='<div class="panel-head">'+ids.length+' spots on the map</div>';
+    ids.forEach(function(id){
+      var s=spots[id];
+      h2+='<button class="prow" data-row="'+id+'">'
+        +'<span class="prow-art art-'+s.art+'">'+s.emoji+'</span>'
+        +'<span><span class="prow-name">'+s.name+'</span><br><span class="prow-meta">'+s.town+' · '+s.category+'</span></span>'
+        +'<span class="prow-go">→</span></button>';
+    });
+    panel.innerHTML=h2;
+  }
+  if(panel){
+    panel.addEventListener('click',function(e){
+      var row=e.target.closest('.prow');
+      if(!row)return;
+      var id=row.getAttribute('data-row');
+      map.setView(markers[id].getLatLng(),Math.max(map.getZoom(),13));
+      markers[id].openPopup();
+    });
+    panel.addEventListener('mouseover',function(e){
+      var row=e.target.closest('.prow');
+      panel.querySelectorAll('.prow').forEach(function(r){
+        var p=pinEl(r.getAttribute('data-row'));
+        if(p)p.style.transform=(row&&r===row)?'scale(1.3)':'';
+      });
+    });
+    panel.addEventListener('mouseleave',function(){
+      Object.keys(markers).forEach(function(id){var p=pinEl(id);if(p)p.style.transform='';});
+    });
+    Object.keys(markers).forEach(function(id){
+      markers[id].on('click',function(){
+        panel.querySelectorAll('.prow').forEach(function(r){r.classList.toggle('is-active',r.getAttribute('data-row')===id);});
+        var row=panel.querySelector('.prow[data-row="'+id+'"]');
+        if(row)row.scrollIntoView({block:'nearest'});
+      });
+    });
+    buildPanel();
+  }
 
   // Fit after layout settles (fitting too early computes zoom for a 0-height box)
   function initialView(){
