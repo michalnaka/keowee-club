@@ -51,31 +51,7 @@ a{color:inherit}
 .chip:hover{background:rgba(82,214,196,.15)}
 .chip.is-active{background:var(--clearwater);border-color:var(--clearwater);color:var(--keowee-dusk)}
 .chip-count{font-family:var(--mono);font-size:.68rem;color:#8FBFB5;margin-left:auto}
-.map-wrap{flex:1;display:flex;min-height:0}
 #map{flex:1;min-height:320px;background:#D7E8E3}
-.map-panel{display:none}
-@media(min-width:1000px){
-  .map-panel{display:block;width:360px;overflow-y:auto;background:var(--shallows);border-left:1px solid rgba(10,58,52,.1)}
-}
-.panel-head{font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);padding:16px 18px 10px}
-.prow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 18px;border:none;background:none;cursor:pointer;border-bottom:1px solid rgba(10,58,52,.06);transition:background .12s ease}
-.prow:hover{background:#E4F2EC}
-.prow.is-active{background:#DDEFE7}
-.prow-art{flex:0 0 40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
-.prow-name{font-family:var(--display);font-weight:700;font-size:.98rem;color:var(--ink);line-height:1.15}
-.prow-meta{font-family:var(--mono);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-top:3px}
-.prow-go{margin-left:auto;font-family:var(--mono);font-size:.8rem;color:var(--clearwater)}
-.panel-filters{position:sticky;top:0;z-index:2;background:var(--keowee-deep);padding:12px 14px}
-.chip-row{display:flex;flex-wrap:wrap;gap:7px}
-.pd-back{display:block;width:100%;text-align:left;font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--keowee-deep);background:none;border:none;padding:14px 18px 10px;cursor:pointer}
-.pd-back:hover{color:#127a6b}
-.pd-art{height:140px;display:flex;align-items:center;justify-content:center;font-size:3.4rem;margin:0 14px;border-radius:var(--radius-md)}
-.pd-body{padding:16px 18px 24px;display:flex;flex-direction:column;gap:10px}
-.pd-body h3{font-family:var(--display);font-weight:700;font-size:1.45rem;letter-spacing:-.01em;line-height:1.1;color:var(--ink)}
-.pd-body>p{font-size:.95rem;color:var(--ink-soft)}
-.pd-body .tip{font-size:.88rem;color:var(--ink-soft);background:#E4F2EC;border-radius:var(--radius-sm);padding:10px 12px}
-.pd-body .tip b{color:var(--keowee-deep)}
-.pd-body .badges{font-family:var(--mono);font-size:.68rem;letter-spacing:.02em;color:var(--ink-soft)}
 .pin{width:32px;height:32px;border-radius:50% 50% 50% 5px;display:flex;align-items:center;justify-content:center;font-size:.95rem;border:3px solid #F3EDDE;box-shadow:0 3px 10px rgba(6,40,33,.4);cursor:pointer;transition:transform .15s ease}
 .pin:hover{transform:scale(1.12)}
 .pin.art-a,.prow-art.art-a,.pd-art.art-a{background:linear-gradient(135deg,#0A3A34,#177E6F)}
@@ -84,13 +60,6 @@ a{color:inherit}
 .pin.art-d,.prow-art.art-d,.pd-art.art-d{background:linear-gradient(135deg,#FF6E52,#C63A5A)}
 .pin.ty-water{border-color:#2BB79E}
 .pin.ty-sights{border-color:#FFA51F}
-.leaflet-popup-content-wrapper{border-radius:var(--radius-md);box-shadow:0 12px 30px rgba(6,40,33,.3);font-family:var(--body)}
-.leaflet-popup-content{margin:14px 16px;line-height:1.45}
-.pop-name{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--keowee-deep)}
-.pop-meta{font-family:var(--mono);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:2px 0 6px}
-.pop-blurb{font-size:.85rem;color:var(--ink-soft)}
-.pop-more{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--keowee-deep);cursor:pointer;border:none;background:none;padding:0}
-.pop-more:hover{color:#127a6b}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--clearwater-pale);color:var(--keowee-deep);align-self:flex-start;padding:4px 9px;border-radius:999px}
 .tag.t1{background:#BFF3EA}
@@ -160,10 +129,7 @@ a{color:inherit}
   </div>
 </div>
 
-<div class="map-wrap">
-  <div id="map" role="application" aria-label="Map of places to eat, drink, and get on the water around Lake Keowee"></div>
-  <aside class="map-panel" id="mapPanel" aria-label="Spots on the map"></aside>
-</div>
+<div id="map" role="application" aria-label="Map of places to eat, drink, and get on the water around Lake Keowee"></div>
 
 <div class="sheet-overlay" id="sheetOverlay" role="dialog" aria-modal="true" aria-label="Spot details">
   <div class="sheet" id="sheet"></div>
@@ -179,7 +145,6 @@ a{color:inherit}
   var dataEl=document.getElementById('spotData');
   if(!dataEl||typeof L==='undefined')return;
   var spots=JSON.parse(dataEl.textContent);
-  var DESK=window.matchMedia('(min-width:1000px)').matches;
 
   var map=L.map('map',{scrollWheelZoom:true});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
@@ -218,8 +183,6 @@ a{color:inherit}
   document.addEventListener('click',function(e){
     if(e.target.closest('.sheet-close')){closeSheet();return;}
     if(e.target===overlay){closeSheet();return;}
-    var more=e.target.closest('.pop-more');
-    if(more)openSheet(more.getAttribute('data-spot'));
   });
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'&&overlay.classList.contains('open'))closeSheet();
@@ -232,11 +195,7 @@ a{color:inherit}
     if(!s.lat||!s.lng)return;
     var icon=L.divIcon({className:'',html:'<div class="pin art-'+s.art+' '+(s.typeClass||'')+'">'+s.emoji+'</div>',iconSize:[32,32],iconAnchor:[16,29],popupAnchor:[0,-26]});
     var m=L.marker([s.lat,s.lng],{icon:icon,title:s.name.replace(/&amp;/g,'&')});
-    var pop='<div class="pop-name">'+s.name+'</div>';
-    pop+='<div class="pop-meta">'+s.type+' · '+s.town+' · '+s.category+'</div>';
-    pop+='<div class="pop-blurb">'+s.blurb+'</div>';
-    pop+='<button class="pop-more" data-spot="'+id+'">Details →</button>';
-    if(!DESK)m.bindPopup(pop,{maxWidth:260});
+    m.on('click',function(){openSheet(id);});
     markers[id]=m;
     m.addTo(map);
   });
@@ -258,11 +217,8 @@ a{color:inherit}
     else fitVisible();
   }
 
-  // Filter chips live with the list they filter (panel on desktop, bar on mobile)
+  // Filter chips (by type; generated from data)
   var bar=document.getElementById('mapChips'),countEl=document.getElementById('chipCount');
-  var panel=document.getElementById('mapPanel');
-  var chipRow=document.createElement('div');
-  chipRow.className='chip-row';
   var types=[];
   Object.keys(spots).forEach(function(id){
     var t=spots[id].type;
@@ -273,16 +229,16 @@ a{color:inherit}
     b.className='chip'+(value===''?' is-active':'');
     b.textContent=label;
     b.setAttribute('data-type',value);
-    chipRow.appendChild(b);
+    bar.insertBefore(b,countEl);
   }
   addChip('All','');
   types.forEach(function(t){addChip(t,t);});
   function updateCount(n){countEl.textContent=(n<10?'0':'')+n+' spots';}
   updateCount(Object.keys(markers).length);
-  chipRow.addEventListener('click',function(e){
+  bar.addEventListener('click',function(e){
     var chip=e.target.closest('.chip');
     if(!chip)return;
-    chipRow.querySelectorAll('.chip').forEach(function(c){c.classList.remove('is-active');});
+    bar.querySelectorAll('.chip').forEach(function(c){c.classList.remove('is-active');});
     chip.classList.add('is-active');
     var ty=chip.getAttribute('data-type'),n=0;
     Object.keys(markers).forEach(function(id){
@@ -292,90 +248,7 @@ a{color:inherit}
     });
     updateCount(n);
     fitVisible();
-    showList();
   });
-
-  // Side panel (desktop): filters + list + full detail, one surface
-  var panelBody=null;
-  function pinEl(id){var el=markers[id]&&markers[id].getElement();return el?el.querySelector('.pin'):null;}
-  function clearHot(){Object.keys(markers).forEach(function(id){var p=pinEl(id);if(p)p.style.transform='';});}
-  function showList(){
-    if(!panel)return;
-    var ids=Object.keys(markers).filter(function(id){return map.hasLayer(markers[id]);});
-    panelBody.innerHTML='';
-    var head=document.createElement('div');
-    head.className='panel-head';
-    head.textContent=ids.length+' spots on the map';
-    panelBody.appendChild(head);
-    ids.forEach(function(id){
-      var s=spots[id];
-      var row=document.createElement('button');
-      row.className='prow';
-      row.setAttribute('data-row',id);
-      row.innerHTML='<span class="prow-art art-'+s.art+'">'+s.emoji+'</span>'
-        +'<span><span class="prow-name">'+s.name+'</span><br><span class="prow-meta">'+s.town+' · '+s.category+'</span></span>'
-        +'<span class="prow-go">→</span>';
-      panelBody.appendChild(row);
-    });
-  }
-  function showDetail(id){
-    if(!panel)return;
-    var s=spots[id];
-    panelBody.innerHTML='<div class="pd">'
-      +'<button class="pd-back">← All spots</button>'
-      +'<div class="pd-art art-'+s.art+'">'+s.emoji+'</div>'
-      +'<div class="pd-body">'
-      +'<div class="tags">'
-      +(s.town?'<span class="tag '+s.townClass+'">'+s.town+'</span>':'')
-      +(s.category?'<span class="tag '+s.catClass+'">'+s.category+'</span>':'')
-      +'</div>'
-      +'<h3>'+s.name+'</h3>'
-      +'<p>'+s.blurb+'</p>'
-      +(s.tip?'<p class="tip"><b>Pro tip:</b> '+s.tip+'</p>':'')
-      +(s.badges.length?'<p class="badges">'+s.badges.join(' · ')+'</p>':'')
-      +'<div class="card-links">'
-      +(s.website?'<a href="'+s.website+'" target="_blank" rel="noopener">'+(s.website.indexOf('facebook.com')>-1?'Facebook':'Website')+'</a>':'')
-      +'<a href="'+s.maps+'" target="_blank" rel="noopener">Directions</a>'
-      +'</div></div></div>';
-    map.setView(markers[id].getLatLng(),Math.max(map.getZoom(),12));
-    clearHot();
-    var p=pinEl(id);if(p)p.style.transform='scale(1.3)';
-  }
-  if(panel){
-    // filters live at the top of the panel; list/detail below
-    var panelTop=document.createElement('div');
-    panelTop.className='panel-filters';
-    panelTop.appendChild(chipRow);
-    panel.appendChild(panelTop);
-    panelBody=document.createElement('div');
-    panelBody.className='panel-body';
-    panel.appendChild(panelBody);
-    panel.addEventListener('click',function(e){
-      if(e.target.closest('.pd-back')){clearHot();showList();return;}
-      var row=e.target.closest('.prow');
-      if(row)showDetail(row.getAttribute('data-row'));
-    });
-    panel.addEventListener('mouseover',function(e){
-      var row=e.target.closest('.prow');
-      if(!row)return;
-      clearHot();
-      var p=pinEl(row.getAttribute('data-row'));
-      if(p)p.style.transform='scale(1.3)';
-    });
-    panel.addEventListener('mouseleave',function(){
-      if(!panelBody.querySelector('.pd'))clearHot();
-    });
-    Object.keys(markers).forEach(function(id){
-      markers[id].on('click',function(){if(DESK)showDetail(id);});
-    });
-    showList();
-  }else{
-    bar.insertBefore(chipRow,countEl);
-  }
-  if(panel&&!DESK){
-    // panel exists in DOM but is hidden on mobile: chips belong in the bar there
-    bar.insertBefore(chipRow,countEl);
-  }
 
   // Fit after layout settles (fitting too early computes zoom for a 0-height box)
   function initialView(){
