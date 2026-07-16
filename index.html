@@ -61,6 +61,7 @@ a{color:inherit}
 .nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
 .nav-links a{text-decoration:none;opacity:.85}
 .nav-links a:hover{opacity:1;color:var(--clearwater)}
+.nav-links a[aria-current]{opacity:1;color:var(--clearwater)}
 .nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
 .nav-cta:hover{background:#ff5a3a}
 @media(max-width:759px){
@@ -254,6 +255,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
       <img class="pennant-logo" src="brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
     </a>
     <ul class="nav-links">
+      <li><a href="/" aria-current="page">Home</a></li>
       <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
       <li><a href="/map/">Map</a></li>
       <li><a href="/lake-level/">Lake Level</a></li>

@@ -45,6 +45,7 @@ a{color:inherit}
 .nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
 .nav-links a{text-decoration:none;opacity:.85}
 .nav-links a:hover{opacity:1;color:var(--clearwater)}
+.nav-links a[aria-current]{opacity:1;color:var(--clearwater)}
 .nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
 .nav-cta:hover{background:#ff5a3a}
 .pennant-logo{width:112px;height:auto;display:block;filter:drop-shadow(0 5px 12px rgba(6,40,33,.4))}
@@ -375,6 +376,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px;margin-top:
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
+      <li><a href="/eat-and-drink/" aria-current="page">Eat &amp; Drink</a></li>
       <li><a href="/map/">Map</a></li>
       <li><a href="/lake-level/">Lake Level</a></li>
     </ul>

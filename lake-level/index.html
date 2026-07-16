@@ -48,6 +48,7 @@ a{color:inherit}
 .nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
 .nav-links a{text-decoration:none;opacity:.85}
 .nav-links a:hover{opacity:1;color:var(--clearwater)}
+.nav-links a[aria-current]{opacity:1;color:var(--clearwater)}
 @media(max-width:759px){
   .nav-inner{flex-wrap:wrap;row-gap:2px}
   .nav-links{order:3;width:100%;justify-content:center;gap:18px;padding-top:8px;font-size:.7rem}
@@ -111,6 +112,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px;margin-top:
       <li><a href="/">Home</a></li>
       <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
       <li><a href="/map/">Map</a></li>
+      <li><a href="/lake-level/" aria-current="page">Lake Level</a></li>
     </ul>
     <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
   </div>

@@ -34,17 +34,23 @@ html,body{height:100%}
 body{font-family:var(--body);color:var(--ink);background:var(--shallows);display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--sunset);outline-offset:2px;border-radius:4px}
-.nav{background:rgba(10,58,52,.97);color:#fff;z-index:1002}
-.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:12px}
-.wordmark{font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.02em;text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.nav{position:sticky;top:0;z-index:1002;background:rgba(10,58,52,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px}
+.wordmark{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;text-decoration:none;display:flex;flex-direction:column;line-height:1}
 .wordmark span{color:var(--clearwater)}
 .wordmark svg{margin-top:4px}
-.nav-links{display:flex;gap:18px;list-style:none;font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}
+.pennant-logo{width:112px;height:auto;display:block;filter:drop-shadow(0 5px 12px rgba(6,40,33,.4))}
+@media(min-width:760px){.pennant-logo{width:152px;margin:-10px 0 -52px}}
+.nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
 .nav-links a{text-decoration:none;opacity:.85}
 .nav-links a:hover{opacity:1;color:var(--clearwater)}
-.pennant-logo{width:96px;height:auto;display:block;filter:drop-shadow(0 4px 10px rgba(6,40,33,.4))}
+.nav-links a[aria-current]{opacity:1;color:var(--clearwater)}
+.nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
+.nav-cta:hover{background:#ff5a3a}
+@media(max-width:759px){.nav-inner{flex-wrap:wrap;row-gap:2px}.nav-links{order:3;width:100%;justify-content:center;gap:18px;padding-top:8px;font-size:.7rem}}
 .mapbar{background:var(--keowee-deep);color:#fff;padding:0 20px 14px;z-index:1001}
-.mapbar-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mapbar-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media(min-width:760px){.mapbar-inner{padding-left:168px;min-height:34px}}
 .mapbar h1{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;text-transform:uppercase;margin-right:10px}
 .mapbar h1 em{font-style:italic;color:var(--clearwater)}
 .chip{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:7px 12px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);background:transparent;color:#CFE8E1;cursor:pointer;transition:background .15s ease,color .15s ease}
@@ -100,7 +106,6 @@ a{color:inherit}
   .sheet{max-width:none;border-radius:var(--radius-lg) var(--radius-lg) 0 0;animation-name:sheetUp}
   .sheet::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:38px;height:4px;border-radius:999px;background:rgba(255,255,255,.6);z-index:2}
   @keyframes sheetUp{from{transform:translateY(40%)}to{transform:none}}
-  .nav-links{gap:12px}
   .mapbar h1{width:100%;margin-bottom:4px}
   .chip-count{display:none}
 }
@@ -117,8 +122,10 @@ a{color:inherit}
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
       <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
+      <li><a href="/map/" aria-current="page">Map</a></li>
       <li><a href="/lake-level/">Lake Level</a></li>
     </ul>
+    <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
   </div>
 </nav>
 
