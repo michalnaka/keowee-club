@@ -67,11 +67,11 @@ a{color:inherit}
 .section-head h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,6vw,3.2rem);letter-spacing:-.02em;text-transform:uppercase}
 .section-head h2::before{content:'≈ ';color:var(--clearwater)}
 .section-sub{font-size:.98rem;color:var(--ink-soft);max-width:52ch;margin-bottom:26px}
-.count{font-family:var(--mono);font-size:.75rem;color:var(--ink-soft);white-space:nowrap}
+.count{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);white-space:nowrap}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 10px}
 .filters+.filters{margin-bottom:20px}
-.filter-label{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);align-self:center;margin-right:2px}
-.chip{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;border-radius:999px;border:1.5px solid var(--clearwater);background:transparent;color:var(--keowee-deep);cursor:pointer;transition:background .15s ease,color .15s ease}
+.filter-label{font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);align-self:center;margin-right:2px}
+.chip{font-family:var(--mono);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;border-radius:999px;border:1.5px solid var(--clearwater);background:transparent;color:var(--keowee-deep);cursor:pointer;transition:background .15s ease,color .15s ease}
 .chip:hover{background:var(--clearwater-pale)}
 .chip.is-active{background:var(--keowee-deep);border-color:var(--keowee-deep);color:#fff}
 .cards{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
@@ -79,7 +79,7 @@ a{color:inherit}
 .card{scroll-snap-align:start;flex:0 0 78%;max-width:320px;background:var(--card);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 6px 20px rgba(10,58,52,.08);display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease;cursor:pointer}
 .card:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(10,58,52,.16)}
 .card:active{transform:translateY(-1px) scale(.995)}
-.card-art{height:120px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+.card-art{height:120px;display:flex;align-items:center;justify-content:center;font-size:3.4rem;position:relative;overflow:hidden}
 .card-emoji{transition:transform .3s ease;display:block}
 .card:hover .card-emoji{transform:scale(1.12) rotate(-3deg)}
 .card-num{position:absolute;top:10px;left:14px;font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.05em;color:rgba(255,255,255,.55)}
@@ -89,7 +89,7 @@ a{color:inherit}
 .art-d{background:linear-gradient(135deg,#FF6E52,#C63A5A)}
 .card-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--clearwater-pale);color:var(--keowee-deep);align-self:flex-start;padding:4px 9px;border-radius:999px}
+.tag{font-family:var(--mono);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--clearwater-pale);color:var(--keowee-deep);align-self:flex-start;padding:5px 10px;border-radius:999px}
 .tag.t1{background:#BFF3EA}
 .tag.t2{background:#FFE7B8}
 .tag.t3{background:#FFD9CE}
@@ -104,11 +104,11 @@ a{color:inherit}
 .tag.tag-cat.t5{border-color:#6FAEE8}
 .tag.tag-cat.t6{border-color:#A88FE0}
 .card h3{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;line-height:1.15;margin-top:2px}
-.card p{font-size:.92rem;color:var(--ink-soft)}
-.card .tip{font-size:.85rem;color:var(--ink-soft);background:var(--shallows);border-radius:var(--radius-sm);padding:8px 10px}
+.card p{font-size:.95rem;color:var(--ink-soft)}
+.card .tip{font-size:.9rem;color:var(--ink-soft);background:var(--shallows);border-radius:var(--radius-sm);padding:8px 10px}
 .card .tip b{color:var(--keowee-deep)}
-.card .badges{font-family:var(--mono);font-size:.66rem;letter-spacing:.02em;color:var(--ink-soft)}
-.card .more{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--keowee-deep);margin-top:auto;padding-top:12px;display:inline-flex;align-items:center;gap:6px}
+.card .badges{font-family:var(--mono);font-size:.75rem;letter-spacing:.02em;color:var(--ink-soft)}
+.card .more{font-family:var(--mono);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--keowee-deep);margin-top:auto;padding-top:12px;display:inline-flex;align-items:center;gap:6px}
 .card .more i{font-style:normal;transition:transform .18s ease;display:inline-block}
 .card:hover .more{color:#127a6b}
 .card:hover .more i{transform:translateX(4px)}
@@ -126,9 +126,9 @@ a{color:inherit}
 .sheet-body>p{font-size:.95rem;color:var(--ink-soft)}
 .sheet .tip{font-size:.88rem;color:var(--ink-soft);background:var(--shallows);border-radius:var(--radius-sm);padding:10px 12px}
 .sheet .tip b{color:var(--keowee-deep)}
-.sheet .badges{font-family:var(--mono);font-size:.68rem;letter-spacing:.02em;color:var(--ink-soft)}
+.sheet .badges{font-family:var(--mono);font-size:.75rem;letter-spacing:.02em;color:var(--ink-soft)}
 .card-links{display:flex;gap:8px;padding-top:6px}
-.card-links a{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;padding:9px 14px;border-radius:999px;border:1.5px solid var(--clearwater);color:var(--keowee-deep);transition:background .15s ease}
+.card-links a{font-family:var(--mono);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;padding:9px 14px;border-radius:999px;border:1.5px solid var(--clearwater);color:var(--keowee-deep);transition:background .15s ease}
 .card-links a:hover{background:var(--clearwater-pale)}
 .sheet-close{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(6,40,33,.35);color:#fff;font-size:1.05rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .sheet-close:hover{background:rgba(6,40,33,.55)}
