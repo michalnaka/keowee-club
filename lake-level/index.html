@@ -45,13 +45,14 @@ a{color:inherit}
 .nav-cta:hover{background:#ff5a3a}
 .pennant-logo{width:112px;height:auto;display:block;filter:drop-shadow(0 5px 12px rgba(6,40,33,.4))}
 @media(min-width:760px){.pennant-logo{width:152px;margin:-10px 0 -52px}}
-.nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
-.nav-links a{text-decoration:none;opacity:.85}
-.nav-links a:hover{opacity:1;color:var(--clearwater)}
-.nav-links a[aria-current]{opacity:1;color:var(--clearwater)}
+.nav-links{display:flex;gap:4px;list-style:none;padding:5px;border:1px solid rgba(82,214,196,.24);border-radius:999px;background:rgba(6,40,33,.38);font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.nav-links a{display:block;padding:7px 11px;border-radius:999px;text-decoration:none;opacity:.92;transition:background .15s ease,color .15s ease,opacity .15s ease}
+.nav-links a:hover{opacity:1;color:var(--clearwater);background:rgba(82,214,196,.12)}
+.nav-links a[aria-current]{opacity:1;color:var(--keowee-dusk);background:var(--clearwater);font-weight:700;box-shadow:0 2px 8px rgba(6,40,33,.3)}
 @media(max-width:759px){
   .nav-inner{flex-wrap:wrap;row-gap:2px}
-  .nav-links{order:3;width:100%;justify-content:center;gap:18px;padding-top:8px;font-size:.7rem}
+  .nav-links{order:3;width:100%;justify-content:center;gap:2px;padding:4px;font-size:.7rem}
+  .nav-links a{padding:6px 8px}
 }
 .hero{background:var(--keowee-deep);color:#fff;padding:52px 20px 64px}
 .hero-inner{max-width:1100px;margin:0 auto}
