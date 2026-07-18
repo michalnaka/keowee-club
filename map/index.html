@@ -48,14 +48,14 @@ a{color:inherit}
 .nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
 .nav-cta:hover{background:#ff5a3a}
 @media(max-width:759px){.nav-inner{flex-wrap:wrap;row-gap:2px}.nav-links{order:3;width:100%;justify-content:center;gap:2px;padding:4px;font-size:.7rem}.nav-links a{padding:6px 8px}}
-.mapbar{background:var(--keowee-deep);color:#fff;padding:0 20px 14px;z-index:1001}
-.mapbar-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-@media(min-width:760px){.mapbar-inner{padding-left:168px;min-height:34px}}
-.mapbar h1{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;text-transform:uppercase;margin-right:10px}
-.mapbar h1 em{font-style:italic;color:var(--clearwater)}
-.chip{font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:7px 12px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);background:transparent;color:#CFE8E1;cursor:pointer;transition:background .15s ease,color .15s ease}
-.chip:hover{background:rgba(82,214,196,.15)}
-.chip.is-active{background:var(--clearwater);border-color:var(--clearwater);color:var(--keowee-dusk)}
+.mapbar{background:var(--keowee-dusk);color:#fff;padding:10px 20px 12px;border-top:1px solid rgba(82,214,196,.12);z-index:1001}
+.mapbar-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-height:34px}
+@media(min-width:760px){.mapbar-inner{padding-left:168px}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.mapbar-label{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#8FBFB5;margin-right:4px;white-space:nowrap}
+.chip{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:6px 11px;border-radius:999px;border:1px solid rgba(82,214,196,.48);background:rgba(10,58,52,.28);color:#CFE8E1;cursor:pointer;transition:background .15s ease,color .15s ease,border-color .15s ease}
+.chip:hover{background:rgba(82,214,196,.11);border-color:rgba(82,214,196,.8)}
+.chip.is-active{background:rgba(82,214,196,.16);border-color:var(--clearwater);color:#fff;box-shadow:inset 0 0 0 1px rgba(82,214,196,.25)}
 .chip-count{font-family:var(--mono);font-size:.75rem;color:#8FBFB5;margin-left:auto}
 #map{flex:1;min-height:320px;background:#D7E8E3}
 .pin{width:32px;height:32px;border-radius:50% 50% 50% 5px;display:flex;align-items:center;justify-content:center;font-size:.95rem;border:3px solid #F3EDDE;box-shadow:0 3px 10px rgba(6,40,33,.4);cursor:pointer;transition:transform .15s ease}
@@ -106,7 +106,7 @@ a{color:inherit}
   .sheet{max-width:none;border-radius:var(--radius-lg) var(--radius-lg) 0 0;animation-name:sheetUp}
   .sheet::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:38px;height:4px;border-radius:999px;background:rgba(255,255,255,.6);z-index:2}
   @keyframes sheetUp{from{transform:translateY(40%)}to{transform:none}}
-  .mapbar h1{width:100%;margin-bottom:4px}
+  .mapbar-label{width:100%;margin:0 0 2px}
   .chip-count{display:none}
 }
 @media(prefers-reduced-motion:reduce){.sheet{animation:none}.pin{transition:none}}
@@ -131,7 +131,8 @@ a{color:inherit}
 
 <div class="mapbar">
   <div class="mapbar-inner" id="mapChips">
-    <h1>The <em>map</em></h1>
+    <h1 class="sr-only">The Lake Keowee Map</h1>
+    <span class="mapbar-label" aria-hidden="true">Filter map</span>
     <span class="chip-count" id="chipCount"></span>
   </div>
 </div>
