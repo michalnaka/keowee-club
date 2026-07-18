@@ -110,6 +110,9 @@ a{color:inherit}
 .ticker-track{display:flex;width:max-content;animation:scroll 32s linear infinite;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;padding:11px 0}
 .ticker-set{display:flex}
 .ticker-track span{padding:0 26px;white-space:nowrap}
+.ticker-track a{color:inherit;text-decoration:none}
+.ticker-track a:hover{color:#fff}
+.ticker:hover .ticker-track,.ticker:focus-within .ticker-track{animation-play-state:paused}
 .ticker-track b{color:var(--goldhour);font-weight:700}
 @keyframes scroll{to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){
@@ -288,13 +291,13 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
   <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C180 60 360 0 540 20s360 40 540 15 300-25 360-10V60H0Z" fill="#062821"/></svg>
 </header>
 
-<div class="ticker" aria-hidden="true">
+<div class="ticker">
   <div class="ticker-track">
     <div class="ticker-set">
-      <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span class="js-event">🎷 Jazz Night in Seneca <b>Thursdays</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+      <span><a class="weather-link" href="https://forecast.weather.gov/MapClick.php?lat=34.85&amp;lon=-82.93" aria-label="Lake Keowee weather forecast from the National Weather Service">🌤️ <b class="js-wx">clear skies</b></a></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span class="js-event">🎷 Jazz Night in Seneca <b>Thursdays</b></span><span>🎣 Fishing report <b>they're biting</b></span>
     </div>
     <div class="ticker-set ticker-dup" aria-hidden="true">
-      <span>🌤️ <b class="js-wx">clear skies</b></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span class="js-event">🎷 Jazz Night in Seneca <b>Thursdays</b></span><span>🎣 Fishing report <b>they're biting</b></span>
+      <span><a class="weather-link" href="https://forecast.weather.gov/MapClick.php?lat=34.85&amp;lon=-82.93" tabindex="-1">🌤️ <b class="js-wx">clear skies</b></a></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span class="js-event">🎷 Jazz Night in Seneca <b>Thursdays</b></span><span>🎣 Fishing report <b>they're biting</b></span>
     </div>
   </div>
 </div>
