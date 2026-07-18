@@ -1,0 +1,25 @@
+name: Validate site
+
+on:
+  pull_request:
+  push:
+    branches: [main, preview]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate source data and pages
+        run: python3 scripts/validate_site.py
+
+      - name: Verify generated pages are current
+        run: |
+          python3 scripts/render_spots.py .
+          git diff --check
+          git diff --exit-code
