@@ -165,6 +165,14 @@ def render_guide(guide: dict) -> str:
         )
         for item in guide["quick_facts"]
     )
+    hero_image = guide.get("hero_image")
+    photo = ""
+    if hero_image:
+        photo = f'''<figure class="guide-photo">
+  <img src="{esc(hero_image["src"])}" alt="{esc(hero_image["alt"])}" width="{esc(hero_image["width"])}" height="{esc(hero_image["height"])}" fetchpriority="high" decoding="async">
+  <span class="photo-stamp" aria-hidden="true">{esc(hero_image["location"])}</span>
+  <figcaption><span>Seen from above</span><a href="{esc(hero_image["credit_url"])}" target="_blank" rel="noopener">Photo by {esc(hero_image["credit"])} / Unsplash ↗</a></figcaption>
+</figure>'''
     sections = "\n\n".join(render_section(section) for section in guide["sections"])
     faq = "\n".join(
         "\n".join(
@@ -236,6 +244,8 @@ def render_guide(guide: dict) -> str:
     <p class="guide-meta"><span>Updated {esc(guide["updated_display"])}</span><span>{esc(guide["reading_time"])}</span><span>Locally edited</span></p>
   </div>
 </header>
+
+{photo}
 
 <main>
   <div class="guide-shell">

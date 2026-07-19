@@ -33,6 +33,14 @@ img{max-width:100%}
 .guide-hero h1 em{font-style:italic;color:var(--clearwater)}
 .guide-dek{font-size:clamp(1.08rem,2vw,1.3rem);line-height:1.55;color:#D7E9E4;max-width:760px;margin-top:28px}
 .guide-meta{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:24px;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:#8FCFC4}
+.guide-photo{max-width:1100px;aspect-ratio:16/7;margin:-54px auto 0;position:relative;z-index:2;border:6px solid var(--shallows);border-radius:30px;overflow:hidden;background:var(--keowee-dusk);box-shadow:0 24px 55px rgba(6,40,33,.2)}
+.guide-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,40,33,.02) 45%,rgba(6,40,33,.68) 100%);pointer-events:none}
+.guide-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 68%;filter:saturate(.94) contrast(1.04)}
+.photo-stamp{position:absolute;z-index:1;top:22px;left:22px;font-family:var(--mono);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#fff;background:rgba(6,40,33,.68);border:1px solid rgba(191,243,234,.32);backdrop-filter:blur(8px);padding:7px 10px;border-radius:999px}
+.guide-photo figcaption{position:absolute;z-index:1;left:24px;right:24px;bottom:20px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;color:#fff;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.08em}
+.guide-photo figcaption span{font-family:var(--display);font-size:1.2rem;font-weight:750;letter-spacing:-.01em;text-transform:none}
+.guide-photo figcaption a{color:#D9F5EF;text-decoration:none}
+.guide-photo figcaption a:hover{color:#fff}
 .guide-shell{max-width:1100px;margin:0 auto;padding:48px 20px 90px;display:grid;grid-template-columns:220px minmax(0,760px);gap:70px;justify-content:center;align-items:start}
 .toc{position:sticky;top:110px}
 .toc-label{font-family:var(--mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#6C8B84;margin-bottom:12px}
@@ -119,6 +127,12 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:34px 20px}
   .guide-hero{padding-top:58px}
 }
 @media(max-width:620px){
+  .guide-photo{aspect-ratio:4/3;margin:-34px 14px 0;border-width:4px;border-radius:22px}
+  .guide-photo img{object-position:center 72%}
+  .photo-stamp{top:14px;left:14px;font-size:.56rem}
+  .guide-photo figcaption{left:16px;right:16px;bottom:14px;display:block}
+  .guide-photo figcaption span{display:block;font-size:1rem;margin-bottom:2px}
+  .guide-photo figcaption a{font-size:.55rem}
   .guide-shell{padding-top:34px}
   .quick-facts{grid-template-columns:1fr}
   .fact:nth-child(odd){border-right:0}

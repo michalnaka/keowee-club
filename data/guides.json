@@ -9,6 +9,15 @@
       "updated": "2026-07-18",
       "updated_display": "July 18, 2026",
       "reading_time": "9 min read",
+      "hero_image": {
+        "src": "../../assets/lake-keowee-aerial-zac-gudakov.webp",
+        "alt": "Aerial view across the blue water and wooded shoreline of Lake Keowee, South Carolina",
+        "width": 2200,
+        "height": 1466,
+        "location": "Lake Keowee · South Carolina",
+        "credit": "Zac Gudakov",
+        "credit_url": "https://unsplash.com/photos/a-body-of-water-with-trees-on-the-side--iN533B2mx0"
+      },
       "quick_facts": [
         {"label": "Best home base", "value": "Seneca for food, supplies, and the lower lake"},
         {"label": "Easiest first launch", "value": "South Cove County Park"},
