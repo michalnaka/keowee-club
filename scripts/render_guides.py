@@ -231,7 +231,6 @@ def render_guide(guide: dict) -> str:
 <header class="guide-hero">
   <div class="guide-hero-inner">
     <p class="breadcrumb"><a href="/">Keowee Club</a> &nbsp;→&nbsp; First-timer guide</p>
-    <p class="eyebrow">{esc(guide["eyebrow"])}</p>
     <h1>{title_html}</h1>
     <p class="guide-dek">{esc(guide["dek"])}</p>
     <p class="guide-meta"><span>Updated {esc(guide["updated_display"])}</span><span>{esc(guide["reading_time"])}</span><span>Locally edited</span></p>

@@ -29,7 +29,7 @@ img{max-width:100%}
 .breadcrumb a{text-decoration:none}
 .breadcrumb a:hover{color:#fff}
 .eyebrow,.section-kicker{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--clearwater)}
-.guide-hero h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,5.7rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;max-width:850px;margin-top:12px}
+.guide-hero h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,8vw,5.7rem);line-height:.94;letter-spacing:-.045em;text-transform:uppercase;max-width:850px}
 .guide-hero h1 em{font-style:italic;color:var(--clearwater)}
 .guide-dek{font-size:clamp(1.08rem,2vw,1.3rem);line-height:1.55;color:#D7E9E4;max-width:760px;margin-top:28px}
 .guide-meta{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:24px;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:#8FCFC4}
