@@ -21,5 +21,6 @@ jobs:
       - name: Verify generated pages are current
         run: |
           python3 scripts/render_spots.py .
+          python3 scripts/render_guides.py .
           git diff --check
           git diff --exit-code

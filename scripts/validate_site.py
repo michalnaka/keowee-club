@@ -10,12 +10,13 @@ from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parent.parent
-HTML_FILES = (
+CORE_HTML_FILES = (
     ROOT / "index.html",
     ROOT / "eat-and-drink" / "index.html",
     ROOT / "map" / "index.html",
     ROOT / "lake-level" / "index.html",
 )
+HTML_FILES = CORE_HTML_FILES + tuple(sorted((ROOT / "guides").glob("*/index.html")))
 REQUIRED_SPOT_FIELDS = ("name", "emoji", "art", "blurb", "maps")
 VALID_ARTS = {"a", "b", "c", "d"}
 
@@ -117,6 +118,71 @@ def validate_spots(errors: list[str]) -> tuple[int, int]:
     return visible, mappable
 
 
+def validate_guides(errors: list[str]) -> int:
+    source = ROOT / "data" / "guides.json"
+    try:
+        data = json.loads(source.read_text())
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"{source.relative_to(ROOT)}: {exc}")
+        return 0
+
+    guides = data.get("guides")
+    require(isinstance(guides, list) and bool(guides), "guides.json: guides must be a non-empty list", errors)
+    if not isinstance(guides, list):
+        return 0
+
+    slugs: set[str] = set()
+    for guide_index, guide in enumerate(guides):
+        label = f"guides.json: guides[{guide_index}]"
+        require(isinstance(guide, dict), f"{label} must be an object", errors)
+        if not isinstance(guide, dict):
+            continue
+        for field in ("slug", "seo_title", "title", "description", "updated", "sections", "faq", "sources"):
+            require(bool(guide.get(field)), f"{label}.{field} is required", errors)
+        slug = guide.get("slug")
+        if isinstance(slug, str):
+            require(slug not in slugs, f"guides.json: duplicate slug {slug!r}", errors)
+            require(slug.replace("-", "").isalnum() and slug == slug.lower(), f"{label}.slug must be lowercase kebab-case", errors)
+            slugs.add(slug)
+            require((ROOT / "guides" / slug / "index.html").exists(), f"guides/{slug}/index.html: generated page is missing", errors)
+
+        sections = guide.get("sections")
+        require(isinstance(sections, list) and bool(sections), f"{label}.sections must be a non-empty list", errors)
+        section_ids: set[str] = set()
+        if isinstance(sections, list):
+            for section_index, section in enumerate(sections):
+                section_label = f"{label}.sections[{section_index}]"
+                require(isinstance(section, dict), f"{section_label} must be an object", errors)
+                if not isinstance(section, dict):
+                    continue
+                for field in ("id", "kicker", "heading"):
+                    require(bool(section.get(field)), f"{section_label}.{field} is required", errors)
+                section_id = section.get("id")
+                if isinstance(section_id, str):
+                    require(section_id not in section_ids, f"{label}: duplicate section id {section_id!r}", errors)
+                    section_ids.add(section_id)
+                for action in section.get("actions", []):
+                    if not isinstance(action, dict):
+                        errors.append(f"{section_label}.actions entries must be objects")
+                        continue
+                    url = action.get("url", "")
+                    require(isinstance(url, str) and (url.startswith("/") or url.startswith("https://")), f"{section_label}: action URL must be internal or https", errors)
+
+        questions: set[str] = set()
+        faq = guide.get("faq")
+        if isinstance(faq, list):
+            for item in faq:
+                if not isinstance(item, dict):
+                    errors.append(f"{label}.faq entries must be objects")
+                    continue
+                question = item.get("question")
+                require(bool(question) and bool(item.get("answer")), f"{label}.faq entries require question and answer", errors)
+                if isinstance(question, str):
+                    require(question not in questions, f"{label}: duplicate FAQ question {question!r}", errors)
+                    questions.add(question)
+    return len(guides)
+
+
 def validate_pages(errors: list[str]) -> None:
     for path in HTML_FILES:
         relative = path.relative_to(ROOT)
@@ -140,13 +206,14 @@ def validate_pages(errors: list[str]) -> None:
 def main() -> int:
     errors: list[str] = []
     visible, mappable = validate_spots(errors)
+    guide_count = validate_guides(errors)
     validate_pages(errors)
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
         print(f"validation failed with {len(errors)} error(s)")
         return 1
-    print(f"validation passed: {visible} guide spots, {mappable} mapped spots, {len(HTML_FILES)} pages")
+    print(f"validation passed: {visible} guide spots, {mappable} mapped spots, {guide_count} long-form guide, {len(HTML_FILES)} pages")
     return 0
 
 

@@ -1,0 +1,147 @@
+{
+  "guides": [
+    {
+      "slug": "lake-keowee-first-timer",
+      "seo_title": "Lake Keowee First-Timer Guide — Ramps, Swimming, Food & Local Tips | keowee.club",
+      "title": "Your first day on Lake Keowee",
+      "eyebrow": "The Lake Keowee first-timer guide",
+      "description": "A local first-timer guide to Lake Keowee: where to launch, swim, rent a boat, eat by the water, check lake conditions, and plan one excellent day.",
+      "dek": "The lake is big, the shoreline is winding, and most of the best parts are not obvious from the highway. Here is the useful version — where to start, what to bring, and how to avoid spending your first hour circling a parking lot.",
+      "updated": "2026-07-18",
+      "updated_display": "July 18, 2026",
+      "reading_time": "9 min read",
+      "quick_facts": [
+        {"label": "Best home base", "value": "Seneca for food, supplies, and the lower lake"},
+        {"label": "Easiest first launch", "value": "South Cove County Park"},
+        {"label": "Best no-boat day", "value": "Park, swim, picnic, then downtown Seneca"},
+        {"label": "Best time", "value": "Morning water; late-afternoon dock stop"},
+        {"label": "Check before leaving", "value": "Weather, lake level, fuel, and ramp hours"},
+        {"label": "Local rule", "value": "Slow down in coves and leave the speaker at the dock"}
+      ],
+      "sections": [
+        {
+          "id": "pick-your-day",
+          "kicker": "Start here",
+          "heading": "Pick the kind of lake day you actually want",
+          "paragraphs": [
+            "Lake Keowee rewards a little planning. The lower lake near Seneca has the easiest combination of groceries, restaurants, marinas, and public parks. The upper lake feels quieter and more mountain-framed, but the drive between access points is longer than it looks.",
+            "For a first visit, resist the urge to cover the whole reservoir. Choose one launch, one swimming stop, and one meal. You will see more of the lake by doing less of it."
+          ],
+          "cards": [
+            {"title": "No boat", "body": "Make South Cove or High Falls your base. Swim, picnic, fish, or put in a kayak — then head into Seneca for dinner."},
+            {"title": "Renting", "body": "Reserve ahead on summer weekends. Ask where the boat will be delivered, whether fuel is included, and what happens if weather turns."},
+            {"title": "Bringing a boat", "body": "Choose the ramp before you tow. Screenshot directions, check the lake level, and arrive early enough to park without improvising."}
+          ]
+        },
+        {
+          "id": "where-to-start",
+          "kicker": "Orientation",
+          "heading": "Use Seneca as your compass",
+          "paragraphs": [
+            "Seneca sits at the practical southern end of the lake. It is the easiest place to stock a cooler, find dinner, and recover anything you forgot. Salem is the better jumping-off point for the upper lake and for pairing Keowee with a later Jocassee day.",
+            "The shoreline is a maze of long fingers and coves. Cell service is generally useful, but it is still smart to save your destination before leaving the dock. Our map is designed for exactly this moment."
+          ],
+          "actions": [
+            {"label": "Open the lake map", "url": "/map/"},
+            {"label": "See every food stop", "url": "/eat-and-drink/"}
+          ]
+        },
+        {
+          "id": "get-on-the-water",
+          "kicker": "Access",
+          "heading": "Where to get on the water",
+          "paragraphs": [
+            "Public access is spread around both Oconee and Pickens counties. These are the four launches we would put at the top of a first-timer list. Hours, fees, and ramp conditions can change, so verify the managing park before a long tow."
+          ],
+          "places": [
+            {"name": "South Cove County Park", "tag": "Best all-around start", "body": "Close to Seneca, with ramps, parking, campsites, picnic space, a fishing pier, and an easy place for the non-boaters in your group to spend the day.", "url": "/map/#water-1"},
+            {"name": "High Falls County Park", "tag": "Best park day", "body": "A full county-park setup on the west side: two ramps, picnic facilities, a playground, fishing access, and room to turn the visit into more than a launch-and-leave.", "url": "/map/#water-4"},
+            {"name": "Mile Creek County Park", "tag": "Best east-side access", "body": "A practical Pickens County launch for the middle and upper lake, with camping and less reason to drive all the way around to Seneca.", "url": "/map/#water-5"},
+            {"name": "Keowee Town Landing", "tag": "Best simple launch", "body": "A no-frills public ramp for getting onto the upper lake. Bring what you need; this is an access point, not an entertainment district.", "url": "/map/#water-6"}
+          ],
+          "note": "Weekend rule: early beats clever. On summer Saturdays, the best ramp is usually the one where you already have a parking space."
+        },
+        {
+          "id": "swim-stay",
+          "kicker": "Off the boat",
+          "heading": "Swimming, picnics, and staying overnight",
+          "paragraphs": [
+            "You do not need a boat to have a legitimate Keowee day. South Cove and High Falls are the easiest public-park choices for families who want shoreline time, picnic facilities, and water access in one place. County swimming areas are generally swim-at-your-own-risk rather than lifeguarded, so treat the clear water with the same respect you would any large reservoir.",
+            "For camping, South Cove, High Falls, and Mile Creek put you close to the water. Waterfront sites disappear first during warm-weather weekends; reserve before building an itinerary around one."
+          ],
+          "actions": [
+            {"label": "Check South Cove information", "url": "https://visitoconeesc.com/south-cove-is-super/", "external": true},
+            {"label": "Check High Falls information", "url": "https://experienceoconee.com/parks/high-falls-park", "external": true}
+          ]
+        },
+        {
+          "id": "eat",
+          "kicker": "The important part",
+          "heading": "Where to eat after the cooler is empty",
+          "paragraphs": [
+            "For a dock-and-dine day, start with The Cabana or Keowee Shores Grill and confirm current hours before pointing the bow that direction. For a land-based finish, downtown Seneca gives you the most options without turning dinner into another expedition.",
+            "Our food guide is intentionally edited rather than exhaustive. If a place is there, it is because we would send a friend."
+          ],
+          "actions": [
+            {"label": "Browse Eat & Drink", "url": "/eat-and-drink/"},
+            {"label": "Show food on the map", "url": "/map/"}
+          ]
+        },
+        {
+          "id": "one-day-plan",
+          "kicker": "Steal this plan",
+          "heading": "A first Keowee day that does not try too hard",
+          "timeline": [
+            {"time": "8:00 AM", "title": "Launch or claim your park spot", "body": "South Cove is the easy default. Put in while the ramp is calm and the afternoon crowd is still looking for coffee."},
+            {"time": "10:00 AM", "title": "Explore one section of shoreline", "body": "Cruise north or settle into a quiet cove. Do not make the dam, the upper lake, and every marina a first-day checklist."},
+            {"time": "12:30 PM", "title": "Eat on the water or picnic", "body": "Dock for lunch if current hours cooperate; otherwise make the cooler earn its seat on the boat."},
+            {"time": "3:30 PM", "title": "Swim, float, or head in", "body": "Afternoon storms and ramp traffic are both easier when you are watching the sky instead of the clock."},
+            {"time": "6:00 PM", "title": "Finish in Seneca", "body": "Dry clothes, a proper dinner, and the satisfaction of not towing a boat through town hungry."}
+          ]
+        },
+        {
+          "id": "conditions-safety",
+          "kicker": "Before you leave",
+          "heading": "Lake conditions and boating basics",
+          "paragraphs": [
+            "Check the forecast and the live lake reading before leaving home. A lower level does not automatically close a ramp, but it can change how forgiving the shoreline, docks, and shallow approaches feel. The National Weather Service forecast is the place to make weather decisions — not a screenshot from yesterday.",
+            "South Carolina requires a wearable U.S. Coast Guard-approved life jacket for every person aboard. State boater-education requirements apply to operators born after July 1, 2007 when operating a boat or personal watercraft with a motor of 10 horsepower or more, subject to the state’s listed exceptions. Rental operators may provide a temporary rental-safety path; confirm that before arrival."
+          ],
+          "actions": [
+            {"label": "Check live lake levels", "url": "/lake-level/"},
+            {"label": "National Weather Service", "url": "https://forecast.weather.gov/MapClick.php?lat=34.85&lon=-82.93", "external": true},
+            {"label": "SCDNR boater education", "url": "https://www.dnr.sc.gov/education/boated.html", "external": true},
+            {"label": "SCDNR life-jacket rules", "url": "https://www.dnr.sc.gov/education/lifejacket.html", "external": true}
+          ],
+          "note": "Weather changes faster than plans. If thunder is in the conversation, get off the water before it becomes the main character."
+        },
+        {
+          "id": "local-etiquette",
+          "kicker": "Act like you have been here",
+          "heading": "A few pieces of local lake etiquette",
+          "bullets": [
+            "Idle through no-wake areas and give docks more room than you think they need.",
+            "Keep wake sports out of narrow coves where people are swimming, paddling, and protecting shorelines.",
+            "Stage gear away from the ramp. The launch lane is for launching, not reorganizing the cooler.",
+            "Pack out everything, including the tiny plastic things that somehow escape every boat.",
+            "Turn the music down before entering a cove. Sound travels magnificently across water; your playlist does not need the help."
+          ]
+        }
+      ],
+      "faq": [
+        {"question": "Is Lake Keowee better than Lake Jocassee for a first visit?", "answer": "Keowee is generally the easier first lake day: more public access points, more nearby services, and more choices for food and lodging. Jocassee is wilder and more dramatic, but it rewards advance planning and an early arrival."},
+        {"question": "Can I enjoy Lake Keowee without a boat?", "answer": "Yes. South Cove and High Falls are the strongest public-park options for shoreline access, swimming, fishing, picnics, and family activities. A kayak or paddleboard expands the day without requiring a full boat rental."},
+        {"question": "Where should a first-time visitor stay?", "answer": "Seneca is the most convenient base for restaurants, groceries, and the lower lake. Salem is a useful base for the upper lake and for a trip that also includes Lake Jocassee."},
+        {"question": "Do Lake Keowee boat ramps charge a fee?", "answer": "Some county parks charge admission or boat-and-trailer fees, while simpler access areas may not. Fees and hours can change, so confirm the managing park or county before towing to a specific ramp."},
+        {"question": "When is Lake Keowee busiest?", "answer": "Warm-weather weekends and major summer holidays bring the most ramp, parking, and on-water traffic. Early mornings are calmer and make almost every part of the day easier."}
+      ],
+      "sources": [
+        {"label": "South Carolina DNR — Boater Education", "url": "https://www.dnr.sc.gov/education/boated.html"},
+        {"label": "South Carolina DNR — Life Jacket Requirements", "url": "https://www.dnr.sc.gov/education/lifejacket.html"},
+        {"label": "Experience Oconee — High Falls Park", "url": "https://experienceoconee.com/parks/high-falls-park"},
+        {"label": "Visit Oconee — South Cove County Park", "url": "https://visitoconeesc.com/south-cove-is-super/"},
+        {"label": "National Weather Service — Lake Keowee forecast", "url": "https://forecast.weather.gov/MapClick.php?lat=34.85&lon=-82.93"}
+      ]
+    }
+  ]
+}

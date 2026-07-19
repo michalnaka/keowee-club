@@ -14,7 +14,10 @@ This is a dependency-free static site hosted on GitHub Pages.
 - `map/index.html` — Leaflet map of places in the guide
 - `lake-level/index.html` — live Keowee and Jocassee readings
 - `data/spots.json` — canonical spot content and coordinates
+- `data/guides.json` — canonical long-form guide content
 - `scripts/render_spots.py` — renders spot cards, client-side data, and schema
+- `scripts/render_guides.py` — renders long-form guides into `guides/`
+- `assets/guide.css` — shared visual system for long-form guides
 - `brand/` — source and exported brand artwork
 
 Spot-related sections inside the HTML files are generated. Edit
@@ -28,6 +31,7 @@ The site has no package installation or build step.
 
 ```sh
 python3 scripts/render_spots.py .
+python3 scripts/render_guides.py .
 python3 scripts/validate_site.py
 python3 -m http.server 8000
 ```
@@ -37,6 +41,7 @@ confirm that rendering is deterministic:
 
 ```sh
 python3 scripts/render_spots.py .
+python3 scripts/render_guides.py .
 git diff --check
 git diff --exit-code
 ```
