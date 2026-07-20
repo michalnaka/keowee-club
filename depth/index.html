@@ -66,6 +66,11 @@ a{color:inherit}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .foot-note{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.03em;color:rgba(207,232,225,.55);text-align:center;pointer-events:none;z-index:4}
 .hint{position:absolute;top:14px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(207,232,225,.75);background:rgba(6,40,33,.55);border-radius:999px;padding:7px 14px;z-index:4;pointer-events:none;transition:opacity .6s}
+.probe{position:absolute;pointer-events:none;display:none;background:rgba(6,40,33,.88);border:1.5px solid rgba(82,214,196,.55);color:#BFF3EA;font-family:var(--mono);font-size:.75rem;font-weight:700;padding:6px 12px;border-radius:999px;transform:translate(-50%,-150%);white-space:nowrap;z-index:6}
+.lm{position:absolute;pointer-events:none;display:none;font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(233,244,240,.9);text-shadow:0 1px 8px rgba(3,20,15,.95);transform:translate(-50%,-100%);text-align:center;z-index:3}
+.lm i{display:block;width:2px;height:12px;background:rgba(233,244,240,.45);margin:3px auto 0;border-radius:1px}
+.lm.water{color:var(--clearwater);font-style:italic}
+.lm.water i{background:rgba(82,214,196,.45)}
 </style>
 </head>
 <body>
@@ -93,6 +98,7 @@ a{color:inherit}
       <input type="range" id="drain" min="0" max="300" value="0" step="5" aria-label="Drain the lake (feet below full pond)">
       <output id="drainOut">Full pond</output>
     </label>
+    <button class="resetv" id="drainPlay" type="button">Drain it</button>
     <button class="resetv" id="resetView" type="button">Reset view</button>
   </div>
 </div>
@@ -101,6 +107,7 @@ a{color:inherit}
   <canvas id="scene" aria-label="Interactive 3D depth map of Lake Keowee and Lake Jocassee"></canvas>
   <div class="load" id="load"><span class="wavey">🌊</span><span>Sounding the bottom…</span></div>
   <div class="hint" id="hint">Drag to spin · scroll to zoom · slide to drain</div>
+  <div class="probe" id="probe"></div>
   <div class="foot-note">Terrain: USGS via AWS Open Data · Lakebed modeled from shoreline shape, not sonar · Not for navigation</div>
 </div>
 
@@ -147,7 +154,16 @@ var LAND=[[150,'#123F36'],[300,'#1A5C4C'],[500,'#2E7A5F'],[750,'#6FA482'],[950,'
 var DEPTH=[[0,'#8FE8D8'],[10,'#4CC9B4'],[30,'#1B8FA0'],[60,'#0E4D6E'],[95,'#071F33']];
 
 var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
-var drainFt=0;
+var drainFt=0,samp=null,landmarks=[],drainAnim=null;
+var WATER=[[0,'#A4EFE0'],[15,'#46CDB2'],[45,'#1B8FA0'],[95,'#083049']];
+var LM=[
+  ['Sassafras Mtn',35.0648,-82.7772,'peak'],
+  ['Whitewater Falls',35.0361,-83.0178,'peak'],
+  ['Lake Jocassee',34.965,-82.925,'water'],
+  ['Lake Keowee',34.78,-82.905,'water'],
+  ['Seneca',34.6857,-82.9532,'town'],
+  ['Clemson',34.6834,-82.8374,'town']
+];
 
 Promise.all([
   fetch('meta.json').then(function(r){return r.json();}),
@@ -171,6 +187,11 @@ function build(img){
   var resY=(f[3]-f[1])/H*110540;
   var gw=Math.floor((W-1)/STEP)+1,gh=Math.floor((H-1)/STEP)+1;
   function at(ix,iy){var i=(iy*W+ix)*4;return{e:(px[i]*256+px[i+1])*meta.elev_scale_m-meta.elev_offset_m,m:px[i+2]};}
+  samp={W:W,H:H,resX:resX,resY:resY,at:at,
+    world:function(wx,wz){var ix=Math.round(wx/(resX*KM)+W/2),iy=Math.round(wz/(resY*KM)+H/2);
+      if(ix<0||iy<0||ix>=W||iy>=H)return null;return at(ix,iy);},
+    fromLL:function(lon,lat){var ix=(lon-f[0])/(f[2]-f[0])*W,iy=(f[3]-lat)/(f[3]-f[1])*H;
+      return{x:(ix-W/2)*resX*KM,z:(iy-H/2)*resY*KM,e:at(Math.round(ix),Math.round(iy)).e};}};
 
   var pos=new Float32Array(gw*gh*3),col=new Float32Array(gw*gh*3);
   var kSum=[0,0,0];
@@ -205,11 +226,13 @@ function build(img){
   [['keowee',120],['jocassee',240]].forEach(function(pair){
     var name=pair[0],mv=pair[1];
     surfaces[name]=meta.lakes[name].surface_m;
-    var wpos=[],widx=[],seen={},n=0;
+    var wpos=[],wcol=[],widx=[],seen={},n=0;
     function vid(gx,gy){
       var k=gx+'_'+gy;
       if(seen[k]===undefined){
         wpos.push((gx*STEP-W/2)*resX*KM,0,(gy*STEP-H/2)*resY*KM);
+        var c=ramp(WATER,meta.lakes[name].surface_m-at(gx*STEP,gy*STEP).e);
+        wcol.push(c.r,c.g,c.b);
         seen[k]=n++;
       }
       return seen[k];
@@ -223,19 +246,99 @@ function build(img){
     }
     var wg=new THREE.BufferGeometry();
     wg.setAttribute('position',new THREE.BufferAttribute(new Float32Array(wpos),3));
+    wg.setAttribute('color',new THREE.BufferAttribute(new Float32Array(wcol),3));
     wg.setIndex(widx);wg.computeVertexNormals();
-    var wm=new THREE.Mesh(wg,new THREE.MeshPhongMaterial({color:0x2BB79E,transparent:true,opacity:0.55,shininess:90,specular:0x9ff3e4,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1}));
+    var wm=new THREE.Mesh(wg,new THREE.MeshPhongMaterial({vertexColors:true,transparent:true,opacity:0.6,shininess:110,specular:0x9ff3e4,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1}));
     scene.add(wm);
     waterMeshes[name]=wm;
   });
   updateWater();
 
+  var stage=canvas.parentElement;
+  LM.forEach(function(l){
+    var p=samp.fromLL(l[2],l[1]);
+    var el=document.createElement('div');
+    el.className='lm'+(l[3]==='water'?' water':'');
+    el.innerHTML=l[0]+(l[3]==='peak'?'<i></i>':'');
+    stage.appendChild(el);
+    var y=(l[3]==='water'?meta.lakes[l[0].indexOf('Jocassee')>=0?'jocassee':'keowee'].surface_m:p.e);
+    landmarks.push({el:el,pos:new THREE.Vector3(p.x,(y+40)*EXAG*KM,p.z)});
+  });
+
   var kc=new THREE.Vector3(kSum[0]/kSum[2],meta.lakes.keowee.surface_m*EXAG*KM,kSum[1]/kSum[2]);
   controls.target.copy(kc);
   homeCam(kc);
   resize();
-  renderer.setAnimationLoop(function(){controls.update();renderer.render(scene,camera);});
+  renderer.setAnimationLoop(function(){
+    controls.update();
+    tickDrain();
+    tickLabels();
+    renderer.render(scene,camera);
+  });
 }
+
+function tickLabels(){
+  if(!landmarks.length)return;
+  camera.updateMatrixWorld();
+  camera.matrixWorldInverse.copy(camera.matrixWorld).invert();
+  var w=canvas.clientWidth,h=canvas.clientHeight,v=new THREE.Vector3();
+  landmarks.forEach(function(l){
+    v.copy(l.pos).project(camera);
+    if(v.z<1&&Math.abs(v.x)<1.02&&Math.abs(v.y)<1.02){
+      l.el.style.display='block';
+      l.el.style.left=((v.x*0.5+0.5)*w)+'px';
+      l.el.style.top=((-v.y*0.5+0.5)*h)+'px';
+    }else l.el.style.display='none';
+  });
+}
+
+function tickDrain(){
+  if(!drainAnim)return;
+  var e=(performance.now()-drainAnim)/1000,v;
+  function ss(t){t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);}
+  if(e<4.5)v=ss(e/4.5)*300;
+  else if(e<6)v=300;
+  else if(e<10.5)v=300*(1-ss((e-6)/4.5));
+  else{v=0;drainAnim=null;document.getElementById('drainPlay').textContent='Drain it';}
+  drainFt=Math.round(v/5)*5;
+  drain.value=drainFt;
+  drainOut.textContent=drainFt===0?'Full pond':'−'+drainFt+' ft';
+  updateWater();
+}
+document.getElementById('drainPlay').addEventListener('click',function(){
+  if(drainAnim){drainAnim=null;this.textContent='Drain it';}
+  else{drainAnim=performance.now();this.textContent='Stop';}
+});
+
+var probe=document.getElementById('probe');
+function probeAt(clientX,clientY){
+  if(!samp||!meta)return probe.style.display='none';
+  var r=canvas.getBoundingClientRect();
+  var nx=((clientX-r.left)/r.width)*2-1,ny=-((clientY-r.top)/r.height)*2+1;
+  var dir=new THREE.Vector3(nx,ny,0.5).unproject(camera).sub(camera.position).normalize();
+  var hit=null;
+  ['keowee','jocassee'].forEach(function(name){
+    if(hit)return;
+    var planeY=surfaces[name]*EXAG*KM;
+    var t=(planeY-camera.position.y)/dir.y;
+    if(t<=0)return;
+    var p=camera.position.clone().addScaledVector(dir,t);
+    var s=samp.world(p.x,p.z);
+    if(s&&((name==='keowee'&&s.m===120)||(name==='jocassee'&&s.m===240)))
+      hit={ft:Math.round((surfaces[name]-s.e)/FT)};
+  });
+  if(hit&&hit.ft>=3){
+    probe.textContent='≈ '+hit.ft+' ft deep';
+    probe.style.display='block';
+    probe.style.left=(clientX-r.left)+'px';
+    probe.style.top=(clientY-r.top)+'px';
+  }else probe.style.display='none';
+}
+canvas.addEventListener('pointermove',function(e){
+  if(e.buttons!==0){probe.style.display='none';return;}
+  probeAt(e.clientX,e.clientY);
+});
+canvas.addEventListener('pointerleave',function(){probe.style.display='none';});
 
 function homeCam(t){
   camera.position.set(t.x+14,t.y+11,t.z+17);
@@ -254,6 +357,7 @@ function updateWater(){
 }
 var drain=document.getElementById('drain'),drainOut=document.getElementById('drainOut');
 drain.addEventListener('input',function(){
+  if(drainAnim){drainAnim=null;document.getElementById('drainPlay').textContent='Drain it';}
   drainFt=parseFloat(drain.value)||0;
   drainOut.textContent=drainFt===0?'Full pond':'−'+drainFt+' ft';
   updateWater();
@@ -274,6 +378,10 @@ fetch('https://api.hydro-derived.duke-energy.app/lakes/current-level')
   .catch(function(){
     document.getElementById('liveText').textContent='Live level unavailable · showing full pond';
   });
+
+// debug/testing hook: lets tools without requestAnimationFrame drive frames
+window.__depth={frame:function(){controls.update();tickDrain();tickLabels();renderer.render(scene,camera);},
+  dbg:function(){return{cam:camera.position.toArray(),tgt:controls.target.toArray(),lms:landmarks.map(function(l){var v=l.pos.clone().project(camera);return[l.el.textContent,l.pos.toArray().map(function(n){return Math.round(n*100)/100}),[Math.round(v.x*100)/100,Math.round(v.y*100)/100,Math.round(v.z*1000)/1000]];})};}};
 
 function resize(){
   var st=canvas.parentElement.getBoundingClientRect();
