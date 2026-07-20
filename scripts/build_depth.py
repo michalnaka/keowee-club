@@ -20,8 +20,8 @@ BBOX = (-83.08, 34.64, -82.75, 35.10)          # W, S, E, N
 TILE_URL = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
 LAKES = [  # name, candidate open-water seeds (lon, lat), max depth m (published)
     ("keowee", [(-82.91, 34.78), (-82.92, 34.75), (-82.885, 34.80),
-                (-82.90, 34.85), (-82.895, 34.72)], 90.5),        # 297 ft
-    ("jocassee", [(-82.92, 34.97), (-82.94, 34.99)], 91.4),       # 300 ft
+                (-82.90, 34.85), (-82.895, 34.72)], 47.2),        # 155 ft (SCDNR)
+    ("jocassee", [(-82.92, 34.97), (-82.94, 34.99)], 107.0),      # 351 ft (SCDNR)
 ]
 OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "depth")
 ELEV_OFF, ELEV_SCALE = 100.0, 0.05              # packed = (m + off) / scale

@@ -12,11 +12,11 @@
  "lakes": {
   "keowee": {
    "surface_m": 242.4,
-   "max_depth_m": 90.5
+   "max_depth_m": 47.2
   },
   "jocassee": {
    "surface_m": 335.6,
-   "max_depth_m": 91.4
+   "max_depth_m": 107.0
   }
  },
  "zoom": 12,
