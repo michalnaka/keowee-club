@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lake Keowee in 3D — Interactive Depth Map | keowee.club</title>
+<meta name="description" content="Spin, tilt, and drain Lake Keowee and Lake Jocassee in 3D — modeled lakebed depths, real Blue Ridge terrain, and the live Duke Energy water level.">
+<link rel="canonical" href="https://keowee.club/depth/">
+<meta name="theme-color" content="#062821">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="keowee.club">
+<meta property="og:title" content="Lake Keowee in 3D — drain the lake yourself">
+<meta property="og:description" content="An interactive 3D depth map of Lake Keowee &amp; Lake Jocassee with the live water level.">
+<meta property="og:url" content="https://keowee.club/depth/">
+<meta property="og:image" content="https://keowee.club/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --keowee-deep:#0A3A34;--keowee-dusk:#062821;--clearwater:#52D6C4;--clearwater-pale:#BFF3EA;
+  --shallows:#EFF8F3;--sunset:#FF6E52;--goldhour:#FFC24B;--ink:#0E2622;--ink-soft:#3E5A54;
+  --radius-md:16px;--radius-sm:10px;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;--body:'Instrument Sans',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:var(--body);color:#fff;background:radial-gradient(120% 100% at 50% 0%,#0D4A40 0%,var(--keowee-dusk) 55%,#03140F 100%);display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sunset);outline-offset:2px;border-radius:4px}
+.nav{position:sticky;top:0;z-index:1002;background:rgba(10,58,52,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px}
+.wordmark{text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.pennant-logo{width:112px;height:auto;display:block;filter:drop-shadow(0 5px 12px rgba(6,40,33,.4))}
+.nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.nav-links a{text-decoration:none;opacity:.85}
+.nav-links a:hover{opacity:1;color:var(--clearwater)}
+.nav-links a[aria-current]{opacity:1;color:var(--clearwater)}
+.nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
+.nav-cta:hover{background:#ff5a3a}
+@media(min-width:760px){.pennant-logo{width:152px;margin:-10px 0 -52px}}
+@media(max-width:759px){.nav-inner{flex-wrap:wrap;row-gap:2px}.nav-links{order:3;width:100%;justify-content:center;gap:18px;padding-top:8px;font-size:.75rem}}
+
+.depthbar{background:var(--keowee-deep);padding:0 20px 14px;z-index:1001}
+.depthbar-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;min-height:34px}
+@media(min-width:760px){.depthbar-inner{padding-left:168px}}
+.depthbar h1{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;text-transform:uppercase;margin-right:6px}
+.depthbar h1 em{font-style:italic;color:var(--clearwater)}
+.live-chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#CFE8E1;border:1.5px solid rgba(82,214,196,.55);border-radius:999px;padding:6px 12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--clearwater);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.drain{display:flex;align-items:center;gap:10px;margin-left:auto;font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:#CFE8E1}
+.drain input{accent-color:var(--sunset);width:170px}
+.drain output{min-width:74px;font-weight:700;color:#fff}
+.resetv{font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:7px 13px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);background:transparent;color:#CFE8E1;cursor:pointer}
+.resetv:hover{background:rgba(82,214,196,.15)}
+@media(max-width:759px){.drain{margin-left:0;width:100%}.drain input{flex:1}}
+
+.stage{position:relative;flex:1;min-height:0}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.load{position:absolute;inset:0;display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:#8FBFB5;z-index:5;background:transparent;pointer-events:none}
+.load .wavey{font-size:1.6rem;animation:bob 1.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.foot-note{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.03em;color:rgba(207,232,225,.55);text-align:center;pointer-events:none;z-index:4}
+.hint{position:absolute;top:14px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(207,232,225,.75);background:rgba(6,40,33,.55);border-radius:999px;padding:7px 14px;z-index:4;pointer-events:none;transition:opacity .6s}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="wordmark" href="/" aria-label="Keowee Club home">
+      <img class="pennant-logo" src="../brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
+      <li><a href="/map/">Map</a></li>
+      <li><a href="/lake-level/">Lake Level</a></li>
+    </ul>
+    <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
+  </div>
+</nav>
+
+<div class="depthbar">
+  <div class="depthbar-inner">
+    <h1>The <em>deep</em> end</h1>
+    <span class="live-chip" id="liveChip"><span class="live-dot"></span><span id="liveText">Checking the gauge…</span></span>
+    <label class="drain">Drain
+      <input type="range" id="drain" min="0" max="300" value="0" step="5" aria-label="Drain the lake (feet below full pond)">
+      <output id="drainOut">Full pond</output>
+    </label>
+    <button class="resetv" id="resetView" type="button">Reset view</button>
+  </div>
+</div>
+
+<div class="stage">
+  <canvas id="scene" aria-label="Interactive 3D depth map of Lake Keowee and Lake Jocassee"></canvas>
+  <div class="load" id="load"><span class="wavey">🌊</span><span>Sounding the bottom…</span></div>
+  <div class="hint" id="hint">Drag to spin · scroll to zoom · slide to drain</div>
+  <div class="foot-note">Terrain: USGS via AWS Open Data · Lakebed modeled from shoreline shape, not sonar · Not for navigation</div>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+
+var EXAG=3, KM=0.001, FT=0.3048;
+var DESK=window.matchMedia('(min-width:1000px)').matches;
+var STEP=DESK?3:5;
+
+var canvas=document.getElementById('scene');
+var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+var scene=new THREE.Scene();
+scene.fog=new THREE.Fog(0x062821,60,160);
+var camera=new THREE.PerspectiveCamera(50,1,0.05,400);
+var controls=new OrbitControls(camera,canvas);
+controls.enableDamping=true;controls.dampingFactor=0.06;
+controls.maxPolarAngle=Math.PI*0.49;controls.minDistance=2;controls.maxDistance=90;
+controls.autoRotate=true;controls.autoRotateSpeed=0.6;
+canvas.addEventListener('pointerdown',function(){controls.autoRotate=false;var h=document.getElementById('hint');h.style.opacity=0;},{once:false});
+
+scene.add(new THREE.HemisphereLight(0xd8f3ea,0x0a1f18,0.85));
+var sun=new THREE.DirectionalLight(0xfff2d8,1.35);
+sun.position.set(-30,40,25);
+scene.add(sun);
+
+function lerp(a,b,t){return a+(b-a)*t;}
+function mixHex(c1,c2,t){
+  var a=new THREE.Color(c1),b=new THREE.Color(c2);
+  return new THREE.Color(lerp(a.r,b.r,t),lerp(a.g,b.g,t),lerp(a.b,b.b,t));
+}
+function ramp(stops,v){
+  for(var i=1;i<stops.length;i++){
+    if(v<=stops[i][0])return mixHex(stops[i-1][1],stops[i][1],(v-stops[i-1][0])/(stops[i][0]-stops[i-1][0]));
+  }
+  return new THREE.Color(stops[stops.length-1][1]);
+}
+var LAND=[[150,'#123F36'],[300,'#1A5C4C'],[500,'#2E7A5F'],[750,'#6FA482'],[950,'#C9CBA0'],[1120,'#F3EDDE']];
+var DEPTH=[[0,'#8FE8D8'],[10,'#4CC9B4'],[30,'#1B8FA0'],[60,'#0E4D6E'],[95,'#071F33']];
+
+var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
+var drainFt=0;
+
+Promise.all([
+  fetch('meta.json').then(function(r){return r.json();}),
+  new Promise(function(res,rej){var im=new Image();im.onload=function(){res(im);};im.onerror=rej;im.src='basin.png';})
+]).then(function(vals){
+  meta=vals[0];
+  build(vals[1]);
+  document.getElementById('load').style.display='none';
+}).catch(function(){
+  document.getElementById('load').innerHTML='<span>Could not load the basin — try a refresh.</span>';
+});
+
+function build(img){
+  var W=meta.width,H=meta.height,f=meta.frame;
+  var cv=document.createElement('canvas');cv.width=W;cv.height=H;
+  var cx2=cv.getContext('2d',{willReadFrequently:true});
+  cx2.drawImage(img,0,0);
+  var px=cx2.getImageData(0,0,W,H).data;
+  var midLat=(f[1]+f[3])/2;
+  var resX=(f[2]-f[0])/W*111320*Math.cos(midLat*Math.PI/180);
+  var resY=(f[3]-f[1])/H*110540;
+  var gw=Math.floor((W-1)/STEP)+1,gh=Math.floor((H-1)/STEP)+1;
+  function at(ix,iy){var i=(iy*W+ix)*4;return{e:(px[i]*256+px[i+1])*meta.elev_scale_m-meta.elev_offset_m,m:px[i+2]};}
+
+  var pos=new Float32Array(gw*gh*3),col=new Float32Array(gw*gh*3);
+  var kSum=[0,0,0];
+  for(var gy=0;gy<gh;gy++){
+    for(var gx=0;gx<gw;gx++){
+      var s=at(gx*STEP,gy*STEP),vi=(gy*gw+gx)*3;
+      var x=(gx*STEP-W/2)*resX*KM,z=(gy*STEP-H/2)*resY*KM,y=s.e*EXAG*KM;
+      pos[vi]=x;pos[vi+1]=y;pos[vi+2]=z;
+      var c;
+      if(s.m>0){
+        var surf=s.m===120?meta.lakes.keowee.surface_m:meta.lakes.jocassee.surface_m;
+        c=ramp(DEPTH,surf-s.e);
+        if(s.m===120){kSum[0]+=x;kSum[1]+=z;kSum[2]++;}
+      }else{
+        c=ramp(LAND,s.e);
+      }
+      col[vi]=c.r;col[vi+1]=c.g;col[vi+2]=c.b;
+    }
+  }
+  var idx=[];
+  for(gy=0;gy<gh-1;gy++)for(gx=0;gx<gw-1;gx++){
+    var a=gy*gw+gx,b=a+1,c2=a+gw,d=c2+1;
+    idx.push(a,c2,b,b,c2,d);
+  }
+  var g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  g.setAttribute('color',new THREE.BufferAttribute(col,3));
+  g.setIndex(idx);g.computeVertexNormals();
+  scene.add(new THREE.Mesh(g,new THREE.MeshLambertMaterial({vertexColors:true})));
+
+  // water surfaces: one flat sheet per lake, quads fully inside the mask
+  [['keowee',120],['jocassee',240]].forEach(function(pair){
+    var name=pair[0],mv=pair[1];
+    surfaces[name]=meta.lakes[name].surface_m;
+    var wpos=[],widx=[],seen={},n=0;
+    function vid(gx,gy){
+      var k=gx+'_'+gy;
+      if(seen[k]===undefined){
+        wpos.push((gx*STEP-W/2)*resX*KM,0,(gy*STEP-H/2)*resY*KM);
+        seen[k]=n++;
+      }
+      return seen[k];
+    }
+    for(var gy=0;gy<gh-1;gy++)for(var gx=0;gx<gw-1;gx++){
+      if(at(gx*STEP,gy*STEP).m===mv&&at((gx+1)*STEP,gy*STEP).m===mv&&
+         at(gx*STEP,(gy+1)*STEP).m===mv&&at((gx+1)*STEP,(gy+1)*STEP).m===mv){
+        var a=vid(gx,gy),b=vid(gx+1,gy),c3=vid(gx,gy+1),d=vid(gx+1,gy+1);
+        widx.push(a,c3,b,b,c3,d);
+      }
+    }
+    var wg=new THREE.BufferGeometry();
+    wg.setAttribute('position',new THREE.BufferAttribute(new Float32Array(wpos),3));
+    wg.setIndex(widx);wg.computeVertexNormals();
+    var wm=new THREE.Mesh(wg,new THREE.MeshPhongMaterial({color:0x2BB79E,transparent:true,opacity:0.55,shininess:90,specular:0x9ff3e4,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1}));
+    scene.add(wm);
+    waterMeshes[name]=wm;
+  });
+  updateWater();
+
+  var kc=new THREE.Vector3(kSum[0]/kSum[2],meta.lakes.keowee.surface_m*EXAG*KM,kSum[1]/kSum[2]);
+  controls.target.copy(kc);
+  homeCam(kc);
+  resize();
+  renderer.setAnimationLoop(function(){controls.update();renderer.render(scene,camera);});
+}
+
+function homeCam(t){
+  camera.position.set(t.x+14,t.y+11,t.z+17);
+  controls.target.copy(t);
+}
+document.getElementById('resetView').addEventListener('click',function(){
+  if(controls.target)homeCam(controls.target.clone());
+  controls.autoRotate=true;
+});
+
+function updateWater(){
+  Object.keys(waterMeshes).forEach(function(name){
+    var elev=surfaces[name]-(liveDeficit[name]+drainFt)*FT;
+    waterMeshes[name].position.y=elev*EXAG*KM;
+  });
+}
+var drain=document.getElementById('drain'),drainOut=document.getElementById('drainOut');
+drain.addEventListener('input',function(){
+  drainFt=parseFloat(drain.value)||0;
+  drainOut.textContent=drainFt===0?'Full pond':'−'+drainFt+' ft';
+  updateWater();
+});
+
+fetch('https://api.hydro-derived.duke-energy.app/lakes/current-level')
+  .then(function(r){if(!r.ok)throw 0;return r.json();})
+  .then(function(lakes){
+    [['keowee','KEOWEE'],['jocassee','JOCASSEE']].forEach(function(p){
+      var l=lakes.find(function(x){return x.LakeName===p[1];});
+      var a=l&&parseFloat(l.Actual);
+      if(a&&!isNaN(a))liveDeficit[p[0]]=Math.max(0,100-a);
+    });
+    var d=liveDeficit.keowee;
+    document.getElementById('liveText').textContent='Live · Keowee '+(d<=0.1?'at full pond':(Math.round(d*10)/10)+' ft below full');
+    updateWater();
+  })
+  .catch(function(){
+    document.getElementById('liveText').textContent='Live level unavailable · showing full pond';
+  });
+
+function resize(){
+  var st=canvas.parentElement.getBoundingClientRect();
+  renderer.setSize(st.width,st.height,false);
+  camera.aspect=st.width/st.height;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize',resize);
+resize();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6ffce0786eb54943b7422d812178fe84"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="293cc55f-258d-4388-953c-41b49d0dd6ca"></script>
+</body>
+</html>

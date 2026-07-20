@@ -1,0 +1,24 @@
+{
+ "frame": [
+  -83.14453125,
+  34.59704151614416,
+  -82.705078125,
+  35.10193405724606
+ ],
+ "width": 1280,
+ "height": 1792,
+ "elev_offset_m": 100.0,
+ "elev_scale_m": 0.05,
+ "lakes": {
+  "keowee": {
+   "surface_m": 242.4,
+   "max_depth_m": 90.5
+  },
+  "jocassee": {
+   "surface_m": 335.6,
+   "max_depth_m": 91.4
+  }
+ },
+ "zoom": 12,
+ "note": "Lakebed is modeled from shoreline distance, not sonar."
+}
