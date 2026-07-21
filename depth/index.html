@@ -131,10 +131,11 @@ var controls=new OrbitControls(camera,canvas);
 controls.enableDamping=true;controls.dampingFactor=0.06;
 controls.maxPolarAngle=Math.PI*0.49;controls.minDistance=2;controls.maxDistance=90;
 controls.autoRotate=true;controls.autoRotateSpeed=0.6;
-canvas.addEventListener('pointerdown',function(){controls.autoRotate=false;document.getElementById('hint').style.opacity=0;});
+canvas.addEventListener('pointerdown',function(){intro.done=true;controls.autoRotate=false;document.getElementById('hint').style.opacity=0;});
 
 var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
-var drainFt=0,samp=null,landmarks=[],drainAnim=null;
+var drainFt=0,samp=null,landmarks=[],drainAnim=null,terrUniforms=null;
+var intro={t0:null,dur:4200,from:null,to:null,done:false};
 var LM=[
   ['Sassafras Mtn',35.0648,-82.7772,'peak'],
   ['Whitewater Falls',35.0361,-83.0178,'peak'],
@@ -217,7 +218,9 @@ function build(img){
     uTexel:{value:new THREE.Vector2(1/W,1/H)},
     uSlope:{value:new THREE.Vector2(EXAG*KM/(2*resX*KM),EXAG*KM/(2*resY*KM))},
     uSurfK:{value:surfaces.keowee},uSurfJ:{value:surfaces.jocassee},
+    uWaterYK:{value:surfaces.keowee},uWaterYJ:{value:surfaces.jocassee},
     uSun:{value:new THREE.Vector3(-0.55,0.62,0.46).normalize()}};
+  terrUniforms=shared;
 
   // terrain: coarse grid geometry, per-pixel shading
   var gw=Math.floor((W-1)/STEP)+1,gh=Math.floor((H-1)/STEP)+1;
@@ -242,7 +245,7 @@ function build(img){
       varying vec2 vUv;
       uniform sampler2D uElev,uMaskN,uMaskL;
       uniform vec2 uTexel,uSlope;
-      uniform float uSurfK,uSurfJ;
+      uniform float uSurfK,uSurfJ,uWaterYK,uWaterYJ;
       uniform vec3 uSun;
       void main(){
         float h=texture2D(uElev,vUv).r;
@@ -253,9 +256,14 @@ function build(img){
         vec3 col;
         if(mN>1.){
           float surf=mN>180.?uSurfJ:uSurfK;
+          float wY=mN>180.?uWaterYJ:uWaterYK;
           float lv=mN>180.?240.:120.;
           float edge=smoothstep(.25,.75,texture2D(uMaskL,vUv).r*255./lv);
-          col=mix(rampLand(h),rampDepth(surf-h),edge);
+          float above=h-wY;
+          vec3 wet=rampDepth(surf-h);
+          vec3 dry=mix(rampLand(h),vec3(.72,.65,.48),.6);
+          vec3 bed=above>0.?mix(dry,vec3(.84,.77,.58),smoothstep(5.,0.,above)):wet;
+          col=mix(rampLand(h),bed,edge);
         }else{
           float lv2=texture2D(uMaskL,vUv).r*255.;
           col=mix(rampLand(h),rampDepth(1.5),clamp(lv2/120.,0.,.5));
@@ -288,13 +296,13 @@ function build(img){
       transparent:true,depthWrite:false,
       uniforms:THREE.UniformsUtils.merge([{
         uElev:{value:null},uMaskN:{value:null},uMaskL:{value:null},
-        uLakeVal:{value:lv},uWaterY:{value:0},uSun:{value:null},uCam:{value:new THREE.Vector3()}
+        uLakeVal:{value:lv},uWaterY:{value:0},uTime:{value:0},uSun:{value:null},uCam:{value:new THREE.Vector3()}
       }]),
       vertexShader:'varying vec2 vUv;varying vec3 vW;void main(){vUv=uv;vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;gl_Position=projectionMatrix*viewMatrix*w;}',
       fragmentShader:GLSL_RAMPS+`
         varying vec2 vUv;varying vec3 vW;
         uniform sampler2D uElev,uMaskN,uMaskL;
-        uniform float uLakeVal,uWaterY;
+        uniform float uLakeVal,uWaterY,uTime;
         uniform vec3 uSun,uCam;
         void main(){
           float mN=texture2D(uMaskN,vUv).r*255.;
@@ -304,11 +312,20 @@ function build(img){
           if(depth<=0.02)discard;
           float edge=smoothstep(.30,.70,texture2D(uMaskL,vUv).r*255./uLakeVal);
           float shore=smoothstep(0.,.9,depth);
+          vec2 w=vW.xz*80.;
+          float t=uTime;
+          vec3 n=normalize(vec3(
+            sin(w.x+t*.9)+sin(w.y*.7-t*.6)+sin((w.x+w.y)*.4+t*.4),
+            26.,
+            cos(w.x*.8-t*.7)+cos(w.y*1.3+t*.5)+cos((w.x-w.y)*.5+t*.3)));
           vec3 col=rampDepth(min(depth,95.))*1.12+vec3(.02,.10,.08);
+          col+=n.x*.02;
           vec3 v=normalize(uCam-vW);
           vec3 hf=normalize(v+uSun);
-          col+=vec3(.9,.95,.9)*pow(max(hf.y,0.),120.)*.6;
+          float spec=pow(max(dot(n,hf),0.),150.);
+          col+=vec3(.95,.97,.9)*spec*.85;
           float a=(.42+.28*smoothstep(0.,25.,depth))*edge*shore;
+          a=min(1.,a+spec*.3);
           gl_FragColor=vec4(col,a);
         }`});
     wmat.uniforms.uElev.value=uElev;
@@ -336,15 +353,34 @@ function build(img){
   var kc=new THREE.Vector3(kSum[0]/kSum[2],surfaces.keowee*EXAG*KM,kSum[1]/kSum[2]);
   controls.target.copy(kc);
   homeCam(kc);
+  intro.to=camera.position.clone();
+  intro.from=kc.clone().add(new THREE.Vector3(30,44,58));
+  intro.t0=performance.now();
+  camera.position.copy(intro.from);
   resize();
   renderer.setAnimationLoop(frame);
 }
 
 function frame(){
-  controls.update();
+  if(!intro.done&&intro.t0){
+    var t=(performance.now()-intro.t0)/intro.dur;
+    if(t>=1){intro.done=true;}
+    else{
+      t=t*t*(3-2*t);
+      camera.position.lerpVectors(intro.from,intro.to,t);
+      camera.position.y+=Math.sin(Math.PI*t)*2.2;
+      camera.lookAt(controls.target);
+    }
+  }
+  if(intro.done)controls.update();
   tickDrain();
   tickLabels();
-  Object.keys(waterMeshes).forEach(function(k){waterMeshes[k].material.uniforms.uCam.value.copy(camera.position);});
+  var tm=performance.now()/1000;
+  Object.keys(waterMeshes).forEach(function(k){
+    var u=waterMeshes[k].material.uniforms;
+    u.uCam.value.copy(camera.position);
+    u.uTime.value=tm;
+  });
   renderer.render(scene,camera);
 }
 
@@ -377,6 +413,7 @@ function updateWater(){
     var elev=surfaces[name]-(liveDeficit[name]+drainFt)*FT;
     waterMeshes[name].position.y=elev*EXAG*KM;
     waterMeshes[name].material.uniforms.uWaterY.value=elev;
+    if(terrUniforms)terrUniforms[name==='keowee'?'uWaterYK':'uWaterYJ'].value=elev;
   });
 }
 var drain=document.getElementById('drain'),drainOut=document.getElementById('drainOut');
