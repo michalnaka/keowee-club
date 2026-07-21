@@ -72,17 +72,12 @@ def flood(band, seed):
 
 
 def shore_distance(mask):
-    """Distance (px) to shore via erosion counting (city-block metric)."""
-    d = np.zeros(mask.shape, np.float32)
-    cur = mask.copy()
-    while cur.any():
-        d[cur] += 1
-        er = cur.copy()
-        er[1:, :] &= cur[:-1, :]
-        er[:-1, :] &= cur[1:, :]
-        er[:, 1:] &= cur[:, :-1]
-        er[:, :-1] &= cur[:, 1:]
-        cur = er
+    """Exact Euclidean distance (px) to the nearest non-mask cell."""
+    from scipy.ndimage import distance_transform_edt, gaussian_filter
+    d = distance_transform_edt(mask).astype(np.float32)
+    # soften so modeled contours read as organic basins, not stamped offsets
+    d = gaussian_filter(d, sigma=2.0)
+    d[~mask] = 0
     return d
 
 
