@@ -74,6 +74,16 @@ a{color:inherit}
 .lm i{display:block;width:2px;height:12px;background:rgba(233,244,240,.45);margin:3px auto 0;border-radius:1px}
 .lm.water{color:var(--clearwater);font-style:italic}
 .lm.water i{background:rgba(82,214,196,.45)}
+.rp{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--clearwater);border:2.5px solid #F3EDDE;box-shadow:0 0 10px rgba(82,214,196,.85),0 2px 6px rgba(3,20,15,.6);cursor:pointer;display:none;z-index:5;transition:transform .12s ease,opacity .2s}
+.rp:hover{transform:scale(1.3)}
+.rp.dry{background:#C8B98A;box-shadow:0 2px 6px rgba(3,20,15,.5);opacity:.75}
+.rcard{position:absolute;display:none;z-index:7;background:rgba(6,40,33,.95);border:1.5px solid rgba(82,214,196,.5);border-radius:14px;padding:12px 14px;min-width:200px;max-width:250px;transform:translate(-50%,-112%)}
+.rcard h4{font-family:var(--display);font-size:.95rem;letter-spacing:-.01em;margin:0 0 2px}
+.rcard .rmeta{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:#8FBFB5;margin-bottom:9px}
+.rcard .racts{display:flex;gap:8px;flex-wrap:wrap}
+.rcard .racts a{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:6px 11px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);color:#CFE8E1;text-decoration:none}
+.rcard .racts a:hover{background:rgba(82,214,196,.15)}
+.resetv.is-on{background:var(--clearwater);border-color:var(--clearwater);color:var(--keowee-dusk)}
 </style>
 </head>
 <body>
@@ -103,6 +113,7 @@ a{color:inherit}
       <output id="drainOut">Full pond</output>
     </label>
     <button class="resetv" id="drainPlay" type="button">Drain it</button>
+    <button class="resetv is-on" id="rampsBtn" type="button" aria-pressed="true">Ramps</button>
     <button class="resetv" id="resetView" type="button">Reset view</button>
   </div>
 </div>
@@ -112,6 +123,7 @@ a{color:inherit}
   <div class="load" id="load"><span class="wavey">🌊</span><span>Sounding the bottom…</span></div>
   <div class="hint" id="hint">Drag to spin · scroll to zoom · slide to drain</div>
   <div class="probe" id="probe"></div>
+  <div class="rcard" id="rcard"></div>
   <div class="foot-note">Terrain: USGS via AWS Open Data · Lakebed modeled from shoreline shape, not sonar · Not for navigation</div>
 </div>
 
@@ -140,6 +152,14 @@ canvas.addEventListener('pointerdown',function(){intro.done=true;controls.autoRo
 var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
 var drainFt=0,samp=null,landmarks=[],drainAnim=null,terrUniforms=null;
 var intro={t0:null,dur:4200,from:null,to:null,done:false};
+var RAMPS=[
+ {n:'South Cove County Park',t:'ramp · swim beach',q:'South Cove County Park, Seneca, SC',id:'water-1',lat:34.7140,lng:-82.9633},
+ {n:'High Falls County Park',t:'ramp · camping',q:'High Falls County Park, Seneca, SC',id:'water-4',lat:34.7960,lng:-82.9291},
+ {n:'Mile Creek County Park',t:'ramp · camping',q:'Mile Creek County Park, Six Mile, SC',id:'water-5',lat:34.8519,lng:-82.8832},
+ {n:'Keowee Town Landing',t:'public ramp',q:'Keowee Town Landing, Salem, SC',id:'water-6',lat:34.8565,lng:-82.9085},
+ {n:'Stamp Creek Landing',t:'public ramp',q:'Stamp Creek Landing, Salem, SC',id:'water-7',lat:34.8281,lng:-82.9412}
+];
+var ramps=[],rampsOn=true,openRamp=null;
 var LM=[
   ['Sassafras Mtn',35.0648,-82.7772,'peak'],
   ['Whitewater Falls',35.0361,-83.0178,'peak'],
@@ -366,6 +386,50 @@ function build(img){
     landmarks.push({el:el,pos:new THREE.Vector3(p.x,(y+40)*EXAG*KM,p.z)});
   });
 
+  var rcard=document.getElementById('rcard');
+  RAMPS.forEach(function(r){
+    var p=samp.fromLL(r.lng,r.lat);
+    var best=0;
+    var cx=Math.round(r.lng!==0?(r.lng-f[0])/(f[2]-f[0])*W:0),cy=Math.round((f[3]-r.lat)/(f[3]-f[1])*H);
+    for(var dy=-10;dy<=10;dy++)for(var dx=-10;dx<=10;dx++){
+      var ix=cx+dx,iy=cy+dy;
+      if(ix<0||iy<0||ix>=W||iy>=H)continue;
+      var s=at(ix,iy);
+      if(s.m===120){var d=surfaces.keowee-s.e;if(d>best)best=d;}
+    }
+    var el=document.createElement('button');
+    el.className='rp';
+    el.setAttribute('aria-label',r.n);
+    stage.appendChild(el);
+    var rp={el:el,r:r,ft:Math.round(best/FT),pos:new THREE.Vector3(p.x,(surfaces.keowee+8)*EXAG*KM,p.z)};
+    el.addEventListener('mouseenter',function(){
+      var down=liveDeficit.keowee+drainFt;
+      probe.textContent=r.n+(down>15?' · high & dry':' · water off here ≈ '+Math.max(0,rp.ft-Math.round(down))+' ft');
+      probe.style.display='block';
+      probe.style.left=el.style.left;probe.style.top=(parseFloat(el.style.top)-10)+'px';
+    });
+    el.addEventListener('mouseleave',function(){probe.style.display='none';});
+    el.addEventListener('click',function(ev){
+      ev.stopPropagation();
+      var down=liveDeficit.keowee+drainFt;
+      openRamp=rp;
+      rcard.innerHTML='<h4>'+r.n+'</h4><div class="rmeta">'+r.t+' · '+(down>15?'high &amp; dry at −'+Math.round(down)+' ft':'water ≈ '+Math.max(0,rp.ft-Math.round(down))+' ft')+'</div>'
+        +'<div class="racts"><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(r.q)+'" target="_blank" rel="noopener">Directions</a>'
+        +'<a href="/map/#'+r.id+'">Open in Map</a></div>';
+      rcard.style.display='block';
+    });
+    ramps.push(rp);
+  });
+  document.addEventListener('click',function(ev){
+    if(openRamp&&!ev.target.closest('.rcard')&&!ev.target.closest('.rp')){openRamp=null;rcard.style.display='none';}
+  });
+  document.getElementById('rampsBtn').addEventListener('click',function(){
+    rampsOn=!rampsOn;
+    this.classList.toggle('is-on',rampsOn);
+    this.setAttribute('aria-pressed',rampsOn);
+    if(!rampsOn){openRamp=null;rcard.style.display='none';}
+  });
+
   var kc=new THREE.Vector3(kSum[0]/kSum[2],surfaces.keowee*EXAG*KM,kSum[1]/kSum[2]);
   controls.target.copy(kc);
   homeCam(kc);
@@ -412,6 +476,19 @@ function tickLabels(){
       l.el.style.left=((v.x*0.5+0.5)*w)+'px';
       l.el.style.top=((-v.y*0.5+0.5)*h)+'px';
     }else l.el.style.display='none';
+  });
+  var rcard=document.getElementById('rcard');
+  var down=liveDeficit.keowee+drainFt;
+  ramps.forEach(function(rp){
+    if(!rampsOn){rp.el.style.display='none';return;}
+    v.copy(rp.pos).project(camera);
+    if(v.z<1&&Math.abs(v.x)<1.02&&Math.abs(v.y)<1.02){
+      rp.el.style.display='block';
+      rp.el.style.left=((v.x*0.5+0.5)*w)+'px';
+      rp.el.style.top=((-v.y*0.5+0.5)*h)+'px';
+      rp.el.classList.toggle('dry',down>15);
+      if(openRamp===rp){rcard.style.left=rp.el.style.left;rcard.style.top=(parseFloat(rp.el.style.top)-8)+'px';}
+    }else{rp.el.style.display='none';if(openRamp===rp){openRamp=null;rcard.style.display='none';}}
   });
 }
 
