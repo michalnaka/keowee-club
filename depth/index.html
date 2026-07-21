@@ -14,8 +14,11 @@
 <meta property="og:title" content="Lake Keowee in 3D — drain the lake yourself">
 <meta property="og:description" content="An interactive 3D depth map of Lake Keowee &amp; Lake Jocassee with the live water level.">
 <meta property="og:url" content="https://keowee.club/depth/">
-<meta property="og:image" content="https://keowee.club/og.png">
+<meta property="og:image" content="https://keowee.club/depth/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://keowee.club/depth/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -268,6 +271,12 @@ function build(img){
           vec3 wet=rampDepth(surf-h);
           vec3 dry=mix(rampLand(h),vec3(.72,.65,.48),.6);
           vec3 bed=above>0.?mix(dry,vec3(.84,.77,.58),smoothstep(5.,0.,above)):wet;
+          float dft=(surf-h)*3.28084;
+          float g25=dft/25.,g100=dft/100.;
+          float l25=1.-smoothstep(0.,fwidth(g25)*1.6,abs(fract(g25+.5)-.5));
+          float l100=1.-smoothstep(0.,fwidth(g100)*1.6,abs(fract(g100+.5)-.5));
+          float cont=(l25*.20+l100*.28)*smoothstep(2.,6.,dft);
+          bed=mix(bed,vec3(.78,.96,.90),cont);
           col=mix(rampLand(h),bed,edge);
         }else{
           float lv2=texture2D(uMaskL,vUv).r*255.;
