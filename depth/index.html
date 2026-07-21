@@ -243,6 +243,7 @@ function build(img){
   g.setAttribute('uv',new THREE.BufferAttribute(uv,2));
   g.setIndex(idx);
   var terrMat=new THREE.ShaderMaterial({
+    transparent:true,
     uniforms:shared,
     vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
     fragmentShader:GLSL_RAMPS+`
@@ -275,7 +276,9 @@ function build(img){
         float dif=max(dot(nrm,uSun),0.);
         float hemi=mix(.45,1.,nrm.y*.5+.5);
         col*=(.35*hemi+.85*dif);
-        gl_FragColor=vec4(col,1.);
+        float ea=smoothstep(0.,.055,vUv.x)*smoothstep(0.,.055,1.-vUv.x)
+                *smoothstep(0.,.075,vUv.y)*smoothstep(0.,.075,1.-vUv.y);
+        gl_FragColor=vec4(col,ea);
       }`});
   scene.add(new THREE.Mesh(g,terrMat));
 
