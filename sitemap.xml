@@ -5,4 +5,8 @@
   <url><loc>https://keowee.club/map/</loc><lastmod>2026-07-11</lastmod></url>
   <url><loc>https://keowee.club/lake-level/</loc><lastmod>2026-07-09</lastmod></url>
   <url><loc>https://keowee.club/guides/lake-keowee-first-timer/</loc><lastmod>2026-07-18</lastmod></url>
+  <url>
+    <loc>https://keowee.club/depth/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
