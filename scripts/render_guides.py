@@ -231,6 +231,7 @@ def render_guide(guide: dict) -> str:
       <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
       <li><a href="/map/">Map</a></li>
       <li><a href="/lake-level/">Lake Level</a></li>
+      <li><a href="/depth/">Depth</a></li>
     </ul>
     <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
   </div>
