@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lake Keowee Boat Ramps — Every Public Launch, With the Live Lake Level | keowee.club</title>
+<meta name="description" content="All the public boat ramps on Lake Keowee — South Cove, High Falls, Mile Creek, Keowee Town Landing, Stamp Creek — plus Devils Fork for Lake Jocassee. Directions, what's at each launch, and the live water level before you tow.">
+<link rel="canonical" href="https://keowee.club/boat-ramps/">
+<meta name="theme-color" content="#0A3A34">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="keowee.club">
+<meta property="og:title" content="Lake Keowee Boat Ramps — Every Public Launch">
+<meta property="og:description" content="Where to put in on Keowee and Jocassee: all the public ramps with directions, park details, and the live lake level.">
+<meta property="og:url" content="https://keowee.club/boat-ramps/">
+<meta property="og:image" content="https://keowee.club/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --keowee-deep:#0A3A34;--keowee-dusk:#062821;--clearwater:#52D6C4;--clearwater-pale:#BFF3EA;
+  --shallows:#EFF8F3;--sunset:#FF6E52;--goldhour:#FFC24B;--ink:#0E2622;--ink-soft:#3E5A54;--card:#FFFFFF;
+  --radius-lg:24px;--radius-md:16px;--radius-sm:10px;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;--body:'Instrument Sans',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--body);color:var(--ink);background:var(--shallows);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sunset);outline-offset:2px;border-radius:4px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,58,52,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px}
+.wordmark{text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.pennant-logo{width:112px;height:auto;display:block;filter:drop-shadow(0 5px 12px rgba(6,40,33,.4))}
+.nav-links{display:flex;gap:22px;list-style:none;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.nav-links a{text-decoration:none;opacity:.85}
+.nav-links a:hover{opacity:1;color:var(--clearwater)}
+.nav-links a[aria-current]{opacity:1;color:var(--clearwater)}
+.nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
+.nav-cta:hover{background:#ff5a3a}
+@media(min-width:760px){.pennant-logo{width:152px;margin:-10px 0 -52px}}
+@media(max-width:759px){.nav-inner{flex-wrap:wrap;row-gap:2px}.nav-links{order:3;width:100%;justify-content:center;gap:18px;padding-top:8px;font-size:.75rem}}
+
+.hero{background:var(--keowee-deep);color:#fff;padding:64px 20px 84px;position:relative}
+.hero-inner{max-width:1100px;margin:0 auto}
+.crumb{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--clearwater);margin-bottom:16px}
+.crumb a{text-decoration:none}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5.5vw,3.4rem);letter-spacing:-.02em;line-height:1.02;text-transform:uppercase;max-width:800px}
+.hero h1 em{font-style:italic;color:var(--clearwater)}
+.hero .sub{margin-top:18px;max-width:640px;font-size:1.05rem;line-height:1.6;color:#CFE8E1}
+.level-strip{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.level-chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#CFE8E1;border:1.5px solid rgba(82,214,196,.55);border-radius:999px;padding:8px 14px}
+.level-chip b{color:#fff}
+.level-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--clearwater);animation:pulse 2s infinite}
+.level-chip[data-state="low"] .dot{background:var(--goldhour)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:60px;display:block}
+
+main{max-width:1100px;margin:0 auto;padding:48px 20px 20px}
+.lake-head{display:flex;align-items:baseline;gap:14px;margin:26px 0 6px}
+.lake-head h2{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.01em;text-transform:uppercase}
+.lake-head .count{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft)}
+.lake-sub{color:var(--ink-soft);max-width:640px;margin-bottom:18px;line-height:1.55}
+.ramps{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;margin-bottom:26px}
+.ramp{background:var(--card);border-radius:var(--radius-md);padding:20px 22px;box-shadow:0 2px 10px rgba(10,58,52,.07);display:flex;flex-direction:column;gap:8px}
+.ramp h3{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:-.01em}
+.ramp .tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--clearwater-pale);color:var(--keowee-deep);padding:5px 10px;border-radius:999px}
+.tag.town{background:var(--keowee-deep);color:#fff}
+.ramp p{font-size:.95rem;color:var(--ink-soft);line-height:1.55}
+.ramp .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:10px}
+.acts a{font-family:var(--mono);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;padding:8px 13px;border-radius:999px;border:1.5px solid var(--clearwater);color:var(--keowee-deep);transition:background .15s ease}
+.acts a:hover{background:var(--clearwater-pale)}
+.note{background:#fff;border-left:4px solid var(--goldhour);border-radius:var(--radius-sm);padding:14px 18px;color:var(--ink-soft);font-size:.95rem;line-height:1.6;margin:6px 0 34px}
+.note b{color:var(--ink)}
+.faq{margin:14px 0 40px}
+.faq h2{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:14px}
+.faq details{background:#fff;border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;box-shadow:0 2px 10px rgba(10,58,52,.06)}
+.faq summary{font-weight:600;cursor:pointer}
+.faq p{margin-top:10px;color:var(--ink-soft);line-height:1.6;font-size:.95rem}
+.xlinks{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 56px}
+.xlinks a{font-family:var(--mono);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;padding:10px 16px;border-radius:999px;background:var(--keowee-deep);color:#fff}
+.xlinks a:hover{background:#0d4a40}
+
+footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:20px}
+.foot-marks{display:flex;justify-content:center;margin-bottom:14px}
+.foot-marks img{width:220px;height:auto;opacity:.9}
+.foot-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.foot-inner a{text-decoration:none}
+.foot-inner a:hover{color:var(--clearwater)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"keowee.club","item":"https://keowee.club/"},
+  {"@type":"ListItem","position":2,"name":"Boat Ramps","item":"https://keowee.club/boat-ramps/"}]},
+ {"@type":"ItemList","name":"Public boat ramps on Lake Keowee and Lake Jocassee","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"South Cove County Park"},
+  {"@type":"ListItem","position":2,"name":"High Falls County Park"},
+  {"@type":"ListItem","position":3,"name":"Mile Creek County Park"},
+  {"@type":"ListItem","position":4,"name":"Keowee Town Landing"},
+  {"@type":"ListItem","position":5,"name":"Stamp Creek Landing"},
+  {"@type":"ListItem","position":6,"name":"Devils Fork State Park (Lake Jocassee)"}]},
+ {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"How many public boat ramps are on Lake Keowee?","acceptedAnswer":{"@type":"Answer","text":"This guide covers the five public launch points on Lake Keowee — South Cove County Park, High Falls County Park, Mile Creek County Park, Keowee Town Landing, and Stamp Creek Landing. Lake Jocassee has one public access point, Devils Fork State Park."}},
+  {"@type":"Question","name":"How do I launch a boat on Lake Jocassee?","acceptedAnswer":{"@type":"Answer","text":"Devils Fork State Park in Salem is the only public boat access to Lake Jocassee. County parks on Keowee typically charge a small day or launch fee; check each park before you go."}},
+  {"@type":"Question","name":"Does the lake level affect the ramps?","acceptedAnswer":{"@type":"Answer","text":"Yes. Lake Keowee's full pond is 800 feet above sea level and Duke Energy draws the lake down, especially in winter. When the level runs a few feet low, shallow ramp aprons get skinny — check the live level on this page or keowee.club/lake-level before you tow."}}]}
+]}
+</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="wordmark" href="/" aria-label="Keowee Club home">
+      <img class="pennant-logo" src="../brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/guides/lake-keowee-first-timer/">Guides</a></li>
+      <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
+      <li><a href="/map/">Map</a></li>
+      <li><a href="/lake-level/">Lake Level</a></li>
+      <li><a href="/depth/">Depth</a></li>
+    </ul>
+    <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="crumb"><a href="/">← keowee.club</a></p>
+    <h1>Lake Keowee <em>boat ramps</em></h1>
+    <p class="sub">Every public place to put in on Keowee — and the one way onto Jocassee — with directions, what you'll find at each launch, and the live water level so you know before you tow.</p>
+    <div class="level-strip">
+      <span class="level-chip" id="chipK"><span class="dot"></span><span>Keowee · <b id="lvlK">checking…</b></span></span>
+      <span class="level-chip" id="chipJ"><span class="dot"></span><span>Jocassee · <b id="lvlJ">checking…</b></span></span>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C180 60 360 0 540 20s360 40 540 15 300-25 360-10V60H0Z" fill="#EFF8F3"/></svg>
+</header>
+
+<main>
+  <div class="lake-head"><h2>Lake Keowee</h2><span class="count">5 public launches</span></div>
+  <p class="lake-sub">North to south, roughly — the county parks have the most going on (fees typically apply), the landings are simple ramp-and-go.</p>
+  <div class="ramps">
+
+    <article class="ramp" id="keowee-town">
+      <h3>Keowee Town Landing</h3>
+      <div class="tags"><span class="tag town">Salem</span><span class="tag">Public ramp</span></div>
+      <p>Simple public landing on the upper lake's west side — closest launch to the Highway 130 crossing and the northern coves. Ramp-and-go, no frills.</p>
+      <div class="acts">
+        <a href="https://www.google.com/maps/search/?api=1&query=Keowee%20Town%20Landing%2C%20Salem%2C%20SC" target="_blank" rel="noopener">Directions</a>
+        <a href="/map/#water-6">On the Map</a>
+        <a href="/depth/">Depth here</a>
+      </div>
+    </article>
+
+    <article class="ramp" id="stamp-creek">
+      <h3>Stamp Creek Landing</h3>
+      <div class="tags"><span class="tag town">Salem</span><span class="tag">Public ramp</span></div>
+      <p>Quiet landing tucked into the Stamp Creek arm on the west shore — a good put-in for exploring mid-lake water without the county-park bustle.</p>
+      <div class="acts">
+        <a href="https://www.google.com/maps/search/?api=1&query=Stamp%20Creek%20Landing%2C%20Salem%2C%20SC" target="_blank" rel="noopener">Directions</a>
+        <a href="/map/#water-7">On the Map</a>
+        <a href="/depth/">Depth here</a>
+      </div>
+    </article>
+
+    <article class="ramp" id="mile-creek">
+      <h3>Mile Creek County Park</h3>
+      <div class="tags"><span class="tag town">Six Mile</span><span class="tag">Ramp</span><span class="tag">Camping</span></div>
+      <p>Pickens County's park on the east shore — launch, docks, and lakeside camping. The mid-lake location puts you minutes from the widest water on Keowee.</p>
+      <div class="acts">
+        <a href="https://www.google.com/maps/search/?api=1&query=Mile%20Creek%20County%20Park%2C%20Six%20Mile%2C%20SC" target="_blank" rel="noopener">Directions</a>
+        <a href="/map/#water-5">On the Map</a>
+        <a href="/depth/">Depth here</a>
+      </div>
+    </article>
+
+    <article class="ramp" id="high-falls">
+      <h3>High Falls County Park</h3>
+      <div class="tags"><span class="tag town">Seneca</span><span class="tag">Ramp</span><span class="tag">Camping</span></div>
+      <p>Oconee County park on the west shore with launch access and campsites — a solid base camp if you're making a weekend of it.</p>
+      <div class="acts">
+        <a href="https://www.google.com/maps/search/?api=1&query=High%20Falls%20County%20Park%2C%20Seneca%2C%20SC" target="_blank" rel="noopener">Directions</a>
+        <a href="/map/#water-4">On the Map</a>
+        <a href="/depth/">Depth here</a>
+      </div>
+    </article>
+
+    <article class="ramp" id="south-cove">
+      <h3>South Cove County Park</h3>
+      <div class="tags"><span class="tag town">Seneca</span><span class="tag">Ramp</span><span class="tag">Swim beach</span><span class="tag">Camping</span></div>
+      <p>The south-end workhorse near Seneca — launch, swim beach, and camping in one park, close to the deepest water on the lake. When the lake runs low, this is the launch locals default to.</p>
+      <div class="acts">
+        <a href="https://www.google.com/maps/search/?api=1&query=South%20Cove%20County%20Park%2C%20Seneca%2C%20SC" target="_blank" rel="noopener">Directions</a>
+        <a href="/map/#water-1">On the Map</a>
+        <a href="/depth/">Depth here</a>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="lake-head"><h2>Lake Jocassee</h2><span class="count">1 public access</span></div>
+  <p class="lake-sub">There's exactly one way onto Jocassee with a trailer, and it's a good one.</p>
+  <div class="ramps">
+    <article class="ramp" id="devils-fork">
+      <h3>Devils Fork State Park</h3>
+      <div class="tags"><span class="tag town">Salem</span><span class="tag">State park</span><span class="tag">Ramps</span><span class="tag">Camping</span></div>
+      <p>The only public boat access on Lake Jocassee — ramps, camping, and villas inside the state park. Everything on Jocassee starts here: the waterfalls run, the dive sites, the gin-clear coves.</p>
+      <div class="acts">
+        <a href="https://www.google.com/maps/search/?api=1&query=Devils%20Fork%20State%20Park%2C%20Salem%2C%20SC" target="_blank" rel="noopener">Directions</a>
+        <a href="/map/#water-0">On the Map</a>
+        <a href="/depth/">Depth here</a>
+      </div>
+    </article>
+  </div>
+
+  <div class="note"><b>Before you tow:</b> full pond on Keowee is 800 ft above sea level and Duke Energy draws the lake down through the year — a few feet makes shallow ramp aprons skinny. Fees, hours, and lane closures change seasonally at the county parks, so check the park's own page before a long drive. Live level is on the <a href="/lake-level/">Lake Level page</a>, and you can see the bottom around every launch on the <a href="/depth/">3D depth map</a>.</div>
+
+  <section class="faq">
+    <h2>Quick answers</h2>
+    <details>
+      <summary>How many public boat ramps are on Lake Keowee?</summary>
+      <p>Five public launch points: South Cove County Park, High Falls County Park, Mile Creek County Park, Keowee Town Landing, and Stamp Creek Landing. The three county parks add camping, docks, or swim areas; the two landings are simple ramps.</p>
+    </details>
+    <details>
+      <summary>How do I get a boat onto Lake Jocassee?</summary>
+      <p>Devils Fork State Park in Salem is the only public boat access on Jocassee. On summer weekends it's busy — arrive early.</p>
+    </details>
+    <details>
+      <summary>Does the lake level affect launching?</summary>
+      <p>Yes — when Keowee runs a few feet below full pond, the shallow ends of some ramps get skinny. The live chips at the top of this page show today's level; South Cove sits near the deepest water on the lake and is the usual low-water choice.</p>
+    </details>
+  </section>
+
+  <div class="xlinks">
+    <a href="/depth/">🌊 See the bottom in 3D</a>
+    <a href="/map/">📍 The full lake map</a>
+    <a href="/lake-level/">📈 Live lake level</a>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-marks" aria-hidden="true"><img src="../brand/footer-marks.svg" alt="" loading="lazy" width="329" height="140"></div>
+  <div class="foot-inner">
+    <span>© 2026 keowee.club</span>
+    <span>Levels via Duke Energy</span>
+    <a href="/">Home ↑</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('https://api.hydro-derived.duke-energy.app/lakes/current-level')
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(lakes){
+      [['KEOWEE','lvlK','chipK',95],['JOCASSEE','lvlJ','chipJ',88]].forEach(function(cfg){
+        var l=lakes.find(function(x){return x.LakeName===cfg[0];});
+        var p=l&&parseFloat(l.Actual);
+        if(!p||isNaN(p)){document.getElementById(cfg[1]).textContent='level unavailable';return;}
+        var d=Math.max(0,100-p);
+        document.getElementById(cfg[1]).textContent=d<=0.1?'full pond':(Math.round(d*10)/10)+' ft below full';
+        if(p<cfg[3])document.getElementById(cfg[2]).setAttribute('data-state','low');
+      });
+    })
+    .catch(function(){
+      document.getElementById('lvlK').textContent='level unavailable';
+      document.getElementById('lvlJ').textContent='level unavailable';
+    });
+})();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6ffce0786eb54943b7422d812178fe84"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="293cc55f-258d-4388-953c-41b49d0dd6ca"></script>
+</body>
+</html>

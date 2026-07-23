@@ -415,7 +415,8 @@ function build(img){
       openRamp=rp;
       rcard.innerHTML='<h4>'+r.n+'</h4><div class="rmeta">'+r.t+' · '+(down>15?'high &amp; dry at −'+Math.round(down)+' ft':'water ≈ '+Math.max(0,rp.ft-Math.round(down))+' ft')+'</div>'
         +'<div class="racts"><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(r.q)+'" target="_blank" rel="noopener">Directions</a>'
-        +'<a href="/map/#'+r.id+'">Open in Map</a></div>';
+        +'<a href="/map/#'+r.id+'">Open in Map</a>'
+        +'<a href="/boat-ramps/">All ramps</a></div>';
       rcard.style.display='block';
     });
     ramps.push(rp);
