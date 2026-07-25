@@ -44,6 +44,7 @@ jobs:
           mkdir -p _site/preview
           rsync -a --exclude='.git' --exclude='.github' main/ _site/
           rsync -a --exclude='.git' --exclude='.github' preview/ _site/preview/
+          python3 preview/scripts/prepare_preview.py _site/preview
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
