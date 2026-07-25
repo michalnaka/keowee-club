@@ -22,5 +22,6 @@ jobs:
         run: |
           python3 scripts/render_spots.py .
           python3 scripts/render_guides.py .
+          if [ -f scripts/render_weekend.py ]; then python3 scripts/render_weekend.py .; fi
           git diff --check
           git diff --exit-code

@@ -1,0 +1,78 @@
+{
+  "edition": {
+    "start": "2026-07-31",
+    "end": "2026-08-02",
+    "date_display": "July 31–August 2",
+    "updated": "2026-07-25",
+    "updated_display": "July 25, 2026",
+    "title": "This weekend on Keowee + Jocassee",
+    "dek": "Two Jocassee adventures worth booking, one low-effort Keowee Saturday, and the live conditions to check before the cooler goes in the car.",
+    "events": [
+      {
+        "day": "Friday",
+        "date_display": "July 31",
+        "date": "2026-07-31",
+        "tag": "Lake Jocassee",
+        "title": "Jocassee Family Adventure Camp",
+        "body": "A four-hour, all-ages day of waterfalls, swimming, caves, salamanders, and enough naturalist knowledge to make the ride home interesting. It runs every Friday with limited seating.",
+        "note": "Adults $75 · Ages 4–15 $70 · Ages 3 and under free with a booked adult · Park entry is separate",
+        "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/",
+        "source": "Jocassee Lake Tours"
+      },
+      {
+        "day": "Sunday",
+        "date_display": "August 2",
+        "date": "2026-08-02",
+        "tag": "Lake Jocassee",
+        "title": "Snorkel Adventure Tour",
+        "body": "A new-for-2026 guided look below Jocassee’s clear surface, focused on the fish and invertebrates most boat days glide right over.",
+        "note": "Check the operator for current times, availability, age guidance, and what to bring",
+        "url": "https://jocasseelaketours.com/snorkel-adventure-tour/",
+        "source": "Jocassee Lake Tours"
+      }
+    ],
+    "plan": [
+      {
+        "day": "Friday",
+        "title": "Let Jocassee do the entertaining",
+        "body": "Book the family adventure camp, pack actual water shoes, and leave the complicated itinerary at home.",
+        "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/",
+        "label": "Check Friday availability ↗",
+        "external": true
+      },
+      {
+        "day": "Saturday",
+        "title": "Keowee before the crowd",
+        "body": "Launch early, pick one cove, swim before lunch, and be headed toward food while everyone else is still negotiating the ramp.",
+        "url": "/boat-ramps/",
+        "label": "Choose a ramp →"
+      },
+      {
+        "day": "Sunday",
+        "title": "Look under the water for once",
+        "body": "Take the snorkel tour on Jocassee—or copy the spirit of it with a slow shoreline morning and fewer miles on the boat.",
+        "url": "https://jocasseelaketours.com/snorkel-adventure-tour/",
+        "label": "Check Sunday availability ↗",
+        "external": true
+      }
+    ],
+    "sources": [
+      {
+        "label": "Visit Oconee SC — Events calendar",
+        "url": "https://visitoconeesc.com/events/"
+      },
+      {
+        "label": "Jocassee Lake Tours — Family Adventure Camp",
+        "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/"
+      },
+      {
+        "label": "Jocassee Lake Tours — Snorkel Adventure Tour",
+        "url": "https://jocasseelaketours.com/snorkel-adventure-tour/"
+      },
+      {
+        "label": "National Weather Service — Lake Keowee forecast",
+        "url": "https://forecast.weather.gov/MapClick.php?lat=34.85&lon=-82.93"
+      }
+    ]
+  }
+}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>keowee.club — The Unofficial Guide to Lake Keowee &amp; Lake Jocassee</title>
-<meta name="description" content="keowee.club is the unofficial guide to Lake Keowee and Lake Jocassee — where locals eat and drink, live lake levels, and a map of every spot worth docking at. One newsletter a month.">
+<meta name="description" content="keowee.club is the unofficial guide to Lake Keowee and Lake Jocassee — local picks, live lake levels, maps, and a useful weekend plan every Thursday.">
 <link rel="canonical" href="https://keowee.club/">
 <meta name="theme-color" content="#0A3A34">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=2">
@@ -122,6 +122,18 @@ a{color:inherit}
   .ticker-set{flex-wrap:wrap;justify-content:center;width:100%}
   .ticker-set span{padding:4px 14px}
 }
+
+/* ---------- THIS WEEKEND ---------- */
+.weekend-tease{max-width:1100px;margin:0 auto;padding:64px 20px 6px}
+.weekend-tease-inner{background:var(--keowee-dusk);color:#fff;border-radius:var(--radius-lg);padding:30px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.6fr);gap:28px;align-items:end;position:relative;overflow:hidden;box-shadow:0 16px 36px rgba(6,40,33,.14)}
+.weekend-tease-inner::after{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(82,214,196,.18);border-radius:50%;right:-90px;top:-160px;box-shadow:0 0 0 38px rgba(82,214,196,.035)}
+.weekend-tease .eyebrow{margin:0 0 12px;color:var(--goldhour)}
+.weekend-tease h2{font-family:var(--display);font-size:clamp(2rem,5vw,3.5rem);line-height:.98;letter-spacing:-.035em;text-transform:uppercase;max-width:13ch}
+.weekend-tease h2 em{font-style:italic;color:var(--clearwater)}
+.weekend-tease p:not(.eyebrow){color:#CFE8E1;max-width:44ch}
+.weekend-tease .see-all{position:relative;z-index:1;margin:18px 0 0;color:#fff;border-color:var(--clearwater);align-self:flex-start}
+.weekend-tease .see-all:hover{color:var(--keowee-deep)}
+@media(max-width:680px){.weekend-tease-inner{grid-template-columns:1fr;padding:24px}.weekend-tease{padding-top:42px}}
 
 /* ---------- SECTIONS ---------- */
 .section{max-width:1100px;margin:0 auto;padding:64px 20px 8px}
@@ -275,8 +287,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
     <p class="display-title">Go jump in a <em>lake.</em></p>
     <p>Where locals eat and drink, a live lake report, and a map of every spot worth docking at — curated by people who actually live on this water, not a tourism board.</p>
     <div class="hero-actions">
-      <a class="btn btn-coral" href="/guides/lake-keowee-first-timer/">First-timer guide</a>
-      <a class="btn btn-ghost" href="#dispatch">Get the newsletter</a>
+      <a class="btn btn-coral" href="/weekend/">This weekend</a>
+      <a class="btn btn-ghost" href="/guides/lake-keowee-first-timer/">First-timer guide</a>
     </div>
     <a class="lake-report" id="lakeReport" href="/lake-level/" hidden>
       <span class="lake-report-dot" aria-hidden="true"></span>
@@ -305,6 +317,21 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 </div>
 
 <main>
+
+<!-- weekend:start -->
+<section class="weekend-tease" aria-labelledby="weekend-tease-title">
+  <div class="weekend-tease-inner">
+    <div>
+      <p class="eyebrow">This weekend · July 31–August 2</p>
+      <h2 id="weekend-tease-title">Two reasons to go <em>north.</em></h2>
+    </div>
+    <div>
+      <p>Jocassee family adventure camp Friday, a guided snorkel tour Sunday, and one deliberately easy Keowee Saturday in between.</p>
+      <a class="see-all" href="/weekend/">Open the weekend plan <i>→</i></a>
+    </div>
+  </div>
+</section>
+<!-- weekend:end -->
 
 <!-- spots:eat:start -->
 <section class="section" id="eat" data-nosnippet>
@@ -360,9 +387,9 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 
 <section class="dispatch" id="dispatch">
   <div class="dispatch-inner">
-    <p class="eyebrow">Once a month · Zero spam · All lake</p>
+    <p class="eyebrow">Thursday afternoon · Zero spam · All lake</p>
     <h2>The Dock <em>Dispatch</em></h2>
-    <p>New spots, lake levels, events worth leaving the cove for, and the occasional hot take about pontoon etiquette. Free, monthly, unsubscribe whenever.</p>
+    <p>Fresh conditions, a few weekend plans worth making, and the occasional hot take about pontoon etiquette. Free, weekly in season, unsubscribe whenever.</p>
     <form id="signup" action="https://buttondown.com/api/emails/embed-subscribe/keowee" method="post" target="bd-frame" novalidate>
       <input type="email" id="email" name="email" placeholder="you@somewhere.com" aria-label="Email address" required>
       <input type="hidden" name="embed" value="1">
@@ -370,7 +397,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
     </form>
     <iframe name="bd-frame" title="Newsletter signup" style="display:none" aria-hidden="true"></iframe>
     <p class="success" id="success">🌊 You're in. See you at full pond.</p>
-    <p class="fine">One email a month. We'd rather be on the water too.</p>
+    <p class="fine">One useful lake email a week during the season.</p>
   </div>
 </section>
 

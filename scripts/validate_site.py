@@ -15,6 +15,9 @@ CORE_HTML_FILES = (
     ROOT / "eat-and-drink" / "index.html",
     ROOT / "map" / "index.html",
     ROOT / "lake-level" / "index.html",
+    ROOT / "boat-ramps" / "index.html",
+    ROOT / "depth" / "index.html",
+    ROOT / "weekend" / "index.html",
 )
 HTML_FILES = CORE_HTML_FILES + tuple(sorted((ROOT / "guides").glob("*/index.html")))
 REQUIRED_SPOT_FIELDS = ("name", "emoji", "art", "blurb", "maps")
@@ -183,6 +186,32 @@ def validate_guides(errors: list[str]) -> int:
     return len(guides)
 
 
+def validate_weekend(errors: list[str]) -> int:
+    source = ROOT / "data" / "weekend.json"
+    try:
+        edition = json.loads(source.read_text()).get("edition")
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"{source.relative_to(ROOT)}: {exc}")
+        return 0
+    require(isinstance(edition, dict), "weekend.json: edition must be an object", errors)
+    if not isinstance(edition, dict):
+        return 0
+    for field in ("start", "end", "date_display", "updated", "title", "dek", "events", "plan", "sources"):
+        require(bool(edition.get(field)), f"weekend.json: edition.{field} is required", errors)
+    events = edition.get("events")
+    require(isinstance(events, list) and bool(events), "weekend.json: events must be a non-empty list", errors)
+    if isinstance(events, list):
+        for index, event in enumerate(events):
+            require(isinstance(event, dict), f"weekend.json: events[{index}] must be an object", errors)
+            if not isinstance(event, dict):
+                continue
+            for field in ("day", "date_display", "date", "tag", "title", "body", "note", "url", "source"):
+                require(bool(event.get(field)), f"weekend.json: events[{index}].{field} is required", errors)
+            url = event.get("url")
+            require(isinstance(url, str) and url.startswith("https://"), f"weekend.json: events[{index}].url must be https", errors)
+    return len(events) if isinstance(events, list) else 0
+
+
 def validate_pages(errors: list[str]) -> None:
     for path in HTML_FILES:
         relative = path.relative_to(ROOT)
@@ -207,13 +236,14 @@ def main() -> int:
     errors: list[str] = []
     visible, mappable = validate_spots(errors)
     guide_count = validate_guides(errors)
+    weekend_count = validate_weekend(errors)
     validate_pages(errors)
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
         print(f"validation failed with {len(errors)} error(s)")
         return 1
-    print(f"validation passed: {visible} guide spots, {mappable} mapped spots, {guide_count} long-form guide, {len(HTML_FILES)} pages")
+    print(f"validation passed: {visible} guide spots, {mappable} mapped spots, {guide_count} long-form guide, {weekend_count} weekend picks, {len(HTML_FILES)} pages")
     return 0
 
 
