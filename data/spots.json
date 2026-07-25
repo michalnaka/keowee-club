@@ -598,6 +598,35 @@
     }
    ],
    "hidden": true
+  },
+  {
+   "id": "stock",
+   "title": "Stock Up",
+   "sub": "Bait, tackle, ice, and the things you remembered five minutes after leaving home.",
+   "spots": [
+    {
+     "name": "Rudy’s Bait &amp; Tackle",
+     "emoji": "🎣",
+     "art": "a",
+     "tag": "Seneca · Bait &amp; tackle",
+     "town": "Seneca",
+     "category": "Bait &amp; tackle",
+     "blurb": "The hometown tackle counter inside Rudy’s Exxon — live bait, name-brand gear, reel maintenance, and the little things you forgot until the boat was already hitched.",
+     "tip": "Look for the Exxon on South Oak Street. Call ahead if live bait is the whole reason for the stop.",
+     "badges": [
+      "🪱 live bait",
+      "🛠️ reel maintenance",
+      "📞 864-723-0633"
+     ],
+     "website": "https://www.facebook.com/rudysbaittacklesc",
+     "maps": "Rudy's Bait & Tackle, 705 S Oak St, Seneca, SC 29678",
+     "schema": "SportingGoodsStore",
+     "locality": "Seneca",
+     "lat": 34.67349,
+     "lng": -82.954816
+    }
+   ],
+   "hidden": true
   }
  ]
 }

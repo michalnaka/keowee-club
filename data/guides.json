@@ -51,7 +51,8 @@
           ],
           "actions": [
             {"label": "Open the lake map", "url": "/map/"},
-            {"label": "See every food stop", "url": "/eat-and-drink/"}
+            {"label": "See every food stop", "url": "/eat-and-drink/"},
+            {"label": "Stock up at Rudy’s", "url": "/map/#stock-0"}
           ]
         },
         {

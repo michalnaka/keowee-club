@@ -33,6 +33,7 @@ SECTION_TYPE = {
     "drink": ("Eat & Drink", "ty-eat"),
     "water": ("On the Water", "ty-water"),
     "drive": ("Sights", "ty-sights"),
+    "stock": ("Supplies", "ty-supplies"),
 }
 FILTER_MIN = int(os.environ.get("FILTER_MIN", "6"))
 
