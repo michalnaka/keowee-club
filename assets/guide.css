@@ -122,8 +122,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:34px 20px}
 }
 @media(max-width:759px){
   .nav-inner{flex-wrap:wrap;row-gap:2px}
-  .nav-links{order:3;width:100%;justify-content:center;gap:2px;padding:4px;font-size:.7rem}
-  .nav-links a{padding:6px 8px}
+  .nav-links{order:3;width:100%;flex-wrap:wrap;justify-content:center;gap:2px 4px;padding:0;border:none;background:none;font-size:.72rem}
+  .nav-links a{white-space:nowrap;padding:6px 9px}
   .guide-hero{padding-top:58px}
 }
 @media(max-width:620px){
