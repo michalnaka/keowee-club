@@ -74,6 +74,8 @@ def schema(edition: dict) -> str:
                 "@type": "Event",
                 "name": item["title"],
                 "startDate": item["date"],
+                "endDate": item["date"],
+                "image": "https://keowee.club/og.png",
                 "eventStatus": "https://schema.org/EventScheduled",
                 "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
                 "location": {
