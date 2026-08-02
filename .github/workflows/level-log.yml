@@ -1,0 +1,33 @@
+name: Log lake level
+
+on:
+  schedule:
+    - cron: "17 2,8,14,20 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: level-log
+  cancel-in-progress: false
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Append current reading
+        run: python3 scripts/log_level.py
+      - name: Commit if changed
+        run: |
+          if ! git diff --quiet data/level-history.json; then
+            git config user.name "keowee-level-bot"
+            git config user.email "actions@github.com"
+            git add data/level-history.json
+            git commit -m "Log lake level"
+            git pull --rebase origin main
+            git push origin main
+          else
+            echo "no new reading"
+          fi
