@@ -238,6 +238,7 @@ def render(edition: dict) -> str:
   <div class="foot-inner">
     <span>© 2026 keowee.club</span>
     <span>Made on the dock 🛥️</span>
+    <a href="/contact/">Contact</a>
     <a href="/">Home ↑</a>
   </div>
 </footer>
