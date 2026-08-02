@@ -300,7 +300,7 @@ def render_guide(guide: dict) -> str:
 <footer>
   <div class="foot-inner">
     <span>Independent. Local. Unofficial.</span>
-    <span><a href="/map/">Map</a> &nbsp;·&nbsp; <a href="/lake-level/">Lake levels</a> &nbsp;·&nbsp; <a href="/eat-and-drink/">Eat &amp; Drink</a></span>
+    <span><a href="/map/">Map</a> &nbsp;·&nbsp; <a href="/lake-level/">Lake levels</a> &nbsp;·&nbsp; <a href="/contact/">Contact</a> &nbsp;·&nbsp; <a href="/eat-and-drink/">Eat &amp; Drink</a></span>
   </div>
 </footer>
 <!-- Cloudflare Web Analytics -->
