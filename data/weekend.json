@@ -1,13 +1,24 @@
 {
   "edition": {
-    "start": "2026-08-07",
+    "start": "2026-08-06",
     "end": "2026-08-09",
-    "date_display": "August 7–9",
+    "date_display": "August 6–9",
     "updated": "2026-08-03",
     "updated_display": "August 3, 2026",
     "title": "This weekend on Keowee + Jocassee",
-    "dek": "A blues guitarist in Walhalla, a country Saturday, free brewery music both nights, and the lake itself — with live conditions to check before the cooler goes in the car.",
+    "dek": "Free jazz in the alley Thursday, a blues guitarist in Walhalla Friday, a country Saturday, brewery music both nights — and the lake in between.",
     "events": [
+      {
+        "day": "Thursday",
+        "date_display": "August 6",
+        "date": "2026-08-06",
+        "tag": "Seneca",
+        "title": "Jazz on the Alley",
+        "body": "Seneca's Thursday-night institution — free live jazz on historic Ram Cat Alley, every week through October. The happy-hour set starts at 5:30, the main act at 6:30. Get dinner downtown and let the weekend start a day early.",
+        "note": "Free · 6:30–9pm (happy hour 5:30) · Ram Cat Alley, downtown Seneca",
+        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley",
+        "source": "City of Seneca"
+      },
       {
         "day": "Friday",
         "date_display": "August 7",
@@ -78,6 +89,10 @@
       }
     ],
     "sources": [
+      {
+        "label": "City of Seneca — Jazz on the Alley",
+        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley"
+      },
       {
         "label": "Walhalla PAC — Events calendar",
         "url": "https://walhallapac.com/events/"
