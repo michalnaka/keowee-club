@@ -171,7 +171,7 @@ def render(edition: dict) -> str:
 
 <header class="hero">
   <div class="hero-inner">
-    <p class="crumb"><a href="/">← keowee.club</a></p>
+    <p class="crumb"><a href="/">Keowee Club</a> &nbsp;→&nbsp; This Weekend</p>
     <p class="eyebrow">{esc(edition["date_display"])}</p>
     <h1>This weekend <em>on the lakes.</em></h1>
     <p class="dek">{esc(edition["dek"])}</p>
