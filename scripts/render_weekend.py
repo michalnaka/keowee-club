@@ -49,7 +49,7 @@ def home_teaser(edition: dict) -> str:
       <h2 id="weekend-tease-title">Two reasons to go <em>north.</em></h2>
     </div>
     <div>
-      <p>Jocassee family adventure camp Friday, a guided snorkel tour Sunday, and one deliberately easy Keowee Saturday in between.</p>
+      <p>{esc(edition["dek"])}</p>
       <a class="see-all" href="/weekend/">Open the weekend plan <i>→</i></a>
     </div>
   </div>

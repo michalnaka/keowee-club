@@ -1,62 +1,87 @@
 {
   "edition": {
-    "start": "2026-07-31",
-    "end": "2026-08-02",
-    "date_display": "July 31–August 2",
-    "updated": "2026-07-25",
-    "updated_display": "July 25, 2026",
+    "start": "2026-08-07",
+    "end": "2026-08-09",
+    "date_display": "August 7–9",
+    "updated": "2026-08-03",
+    "updated_display": "August 3, 2026",
     "title": "This weekend on Keowee + Jocassee",
-    "dek": "Two Jocassee adventures worth booking, one low-effort Keowee Saturday, and the live conditions to check before the cooler goes in the car.",
+    "dek": "A blues guitarist in Walhalla, a country Saturday, free brewery music both nights, and the lake itself — with live conditions to check before the cooler goes in the car.",
     "events": [
       {
         "day": "Friday",
-        "date_display": "July 31",
-        "date": "2026-07-31",
+        "date_display": "August 7",
+        "date": "2026-08-07",
+        "tag": "Walhalla",
+        "title": "Ally Venable Band at WPAC",
+        "body": "Texas blues-rock guitar in the old Walhalla auditorium — a big-room show twenty minutes from the water. Doors at the Performing Arts Center, show at 7:30pm.",
+        "note": "7:30pm · $37–$57 · Walhalla Performing Arts Center",
+        "url": "https://walhallapac.com/events/ally-venable-band/",
+        "source": "Walhalla PAC"
+      },
+      {
+        "day": "Friday",
+        "date_display": "August 7",
+        "date": "2026-08-07",
         "tag": "Lake Jocassee",
         "title": "Jocassee Family Adventure Camp",
-        "body": "A four-hour, all-ages day of waterfalls, swimming, caves, salamanders, and enough naturalist knowledge to make the ride home interesting. It runs every Friday with limited seating.",
-        "note": "Adults $75 · Ages 4–15 $70 · Ages 3 and under free with a booked adult · Park entry is separate",
+        "body": "The every-Friday, all-ages tour of waterfalls, swimming holes, and salamander habitat that makes the ride home interesting. Limited seats.",
+        "note": "Adults $75 · Ages 4–15 $70 · Park entry separate — confirm with the operator",
         "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/",
         "source": "Jocassee Lake Tours"
       },
       {
-        "day": "Sunday",
-        "date_display": "August 2",
-        "date": "2026-08-02",
-        "tag": "Lake Jocassee",
-        "title": "Snorkel Adventure Tour",
-        "body": "A new-for-2026 guided look below Jocassee’s clear surface, focused on the fish and invertebrates most boat days glide right over.",
-        "note": "Check the operator for current times, availability, age guidance, and what to bring",
-        "url": "https://jocasseelaketours.com/snorkel-adventure-tour/",
-        "source": "Jocassee Lake Tours"
+        "day": "Saturday",
+        "date_display": "August 8",
+        "date": "2026-08-08",
+        "tag": "Walhalla",
+        "title": "Corey Smith — Southern Drawl Tour",
+        "body": "Georgia country singer-songwriter at the Walhalla Performing Arts Center. If your lake day ends early, this is the Saturday night.",
+        "note": "7:30pm · $49–$69 · Walhalla Performing Arts Center",
+        "url": "https://walhallapac.com/events/corey-smith/",
+        "source": "Walhalla PAC"
+      },
+      {
+        "day": "Fri & Sat",
+        "date_display": "August 7–8",
+        "date": "2026-08-07",
+        "tag": "Breweries",
+        "title": "Live music at both lake breweries",
+        "body": "Keowee Brewing in Seneca has free live music every Friday and Saturday, and Jocassee Valley Brewing in Salem runs bands and food trucks both nights. Lineups post on their calendars.",
+        "note": "Free at KBC · check each calendar for who's playing",
+        "url": "https://keoweebrewing.com/events-calendar",
+        "source": "Keowee Brewing · Jocassee Valley Brewing"
       }
     ],
     "plan": [
       {
         "day": "Friday",
-        "title": "Let Jocassee do the entertaining",
-        "body": "Book the family adventure camp, pack actual water shoes, and leave the complicated itinerary at home.",
-        "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/",
-        "label": "Check Friday availability ↗",
+        "title": "Boat day, blues night",
+        "body": "Afternoon on Keowee, dinner in Seneca, then either the Ally Venable ticket in Walhalla or the free stage at Keowee Brewing.",
+        "url": "https://walhallapac.com/events/ally-venable-band/",
+        "label": "Grab Friday tickets ↗",
         "external": true
       },
       {
         "day": "Saturday",
-        "title": "Keowee before the crowd",
-        "body": "Launch early, pick one cove, swim before lunch, and be headed toward food while everyone else is still negotiating the ramp.",
+        "title": "Jocassee before the gate line",
+        "body": "Devils Fork early, clear water all morning, then Jocassee Valley Brewing's music and food trucks on the drive home — or clean up for Corey Smith at 7:30.",
         "url": "/boat-ramps/",
-        "label": "Choose a ramp →"
+        "label": "Plan the launch →"
       },
       {
         "day": "Sunday",
-        "title": "Look under the water for once",
-        "body": "Take the snorkel tour on Jocassee—or copy the spirit of it with a slow shoreline morning and fewer miles on the boat.",
-        "url": "https://jocasseelaketours.com/snorkel-adventure-tour/",
-        "label": "Check Sunday availability ↗",
-        "external": true
+        "title": "The slow one",
+        "body": "Pick a swim beach, get there before the afternoon heat, and let the weekend end on a towel instead of a highway.",
+        "url": "/swim/",
+        "label": "Pick a swim spot →"
       }
     ],
     "sources": [
+      {
+        "label": "Walhalla PAC — Events calendar",
+        "url": "https://walhallapac.com/events/"
+      },
       {
         "label": "Visit Oconee SC — Events calendar",
         "url": "https://visitoconeesc.com/events/"
@@ -66,8 +91,12 @@
         "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/"
       },
       {
-        "label": "Jocassee Lake Tours — Snorkel Adventure Tour",
-        "url": "https://jocasseelaketours.com/snorkel-adventure-tour/"
+        "label": "Keowee Brewing — Events calendar",
+        "url": "https://keoweebrewing.com/events-calendar"
+      },
+      {
+        "label": "Jocassee Valley Brewing",
+        "url": "https://jocasseevalleybrewing.com/"
       },
       {
         "label": "National Weather Service — Lake Keowee forecast",
