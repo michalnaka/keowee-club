@@ -159,6 +159,7 @@ def render(edition: dict) -> str:
       <img class="pennant-logo" src="../brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
     </a>
     <ul class="nav-links">
+      <li><a href="/">Home</a></li>
       <li><a href="/guides/lake-keowee-first-timer/">Guides</a></li>
       <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
       <li><a href="/map/">Map</a></li>
