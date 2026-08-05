@@ -111,6 +111,23 @@ a{color:inherit}
   .chip-count{display:none}
 }
 @media(prefers-reduced-motion:reduce){.sheet{animation:none}.pin{transition:none}}
+
+/* mobile compact chrome */
+@media(max-width:759px){
+  .nav-inner{padding:8px 14px;row-gap:0}
+  .pennant-logo{width:78px}
+  .nav-cta{font-size:.6rem;padding:6px 10px}
+  .nav-links{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:4px;padding:4px 2px 2px}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{padding:6px 10px}
+  .hero{padding:34px 18px 60px}
+  .hero .sub{font-size:.98rem;margin-top:12px}
+  .mapbar{padding:0 10px 8px}
+  .mapbar-label{display:none}
+  .mapbar-inner{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:6px}
+  .mapbar-inner::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+}
 </style>
 </head>
 <body>
