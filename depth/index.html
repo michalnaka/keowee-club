@@ -196,6 +196,23 @@ controls.mouseButtons={LEFT:THREE.MOUSE.PAN,MIDDLE:THREE.MOUSE.DOLLY,RIGHT:THREE
 controls.touches={ONE:THREE.TOUCH.PAN,TWO:THREE.TOUCH.DOLLY_ROTATE};
 var panBounds=null;
 canvas.addEventListener('pointerdown',function(){intro.done=true;controls.autoRotate=false;document.getElementById('hint').style.opacity=0;if(tour)endTour();});
+// Safari macOS: trackpad pinch arrives as proprietary gesture events, not wheel.
+// Only wire these on fine-pointer devices so iOS two-finger touch isn't doubled.
+if(window.matchMedia('(pointer:fine)').matches&&'GestureEvent' in window){
+  var pinchScale=1;
+  canvas.addEventListener('gesturestart',function(e){e.preventDefault();pinchScale=e.scale;});
+  canvas.addEventListener('gesturechange',function(e){
+    e.preventDefault();
+    if(!e.scale||tour)return;
+    var f=e.scale/pinchScale;pinchScale=e.scale;
+    var off=camera.position.clone().sub(controls.target);
+    var d=Math.max(controls.minDistance,Math.min(controls.maxDistance,off.length()/f));
+    off.setLength(d);
+    camera.position.copy(controls.target).add(off);
+    intro.done=true;controls.autoRotate=false;
+  });
+  canvas.addEventListener('gestureend',function(e){e.preventDefault();});
+}
 
 var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
 var drainFt=0,samp=null,landmarks=[],drainAnim=null,terrUniforms=null;
