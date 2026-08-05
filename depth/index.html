@@ -77,6 +77,7 @@ a{color:inherit}
 .rp{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--clearwater);border:2.5px solid #F3EDDE;box-shadow:0 0 10px rgba(82,214,196,.85),0 2px 6px rgba(3,20,15,.6);cursor:pointer;display:none;z-index:5;transition:transform .12s ease,opacity .2s}
 .rp:hover{transform:scale(1.3)}
 .rp.dry{background:#C8B98A;box-shadow:0 2px 6px rgba(3,20,15,.5);opacity:.75}
+.rp.eat{background:var(--sunset);box-shadow:0 0 10px rgba(255,110,82,.85),0 2px 6px rgba(3,20,15,.6)}
 .rcard{position:absolute;display:none;z-index:7;background:rgba(6,40,33,.95);border:1.5px solid rgba(82,214,196,.5);border-radius:14px;padding:12px 14px;min-width:200px;max-width:250px;transform:translate(-50%,-112%)}
 .rcard h4{font-family:var(--display);font-size:.95rem;letter-spacing:-.01em;margin:0 0 2px}
 .rcard .rmeta{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:#8FBFB5;margin-bottom:9px}
@@ -114,6 +115,7 @@ a{color:inherit}
       <output id="drainOut">Full pond</output>
     </label>
     <button class="resetv" id="drainPlay" type="button">Drain it</button>
+    <button class="resetv" id="tourBtn" type="button">Fly the lake</button>
     <button class="resetv is-on" id="rampsBtn" type="button" aria-pressed="true">Ramps</button>
     <button class="resetv" id="resetView" type="button">Reset view</button>
   </div>
@@ -148,12 +150,15 @@ var controls=new OrbitControls(camera,canvas);
 controls.enableDamping=true;controls.dampingFactor=0.06;
 controls.maxPolarAngle=Math.PI*0.49;controls.minDistance=2;controls.maxDistance=90;
 controls.autoRotate=true;controls.autoRotateSpeed=0.6;
-canvas.addEventListener('pointerdown',function(){intro.done=true;controls.autoRotate=false;document.getElementById('hint').style.opacity=0;});
+canvas.addEventListener('pointerdown',function(){intro.done=true;controls.autoRotate=false;document.getElementById('hint').style.opacity=0;if(tour)endTour();});
 
 var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
 var drainFt=0,samp=null,landmarks=[],drainAnim=null,terrUniforms=null;
+var tour=null,tourCurve=null,tourLook=null;
 var intro={t0:null,dur:4200,from:null,to:null,done:false};
 var RAMPS=[
+ {n:'The Cabana',t:'boat-up bar & grill',q:'Cabana Lake Keowee, 1285 Doug Hollow Rd, Seneca, SC',id:'eat-0',lat:34.776226,lng:-82.92054,kind:'eat'},
+ {n:'Keowee Shores Grill',t:'dock-up tiki grill',q:'Keowee Shores Grill, Seneca, SC',id:'eat-7',lat:34.711383,lng:-82.947,kind:'eat'},
  {n:'South Cove County Park',t:'ramp · swim beach',q:'South Cove County Park, Seneca, SC',id:'water-1',lat:34.7140,lng:-82.9633},
  {n:'High Falls County Park',t:'ramp · camping',q:'High Falls County Park, Seneca, SC',id:'water-4',lat:34.7960,lng:-82.9291},
  {n:'Mile Creek County Park',t:'ramp · camping',q:'Mile Creek County Park, Six Mile, SC',id:'water-5',lat:34.8519,lng:-82.8832},
@@ -399,13 +404,14 @@ function build(img){
       if(s.m===120){var d=surfaces.keowee-s.e;if(d>best)best=d;}
     }
     var el=document.createElement('button');
-    el.className='rp';
+    el.className='rp'+(r.kind==='eat'?' eat':'');
     el.setAttribute('aria-label',r.n);
     stage.appendChild(el);
     var rp={el:el,r:r,ft:Math.round(best/FT),pos:new THREE.Vector3(p.x,(surfaces.keowee+8)*EXAG*KM,p.z)};
     el.addEventListener('mouseenter',function(){
       var down=liveDeficit.keowee+drainFt;
-      probe.textContent=r.n+(down>15?' · high & dry':' · water off here ≈ '+Math.max(0,rp.ft-Math.round(down))+' ft');
+      var w=Math.max(0,rp.ft-Math.round(down));
+      probe.textContent=r.kind==='eat'?(r.n+' · water at the dock ≈ '+w+' ft'):(r.n+(down>15?' · high & dry':' · water off here ≈ '+w+' ft'));
       probe.style.display='block';
       probe.style.left=el.style.left;probe.style.top=(parseFloat(el.style.top)-10)+'px';
     });
@@ -432,6 +438,20 @@ function build(img){
     if(!rampsOn){openRamp=null;rcard.style.display='none';}
   });
 
+  var WAY=[
+    [-82.955,34.662,2600],[-82.905,34.703,950],[-82.955,34.716,600],
+    [-82.902,34.760,500],[-82.938,34.828,450],[-82.906,34.856,450],
+    [-82.900,34.902,700],[-82.882,34.930,900],[-82.924,34.956,700],
+    [-82.930,34.986,950],[-82.845,34.870,3300]
+  ];
+  function wayPt(w,alt){
+    var p=samp.fromLL(w[0],w[1]);
+    var base=Math.max(p.e,w[1]>34.94?surfaces.jocassee:surfaces.keowee);
+    return new THREE.Vector3(p.x,(base+(alt===undefined?w[2]:alt))*EXAG*KM,p.z);
+  }
+  tourCurve=new THREE.CatmullRomCurve3(WAY.map(function(w){return wayPt(w);}),false,'centripetal');
+  tourLook=new THREE.CatmullRomCurve3(WAY.map(function(w){return wayPt(w,60);}),false,'centripetal');
+
   var kc=new THREE.Vector3(kSum[0]/kSum[2],surfaces.keowee*EXAG*KM,kSum[1]/kSum[2]);
   controls.target.copy(kc);
   homeCam(kc);
@@ -454,7 +474,15 @@ function frame(){
       camera.lookAt(controls.target);
     }
   }
-  if(intro.done)controls.update();
+  if(tour){
+    var tt=(performance.now()-tour)/38000;
+    if(tt>=1){endTour();}
+    else{
+      camera.position.copy(tourCurve.getPointAt(tt));
+      camera.lookAt(tourLook.getPointAt(Math.min(1,tt+0.05)));
+    }
+  }
+  else if(intro.done)controls.update();
   tickDrain();
   tickLabels();
   var tm=performance.now()/1000;
@@ -488,7 +516,7 @@ function tickLabels(){
       rp.el.style.display='block';
       rp.el.style.left=((v.x*0.5+0.5)*w)+'px';
       rp.el.style.top=((-v.y*0.5+0.5)*h)+'px';
-      rp.el.classList.toggle('dry',down>15);
+      rp.el.classList.toggle('dry',down>15&&rp.r.kind!=='eat');
       if(openRamp===rp){rcard.style.left=rp.el.style.left;rcard.style.top=(parseFloat(rp.el.style.top)-8)+'px';}
     }else{rp.el.style.display='none';if(openRamp===rp){openRamp=null;rcard.style.display='none';}}
   });
@@ -498,7 +526,23 @@ function homeCam(t){
   camera.position.set(t.x+14,t.y+11,t.z+17);
   controls.target.copy(t);
 }
+function endTour(){
+  tour=null;
+  document.getElementById('tourBtn').textContent='Fly the lake';
+  if(controls.target)homeCam(controls.target.clone());
+  controls.autoRotate=true;
+}
+document.getElementById('tourBtn').addEventListener('click',function(){
+  if(tour){endTour();return;}
+  if(!tourCurve)return;
+  intro.done=true;
+  controls.autoRotate=false;
+  document.getElementById('hint').style.opacity=0;
+  tour=performance.now();
+  this.textContent='Stop';
+});
 document.getElementById('resetView').addEventListener('click',function(){
+  if(tour){tour=null;document.getElementById('tourBtn').textContent='Fly the lake';}
   if(controls.target)homeCam(controls.target.clone());
   controls.autoRotate=true;
 });

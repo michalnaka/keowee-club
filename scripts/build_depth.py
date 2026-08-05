@@ -24,7 +24,7 @@ LAKES = [  # name, candidate open-water seeds (lon, lat), max depth m (published
     ("jocassee", [(-82.92, 34.97), (-82.94, 34.99)], 107.0),      # 351 ft (SCDNR)
 ]
 OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "depth")
-ELEV_OFF, ELEV_SCALE = 100.0, 0.05              # packed = (m + off) / scale
+ELEV_OFF, ELEV_SCALE = 100.0, 0.2               # packed = (m + off) / scale
 
 
 def tile_xy(lon, lat, z):
@@ -52,7 +52,20 @@ def fetch_dem():
     lon_e = (tx1 + 1) / 2 ** ZOOM * 360 - 180
     lat_n = math.degrees(math.atan(math.sinh(math.pi * (1 - 2 * ty0 / 2 ** ZOOM))))
     lat_s = math.degrees(math.atan(math.sinh(math.pi * (1 - 2 * (ty1 + 1) / 2 ** ZOOM))))
-    return dem, (lon_w, lat_s, lon_e, lat_n)
+
+    # crop to the exact content box (labels + lakes + margins), not tile edges
+    CROP = (-83.09, 34.652, -82.762, 35.088)   # W, S, E, N
+    n = 2 ** ZOOM * 256
+    def px_x(lon): return int((lon + 180) / 360 * n) - tx0 * 256
+    def px_y(lat): return int((1 - math.asinh(math.tan(math.radians(lat))) / math.pi) / 2 * n) - ty0 * 256
+    x0p, x1p = max(0, px_x(CROP[0])), min(dem.shape[1], px_x(CROP[2]))
+    y0p, y1p = max(0, px_y(CROP[3])), min(dem.shape[0], px_y(CROP[1]))
+    dem = dem[y0p:y1p, x0p:x1p]
+    lon_w2 = (tx0 * 256 + x0p) / n * 360 - 180
+    lon_e2 = (tx0 * 256 + x1p) / n * 360 - 180
+    lat_n2 = math.degrees(math.atan(math.sinh(math.pi * (1 - 2 * (ty0 * 256 + y0p) / n))))
+    lat_s2 = math.degrees(math.atan(math.sinh(math.pi * (1 - 2 * (ty0 * 256 + y1p) / n))))
+    return dem, (lon_w2, lat_s2, lon_e2, lat_n2)
 
 
 def flood(band, seed):
