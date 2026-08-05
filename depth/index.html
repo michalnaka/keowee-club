@@ -136,6 +136,9 @@ a{color:inherit}
 <script type="module">
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {LineSegments2} from 'three/addons/lines/LineSegments2.js';
+import {LineSegmentsGeometry} from 'three/addons/lines/LineSegmentsGeometry.js';
+import {LineMaterial} from 'three/addons/lines/LineMaterial.js';
 
 var EXAG=3, KM=0.001, FT=0.3048;
 var DESK=window.matchMedia('(min-width:1000px)').matches;
@@ -154,7 +157,7 @@ canvas.addEventListener('pointerdown',function(){intro.done=true;controls.autoRo
 
 var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
 var drainFt=0,samp=null,landmarks=[],drainAnim=null,terrUniforms=null;
-var tour=null,tourCurve=null,tourLook=null;
+var tour=null,tourCurve=null,tourLook=null,lineMats=[];
 var intro={t0:null,dur:4200,from:null,to:null,done:false};
 var RAMPS=[
  {n:'The Cabana',t:'boat-up bar & grill',q:'Cabana Lake Keowee, 1285 Doug Hollow Rd, Seneca, SC',id:'eat-0',lat:34.776226,lng:-82.92054,kind:'eat'},
@@ -382,27 +385,40 @@ function build(img,roads){
   });
   updateWater();
 
-  // major highways draped on terrain; bridge-style at water crossings
+  // major highways draped on terrain; water crossings render as bridges
   if(roads&&roads.length){
-    var rp2=[],fx=0.06*(W-1)*resX*KM,fz=0.08*(H-1)*resY*KM;
+    var rp2=[],bp2=[],fx=0.06*(W-1)*resX*KM,fz=0.08*(H-1)*resY*KM;
     var halfX=(W-1)*resX*KM/2,halfZ=(H-1)*resY*KM/2;
     roads.forEach(function(way){
-      var prev=null;
+      var prev=null,prevWater=false;
       way.pts.forEach(function(ll){
         var p=samp.fromLL(ll[0],ll[1]);
         if(Math.abs(p.x)>halfX-fx||Math.abs(p.z)>halfZ-fz){prev=null;return;}
         var s=samp.world(p.x,p.z);
+        var water=!!(s&&s.m>0);
         var e=s?(s.m===120?surfaces.keowee:s.m===240?surfaces.jocassee:s.e):p.e;
-        var v=[p.x,(e+7)*EXAG*KM,p.z];
-        if(prev){rp2.push(prev[0],prev[1],prev[2],v[0],v[1],v[2]);}
-        prev=v;
+        var v=[p.x,(e+(water?12:7))*EXAG*KM,p.z];
+        if(prev){
+          var seg=prev.concat(v);
+          if(water||prevWater)bp2.push.apply(bp2,seg);
+          else rp2.push.apply(rp2,seg);
+        }
+        prev=v;prevWater=water;
       });
     });
-    var rg=new THREE.BufferGeometry();
-    rg.setAttribute('position',new THREE.BufferAttribute(new Float32Array(rp2),3));
-    var rl=new THREE.LineSegments(rg,new THREE.LineBasicMaterial({color:0xD9BE82,transparent:true,opacity:0.4}));
-    rl.renderOrder=1;
-    scene.add(rl);
+    function fat(arr,color,width,opacity,order){
+      if(!arr.length)return;
+      var g2=new LineSegmentsGeometry();
+      g2.setPositions(arr);
+      var m2=new LineMaterial({color:color,linewidth:width,transparent:true,opacity:opacity});
+      m2.resolution.set(canvas.clientWidth||800,canvas.clientHeight||600);
+      lineMats.push(m2);
+      var l2=new LineSegments2(g2,m2);
+      l2.renderOrder=order;
+      scene.add(l2);
+    }
+    fat(rp2,0xE2C87E,2.2,0.72,1);
+    fat(bp2,0xF3EDDE,3.2,0.95,3);
   }
 
   var stage=canvas.parentElement;
@@ -658,6 +674,7 @@ window.__depth={frame:frame,
 function resize(){
   var st=canvas.parentElement.getBoundingClientRect();
   renderer.setSize(st.width,st.height,false);
+  lineMats.forEach(function(m){m.resolution.set(st.width,st.height);});
   camera.aspect=st.width/st.height;
   camera.updateProjectionMatrix();
 }
