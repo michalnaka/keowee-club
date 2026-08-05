@@ -151,6 +151,7 @@ a{color:inherit}
     </label>
     <button class="resetv" id="drainPlay" type="button">Drain it</button>
     <button class="resetv" id="tourBtn" type="button">Fly the lake</button>
+    <button class="resetv" id="shareBtn" type="button" data-umami-event="share-depth">Share</button>
     <button class="resetv is-on" id="rampsBtn" type="button" aria-pressed="true">Ramps</button>
     <button class="resetv" id="resetView" type="button">Reset view</button>
   </div>
@@ -658,6 +659,24 @@ function endTour(){
   if(controls.target)homeCam(controls.target.clone());
   controls.autoRotate=true;
 }
+document.getElementById('shareBtn').addEventListener('click',function(){
+  var btn=this,url='https://keowee.club/depth/';
+  var payload={title:'The Lake Keowee Depth Map',text:'Drain Lake Keowee yourself. Live 3D depth map of Keowee & Jocassee.',url:url};
+  if(navigator.share){navigator.share(payload).catch(function(){});}
+  else{
+    function done(){btn.textContent='Link copied!';setTimeout(function(){btn.textContent='Share';},2000);}
+    function legacy(){
+      var t=document.createElement('textarea');
+      t.value=url;t.style.position='fixed';t.style.opacity='0';
+      document.body.appendChild(t);t.select();
+      try{document.execCommand('copy');done();}catch(e){}
+      document.body.removeChild(t);
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText)
+      navigator.clipboard.writeText(url).then(done).catch(legacy);
+    else legacy();
+  }
+});
 document.getElementById('tourBtn').addEventListener('click',function(){
   if(tour){endTour();return;}
   if(!tourCurve)return;
