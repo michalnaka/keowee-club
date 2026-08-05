@@ -31,6 +31,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
+@supports(height:100dvh){html,body{height:100dvh}}
 body{font-family:var(--body);color:#fff;background:radial-gradient(120% 100% at 50% 0%,#0D4A40 0%,var(--keowee-dusk) 55%,#03140F 100%);display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--sunset);outline-offset:2px;border-radius:4px}
@@ -60,7 +61,7 @@ a{color:inherit}
 .drain output{min-width:74px;font-weight:700;color:#fff}
 .resetv{font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:7px 13px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);background:transparent;color:#CFE8E1;cursor:pointer}
 .resetv:hover{background:rgba(82,214,196,.15)}
-@media(max-width:759px){.drain{margin-left:0;width:100%}.drain input{flex:1}}
+
 
 .stage{position:relative;flex:1;min-height:0}
 #scene{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
@@ -89,6 +90,20 @@ a{color:inherit}
 .rcard .racts a{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:6px 11px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);color:#CFE8E1;text-decoration:none}
 .rcard .racts a:hover{background:rgba(82,214,196,.15)}
 .resetv.is-on{background:var(--clearwater);border-color:var(--clearwater);color:var(--keowee-dusk)}
+@media(max-width:759px){
+  .depthbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));top:auto;z-index:1001;background:rgba(6,40,33,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(82,214,196,.28);border-radius:18px;padding:10px 12px 12px}
+  .depthbar-inner{padding-left:0;gap:8px 8px;min-height:0}
+  .depthbar h1{display:none}
+  .live-chip{font-size:.68rem;padding:5px 10px;border-width:1px}
+  .drain{margin-left:0;width:100%;font-size:.68rem;gap:8px}
+  .drain input{flex:1}
+  .drain output{min-width:58px;font-size:.68rem}
+  .resetv{font-size:.68rem;padding:6px 11px}
+  .hint{top:10px;font-size:.62rem;padding:5px 11px;max-width:94%;text-align:center}
+  .foot-note{bottom:calc(186px + env(safe-area-inset-bottom));font-size:.54rem;padding:0 14px;opacity:.75}
+  .drain output{min-width:0;white-space:nowrap;font-size:.62rem}
+  .depthbar-inner{overflow:hidden}
+}
 </style>
 </head>
 <body>
@@ -146,6 +161,9 @@ import {LineMaterial} from 'three/addons/lines/LineMaterial.js';
 
 var EXAG=3, KM=0.001, FT=0.3048;
 var DESK=window.matchMedia('(min-width:1000px)').matches;
+if(!window.matchMedia('(pointer:fine)').matches)document.getElementById('hint').textContent='One finger pans · two fingers spin & zoom';
+var FULL_LABEL=window.matchMedia('(pointer:fine)').matches?'Full pond':'Full';
+document.getElementById('drainOut').textContent=FULL_LABEL;
 var STEP=DESK?3:5;
 
 var canvas=document.getElementById('scene');
@@ -637,7 +655,7 @@ var drain=document.getElementById('drain'),drainOut=document.getElementById('dra
 drain.addEventListener('input',function(){
   if(drainAnim){drainAnim=null;document.getElementById('drainPlay').textContent='Drain it';}
   drainFt=parseFloat(drain.value)||0;
-  drainOut.textContent=drainFt===0?'Full pond':'−'+drainFt+' ft';
+  drainOut.textContent=drainFt===0?FULL_LABEL:'−'+drainFt+' ft';
   updateWater();
 });
 
@@ -651,7 +669,7 @@ function tickDrain(){
   else{v=0;drainAnim=null;document.getElementById('drainPlay').textContent='Drain it';}
   drainFt=Math.round(v/5)*5;
   drain.value=drainFt;
-  drainOut.textContent=drainFt===0?'Full pond':'−'+drainFt+' ft';
+  drainOut.textContent=drainFt===0?FULL_LABEL:'−'+drainFt+' ft';
   updateWater();
 }
 document.getElementById('drainPlay').addEventListener('click',function(){
