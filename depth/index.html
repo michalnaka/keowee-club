@@ -71,6 +71,7 @@ a{color:inherit}
 .foot-note{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.03em;color:rgba(207,232,225,.55);text-align:center;pointer-events:none;z-index:4}
 .hint{position:absolute;top:14px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(207,232,225,.75);background:rgba(6,40,33,.55);border-radius:999px;padding:7px 14px;z-index:4;pointer-events:none;transition:opacity .6s}
 .probe{position:absolute;pointer-events:none;display:none;background:rgba(6,40,33,.88);border:1.5px solid rgba(82,214,196,.55);color:#BFF3EA;font-family:var(--mono);font-size:.75rem;font-weight:700;padding:6px 12px;border-radius:999px;transform:translate(-50%,-150%);white-space:nowrap;z-index:6}
+.probe.tourcap{left:50% !important;top:auto !important;bottom:14%;transform:translate(-50%,0);font-size:.92rem;padding:9px 18px;letter-spacing:.04em;border-color:rgba(82,214,196,.8)}
 .lm{position:absolute;pointer-events:none;display:none;font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(233,244,240,.9);text-shadow:0 1px 8px rgba(3,20,15,.95);transform:translate(-50%,-100%);text-align:center;z-index:3}
 .lm i{display:block;width:2px;height:12px;background:rgba(233,244,240,.45);margin:3px auto 0;border-radius:1px}
 .lm.water{color:var(--clearwater);font-style:italic}
@@ -195,7 +196,7 @@ canvas.addEventListener('pointerdown',function(){intro.done=true;controls.autoRo
 
 var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
 var drainFt=0,samp=null,landmarks=[],drainAnim=null,terrUniforms=null;
-var tour=null,tourCurve=null,tourLook=null,lineMats=[];
+var tour=null,tourCurve=null,tourLook=null,lineMats=[],tourFeat=null,tourFeatT=0,tourQueue=[],tourSeen=null;
 var intro={t0:null,dur:4200,from:null,to:null,done:false};
 var RAMPS=[
  {n:'The Cabana',t:'boat-up bar & grill',q:'Cabana Lake Keowee, 1285 Doug Hollow Rd, Seneca, SC',id:'eat-0',lat:34.776226,lng:-82.92054,kind:'eat'},
@@ -561,7 +562,7 @@ function frame(){
       camera.position.copy(tourCurve.getPointAt(tt));
       var g=tourLook.getPointAt(Math.min(1,tt+0.05));
       camera.lookAt(g);
-      var best=null,bd=1e9;
+      var best=null,bd=1e9,nowT=performance.now();
       landmarks.forEach(function(l){
         var dx=l.pos.x-g.x,dz=l.pos.z-g.z,d2=dx*dx+dz*dz;
         l.el.classList.toggle('lit',d2<6.8);
@@ -570,13 +571,18 @@ function frame(){
         var dx=rp.pos.x-g.x,dz=rp.pos.z-g.z,d2=dx*dx+dz*dz;
         var lit=d2<6.8;
         rp.el.classList.toggle('lit',lit);
-        if(lit&&d2<bd){bd=d2;best=rp;}
+        if(lit&&!tourSeen.has(rp)){tourSeen.add(rp);tourQueue.push(rp);}
       });
-      if(best&&best.el.style.display==='block'){
-        probe.textContent=best.r.n;
+      // every passed pin gets a captioned moment, in order, min dwell each
+      var DWELL=2600;
+      if(tourFeat===null||nowT-tourFeatT>DWELL){
+        var next=tourQueue.shift()||null;
+        if(next||nowT-tourFeatT>DWELL){tourFeat=next;tourFeatT=nowT;}
+      }
+      if(tourFeat){
+        probe.textContent=tourFeat.r.n;
+        probe.classList.add('tourcap');
         probe.style.display='block';
-        probe.style.left=best.el.style.left;
-        probe.style.top=(parseFloat(best.el.style.top)-12)+'px';
       }else probe.style.display='none';
     }
   }
@@ -633,7 +639,8 @@ function homeCam(t){
   controls.target.copy(t);
 }
 function endTour(){
-  tour=null;
+  tour=null;tourFeat=null;
+  probe.classList.remove('tourcap');
   document.querySelectorAll('.lit').forEach(function(e){e.classList.remove('lit');});
   probe.style.display='none';
   document.getElementById('tourBtn').textContent='Fly the lake';
@@ -643,6 +650,7 @@ function endTour(){
 document.getElementById('tourBtn').addEventListener('click',function(){
   if(tour){endTour();return;}
   if(!tourCurve)return;
+  tourQueue=[];tourSeen=new Set();tourFeat=null;tourFeatT=performance.now();
   intro.done=true;
   controls.autoRotate=false;
   document.getElementById('hint').style.opacity=0;
