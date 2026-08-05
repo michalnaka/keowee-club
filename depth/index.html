@@ -200,16 +200,17 @@ vec3 rampDepth(float d){
 
 Promise.all([
   fetch('meta.json').then(function(r){return r.json();}),
-  new Promise(function(res,rej){var im=new Image();im.onload=function(){res(im);};im.onerror=rej;im.src='basin.png';})
+  new Promise(function(res,rej){var im=new Image();im.onload=function(){res(im);};im.onerror=rej;im.src='basin.png';}),
+  fetch('roads.json').then(function(r){return r.ok?r.json():[];}).catch(function(){return [];})
 ]).then(function(vals){
   meta=vals[0];
-  build(vals[1]);
+  build(vals[1],vals[2]);
   document.getElementById('load').style.display='none';
 }).catch(function(){
   document.getElementById('load').innerHTML='<span>Could not load the basin — try a refresh.</span>';
 });
 
-function build(img){
+function build(img,roads){
   var W=meta.width,H=meta.height,f=meta.frame;
   var cv=document.createElement('canvas');cv.width=W;cv.height=H;
   var cx2=cv.getContext('2d',{willReadFrequently:true});
@@ -380,6 +381,29 @@ function build(img){
     waterMeshes[name]=wm;
   });
   updateWater();
+
+  // major highways draped on terrain; bridge-style at water crossings
+  if(roads&&roads.length){
+    var rp2=[],fx=0.06*(W-1)*resX*KM,fz=0.08*(H-1)*resY*KM;
+    var halfX=(W-1)*resX*KM/2,halfZ=(H-1)*resY*KM/2;
+    roads.forEach(function(way){
+      var prev=null;
+      way.pts.forEach(function(ll){
+        var p=samp.fromLL(ll[0],ll[1]);
+        if(Math.abs(p.x)>halfX-fx||Math.abs(p.z)>halfZ-fz){prev=null;return;}
+        var s=samp.world(p.x,p.z);
+        var e=s?(s.m===120?surfaces.keowee:s.m===240?surfaces.jocassee:s.e):p.e;
+        var v=[p.x,(e+7)*EXAG*KM,p.z];
+        if(prev){rp2.push(prev[0],prev[1],prev[2],v[0],v[1],v[2]);}
+        prev=v;
+      });
+    });
+    var rg=new THREE.BufferGeometry();
+    rg.setAttribute('position',new THREE.BufferAttribute(new Float32Array(rp2),3));
+    var rl=new THREE.LineSegments(rg,new THREE.LineBasicMaterial({color:0xD9BE82,transparent:true,opacity:0.4}));
+    rl.renderOrder=1;
+    scene.add(rl);
+  }
 
   var stage=canvas.parentElement;
   LM.forEach(function(l){
