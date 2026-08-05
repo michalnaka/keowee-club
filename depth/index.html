@@ -489,15 +489,15 @@ function build(img,roads){
     stage.appendChild(el);
     var rp={el:el,r:r,ft:Math.round(best/FT),pos:new THREE.Vector3(p.x,(surfaces.keowee+8)*EXAG*KM,p.z)};
     el.addEventListener('mouseenter',function(){
-      var down=liveDeficit.keowee+drainFt;
-      var w=Math.max(0,rp.ft-Math.round(down));
-      probe.textContent=r.kind==='eat'?(r.n+' · water at the dock ≈ '+w+' ft'):(r.n+(down>15?' · high & dry':' · water off here ≈ '+w+' ft'));
+      if(openRamp)return;
+      probe.textContent=r.n;
       probe.style.display='block';
       probe.style.left=el.style.left;probe.style.top=(parseFloat(el.style.top)-10)+'px';
     });
     el.addEventListener('mouseleave',function(){probe.style.display='none';});
     el.addEventListener('click',function(ev){
       ev.stopPropagation();
+      probe.style.display='none';
       var down=liveDeficit.keowee+drainFt;
       openRamp=rp;
       rcard.innerHTML='<h4>'+r.n+'</h4><div class="rmeta">'+r.t+' · '+(down>15?'high &amp; dry at −'+Math.round(down)+' ft':'water ≈ '+Math.max(0,rp.ft-Math.round(down))+' ft')+'</div>'
