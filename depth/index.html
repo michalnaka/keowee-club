@@ -61,6 +61,10 @@ a{color:inherit}
 .drain output{min-width:74px;font-weight:700;color:#fff}
 .resetv{font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:7px 13px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);background:transparent;color:#CFE8E1;cursor:pointer}
 .resetv:hover{background:rgba(82,214,196,.15)}
+.seg{display:inline-flex;border:1.5px solid rgba(82,214,196,.6);border-radius:999px;overflow:hidden}
+.segbtn{font-family:var(--mono);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:7px 13px;border:none;background:transparent;color:#CFE8E1;cursor:pointer;transition:background .15s ease,color .15s ease}
+.segbtn:hover{background:rgba(82,214,196,.15)}
+.segbtn.is-on{background:var(--clearwater);color:var(--keowee-dusk)}
 
 
 .stage{position:relative;flex:1;min-height:0}
@@ -146,13 +150,17 @@ a{color:inherit}
   <div class="depthbar-inner">
     <h1>The <em>deep</em> end</h1>
     <span class="live-chip" id="liveChip"><span class="live-dot"></span><span id="liveText">Checking the gauge…</span></span>
+    <div class="seg" role="group" aria-label="Lighting" id="sunSeg">
+      <button class="segbtn is-on" type="button" data-sun="day">Day</button>
+      <button class="segbtn" type="button" data-sun="sunrise" data-umami-event="sun-mode">Sunrise</button>
+      <button class="segbtn" type="button" data-sun="sunset" data-umami-event="sun-mode">Sunset</button>
+    </div>
     <label class="drain">Drain
       <input type="range" id="drain" min="0" max="300" value="0" step="5" aria-label="Drain the lake (feet below full pond)">
       <output id="drainOut">Full pond</output>
     </label>
     <button class="resetv" id="drainPlay" type="button">Drain it</button>
     <button class="resetv" id="tourBtn" type="button">Fly the lake</button>
-    <button class="resetv" id="sunBtn" type="button" data-umami-event="sun-mode">Sunset</button>
     <button class="resetv" id="shareBtn" type="button" data-umami-event="share-depth">Share</button>
     <button class="resetv is-on" id="rampsBtn" type="button" aria-pressed="true">Ramps</button>
     <button class="resetv" id="resetView" type="button">Reset view</button>
@@ -200,7 +208,7 @@ controls.screenSpacePanning=false;
 controls.mouseButtons={LEFT:THREE.MOUSE.PAN,MIDDLE:THREE.MOUSE.DOLLY,RIGHT:THREE.MOUSE.ROTATE};
 controls.touches={ONE:THREE.TOUCH.PAN,TWO:THREE.TOUCH.DOLLY_ROTATE};
 var panBounds=null;
-canvas.addEventListener('pointerdown',function(){intro.done=true;controls.autoRotate=false;document.getElementById('hint').style.opacity=0;if(tour)endTour();});
+canvas.addEventListener('pointerdown',function(){intro.done=true;controls.autoRotate=false;document.getElementById('hint').style.opacity=0;if(tour)endTour();viewTween=null;});
 // Safari macOS: trackpad pinch arrives as proprietary gesture events, not wheel.
 // Only wire these on fine-pointer devices so iOS two-finger touch isn't doubled.
 if(window.matchMedia('(pointer:fine)').matches&&'GestureEvent' in window){
@@ -221,6 +229,7 @@ if(window.matchMedia('(pointer:fine)').matches&&'GestureEvent' in window){
 
 var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
 var drainFt=0,samp=null,landmarks=[],drainAnim=null,terrUniforms=null,sunShared=null,sunMode='day',sunWorldPos=null;
+var viewTween=null;
 var tour=null,tourCurve=null,tourLook=null,lineMats=[],tourFeat=null,tourFeatT=0,tourQueue=[],tourSeen=null;
 var intro={t0:null,dur:4200,from:null,to:null,done:false};
 var RAMPS=[
@@ -624,6 +633,15 @@ function frame(){
       }else probe.style.display='none';
     }
   }
+  else if(viewTween){
+    var vt=(performance.now()-viewTween.t0)/viewTween.dur;
+    if(vt>=1){camera.position.copy(viewTween.to);viewTween=null;}
+    else{
+      var ve=vt*vt*(3-2*vt);
+      camera.position.lerpVectors(viewTween.from,viewTween.to,ve);
+    }
+    camera.lookAt(controls.target);
+  }
   else if(intro.done){
     controls.update();
     if(panBounds){
@@ -719,15 +737,16 @@ function compass(az){
 }
 function setSunMode(mode){
   sunMode=mode;
-  var chip=document.getElementById('sunChip'),disc=document.getElementById('sunDisc'),btn=document.getElementById('sunBtn');
+  var chip=document.getElementById('sunChip'),disc=document.getElementById('sunDisc');
+  document.querySelectorAll('#sunSeg .segbtn').forEach(function(b){b.classList.toggle('is-on',b.getAttribute('data-sun')===mode);});
   if(!sunShared)return;
+  if(tour)endTour();
   if(mode==='day'){
     sunShared.uSun.value.set(-0.55,0.62,0.46).normalize();
     sunShared.uTint.value.set(1,1,1);
     sunShared.uAmb.value=0.35;
     chip.style.display='none';disc.style.display='none';
     sunWorldPos=null;
-    btn.textContent='Sunset';
     return;
   }
   var s=solarInfo();
@@ -738,19 +757,24 @@ function setSunMode(mode){
   if(mode==='sunset'){
     sunShared.uTint.value.set(1.18,0.78,0.55);
     chip.textContent='Sunset today '+s.setT+' · '+compass(az);
-    btn.textContent='Sunrise';
   }else{
     sunShared.uTint.value.set(1.08,0.88,0.74);
     chip.textContent='Sunrise today '+s.riseT+' · '+compass(az);
-    btn.textContent='Daylight';
   }
   sunShared.uAmb.value=0.2;
   chip.style.display='block';
   sunWorldPos=controls.target.clone().add(dir.clone().multiplyScalar(60));
   disc.style.display='block';
+  intro.done=true;controls.autoRotate=false;
+  var dist=Math.max(14,Math.min(30,camera.position.distanceTo(controls.target)));
+  var horiz=new THREE.Vector3(dir.x,0,dir.z).normalize();
+  var to=controls.target.clone().addScaledVector(horiz,-dist*0.9);
+  to.y=controls.target.y+dist*0.33;
+  viewTween={from:camera.position.clone(),to:to,t0:performance.now(),dur:1400};
 }
-document.getElementById('sunBtn').addEventListener('click',function(){
-  setSunMode(sunMode==='day'?'sunset':sunMode==='sunset'?'sunrise':'day');
+document.getElementById('sunSeg').addEventListener('click',function(e){
+  var b=e.target.closest('.segbtn');
+  if(b)setSunMode(b.getAttribute('data-sun'));
 });
 document.getElementById('shareBtn').addEventListener('click',function(){
   var btn=this,url='https://keowee.club/depth/';
