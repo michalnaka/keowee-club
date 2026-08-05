@@ -72,6 +72,8 @@ a{color:inherit}
 .hint{position:absolute;top:14px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(207,232,225,.75);background:rgba(6,40,33,.55);border-radius:999px;padding:7px 14px;z-index:4;pointer-events:none;transition:opacity .6s}
 .probe{position:absolute;pointer-events:none;display:none;background:rgba(6,40,33,.88);border:1.5px solid rgba(82,214,196,.55);color:#BFF3EA;font-family:var(--mono);font-size:.75rem;font-weight:700;padding:6px 12px;border-radius:999px;transform:translate(-50%,-150%);white-space:nowrap;z-index:6}
 .probe.tourcap{left:50% !important;top:auto !important;bottom:14%;transform:translate(-50%,0);font-size:.92rem;padding:9px 18px;letter-spacing:.04em;border-color:rgba(82,214,196,.8)}
+.sunchip{position:absolute;display:none;top:52px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#FFDCA8;background:rgba(40,22,8,.6);border:1px solid rgba(255,194,75,.5);border-radius:999px;padding:6px 14px;z-index:4;pointer-events:none;white-space:nowrap}
+.sundisc{position:absolute;display:none;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:radial-gradient(circle,#FFF3D6 0%,#FFC24B 45%,rgba(255,110,82,.6) 75%,transparent 100%);box-shadow:0 0 30px 10px rgba(255,180,90,.45);z-index:3;pointer-events:none}
 .lm{position:absolute;pointer-events:none;display:none;font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(233,244,240,.9);text-shadow:0 1px 8px rgba(3,20,15,.95);transform:translate(-50%,-100%);text-align:center;z-index:3}
 .lm i{display:block;width:2px;height:12px;background:rgba(233,244,240,.45);margin:3px auto 0;border-radius:1px}
 .lm.water{color:var(--clearwater);font-style:italic}
@@ -150,6 +152,7 @@ a{color:inherit}
     </label>
     <button class="resetv" id="drainPlay" type="button">Drain it</button>
     <button class="resetv" id="tourBtn" type="button">Fly the lake</button>
+    <button class="resetv" id="sunBtn" type="button" data-umami-event="sun-mode">Sunset</button>
     <button class="resetv" id="shareBtn" type="button" data-umami-event="share-depth">Share</button>
     <button class="resetv is-on" id="rampsBtn" type="button" aria-pressed="true">Ramps</button>
     <button class="resetv" id="resetView" type="button">Reset view</button>
@@ -161,6 +164,8 @@ a{color:inherit}
   <div class="load" id="load"><span class="wavey">🌊</span><span>Sounding the bottom…</span></div>
   <div class="hint" id="hint">Drag to pan · right-drag to spin · scroll to zoom</div>
   <div class="probe" id="probe"></div>
+  <div class="sunchip" id="sunChip"></div>
+  <div class="sundisc" id="sunDisc"></div>
   <div class="rcard" id="rcard"></div>
   <div class="foot-note">Terrain: USGS via AWS Open Data · Lakebed modeled from shoreline shape, not sonar · Not for navigation</div>
 </div>
@@ -215,7 +220,7 @@ if(window.matchMedia('(pointer:fine)').matches&&'GestureEvent' in window){
 }
 
 var meta,waterMeshes={},surfaces={},liveDeficit={keowee:0,jocassee:0};
-var drainFt=0,samp=null,landmarks=[],drainAnim=null,terrUniforms=null;
+var drainFt=0,samp=null,landmarks=[],drainAnim=null,terrUniforms=null,sunShared=null,sunMode='day',sunWorldPos=null;
 var tour=null,tourCurve=null,tourLook=null,lineMats=[],tourFeat=null,tourFeatT=0,tourQueue=[],tourSeen=null;
 var intro={t0:null,dur:4200,from:null,to:null,done:false};
 var RAMPS=[
@@ -321,10 +326,12 @@ function build(img,roads){
     uSlope:{value:new THREE.Vector2(EXAG*KM/(2*resX*KM),EXAG*KM/(2*resY*KM))},
     uSurfK:{value:surfaces.keowee},uSurfJ:{value:surfaces.jocassee},
     uWaterYK:{value:surfaces.keowee},uWaterYJ:{value:surfaces.jocassee},
-    uSun:{value:new THREE.Vector3(-0.55,0.62,0.46).normalize()}};
+    uSun:{value:new THREE.Vector3(-0.55,0.62,0.46).normalize()},
+    uTint:{value:new THREE.Vector3(1,1,1)},uAmb:{value:0.35}};
   terrUniforms=shared;
 
   // terrain: coarse grid geometry, per-pixel shading
+  sunShared=shared;
   var gw=Math.floor((W-1)/STEP)+1,gh=Math.floor((H-1)/STEP)+1;
   var pos=new Float32Array(gw*gh*3),uv=new Float32Array(gw*gh*2);
   for(var gy=0;gy<gh;gy++)for(var gx=0;gx<gw;gx++){
@@ -348,8 +355,8 @@ function build(img,roads){
       varying vec2 vUv;
       uniform sampler2D uElev,uMaskN,uMaskL;
       uniform vec2 uTexel,uSlope;
-      uniform float uSurfK,uSurfJ,uWaterYK,uWaterYJ;
-      uniform vec3 uSun;
+      uniform float uSurfK,uSurfJ,uWaterYK,uWaterYJ,uAmb;
+      uniform vec3 uSun,uTint;
       void main(){
         float h=texture2D(uElev,vUv).r;
         float hR=texture2D(uElev,vUv+vec2(uTexel.x,0.)).r,hL=texture2D(uElev,vUv-vec2(uTexel.x,0.)).r;
@@ -379,7 +386,8 @@ function build(img,roads){
         }
         float dif=max(dot(nrm,uSun),0.);
         float hemi=mix(.45,1.,nrm.y*.5+.5);
-        col*=(.35*hemi+.85*dif);
+        col*=(uAmb*hemi+.85*dif);
+        col*=uTint;
         float ea=smoothstep(0.,.055,vUv.x)*smoothstep(0.,.055,1.-vUv.x)
                 *smoothstep(0.,.075,vUv.y)*smoothstep(0.,.075,1.-vUv.y);
         gl_FragColor=vec4(col,ea);
@@ -407,14 +415,14 @@ function build(img,roads){
       transparent:true,depthWrite:false,
       uniforms:THREE.UniformsUtils.merge([{
         uElev:{value:null},uMaskN:{value:null},uMaskL:{value:null},
-        uLakeVal:{value:lv},uWaterY:{value:0},uTime:{value:0},uSun:{value:null},uCam:{value:new THREE.Vector3()}
+        uLakeVal:{value:lv},uWaterY:{value:0},uTime:{value:0},uSun:{value:null},uTint:{value:null},uCam:{value:new THREE.Vector3()}
       }]),
       vertexShader:'varying vec2 vUv;varying vec3 vW;void main(){vUv=uv;vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;gl_Position=projectionMatrix*viewMatrix*w;}',
       fragmentShader:GLSL_RAMPS+`
         varying vec2 vUv;varying vec3 vW;
         uniform sampler2D uElev,uMaskN,uMaskL;
         uniform float uLakeVal,uWaterY,uTime;
-        uniform vec3 uSun,uCam;
+        uniform vec3 uSun,uCam,uTint;
         void main(){
           float mN=texture2D(uMaskN,vUv).r*255.;
           if(abs(mN-uLakeVal)>40.)discard;
@@ -435,6 +443,7 @@ function build(img,roads){
           vec3 hf=normalize(v+uSun);
           float spec=pow(max(dot(n,hf),0.),150.);
           col+=vec3(.95,.97,.9)*spec*.85;
+          col*=uTint;
           float a=(.42+.28*smoothstep(0.,25.,depth))*edge*shore;
           a=min(1.,a+spec*.3);
           gl_FragColor=vec4(col,a);
@@ -443,6 +452,7 @@ function build(img,roads){
     wmat.uniforms.uMaskN.value=uMaskN;
     wmat.uniforms.uMaskL.value=uMaskL;
     wmat.uniforms.uSun.value=shared.uSun.value;
+    wmat.uniforms.uTint.value=shared.uTint.value;
     var wm=new THREE.Mesh(wgeo,wmat);
     wm.renderOrder=2;
     scene.add(wm);
@@ -647,6 +657,15 @@ function tickLabels(){
       l.el.style.top=((-v.y*0.5+0.5)*h)+'px';
     }else l.el.style.display='none';
   });
+  if(sunWorldPos){
+    var sd=document.getElementById('sunDisc');
+    v.copy(sunWorldPos).project(camera);
+    if(v.z<1&&Math.abs(v.x)<1.1&&Math.abs(v.y)<1.1){
+      sd.style.display='block';
+      sd.style.left=((v.x*0.5+0.5)*w)+'px';
+      sd.style.top=((-v.y*0.5+0.5)*h)+'px';
+    }else sd.style.display='none';
+  }
   var rcard=document.getElementById('rcard');
   var down=liveDeficit.keowee+drainFt;
   ramps.forEach(function(rp){
@@ -675,6 +694,64 @@ function endTour(){
   if(controls.target)homeCam(controls.target.clone());
   controls.autoRotate=true;
 }
+// NOAA-style solar position for the lake (34.85N, -82.93W)
+function solarInfo(){
+  var LAT=34.85*Math.PI/180,LNG=-82.93;
+  var now=new Date();
+  var start=new Date(now.getFullYear(),0,0);
+  var doy=Math.floor((now-start)/864e5);
+  var g=2*Math.PI/365*(doy-1);
+  var decl=0.006918-0.399912*Math.cos(g)+0.070257*Math.sin(g)-0.006758*Math.cos(2*g)+0.000907*Math.sin(2*g)-0.002697*Math.cos(3*g)+0.00148*Math.sin(3*g);
+  var eqt=229.18*(0.000075+0.001868*Math.cos(g)-0.032077*Math.sin(g)-0.014615*Math.cos(2*g)-0.040849*Math.sin(2*g));
+  var ha=Math.acos(Math.cos(90.833*Math.PI/180)/(Math.cos(LAT)*Math.cos(decl))-Math.tan(LAT)*Math.tan(decl));
+  var riseUTC=720-4*(LNG+ha*180/Math.PI)-eqt;
+  var setUTC=720-4*(LNG-ha*180/Math.PI)-eqt;
+  function toLocal(mins){
+    var d=new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate(),0,mins));
+    return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'});
+  }
+  var azRise=Math.acos(Math.sin(decl)/Math.cos(LAT));
+  return {riseAz:azRise,setAz:2*Math.PI-azRise,riseT:toLocal(riseUTC),setT:toLocal(setUTC)};
+}
+function compass(az){
+  var dirs=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+  return dirs[Math.round(az/(Math.PI/8))%16];
+}
+function setSunMode(mode){
+  sunMode=mode;
+  var chip=document.getElementById('sunChip'),disc=document.getElementById('sunDisc'),btn=document.getElementById('sunBtn');
+  if(!sunShared)return;
+  if(mode==='day'){
+    sunShared.uSun.value.set(-0.55,0.62,0.46).normalize();
+    sunShared.uTint.value.set(1,1,1);
+    sunShared.uAmb.value=0.35;
+    chip.style.display='none';disc.style.display='none';
+    sunWorldPos=null;
+    btn.textContent='Sunset';
+    return;
+  }
+  var s=solarInfo();
+  var az=mode==='sunset'?s.setAz:s.riseAz;
+  var el=5.5*Math.PI/180;
+  var dir=new THREE.Vector3(Math.sin(az)*Math.cos(el),Math.sin(el),-Math.cos(az)*Math.cos(el));
+  sunShared.uSun.value.copy(dir);
+  if(mode==='sunset'){
+    sunShared.uTint.value.set(1.18,0.78,0.55);
+    chip.textContent='Sunset today '+s.setT+' · '+compass(az);
+    btn.textContent='Sunrise';
+  }else{
+    sunShared.uTint.value.set(1.08,0.88,0.74);
+    chip.textContent='Sunrise today '+s.riseT+' · '+compass(az);
+    btn.textContent='Daylight';
+  }
+  sunShared.uAmb.value=0.2;
+  chip.style.display='block';
+  sunWorldPos=controls.target.clone().add(dir.clone().multiplyScalar(60));
+  disc.style.display='block';
+}
+document.getElementById('sunBtn').addEventListener('click',function(){
+  setSunMode(sunMode==='day'?'sunset':sunMode==='sunset'?'sunrise':'day');
+});
 document.getElementById('shareBtn').addEventListener('click',function(){
   var btn=this,url='https://keowee.club/depth/';
   var payload={title:'The Lake Keowee Depth Map',text:'Drain Lake Keowee yourself. Live 3D depth map of Keowee & Jocassee.',url:url};
