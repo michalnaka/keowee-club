@@ -21,8 +21,9 @@ PAGES = [
     ("/weekend/", ["weekend/index.html", "data/weekend.json"]),
     ("/swim/", ["swim/index.html"]),
     ("/facts/", ["facts/index.html"]),
+    ("/today/", ["today/index.html"]),
 ]
-FREQ = {"/weekend/": "weekly", "/lake-level/": "daily"}
+FREQ = {"/weekend/": "weekly", "/lake-level/": "daily", "/today/": "daily"}
 
 def last_commit_date(paths):
     dates = []

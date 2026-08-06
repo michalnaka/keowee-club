@@ -198,6 +198,7 @@ def render_guide(guide: dict) -> str:
 <meta name="description" content="{esc(guide["description"])}">
 <link rel="canonical" href="{canonical}">
 <meta name="theme-color" content="#0A3A34">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=2">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta property="og:type" content="article">
@@ -228,6 +229,7 @@ def render_guide(guide: dict) -> str:
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
+      <li><a href="/today/">Today</a></li>
       <li><a href="/guides/lake-keowee-first-timer/" aria-current="page">Guides</a></li>
       <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
       <li><a href="/lake-level/">Lake Level</a></li>
