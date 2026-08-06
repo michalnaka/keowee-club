@@ -83,6 +83,7 @@ a{color:inherit}
 .btn:hover{transform:translateY(-2px)}
 .btn-coral{background:var(--sunset);color:#fff}
 .btn-ghost{border:2px solid var(--clearwater);color:var(--clearwater)}
+#todayBtn b{color:var(--goldhour)}
 .hero-wave{position:absolute;left:0;right:0;bottom:-1px;display:block;width:100%}
 .lake-report{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:10px 16px;border-radius:999px;background:rgba(82,214,196,.1);border:1px solid rgba(82,214,196,.35);text-decoration:none;font-family:var(--mono);font-size:.8rem;color:#CFE8E1;transition:background .15s ease,border-color .15s ease}
 .lake-report:hover{background:rgba(82,214,196,.18);border-color:var(--clearwater)}
@@ -302,6 +303,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
     <p>Where locals eat and drink, a live lake report, and a map of every spot worth docking at — curated by people who actually live on this water, not a tourism board.</p>
     <div class="hero-actions">
       <a class="btn btn-coral" href="/weekend/">This weekend</a>
+      <a class="btn btn-ghost" id="todayBtn" href="/today/">Today's lake report</a>
       <a class="btn btn-ghost" href="/guides/lake-keowee-first-timer/">First-timer guide</a>
     </div>
     <a class="lake-report" id="lakeReport" href="/lake-level/" hidden>
@@ -510,6 +512,30 @@ document.addEventListener('click',function(e){
   var count=section.querySelector('.count');
   if(count)count.textContent=(n<10?'0':'')+n+' spots';
 });
+
+// Today's lake day score for the hero chip. Fails silently to the static label.
+(function(){
+  var btn=document.getElementById('todayBtn');
+  if(!btn)return;
+  Promise.all([
+    fetch('https://api.weather.gov/gridpoints/GSP/45,41/forecast',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}),
+    fetch('https://api.hydro-derived.duke-energy.app/lakes/current-level').then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return null;})
+  ]).then(function(res){
+    var p=(res[0].properties.periods||[]).filter(function(x){return x.isDaytime;})[0];
+    if(!p)return;
+    var down=null;
+    if(res[1]){var k=res[1].find(function(l){return l.LakeName==='KEOWEE';});var a=k&&parseFloat(k.Actual);if(a&&!isNaN(a))down=Math.max(0,100-a);}
+    var rain=(p.probabilityOfPrecipitation&&p.probabilityOfPrecipitation.value)||0;
+    var m=(p.windSpeed||'').match(/(\d+)(?:\s*to\s*(\d+))?\s*mph/);
+    var w=m?+(m[2]||m[1]):0,t=p.temperature,s=10;
+    if(rain>=60)s-=4;else if(rain>=40)s-=2.5;else if(rain>=20)s-=1;
+    if(w>20)s-=4;else if(w>14)s-=2.5;else if(w>8)s-=1;
+    if(t<60)s-=4;else if(t<70)s-=2;else if(t>95)s-=1;
+    if(down!=null&&down>4)s-=1;
+    s=Math.max(1,Math.min(10,Math.round(s*2)/2));
+    btn.innerHTML='Today: <b>'+(s%1?s.toFixed(1):s)+'/10</b>';
+  }).catch(function(){});
+})();
 
 // Live lake + sky data for the hero badge and ticker. Each piece fails silently to its static text.
 (function(){
