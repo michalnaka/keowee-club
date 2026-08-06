@@ -8,6 +8,9 @@
 
 ## Key pages
 
+- [Daily lake report](https://keowee.club/today/): A 1-10 "lake day" score computed
+  client-side from the National Weather Service forecast (wind, rain, temperature),
+  Duke Energy's live water level, and the day's sunset time. Updated continuously.
 - [Lake level (live + history)](https://keowee.club/lake-level/): Current level of both
   lakes from Duke Energy's gauge, logged 4x daily since August 2026, with an interactive
   history chart. Full pond: Keowee 800 ft, Jocassee 1,110 ft.

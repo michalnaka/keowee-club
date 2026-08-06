@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lake Keowee Today — Conditions, Wind &amp; the Lake Day Score | keowee.club</title>
+<meta name="description" content="Is today a lake day? Live score for Lake Keowee from the NWS forecast, wind, rain chances, the Duke Energy water level, and tonight's sunset time. Updated continuously.">
+<link rel="canonical" href="https://keowee.club/today/">
+<meta name="theme-color" content="#0A3A34">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="keowee.club">
+<meta property="og:title" content="Is today a lake day? The Keowee report">
+<meta property="og:description" content="One score every morning: forecast, wind, rain, water level, sunset. For Lake Keowee &amp; Lake Jocassee.">
+<meta property="og:url" content="https://keowee.club/today/">
+<meta property="og:image" content="https://keowee.club/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --keowee-deep:#0A3A34;--keowee-dusk:#062821;--clearwater:#52D6C4;--clearwater-pale:#BFF3EA;
+  --shallows:#EFF8F3;--sunset:#FF6E52;--goldhour:#FFC24B;--ink:#0E2622;--ink-soft:#3E5A54;--card:#FFFFFF;
+  --radius-lg:24px;--radius-md:16px;--radius-sm:10px;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;--body:'Instrument Sans',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--body);color:var(--ink);background:var(--shallows);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sunset);outline-offset:2px;border-radius:4px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,58,52,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px}
+.wordmark{text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.pennant-logo{width:112px;height:auto;display:block;filter:drop-shadow(0 5px 12px rgba(6,40,33,.4))}
+.nav-links{display:flex;gap:4px;list-style:none;padding:5px;border:1px solid rgba(82,214,196,.24);border-radius:999px;background:rgba(6,40,33,.38);font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.nav-links a{display:block;padding:7px 11px;border-radius:999px;text-decoration:none;opacity:.92;transition:background .15s ease,color .15s ease,opacity .15s ease}
+.nav-links a:hover{opacity:1;color:var(--clearwater);background:rgba(82,214,196,.12)}
+.nav-links a[aria-current]{opacity:1;color:var(--keowee-dusk);background:var(--clearwater);font-weight:700;box-shadow:0 2px 8px rgba(6,40,33,.3)}
+.nav-cta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;background:var(--sunset);color:#fff;text-decoration:none;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
+.nav-cta:hover{background:#ff5a3a}
+@media(min-width:760px){.pennant-logo{width:152px;margin:-10px 0 -52px}}
+
+.hero{background:var(--keowee-deep);color:#fff;padding:36px 20px 58px;position:relative}
+.hero-inner{max-width:1100px;margin:0 auto}
+.crumb{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--clearwater);margin-bottom:10px}
+.crumb a{text-decoration:none}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;line-height:1.02;text-transform:uppercase}
+.hero h1 em{font-style:italic;color:var(--clearwater)}
+.hero .sub{margin-top:10px;max-width:560px;font-size:.98rem;line-height:1.6;color:#CFE8E1}
+.hero-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:60px;display:block}
+
+main{max-width:1100px;margin:0 auto;padding:26px 20px 20px}
+.report{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:860px){.report{grid-template-columns:1.4fr 1fr}}
+.verdict{background:var(--keowee-deep);color:#fff;border-radius:var(--radius-lg);padding:28px;position:relative;overflow:hidden}
+.verdict .vday{font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8FBFB5}
+.verdict .score{font-family:var(--display);font-weight:800;font-size:4.4rem;line-height:1;letter-spacing:-.03em;margin:6px 0 2px}
+.verdict .score small{font-size:1.6rem;color:#8FBFB5;font-weight:700}
+.verdict .vline{font-size:1.15rem;font-weight:600;max-width:420px;line-height:1.45}
+.verdict[data-grade="great"] .score{color:var(--clearwater)}
+.verdict[data-grade="ok"] .score{color:var(--goldhour)}
+.verdict[data-grade="bad"] .score{color:var(--sunset)}
+.vstats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.vstat{font-family:var(--mono);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#CFE8E1;border:1.5px solid rgba(82,214,196,.5);border-radius:999px;padding:7px 12px}
+.vstat b{color:#fff}
+.why{background:#fff;border-radius:var(--radius-lg);padding:24px 26px;box-shadow:0 2px 10px rgba(10,58,52,.07)}
+.why h2{font-family:var(--display);font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px}
+.why ul{list-style:none}
+.why li{padding:7px 0;color:var(--ink-soft);font-size:.95rem;line-height:1.5;border-bottom:1px solid #E4EFE9}
+.why li:last-child{border-bottom:none}
+.why li b{color:var(--ink)}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:22px 0 8px}
+.day{background:#fff;border-radius:var(--radius-md);padding:16px 18px;box-shadow:0 2px 10px rgba(10,58,52,.06)}
+.day .dname{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+.day .dscore{font-family:var(--display);font-weight:800;font-size:1.9rem;margin:4px 0 2px}
+.day .dscore.g{color:#1B9C8A}.day .dscore.o{color:#D99A1B}.day .dscore.b{color:var(--sunset)}
+.day .dmeta{font-size:.82rem;color:var(--ink-soft);line-height:1.45}
+.note{background:#fff;border-left:4px solid var(--goldhour);border-radius:var(--radius-sm);padding:14px 18px;color:var(--ink-soft);font-size:.9rem;line-height:1.6;margin:20px 0 30px}
+.xlinks{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 56px}
+.xlinks a{font-family:var(--mono);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;padding:10px 16px;border-radius:999px;background:var(--keowee-deep);color:#fff}
+.xlinks a:hover{background:#0d4a40}
+.loadmsg{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);padding:30px 0}
+
+footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:20px}
+.foot-marks{display:flex;justify-content:center;margin-bottom:14px}
+.foot-marks img{width:220px;height:auto;opacity:.9}
+.foot-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.foot-inner a{text-decoration:none}
+.foot-inner a:hover{color:var(--clearwater)}
+@media(max-width:759px){
+  .nav-inner{padding:8px 14px;row-gap:0;flex-wrap:wrap}
+  .pennant-logo{width:78px}
+  .nav-cta{font-size:.6rem;padding:6px 10px}
+  .nav-links{order:3;width:100%;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:4px;padding:4px 2px 2px;border:none;background:none;font-size:.72rem}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{white-space:nowrap;padding:6px 10px}
+  .hero{padding:30px 18px 52px}
+  .verdict{padding:22px}
+  .verdict .score{font-size:3.4rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="wordmark" href="/" aria-label="Keowee Club home">
+      <img class="pennant-logo" src="../brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/today/" aria-current="page">Today</a></li>
+      <li><a href="/guides/lake-keowee-first-timer/">Guides</a></li>
+      <li><a href="/eat-and-drink/">Eat &amp; Drink</a></li>
+      <li><a href="/lake-level/">Lake Level</a></li>
+      <li><a href="/depth/">Depth Map</a></li>
+    </ul>
+    <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="crumb"><a href="/">Keowee Club</a> &nbsp;→&nbsp; Today</p>
+    <h1>Is today a <em>lake day?</em></h1>
+    <p class="sub">One score, updated all day: the forecast, the wind, the water, and tonight's sunset, weighed like a local would.</p>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C180 60 360 0 540 20s360 40 540 15 300-25 360-10V60H0Z" fill="#EFF8F3"/></svg>
+</header>
+
+<main>
+  <div class="loadmsg" id="loadMsg">Reading the sky and the gauge…</div>
+  <div class="report" id="report" style="display:none">
+    <section class="verdict" id="verdict" aria-label="Today's lake day score">
+      <p class="vday" id="vDay">Today</p>
+      <p class="score"><span id="vScore">–</span><small>/10</small></p>
+      <p class="vline" id="vLine"></p>
+      <div class="vstats" id="vStats"></div>
+    </section>
+    <section class="why">
+      <h2>What's driving it</h2>
+      <ul id="whyList"></ul>
+    </section>
+  </div>
+  <div class="days" id="days"></div>
+  <div class="note"><b>How the score works:</b> we start at 10 and take points for rain chances, wind, cold, and a low lake, using the <a href="https://www.weather.gov/" rel="noopener" target="_blank">National Weather Service</a> forecast and <a href="/lake-level/">Duke Energy's live gauge</a>. It's our judgment, not gospel. Check the sky before you cast off.</div>
+  <div class="xlinks">
+    <a href="/weekend/">📅 The weekend plan</a>
+    <a href="/depth/">🌊 The depth map</a>
+    <a href="/boat-ramps/">⚓ Boat ramps</a>
+    <a href="/swim/">🏖 Swim spots</a>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-marks" aria-hidden="true"><img src="../brand/footer-marks.svg" alt="" loading="lazy" width="329" height="140"></div>
+  <div class="foot-inner">
+    <span>© 2026 keowee.club</span>
+    <span>Forecast: NWS · Levels: Duke Energy</span>
+    <a href="/contact/">Contact</a>
+    <a href="/">Home ↑</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var FC='https://api.weather.gov/gridpoints/GSP/45,41/forecast';
+  var DUKE='https://api.hydro-derived.duke-energy.app/lakes/current-level';
+
+  function windMax(s){var m=(s||'').match(/(\d+)(?:\s*to\s*(\d+))?\s*mph/);return m?parseInt(m[2]||m[1],10):null;}
+  function sunsetFor(date){
+    var LAT=34.85*Math.PI/180,LNG=-82.93;
+    var start=new Date(date.getFullYear(),0,0);
+    var doy=Math.floor((date-start)/864e5);
+    var g=2*Math.PI/365*(doy-1);
+    var eqt=229.18*(0.000075+0.001868*Math.cos(g)-0.032077*Math.sin(g)-0.014615*Math.cos(2*g)-0.040849*Math.sin(2*g));
+    var decl=0.006918-0.399912*Math.cos(g)+0.070257*Math.sin(g)-0.006758*Math.cos(2*g)+0.000907*Math.sin(2*g)-0.002697*Math.cos(3*g)+0.00148*Math.sin(3*g);
+    var ha=Math.acos(Math.cos(90.833*Math.PI/180)/(Math.cos(LAT)*Math.cos(decl))-Math.tan(LAT)*Math.tan(decl));
+    var setUTC=720-4*(LNG-ha*180/Math.PI)-eqt;
+    var d=new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate(),0,setUTC));
+    return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'});
+  }
+  function scoreDay(p,downFt){
+    var s=10,why=[];
+    var rain=(p.probabilityOfPrecipitation&&p.probabilityOfPrecipitation.value)||0;
+    var wind=windMax(p.windSpeed)||0;
+    var t=p.temperature;
+    if(rain>=60){s-=4;why.push('<b>Storms likely</b> ('+rain+'% chance). Watch the radar.');}
+    else if(rain>=40){s-=2.5;why.push('<b>Rain possible</b> ('+rain+'%). Keep a window open.');}
+    else if(rain>=20){s-=1;why.push('<b>Slight rain chance</b> ('+rain+'%). Probably fine.');}
+    else{why.push('<b>Dry</b>. Rain chance just '+rain+'%.');}
+    if(wind>20){s-=4;why.push('<b>Windy</b>: gusts to '+wind+' mph. Rough water, sailors only.');}
+    else if(wind>14){s-=2.5;why.push('<b>Breezy</b>: up to '+wind+' mph. Chop on open water.');}
+    else if(wind>8){s-=1;why.push('<b>Light chop</b>: wind to '+wind+' mph.');}
+    else{why.push('<b>Calm water</b>: wind under '+Math.max(wind,5)+' mph.');}
+    if(t<60){s-=4;why.push('<b>Cold</b>: '+t+'°. Wetsuit weather.');}
+    else if(t<70){s-=2;why.push('<b>Cool</b>: '+t+'°. Bring a layer.');}
+    else if(t>95){s-=1;why.push('<b>Scorcher</b>: '+t+'°. The water is the only place to be.');}
+    else{why.push('<b>'+t+'°</b> and comfortable.');}
+    if(downFt!=null){
+      if(downFt>4){s-=1;why.push('<b>Lake is low</b>: '+downFt.toFixed(1)+' ft below full. Mind shallow ramps.');}
+      else{why.push('<b>Water is fine</b>: '+downFt.toFixed(1)+' ft below full pond.');}
+    }
+    s=Math.max(1,Math.min(10,Math.round(s*2)/2));
+    return {s:s,why:why,rain:rain,wind:wind,t:t};
+  }
+  function verdictLine(s,p){
+    if(s>=9)return 'Go. Days like this are why you live here.';
+    if(s>=7.5)return 'A proper lake day. '+(p.shortForecast||'')+'.';
+    if(s>=5.5)return 'Decent. Pick your window and keep an eye up.';
+    if(s>=3.5)return 'Iffy out there. The brave get the lake to themselves.';
+    return 'Not today. The lake will forgive you.';
+  }
+  Promise.all([
+    fetch(FC,{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}),
+    fetch(DUKE).then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return null;})
+  ]).then(function(res){
+    var periods=res[0].properties.periods||[];
+    var lakes=res[1];
+    var downFt=null;
+    if(lakes){
+      var k=lakes.find(function(l){return l.LakeName==='KEOWEE';});
+      var a=k&&parseFloat(k.Actual);
+      if(a&&!isNaN(a))downFt=Math.max(0,100-a);
+    }
+    var daysP=periods.filter(function(p){return p.isDaytime;}).slice(0,5);
+    if(!daysP.length)throw 0;
+    var hero=daysP[0],hs=scoreDay(hero,downFt);
+    document.getElementById('vDay').textContent=hero.name+' · '+new Date(hero.startTime).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    document.getElementById('vScore').textContent=hs.s%1?hs.s.toFixed(1):hs.s;
+    document.getElementById('vLine').textContent=verdictLine(hs.s,hero);
+    var vd=document.getElementById('verdict');
+    vd.setAttribute('data-grade',hs.s>=7.5?'great':hs.s>=5?'ok':'bad');
+    var stats=[
+      ['🌡','<b>'+hero.temperature+'°</b>'],
+      ['💨','wind <b>'+(hs.wind||'—')+' mph</b>'],
+      ['🌧','rain <b>'+hs.rain+'%</b>'],
+      downFt!=null?['🌊','water <b>−'+downFt.toFixed(1)+' ft</b>']:null,
+      ['🌅','sunset <b>'+sunsetFor(new Date(hero.startTime))+'</b>']
+    ].filter(Boolean);
+    document.getElementById('vStats').innerHTML=stats.map(function(x){return '<span class="vstat">'+x[0]+' '+x[1]+'</span>';}).join('');
+    document.getElementById('whyList').innerHTML=hs.why.map(function(w){return '<li>'+w+'</li>';}).join('');
+    document.getElementById('days').innerHTML=daysP.slice(1).map(function(p){
+      var ds=scoreDay(p,downFt);
+      var cls=ds.s>=7.5?'g':ds.s>=5?'o':'b';
+      return '<div class="day"><div class="dname">'+p.name+'</div><div class="dscore '+cls+'">'+(ds.s%1?ds.s.toFixed(1):ds.s)+'</div><div class="dmeta">'+p.temperature+'° · rain '+ds.rain+'% · wind '+(ds.wind||'—')+' mph<br>'+(p.shortForecast||'')+'</div></div>';
+    }).join('');
+    document.getElementById('loadMsg').style.display='none';
+    document.getElementById('report').style.display='grid';
+  }).catch(function(){
+    document.getElementById('loadMsg').textContent='The forecast feed is not answering right now. Try a refresh, or check keowee.club/lake-level/ for the water.';
+  });
+})();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6ffce0786eb54943b7422d812178fe84"}'></script>
+<!-- End Cloudflare Web Analytics -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="293cc55f-258d-4388-953c-41b49d0dd6ca"></script>
+</body>
+</html>
