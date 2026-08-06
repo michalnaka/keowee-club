@@ -49,6 +49,7 @@ a{color:inherit}
 .crumb a{text-decoration:none}
 .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;line-height:1.02;text-transform:uppercase}
 .hero h1 em{font-style:italic;color:var(--clearwater)}
+.beta{display:inline-block;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.14em;background:var(--goldhour);color:var(--keowee-dusk);padding:5px 9px 4px;border-radius:7px;vertical-align:.35em;margin-left:6px}
 .hero .sub{margin-top:10px;max-width:560px;font-size:.98rem;line-height:1.6;color:#CFE8E1}
 .hero-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:60px;display:block}
 
@@ -66,6 +67,11 @@ main{max-width:1100px;margin:0 auto;padding:26px 20px 20px}
 .vstats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .vstat{font-family:var(--mono);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#CFE8E1;border:1.5px solid rgba(82,214,196,.5);border-radius:999px;padding:7px 12px}
 .vstat b{color:#fff}
+.fb{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(82,214,196,.28)}
+.fbq{font-family:var(--mono);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8FBFB5}
+.fbbtn{font-size:1.05rem;line-height:1;background:rgba(82,214,196,.12);border:1.5px solid rgba(82,214,196,.5);border-radius:999px;padding:8px 14px;cursor:pointer;transition:transform .12s ease,background .15s ease}
+.fbbtn:hover{background:rgba(82,214,196,.28);transform:scale(1.08)}
+.fbthanks{font-size:.9rem;color:#CFE8E1}
 .why{background:#fff;border-radius:var(--radius-lg);padding:24px 26px;box-shadow:0 2px 10px rgba(10,58,52,.07)}
 .why h2{font-family:var(--display);font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px}
 .why ul{list-style:none}
@@ -97,9 +103,29 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
   .nav-links{order:3;width:100%;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;gap:4px;padding:4px 2px 2px;border:none;background:none;font-size:.72rem}
   .nav-links::-webkit-scrollbar{display:none}
   .nav-links a{white-space:nowrap;padding:6px 10px}
-  .hero{padding:30px 18px 52px}
-  .verdict{padding:22px}
-  .verdict .score{font-size:3.4rem}
+  .hero{padding:20px 18px 44px}
+  .crumb{margin-bottom:6px}
+  .hero .sub{margin-top:8px;font-size:.9rem;line-height:1.5}
+  .hero-wave{height:36px}
+  main{padding:16px 16px 12px}
+  .loadmsg{padding:18px 0}
+  .report{gap:12px}
+  .verdict{padding:20px 18px}
+  .verdict .score{font-size:3.6rem;margin:4px 0 0}
+  .verdict .score small{font-size:1.3rem}
+  .verdict .vline{font-size:1.02rem}
+  .vstats{margin-top:14px;gap:6px}
+  .vstat{font-size:.66rem;padding:6px 10px}
+  .fb{margin-top:14px;padding-top:13px}
+  .why{padding:18px}
+  .why li{font-size:.9rem;padding:6px 0}
+  .days{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:10px;margin:14px -16px 4px;padding:0 16px 6px}
+  .days::-webkit-scrollbar{display:none}
+  .day{flex:0 0 auto;min-width:156px;scroll-snap-align:start;padding:14px 16px}
+  .note{font-size:.85rem;padding:12px 14px;margin:16px 0 22px}
+  .xlinks{gap:8px;margin-bottom:40px}
+  .xlinks a{font-size:.7rem;padding:9px 13px}
+  .beta{font-size:.55rem;padding:4px 7px 3px;vertical-align:.4em}
 }
 </style>
 </head>
@@ -125,7 +151,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
 <header class="hero">
   <div class="hero-inner">
     <p class="crumb"><a href="/">Keowee Club</a> &nbsp;→&nbsp; Today</p>
-    <h1>Is today a <em>lake day?</em></h1>
+    <h1>Is today a <em>lake day?</em> <span class="beta">Beta</span></h1>
     <p class="sub">One score, updated all day: the forecast, the wind, the water, and tonight's sunset, weighed like a local would.</p>
   </div>
   <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C180 60 360 0 540 20s360 40 540 15 300-25 360-10V60H0Z" fill="#EFF8F3"/></svg>
@@ -139,6 +165,11 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       <p class="score"><span id="vScore">–</span><small>/10</small></p>
       <p class="vline" id="vLine"></p>
       <div class="vstats" id="vStats"></div>
+      <div class="fb" id="fb">
+        <span class="fbq">Did we call it right?</span>
+        <button class="fbbtn" id="fbUp" aria-label="The score felt right">👍</button>
+        <button class="fbbtn" id="fbDown" aria-label="The score felt off">👎</button>
+      </div>
     </section>
     <section class="why">
       <h2>What's driving it</h2>
@@ -243,6 +274,19 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     ].filter(Boolean);
     document.getElementById('vStats').innerHTML=stats.map(function(x){return '<span class="vstat">'+x[0]+' '+x[1]+'</span>';}).join('');
     document.getElementById('whyList').innerHTML=hs.why.map(function(w){return '<li>'+w+'</li>';}).join('');
+    var fb=document.getElementById('fb');
+    var fbKey='kcfb-'+new Date(hero.startTime).toISOString().slice(0,10);
+    var prior=null;try{prior=localStorage.getItem(fbKey);}catch(e){}
+    if(prior){fb.innerHTML='<span class="fbthanks">Thanks, your read on '+hero.name.toLowerCase()+' is in.</span>';}
+    else{
+      var vote=function(v){
+        try{localStorage.setItem(fbKey,v);}catch(e){}
+        if(window.umami)umami.track('score-feedback',{vote:v,score:hs.s,rain:hs.rain,wind:hs.wind,temp:hs.t,down:downFt!=null?+downFt.toFixed(1):null,day:hero.name});
+        fb.innerHTML='<span class="fbthanks">'+(v==='up'?'Glad we read it right. See you out there.':'Noted. Every vote tunes the formula.')+'</span>';
+      };
+      document.getElementById('fbUp').addEventListener('click',function(){vote('up');});
+      document.getElementById('fbDown').addEventListener('click',function(){vote('down');});
+    }
     document.getElementById('days').innerHTML=daysP.slice(1).map(function(p){
       var ds=scoreDay(p,downFt);
       var cls=ds.s>=7.5?'g':ds.s>=5?'o':'b';
