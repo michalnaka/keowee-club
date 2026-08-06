@@ -78,12 +78,17 @@ main{max-width:1100px;margin:0 auto;padding:26px 20px 20px}
 .why li{padding:7px 0;color:var(--ink-soft);font-size:.95rem;line-height:1.5;border-bottom:1px solid #E4EFE9}
 .why li:last-child{border-bottom:none}
 .why li b{color:var(--ink)}
-.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:22px 0 8px}
-.day{background:#fff;border-radius:var(--radius-md);padding:16px 18px;box-shadow:0 2px 10px rgba(10,58,52,.06)}
-.day .dname{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
-.day .dscore{font-family:var(--display);font-weight:800;font-size:1.9rem;margin:4px 0 2px}
-.day .dscore.g{color:#1B9C8A}.day .dscore.o{color:#D99A1B}.day .dscore.b{color:var(--sunset)}
-.day .dmeta{font-size:.82rem;color:var(--ink-soft);line-height:1.45}
+.outlook{margin:24px 0 8px}
+.oh{font-family:var(--display);font-weight:800;font-size:1.05rem;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.calc{border:none;border-radius:14px;padding:12px 4px 10px;text-align:center;cursor:pointer;font-family:var(--body);display:flex;flex-direction:column;gap:2px;align-items:center;box-shadow:0 2px 8px rgba(10,58,52,.08);transition:transform .12s ease,box-shadow .12s ease}
+.calc:hover{transform:translateY(-2px)}
+.calc.sel{box-shadow:0 0 0 3px var(--keowee-deep),0 4px 12px rgba(10,58,52,.2)}
+.cd{font-family:var(--mono);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.85}
+.cn{font-size:.76rem;opacity:.8}
+.cs{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1.1}
+.cal-detail{margin-top:12px;background:#fff;border-radius:var(--radius-md);padding:14px 18px;font-size:.92rem;color:var(--ink-soft);line-height:1.55;box-shadow:0 2px 10px rgba(10,58,52,.06)}
+.cal-detail b{color:var(--ink)}
 .note{background:#fff;border-left:4px solid var(--goldhour);border-radius:var(--radius-sm);padding:14px 18px;color:var(--ink-soft);font-size:.9rem;line-height:1.6;margin:20px 0 30px}
 .xlinks{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 56px}
 .xlinks a{font-family:var(--mono);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;padding:10px 16px;border-radius:999px;background:var(--keowee-deep);color:#fff}
@@ -119,9 +124,15 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
   .fb{margin-top:14px;padding-top:13px}
   .why{padding:18px}
   .why li{font-size:.9rem;padding:6px 0}
-  .days{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:10px;margin:14px -16px 4px;padding:0 16px 6px}
-  .days::-webkit-scrollbar{display:none}
-  .day{flex:0 0 auto;min-width:156px;scroll-snap-align:start;padding:14px 16px}
+  .outlook{margin:18px 0 4px}
+  .oh{font-size:.95rem;margin-bottom:8px}
+  .cal{gap:4px}
+  .calc{border-radius:10px;padding:9px 2px 8px;gap:1px}
+  .calc.sel{box-shadow:0 0 0 2.5px var(--keowee-deep),0 3px 9px rgba(10,58,52,.2)}
+  .cd{font-size:.53rem}
+  .cn{font-size:.66rem}
+  .cs{font-size:1.12rem}
+  .cal-detail{padding:12px 14px;font-size:.86rem}
   .note{font-size:.85rem;padding:12px 14px;margin:16px 0 22px}
   .xlinks{gap:8px;margin-bottom:40px}
   .xlinks a{font-size:.7rem;padding:9px 13px}
@@ -176,7 +187,11 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       <ul id="whyList"></ul>
     </section>
   </div>
-  <div class="days" id="days"></div>
+  <section class="outlook" aria-label="7 day outlook">
+    <h2 class="oh">The week ahead</h2>
+    <div class="cal" id="cal"></div>
+    <div class="cal-detail" id="calDetail"></div>
+  </section>
   <div class="note"><b>How the score works:</b> we start at 10 and take points for rain chances, wind, cold, and a low lake, using the <a href="https://www.weather.gov/" rel="noopener" target="_blank">National Weather Service</a> forecast and <a href="/lake-level/">Duke Energy's live gauge</a>. It's our judgment, not gospel. Check the sky before you cast off.</div>
   <div class="xlinks">
     <a href="/weekend/">📅 The weekend plan</a>
@@ -290,7 +305,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       var a=k&&parseFloat(k.Actual);
       if(a&&!isNaN(a))downFt=Math.max(0,100-a);
     }
-    var daysP=periods.filter(function(p){return p.isDaytime;}).slice(0,5);
+    var daysP=periods.filter(function(p){return p.isDaytime;}).slice(0,7);
     if(!daysP.length)throw 0;
     var hero=daysP[0],hs=scoreDay(hero,downFt,stormWindow(hourly,new Date(hero.startTime)));
     document.getElementById('vDay').textContent=hero.name+' · '+new Date(hero.startTime).toLocaleDateString('en-US',{month:'short',day:'numeric'});
@@ -320,11 +335,36 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       document.getElementById('fbUp').addEventListener('click',function(){vote('up');});
       document.getElementById('fbDown').addEventListener('click',function(){vote('down');});
     }
-    document.getElementById('days').innerHTML=daysP.slice(1).map(function(p){
-      var ds=scoreDay(p,downFt);
-      var cls=ds.s>=7.5?'g':ds.s>=5?'o':'b';
-      return '<div class="day"><div class="dname">'+p.name+'</div><div class="dscore '+cls+'">'+(ds.s%1?ds.s.toFixed(1):ds.s)+'</div><div class="dmeta">'+p.temperature+'° · rain '+ds.rain+'% · wind '+(ds.wind||'—')+' mph<br>'+(p.shortForecast||'')+'</div></div>';
+    var week=daysP.map(function(p){
+      var sw=stormWindow(hourly,new Date(p.startTime));
+      return {p:p,ds:scoreDay(p,downFt,sw),sw:sw};
+    });
+    function fmtS(v){return v%1?v.toFixed(1):v;}
+    function shade(s){
+      var stops=[[1,228,89,59],[5.5,255,194,75],[10,15,164,142]],c=stops[stops.length-1];
+      if(s<=stops[0][0])c=stops[0];
+      else for(var i=0;i<stops.length-1;i++){
+        var a=stops[i],b=stops[i+1];
+        if(s>=a[0]&&s<=b[0]){var t=(s-a[0])/(b[0]-a[0]);c=[0,Math.round(a[1]+(b[1]-a[1])*t),Math.round(a[2]+(b[2]-a[2])*t),Math.round(a[3]+(b[3]-a[3])*t)];break;}
+      }
+      var fg=(c[1]*299+c[2]*587+c[3]*114)/1000>150?'#33290E':'#FFFFFF';
+      return {bg:'rgb('+c[1]+','+c[2]+','+c[3]+')',fg:fg};
+    }
+    var cal=document.getElementById('cal'),det=document.getElementById('calDetail');
+    cal.innerHTML=week.map(function(w,i){
+      var d=new Date(w.p.startTime),sh=shade(w.ds.s);
+      var wd=d.toLocaleDateString('en-US',{weekday:'short',timeZone:'America/New_York'});
+      var dn=d.toLocaleDateString('en-US',{day:'numeric',timeZone:'America/New_York'});
+      return '<button class="calc" data-i="'+i+'" style="background:'+sh.bg+';color:'+sh.fg+'" aria-pressed="false" aria-label="'+w.p.name+', score '+fmtS(w.ds.s)+' out of 10"><span class="cd">'+(i===0?'Today':wd)+'</span><span class="cn">'+dn+'</span><span class="cs">'+fmtS(w.ds.s)+'</span></button>';
     }).join('');
+    function selectDay(i){
+      Array.prototype.forEach.call(cal.children,function(c,j){c.classList.toggle('sel',j===i);c.setAttribute('aria-pressed',j===i?'true':'false');});
+      var w=week[i];
+      var rainBit='rain '+w.ds.rain+'%'+(w.sw?' ('+(w.sw.allDay?'on and off all day':w.sw.label)+')':'');
+      det.innerHTML='<b>'+w.p.name+': '+fmtS(w.ds.s)+'/10.</b> '+w.p.temperature+'°, '+rainBit+', wind '+(w.ds.wind||'under 5')+' mph. '+(w.p.shortForecast||'')+'.';
+    }
+    cal.addEventListener('click',function(e){var b=e.target.closest('.calc');if(b)selectDay(+b.getAttribute('data-i'));});
+    selectDay(0);
     document.getElementById('loadMsg').style.display='none';
     document.getElementById('report').style.display='grid';
   }).catch(function(){
