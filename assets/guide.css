@@ -159,3 +159,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:34px 20px}
   .hero{padding:34px 18px 60px}
   .hero .sub{font-size:.98rem;margin-top:12px}
 }
+
+/* desktop density */
+.guide-hero{padding:34px 20px 54px}
+.guide-hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem)}
