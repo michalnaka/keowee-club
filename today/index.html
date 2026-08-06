@@ -89,6 +89,16 @@ main{max-width:1100px;margin:0 auto;padding:26px 20px 20px}
 .cs{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1.1}
 .cal-detail{margin-top:12px;background:#fff;border-radius:var(--radius-md);padding:14px 18px;font-size:.92rem;color:var(--ink-soft);line-height:1.55;box-shadow:0 2px 10px rgba(10,58,52,.06)}
 .cal-detail b{color:var(--ink)}
+.hourly{margin:24px 0 8px}
+.hwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-md);box-shadow:0 2px 10px rgba(10,58,52,.06);background:#fff}
+.htab{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;font-size:.8rem}
+.htab th,.htab td{padding:9px 3px;text-align:center;min-width:46px;border-bottom:1px solid #EDF4F0;font-weight:500;color:var(--ink)}
+.htab tr:last-child td{border-bottom:none}
+.htab .rl{position:sticky;left:0;background:#fff;text-align:left;padding-left:14px;padding-right:12px;font-family:var(--mono);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);min-width:72px;z-index:2;box-shadow:3px 0 5px rgba(10,58,52,.05)}
+.htab thead th{font-family:var(--mono);font-size:.62rem;color:var(--ink-soft);font-weight:700}
+.htab .score td:not(.rl){font-family:var(--display);font-weight:800;font-size:.92rem}
+.htab .arr{display:inline-block;font-size:.95rem;line-height:1;color:#2C6FAE}
+.hnote{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin-top:8px}
 .note{background:#fff;border-left:4px solid var(--goldhour);border-radius:var(--radius-sm);padding:14px 18px;color:var(--ink-soft);font-size:.9rem;line-height:1.6;margin:20px 0 30px}
 .xlinks{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 56px}
 .xlinks a{font-family:var(--mono);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;padding:10px 16px;border-radius:999px;background:var(--keowee-deep);color:#fff}
@@ -133,6 +143,11 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
   .cn{font-size:.66rem}
   .cs{font-size:1.12rem}
   .cal-detail{padding:12px 14px;font-size:.86rem}
+  .hourly{margin:18px 0 4px}
+  .hwrap{margin:0 -16px;border-radius:0}
+  .htab th,.htab td{min-width:42px;padding:8px 2px;font-size:.76rem}
+  .htab .rl{min-width:64px;padding-left:16px;padding-right:8px;font-size:.56rem}
+  .hnote{font-size:.6rem;padding:0 2px}
   .note{font-size:.85rem;padding:12px 14px;margin:16px 0 22px}
   .xlinks{gap:8px;margin-bottom:40px}
   .xlinks a{font-size:.7rem;padding:9px 13px}
@@ -191,6 +206,11 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     <h2 class="oh">The week ahead</h2>
     <div class="cal" id="cal"></div>
     <div class="cal-detail" id="calDetail"></div>
+  </section>
+  <section class="hourly" id="hourly" style="display:none" aria-label="Hour by hour detail">
+    <h2 class="oh" id="hourlyTitle">Hour by hour</h2>
+    <div class="hwrap"><table class="htab" id="htab"></table></div>
+    <p class="hnote">Wind and gusts in mph. Arrows point where the wind is headed.</p>
   </section>
   <div class="note"><b>How the score works:</b> we start at 10 and take points for rain chances, wind, cold, and a low lake, using the <a href="https://www.weather.gov/" rel="noopener" target="_blank">National Weather Service</a> forecast and <a href="/lake-level/">Duke Energy's live gauge</a>. It's our judgment, not gospel. Check the sky before you cast off.</div>
   <div class="xlinks">
@@ -294,7 +314,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
   Promise.all([
     fetch(FC,{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}),
     fetch(DUKE).then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return null;}),
-    fetch(FC+'/hourly',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties.periods||null;}).catch(function(){return null;})
+    fetch(FC+'/hourly',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties.periods||null;}).catch(function(){return null;}),
+    fetch('https://api.weather.gov/gridpoints/GSP/45,41',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties;}).catch(function(){return null;})
   ]).then(function(res){
     var periods=res[0].properties.periods||[];
     var lakes=res[1];
@@ -363,7 +384,83 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       var rainBit='rain '+w.ds.rain+'%'+(w.sw?' ('+(w.sw.allDay?'on and off all day':w.sw.label)+')':'');
       det.innerHTML='<b>'+w.p.name+': '+fmtS(w.ds.s)+'/10.</b> '+w.p.temperature+'°, '+rainBit+', wind '+(w.ds.wind||'under 5')+' mph. '+(w.p.shortForecast||'')+'.';
     }
+    var grid=res[3];
+    function keyH(d){return d.toISOString().slice(0,13);}
+    function expandSeries(series){
+      var m={};
+      if(!series||!series.values)return m;
+      series.values.forEach(function(v){
+        var parts=v.validTime.split('/');
+        var dm=(parts[1]||'').match(/P(?:(\d+)D)?(?:T(?:(\d+)H)?)?/);
+        var n=((dm&&+dm[1]||0)*24)+((dm&&+dm[2])||0)||1;
+        var t0=new Date(parts[0]).getTime();
+        for(var i=0;i<n;i++)m[keyH(new Date(t0+i*36e5))]=v.value;
+      });
+      return m;
+    }
+    var gustMap=grid?expandSeries(grid.windGust):{};
+    var dirMap=grid?expandSeries(grid.windDirection):{};
+    var COMPASS={N:0,NNE:22.5,NE:45,ENE:67.5,E:90,ESE:112.5,SE:135,SSE:157.5,S:180,SSW:202.5,SW:225,WSW:247.5,W:270,WNW:292.5,NW:315,NNW:337.5};
+    function hourScore(pop,w,t){
+      var s=10;
+      if(pop>=60)s-=4;else if(pop>=40)s-=2.5;else if(pop>=20)s-=1;
+      if(w>20)s-=4;else if(w>14)s-=2.5;else if(w>8)s-=1;
+      if(t<60)s-=4;else if(t<70)s-=2;else if(t>95)s-=1;
+      return Math.max(1,Math.min(10,Math.round(s*2)/2));
+    }
+    function lerp3(v,stops){
+      var c=stops[stops.length-1][1];
+      if(v<=stops[0][0])c=stops[0][1];
+      else for(var i=0;i<stops.length-1;i++){
+        var a=stops[i],b=stops[i+1];
+        if(v>=a[0]&&v<=b[0]){var t=(a[0]===b[0])?0:(v-a[0])/(b[0]-a[0]);c=[Math.round(a[1][0]+(b[1][0]-a[1][0])*t),Math.round(a[1][1]+(b[1][1]-a[1][1])*t),Math.round(a[1][2]+(b[1][2]-a[1][2])*t)];break;}
+      }
+      var fg=(c[0]*299+c[1]*587+c[2]*114)/1000>150?'#26301F':'#FFFFFF';
+      return ' style="background:rgb('+c.join(',')+');color:'+fg+'"';
+    }
+    var WIND_ST=[[0,[238,246,249]],[10,[142,196,214]],[25,[36,102,133]]];
+    var RAIN_ST=[[0,[244,248,246]],[50,[142,186,222]],[100,[44,111,174]]];
+    var TEMP_ST=[[55,[168,206,187]],[78,[207,218,138]],[98,[232,162,95]]];
+    var hourlySec=document.getElementById('hourly'),htab=document.getElementById('htab');
+    function renderHourly(i){
+      if(!hourly){hourlySec.style.display='none';return;}
+      var day=new Date(week[i].p.startTime).toLocaleDateString('en-CA',{timeZone:'America/New_York'});
+      var hrs=hourly.filter(function(h){
+        var d=new Date(h.startTime);
+        if(d.toLocaleDateString('en-CA',{timeZone:'America/New_York'})!==day)return false;
+        var hr=+d.toLocaleTimeString('en-US',{hour:'numeric',hour12:false,timeZone:'America/New_York'});
+        return hr>=7&&hr<=21;
+      });
+      if(hrs.length<6){hourlySec.style.display='none';return;}
+      var cols=hrs.map(function(h){
+        var d=new Date(h.startTime);
+        var hr=+d.toLocaleTimeString('en-US',{hour:'numeric',hour12:false,timeZone:'America/New_York'});
+        var gust=gustMap[keyH(d)];
+        var deg=dirMap[keyH(d)];
+        if(deg==null)deg=COMPASS[h.windDirection];
+        return {
+          label:hr===12?'12p':hr>12?(hr-12)+'p':hr+'a',
+          pop:(h.probabilityOfPrecipitation&&h.probabilityOfPrecipitation.value)||0,
+          w:windMax(h.windSpeed)||0,
+          gust:gust!=null?Math.round(gust*0.621371):null,
+          deg:deg,
+          t:h.temperature
+        };
+      });
+      var rows='<thead><tr><th class="rl"></th>'+cols.map(function(c){return '<th>'+c.label+'</th>';}).join('')+'</tr></thead><tbody>';
+      rows+='<tr class="score"><td class="rl">Score</td>'+cols.map(function(c){var s=hourScore(c.pop,c.w,c.t);return '<td'+lerp3(s,[[1,[228,89,59]],[5.5,[255,194,75]],[10,[15,164,142]]])+'>'+(s%1?s.toFixed(1):s)+'</td>';}).join('')+'</tr>';
+      rows+='<tr><td class="rl">Wind mph</td>'+cols.map(function(c){return '<td'+lerp3(c.w,WIND_ST)+'>'+c.w+'</td>';}).join('')+'</tr>';
+      rows+='<tr><td class="rl">Dir</td>'+cols.map(function(c){return '<td>'+(c.deg!=null?'<span class="arr" style="transform:rotate('+((c.deg+180)%360)+'deg)">&#8593;</span>':'&ndash;')+'</td>';}).join('')+'</tr>';
+      rows+='<tr><td class="rl">Gusts</td>'+cols.map(function(c){return c.gust!=null?'<td'+lerp3(c.gust,WIND_ST)+'>'+c.gust+'</td>':'<td>&ndash;</td>';}).join('')+'</tr>';
+      rows+='<tr><td class="rl">Rain %</td>'+cols.map(function(c){return '<td'+lerp3(c.pop,RAIN_ST)+'>'+c.pop+'</td>';}).join('')+'</tr>';
+      rows+='<tr><td class="rl">Temp</td>'+cols.map(function(c){return '<td'+lerp3(c.t,TEMP_ST)+'>'+c.t+'&deg;</td>';}).join('')+'</tr>';
+      htab.innerHTML=rows+'</tbody>';
+      document.getElementById('hourlyTitle').textContent='Hour by hour: '+week[i].p.name;
+      hourlySec.style.display='block';
+    }
     cal.addEventListener('click',function(e){var b=e.target.closest('.calc');if(b)selectDay(+b.getAttribute('data-i'));});
+    var _sel=selectDay;
+    selectDay=function(i){_sel(i);renderHourly(i);};
     selectDay(0);
     document.getElementById('loadMsg').style.display='none';
     document.getElementById('report').style.display='grid';
