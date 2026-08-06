@@ -118,6 +118,21 @@ main{max-width:1100px;margin:0 auto;padding:26px 20px 20px}
 .htab .score td:not(.rl){font-family:var(--display);font-weight:800;font-size:.92rem}
 .htab .arr{display:inline-block;font-size:.95rem;line-height:1;color:#2C6FAE}
 .hnote{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin-top:8px}
+.wx{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0 8px}
+@media(max-width:859px){.wx{grid-template-columns:1fr}}
+.wxcard{background:#fff;border-radius:var(--radius-lg);padding:20px 22px;box-shadow:0 2px 10px rgba(10,58,52,.07);display:flex;flex-direction:column}
+.wxhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
+.wxhead .oh{margin-bottom:0}
+.wxtag{font-family:var(--mono);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+#lvlChart{width:100%;height:170px;display:block}
+.wxfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;font-size:.9rem;color:var(--ink-soft)}
+.wxfoot b{color:var(--ink)}
+.wxlink{font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;text-decoration:none;color:var(--keowee-deep);white-space:nowrap}
+.wxlink:hover{text-decoration:underline}
+.lvl-up{color:#1B9C8A;font-weight:700}
+.lvl-down{color:var(--sunset);font-weight:700}
+.radarwrap{position:relative;flex:1;min-height:230px;border-radius:var(--radius-md);overflow:hidden}
+.radarwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .note{background:#fff;border-left:4px solid var(--goldhour);border-radius:var(--radius-sm);padding:14px 18px;color:var(--ink-soft);font-size:.9rem;line-height:1.6;margin:20px 0 30px}
 .xlinks{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 56px}
 .xlinks a{font-family:var(--mono);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;padding:10px 16px;border-radius:999px;background:var(--keowee-deep);color:#fff}
@@ -236,6 +251,17 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     <h2 class="oh" id="hourlyTitle">Hour by hour</h2>
     <div class="hwrap"><table class="htab" id="htab"></table></div>
     <p class="hnote">Wind and gusts in mph. Arrows point where the wind is headed.</p>
+  </section>
+  <section class="wx" aria-label="Water level and live radar">
+    <div class="wxcard">
+      <div class="wxhead"><h2 class="oh">Water level</h2><span class="wxtag" id="lvlTag"></span></div>
+      <svg id="lvlChart" role="img" aria-label="Lake Keowee water level, recent days"></svg>
+      <div class="wxfoot"><span id="lvlNow">Loading the gauge…</span><a class="wxlink" href="/lake-level/">Full history →</a></div>
+    </div>
+    <div class="wxcard">
+      <div class="wxhead"><h2 class="oh">Live radar</h2><span class="wxtag">via Windy</span></div>
+      <div class="radarwrap"><iframe id="radarFrame" title="Live weather radar over Lake Keowee" loading="lazy" src="https://embed.windy.com/embed2.html?lat=34.85&amp;lon=-82.93&amp;detailLat=34.85&amp;detailLon=-82.93&amp;zoom=8&amp;level=surface&amp;overlay=radar&amp;product=radar&amp;menu=&amp;message=&amp;marker=true&amp;calendar=now&amp;type=map&amp;location=coordinates&amp;metricWind=mph&amp;metricTemp=%C2%B0F&amp;radarRange=-1"></iframe></div>
+    </div>
   </section>
   <div class="note"><b>How the score works:</b> we start at 10 and take points for rain chances, wind, cold, and a low lake, using the <a href="https://www.weather.gov/" rel="noopener" target="_blank">National Weather Service</a> forecast and <a href="/lake-level/">Duke Energy's live gauge</a>. It's our judgment, not gospel. Check the sky before you cast off.</div>
   <section class="tsub" aria-label="Newsletter signup">
@@ -561,6 +587,53 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     document.getElementById('report').style.display='grid';
   }).catch(function(){
     document.getElementById('loadMsg').textContent='The forecast feed is not answering right now. Try a refresh, or check keowee.club/lake-level/ for the water.';
+  });
+})();
+(function(){
+  var svg=document.getElementById('lvlChart'),tag=document.getElementById('lvlTag'),now=document.getElementById('lvlNow');
+  var pts=null;
+  function draw(){
+    if(!pts||!pts.length)return;
+    var W=svg.clientWidth||520,H=170,padT=26,padB=18,padL=8,padR=8;
+    var t0=pts[0].t,t1=pts[pts.length-1].t;
+    var lo=Math.min.apply(null,pts.map(function(p){return p.ft;}))-0.4;
+    lo=Math.min(lo,798.2);
+    var hi=800;
+    var x=function(t){return padL+(W-padL-padR)*(t-t0)/Math.max(1,t1-t0);};
+    var y=function(f){return padT+(H-padT-padB)*(hi-f)/(hi-lo);};
+    var line=pts.map(function(p,i){return (i?'L':'M')+x(p.t).toFixed(1)+' '+y(p.ft).toFixed(1);}).join('');
+    var area=line+'L'+x(t1).toFixed(1)+' '+(H-padB)+'L'+x(t0).toFixed(1)+' '+(H-padB)+'Z';
+    var fmtD=function(t){return new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'America/New_York'});};
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    svg.innerHTML=
+      '<defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#52D6C4" stop-opacity=".35"/><stop offset="1" stop-color="#52D6C4" stop-opacity=".02"/></linearGradient></defs>'+
+      '<line x1="'+padL+'" y1="'+y(800)+'" x2="'+(W-padR)+'" y2="'+y(800)+'" stroke="#0A3A34" stroke-opacity=".45" stroke-width="1.5" stroke-dasharray="5 5"/>'+
+      '<text x="'+(W-padR)+'" y="'+(y(800)-7)+'" text-anchor="end" font-family="Space Mono,monospace" font-size="10.5" fill="#3E5A54">Full pond · 800 ft</text>'+
+      '<path d="'+area+'" fill="url(#lg)"/>'+
+      '<path d="'+line+'" fill="none" stroke="#0A3A34" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>'+
+      '<circle cx="'+x(t1)+'" cy="'+y(pts[pts.length-1].ft)+'" r="3.6" fill="#FF6E52"/>'+
+      '<text x="'+padL+'" y="'+(H-4)+'" font-family="Space Mono,monospace" font-size="10" fill="#3E5A54">'+fmtD(t0)+'</text>'+
+      '<text x="'+(W-padR)+'" y="'+(H-4)+'" text-anchor="end" font-family="Space Mono,monospace" font-size="10" fill="#3E5A54">'+fmtD(t1)+'</text>';
+  }
+  fetch('/data/level-history.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(hist){
+    var cut=Date.now()-14*864e5;
+    pts=hist.map(function(e){return {t:new Date(e.t).getTime(),ft:800-(100-e.k)};})
+      .filter(function(p){return isFinite(p.ft)&&p.t>=cut;})
+      .sort(function(a,b){return a.t-b.t;});
+    if(pts.length<2)throw 0;
+    var days=Math.max(1,Math.round((pts[pts.length-1].t-pts[0].t)/864e5));
+    tag.textContent='last '+days+' day'+(days>1?'s':'');
+    var last=pts[pts.length-1].ft;
+    var weekAgo=pts[0];
+    for(var i=pts.length-1;i>=0;i--){if(pts[pts.length-1].t-pts[i].t>=7*864e5){weekAgo=pts[i];break;}}
+    var d7=last-weekAgo.ft;
+    var cls=d7>=0.05?'lvl-up':d7<=-0.05?'lvl-down':'';
+    var arrow=d7>=0.05?'▲ +':d7<=-0.05?'▼ ':'▶ ±';
+    now.innerHTML='<b>'+last.toFixed(1)+' ft</b> · '+(800-last).toFixed(1)+' ft below full · <span class="'+cls+'">'+arrow+Math.abs(d7).toFixed(1)+' ft</span>';
+    draw();
+    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(draw,150);});
+  }).catch(function(){
+    document.querySelector('.wx .wxcard').style.display='none';
   });
 })();
 document.getElementById('signup').addEventListener('submit',function(e){
