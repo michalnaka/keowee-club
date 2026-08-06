@@ -72,6 +72,15 @@ main{max-width:1100px;margin:0 auto;padding:26px 20px 20px}
 .fbbtn{font-size:1.05rem;line-height:1;background:rgba(82,214,196,.12);border:1.5px solid rgba(82,214,196,.5);border-radius:999px;padding:8px 14px;cursor:pointer;transition:transform .12s ease,background .15s ease}
 .fbbtn:hover{background:rgba(82,214,196,.28);transform:scale(1.08)}
 .fbthanks{font-size:.9rem;color:#CFE8E1}
+.vwindow{margin-top:10px;font-family:var(--mono);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--keowee-dusk);background:var(--goldhour);display:inline-block;padding:7px 12px;border-radius:8px}
+.alert{border-radius:var(--radius-md);padding:14px 18px;margin-bottom:16px;font-size:.94rem;line-height:1.5;color:#fff}
+.alert.warn{background:#B3352C}
+.alert.watch{background:#9C6A12}
+.alert b{display:block;font-family:var(--mono);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.alert a{color:#fff}
+.sharebar{display:flex;justify-content:flex-end;margin:14px 0 0}
+.sharebtn{font-family:var(--mono);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--keowee-deep);color:#fff;border:none;border-radius:999px;padding:10px 16px;cursor:pointer}
+.sharebtn:hover{background:#0d4a40}
 .why{background:#fff;border-radius:var(--radius-lg);padding:24px 26px;box-shadow:0 2px 10px rgba(10,58,52,.07)}
 .why h2{font-family:var(--display);font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px}
 .why ul{list-style:none}
@@ -184,12 +193,14 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
 </header>
 
 <main>
+  <div id="alertBar" style="display:none"></div>
   <div class="loadmsg" id="loadMsg">Reading the sky and the gauge…</div>
   <div class="report" id="report" style="display:none">
     <section class="verdict" id="verdict" aria-label="Today's lake day score">
       <p class="vday" id="vDay">Today</p>
       <p class="score"><span id="vScore">–</span><small>/10</small></p>
       <p class="vline" id="vLine"></p>
+      <p class="vwindow" id="vWindow" style="display:none"></p>
       <div class="vstats" id="vStats"></div>
       <div class="fb" id="fb">
         <span class="fbq">Did we call it right?</span>
@@ -202,6 +213,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       <ul id="whyList"></ul>
     </section>
   </div>
+  <div class="sharebar" id="shareBar" style="display:none"><button class="sharebtn" id="shareBtn">Share today's report</button></div>
   <section class="outlook" aria-label="7 day outlook">
     <h2 class="oh">The week ahead</h2>
     <div class="cal" id="cal"></div>
@@ -315,7 +327,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     fetch(FC,{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}),
     fetch(DUKE).then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return null;}),
     fetch(FC+'/hourly',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties.periods||null;}).catch(function(){return null;}),
-    fetch('https://api.weather.gov/gridpoints/GSP/45,41',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties;}).catch(function(){return null;})
+    fetch('https://api.weather.gov/gridpoints/GSP/45,41',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties;}).catch(function(){return null;}),
+    fetch('https://api.weather.gov/alerts/active?point=34.85,-82.93',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.features||[];}).catch(function(){return [];})
   ]).then(function(res){
     var periods=res[0].properties.periods||[];
     var lakes=res[1];
@@ -385,6 +398,20 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       det.innerHTML='<b>'+w.p.name+': '+fmtS(w.ds.s)+'/10.</b> '+w.p.temperature+'°, '+rainBit+', wind '+(w.ds.wind||'under 5')+' mph. '+(w.p.shortForecast||'')+'.';
     }
     var grid=res[3];
+    var alerts=res[4]||[];
+    if(alerts.length){
+      var order={Warning:0,Watch:1,Advisory:2,Statement:3};
+      alerts.sort(function(a,b){
+        var ea=(a.properties.event||'').split(' ').pop(),eb=(b.properties.event||'').split(' ').pop();
+        return (order[ea]!=null?order[ea]:9)-(order[eb]!=null?order[eb]:9);
+      });
+      var al=alerts[0].properties;
+      var isWarn=/Warning/.test(al.event||'');
+      var esc=function(x){var d=document.createElement('div');d.textContent=x||'';return d.innerHTML;};
+      var bar=document.getElementById('alertBar');
+      bar.innerHTML='<div class="alert '+(isWarn?'warn':'watch')+'" role="alert"><b>&#9888; '+esc(al.event)+'</b>'+esc(al.headline||'Active for the Lake Keowee area.')+' <a href="https://www.weather.gov/gsp/" rel="noopener" target="_blank">Details at weather.gov</a></div>';
+      bar.style.display='block';
+    }
     function keyH(d){return d.toISOString().slice(0,13);}
     function expandSeries(series){
       var m={};
@@ -458,10 +485,52 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       document.getElementById('hourlyTitle').textContent='Hour by hour: '+week[i].p.name;
       hourlySec.style.display='block';
     }
-    cal.addEventListener('click',function(e){var b=e.target.closest('.calc');if(b)selectDay(+b.getAttribute('data-i'));});
+    cal.addEventListener('click',function(e){var b=e.target.closest('.calc');if(b){selectDay(+b.getAttribute('data-i'));if(window.umami)umami.track('outlook-day',{i:+b.getAttribute('data-i')});}});
     var _sel=selectDay;
     selectDay=function(i){_sel(i);renderHourly(i);};
     selectDay(0);
+    function fh(h){return h===12?'12 PM':h>12?(h-12)+' PM':h+' AM';}
+    (function(){
+      if(!hourly)return;
+      var day=new Date(hero.startTime).toLocaleDateString('en-CA',{timeZone:'America/New_York'});
+      var hs2=[];
+      hourly.forEach(function(h){
+        var d=new Date(h.startTime);
+        if(d.toLocaleDateString('en-CA',{timeZone:'America/New_York'})!==day)return;
+        var hr=+d.toLocaleTimeString('en-US',{hour:'numeric',hour12:false,timeZone:'America/New_York'});
+        if(hr<7||hr>21)return;
+        var pop=(h.probabilityOfPrecipitation&&h.probabilityOfPrecipitation.value)||0;
+        hs2.push({hr:hr,s:hourScore(pop,windMax(h.windSpeed)||0,h.temperature)});
+      });
+      if(hs2.length<4)return;
+      var peak=Math.max.apply(null,hs2.map(function(x){return x.s;}));
+      var th=Math.max(7.5,peak-2);
+      var best=null,cur=null;
+      hs2.forEach(function(x){
+        if(x.s>=th){
+          if(!cur)cur={start:x.hr,end:x.hr,len:0};
+          cur.len++;cur.end=x.hr;
+          if(!best||cur.len>best.len)best=cur;
+        }else cur=null;
+      });
+      var vw=document.getElementById('vWindow');
+      if(best&&best.len>=2){
+        vw.textContent=best.len===hs2.length?'☀ Wide open: good all day':'☀ Best window: '+fh(best.start)+' to '+fh(best.end+1);
+        vw.style.display='inline-block';
+      }
+    })();
+    var sb=document.getElementById('shareBtn');
+    document.getElementById('shareBar').style.display='flex';
+    sb.addEventListener('click',function(){
+      var txt='Keowee today: '+fmtS(hs.s)+'/10. '+hs.why[0].replace(/<[^>]+>/g,'');
+      if(window.umami)umami.track('share-today',{score:hs.s});
+      if(navigator.share){navigator.share({title:'Lake Keowee today',text:txt,url:'https://keowee.club/today/'}).catch(function(){});}
+      else if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt+' https://keowee.club/today/').then(function(){
+          sb.textContent='Copied!';setTimeout(function(){sb.textContent="Share today's report";},2000);
+        }).catch(function(){});
+      }
+    });
     document.getElementById('loadMsg').style.display='none';
     document.getElementById('report').style.display='grid';
   }).catch(function(){
