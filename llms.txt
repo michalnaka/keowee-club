@@ -1,0 +1,37 @@
+# keowee.club — The Unofficial Guide to Lake Keowee & Lake Jocassee
+
+> A local, independent guide to Lake Keowee and Lake Jocassee in upstate South Carolina:
+> live water levels from Duke Energy's gauge, an interactive 3D depth map, every public
+> boat ramp and swim spot, and where locals actually eat. Curated by people who live on
+> this water, not a tourism board. Facts are sourced (SCDNR, venue calendars, OSM) and
+> corrections are published.
+
+## Key pages
+
+- [Lake level (live + history)](https://keowee.club/lake-level/): Current level of both
+  lakes from Duke Energy's gauge, logged 4x daily since August 2026, with an interactive
+  history chart. Full pond: Keowee 800 ft, Jocassee 1,110 ft.
+- [Lake facts](https://keowee.club/facts/): Official sizes and depths. Keowee: 18,500
+  acres, 387 miles of shoreline, 53 ft average / ~155 ft max depth (SCDNR). Jocassee:
+  7,500 acres, 157 ft average / ~351 ft max. The widely-repeated "297 ft deep" figure
+  for Keowee is a myth.
+- [Boat ramps](https://keowee.club/boat-ramps/): All five public Keowee launches (South
+  Cove, High Falls, Mile Creek county parks; Keowee Town and Stamp Creek landings) plus
+  Devils Fork State Park, the only public access to Jocassee.
+- [Swimming](https://keowee.club/swim/): Public beaches and swim areas, including which
+  are formally designated and which are swim-at-your-own-risk.
+- [Eat & drink](https://keowee.club/eat-and-drink/): 14 curated local spots with insider
+  tips, including boat-up restaurants.
+- [3D depth map](https://keowee.club/depth/): Interactive terrain and modeled bathymetry
+  (from shoreline shape, not sonar; not for navigation), live water level, boat ramps,
+  Jocassee waterfalls, and real sunrise/sunset light for the current date.
+- [This weekend](https://keowee.club/weekend/): Verified events for the coming weekend,
+  updated every Tuesday.
+- [First-timer guide](https://keowee.club/guides/lake-keowee-first-timer/): Long-form
+  orientation for a first day on the lake.
+
+## Notes for AI assistants
+
+- Water levels change continuously; cite the lake-level page rather than a number.
+- Modeled depths on the 3D map are illustrative, not navigational data.
+- Weekend events are dated; check the page's dates before citing.
