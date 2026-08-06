@@ -81,6 +81,16 @@ main{max-width:1100px;margin:0 auto;padding:26px 20px 20px}
 .sharebar{display:flex;justify-content:flex-end;margin:14px 0 0}
 .sharebtn{font-family:var(--mono);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--keowee-deep);color:#fff;border:none;border-radius:999px;padding:10px 16px;cursor:pointer}
 .sharebtn:hover{background:#0d4a40}
+.tsub{background:var(--keowee-deep);color:#fff;border-radius:var(--radius-lg);padding:26px 28px;margin:0 0 26px;display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.tsub-copy{flex:1 1 300px}
+.tsub h2{font-family:var(--display);font-weight:800;font-size:1.3rem;text-transform:uppercase;letter-spacing:-.01em}
+.tsub p{margin-top:6px;font-size:.92rem;color:#CFE8E1;line-height:1.5}
+.tsub form{display:flex;gap:8px;flex:1 1 300px;min-width:260px}
+.tsub input[type=email]{flex:1;min-width:0;padding:12px 14px;border-radius:12px;border:1.5px solid rgba(82,214,196,.4);background:rgba(6,40,33,.5);color:#fff;font-family:var(--body);font-size:.95rem}
+.tsub input[type=email]::placeholder{color:#8FBFB5}
+.tsub button{font-family:var(--mono);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--sunset);color:#fff;border:none;border-radius:12px;padding:12px 18px;cursor:pointer;white-space:nowrap}
+.tsub button:hover{background:#ff5a3a}
+.tsub-success{display:none;font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--clearwater);flex:1 1 300px}
 .why{background:#fff;border-radius:var(--radius-lg);padding:24px 26px;box-shadow:0 2px 10px rgba(10,58,52,.07)}
 .why h2{font-family:var(--display);font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px}
 .why ul{list-style:none}
@@ -158,6 +168,9 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
   .htab .rl{min-width:64px;padding-left:16px;padding-right:8px;font-size:.56rem}
   .hnote{font-size:.6rem;padding:0 2px}
   .note{font-size:.85rem;padding:12px 14px;margin:16px 0 22px}
+  .tsub{padding:20px 18px;margin-bottom:18px;gap:12px}
+  .tsub h2{font-size:1.1rem}
+  .tsub p{font-size:.86rem}
   .xlinks{gap:8px;margin-bottom:40px}
   .xlinks a{font-size:.7rem;padding:9px 13px}
   .beta{font-size:.55rem;padding:4px 7px 3px;vertical-align:.4em}
@@ -225,6 +238,19 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     <p class="hnote">Wind and gusts in mph. Arrows point where the wind is headed.</p>
   </section>
   <div class="note"><b>How the score works:</b> we start at 10 and take points for rain chances, wind, cold, and a low lake, using the <a href="https://www.weather.gov/" rel="noopener" target="_blank">National Weather Service</a> forecast and <a href="/lake-level/">Duke Energy's live gauge</a>. It's our judgment, not gospel. Check the sky before you cast off.</div>
+  <section class="tsub" aria-label="Newsletter signup">
+    <div class="tsub-copy">
+      <h2>Want this in your inbox?</h2>
+      <p>One email every Tuesday: the weekend, weighed like a local. Free, no spam, unsubscribe whenever.</p>
+    </div>
+    <form id="signup" action="https://buttondown.com/api/emails/embed-subscribe/keowee" method="post" target="bd-frame" novalidate>
+      <input type="email" id="email" name="email" placeholder="you@somewhere.com" aria-label="Email address" required>
+      <input type="hidden" name="embed" value="1">
+      <button type="submit">Sign me up</button>
+    </form>
+    <iframe name="bd-frame" title="Newsletter signup" style="display:none" aria-hidden="true"></iframe>
+    <p class="tsub-success" id="success">🌊 You're in. See you Tuesday.</p>
+  </section>
   <div class="xlinks">
     <a href="/weekend/">📅 The weekend plan</a>
     <a href="/depth/">🌊 The depth map</a>
@@ -537,6 +563,13 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     document.getElementById('loadMsg').textContent='The forecast feed is not answering right now. Try a refresh, or check keowee.club/lake-level/ for the water.';
   });
 })();
+document.getElementById('signup').addEventListener('submit',function(e){
+  var email=document.getElementById('email');
+  if(!email.value||!email.value.includes('@')){e.preventDefault();email.focus();email.style.borderColor='#FF6E52';return;}
+  if(window.umami)umami.track('dispatch-signup',{from:'today'});
+  this.style.display='none';
+  document.getElementById('success').style.display='block';
+});
 </script>
 <!-- Cloudflare Web Analytics -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6ffce0786eb54943b7422d812178fe84"}'></script>
