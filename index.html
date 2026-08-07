@@ -543,7 +543,7 @@ document.addEventListener('click',function(e){
 
   // Lake levels — Duke Energy
   function kVerdict(p){
-    if(p>=97) return {tick:'full pond',hero:'basically full pond. Go.',low:false};
+    if(p>=97) return {tick:'basically full',hero:'basically full pond. Go.',low:false};
     if(p>=95) return {tick:'plenty deep',hero:'plenty of water. Go.',low:false};
     if(p>=93.5) return {tick:'holding',hero:'a little low, still good.',low:false};
     return {tick:'running low',hero:'getting skinny — launch at South Cove.',low:true};
@@ -554,10 +554,10 @@ document.addEventListener('click',function(e){
       var k=lakes.find(function(l){return l.LakeName==='KEOWEE';});
       var kp=k&&parseFloat(k.Actual);
       if(kp&&!isNaN(kp)){
-        var v=kVerdict(kp),pct=(Math.round(kp*10)/10)+'%';
-        setAll('.js-level',pct+' · '+v.tick);
+        var v=kVerdict(kp),below=Math.max(0,Math.round((100-kp)*10)/10);
+        setAll('.js-level',below.toFixed(1)+' ft down · '+v.tick);
         var rpt=document.getElementById('lakeReport');
-        rpt.querySelector('.lake-report-text').innerHTML='Keowee’s at <b>'+pct+'</b> — '+v.hero;
+        rpt.querySelector('.lake-report-text').innerHTML='Keowee’s down <b>'+below.toFixed(1)+' ft</b> — '+v.hero;
         if(v.low)rpt.setAttribute('data-state','low');
         rpt.hidden=false;
         var hw=document.getElementById('heroWater'),chip=document.getElementById('waterChip');
@@ -566,7 +566,7 @@ document.addEventListener('click',function(e){
           hw.style.height=lvl+'%';
           if(v.low)document.querySelector('.hero').setAttribute('data-lake','low');
           if(chip){
-            document.getElementById('waterChipText').innerHTML='<b>'+pct+'</b>&nbsp;· '+v.tick;
+            document.getElementById('waterChipText').innerHTML='<b>−'+below.toFixed(1)+' ft</b>&nbsp;· '+v.tick;
             chip.style.bottom=lvl+'%';
             chip.hidden=false;
           }
@@ -574,7 +574,7 @@ document.addEventListener('click',function(e){
       }
       var j=lakes.find(function(l){return l.LakeName==='JOCASSEE';});
       var jp=j&&parseFloat(j.Actual);
-      if(jp&&!isNaN(jp)) setAll('.js-joco',(Math.round(jp*10)/10)+'%');
+      if(jp&&!isNaN(jp)) setAll('.js-joco',(Math.max(0,Math.round((100-jp)*10)/10)).toFixed(1)+' ft down');
     })
     .catch(function(){/* keep static fallback */});
 
