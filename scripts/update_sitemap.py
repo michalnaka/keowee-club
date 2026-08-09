@@ -22,6 +22,7 @@ PAGES = [
     ("/swim/", ["swim/index.html"]),
     ("/facts/", ["facts/index.html"]),
     ("/today/", ["today/index.html"]),
+    ("/jocassee/", ["jocassee/index.html"]),
 ]
 FREQ = {"/weekend/": "weekly", "/lake-level/": "daily", "/today/": "daily"}
 

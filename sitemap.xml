@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://keowee.club/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://keowee.club/</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://keowee.club/eat-and-drink/</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://keowee.club/map/</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://keowee.club/lake-level/</loc><lastmod>2026-08-05</lastmod><changefreq>daily</changefreq></url>
+  <url><loc>https://keowee.club/lake-level/</loc><lastmod>2026-08-07</lastmod><changefreq>daily</changefreq></url>
   <url><loc>https://keowee.club/guides/lake-keowee-first-timer/</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://keowee.club/depth/</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://keowee.club/boat-ramps/</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://keowee.club/weekend/</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq></url>
   <url><loc>https://keowee.club/swim/</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://keowee.club/facts/</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://keowee.club/today/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://keowee.club/today/</loc><lastmod>2026-08-06</lastmod><changefreq>daily</changefreq></url>
+  <url><loc>https://keowee.club/jocassee/</loc></url>
 </urlset>
