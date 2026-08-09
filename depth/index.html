@@ -92,6 +92,9 @@ a{color:inherit}
 .rp.sight.lit{background:var(--goldhour);opacity:1;box-shadow:0 0 18px rgba(255,255,255,.95),0 0 34px rgba(255,194,75,.85)}
 .rp.lit{transform:scale(1.65);box-shadow:0 0 18px rgba(255,255,255,.95),0 0 34px rgba(82,214,196,.8);z-index:6}
 .rp.eat.lit{box-shadow:0 0 18px rgba(255,255,255,.95),0 0 34px rgba(255,110,82,.85)}
+.rp.lost{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;background:rgba(20,60,80,.75);border:2px dashed rgba(191,243,234,.75);box-shadow:0 0 8px rgba(82,150,196,.5);opacity:.7}
+.rp.lost:hover{opacity:1;background:rgba(30,90,115,.9)}
+.rp.lost.risen{background:var(--goldhour);border-style:solid;border-color:#F3EDDE;opacity:1;box-shadow:0 0 16px rgba(255,194,75,.95),0 0 30px rgba(255,194,75,.6)}
 .lm.lit{color:#fff;opacity:1;transform:translate(-50%,-100%) scale(1.18);text-shadow:0 0 14px rgba(255,255,255,.6),0 1px 8px rgba(3,20,15,.95)}
 .lm{transition:transform .3s ease,color .3s ease}
 .rcard{position:absolute;display:none;z-index:7;background:rgba(6,40,33,.95);border:1.5px solid rgba(82,214,196,.5);border-radius:14px;padding:12px 14px;min-width:200px;max-width:250px;transform:translate(-50%,-112%)}
@@ -241,6 +244,10 @@ var RAMPS=[
  {n:'Lower Whitewater Falls',t:'waterfall · overlook & boat views',q:'Lower Whitewater Falls, SC',lat:35.01643,lng:-82.99304,kind:'sight'},
  {n:'Mill Creek Falls',t:'boat-access waterfall',q:'Mill Creek Falls, Lake Jocassee, SC',lat:35.03746,lng:-82.93756,kind:'sight'},
  {n:'Laurel Fork Falls',t:'the iconic boat-in falls',q:'Laurel Fork Falls, Lake Jocassee, SC',lat:35.03171,lng:-82.89423,kind:'sight'},
+ {n:'Attakulla Lodge',t:'drowned 1904 resort hotel · still standing, ~300 ft down',q:'34.978,-82.947',lat:34.978,lng:-82.947,kind:'lost',story:'A ten-room lodge from 1898, host to valley travelers for half a century. Duke left it standing when the water rose in 1973; divers found it intact in 2004, its roof about 270 ft down.'},
+ {n:'Steel Bridge',t:'old Whitewater River bridge · dive site',q:'34.982,-82.965',lat:34.982,lng:-82.965,kind:'lost',story:'The steel truss bridge that carried the valley road over the Whitewater River. It never moved; the river just rose around it.'},
+ {n:'Camp Jocassee for Girls',t:'summer camp 1922–1960s · gates ~300 ft down',q:'34.983,-82.957',lat:34.983,lng:-82.957,kind:'lost',story:'Generations of girls spent summers here from 1922 until the late 1960s. The stone entrance pillars and white picket fence are still on the valley floor.'},
+ {n:'Mount Carmel Cemetery',t:'churchyard · headstones ~130 ft down',q:'34.987,-82.942',lat:34.987,lng:-82.942,kind:'lost',story:'The graveyard scene in Deliverance (1972) was filmed here while the lake was filling. Families could relocate their dead; many chose to leave them. Headstones still stand.'},
  {n:'The Cabana',t:'boat-up bar & grill',q:'Cabana Lake Keowee, 1285 Doug Hollow Rd, Seneca, SC',id:'eat-0',lat:34.776226,lng:-82.92054,kind:'eat'},
  {n:'Keowee Shores Grill',t:'dock-up tiki grill',q:'Keowee Shores Grill, Seneca, SC',id:'eat-7',lat:34.711383,lng:-82.947,kind:'eat'},
  {n:'South Cove County Park',t:'ramp · swim beach',q:'South Cove County Park, Seneca, SC',id:'water-1',lat:34.7140,lng:-82.9633},
@@ -532,11 +539,12 @@ function build(img,roads){
       if(s.m===120){var d=surfaces.keowee-s.e;if(d>best)best=d;}
     }
     var el=document.createElement('button');
-    el.className='rp'+(r.kind==='eat'?' eat':r.kind==='sight'?' sight':'');
+    el.className='rp'+(r.kind==='eat'?' eat':r.kind==='sight'?' sight':r.kind==='lost'?' lost':'');
     el.setAttribute('aria-label',r.n);
     stage.appendChild(el);
     var baseSurf=r.lat>34.94?surfaces.jocassee:surfaces.keowee;
-    var rp={el:el,r:r,ft:Math.round(best/FT),pos:new THREE.Vector3(p.x,(Math.max(p.e,baseSurf)+8)*EXAG*KM,p.z)};
+    var pinY=r.kind==='lost'?p.e+6:Math.max(p.e,baseSurf)+8;
+    var rp={el:el,r:r,ft:Math.round(best/FT),siteElev:p.e,pos:new THREE.Vector3(p.x,pinY*EXAG*KM,p.z)};
     el.addEventListener('mouseenter',function(){
       if(openRamp)return;
       probe.textContent=r.n;
@@ -549,10 +557,10 @@ function build(img,roads){
       probe.style.display='none';
       var down=liveDeficit.keowee+drainFt;
       openRamp=rp;
-      var meta=r.kind==='sight'?r.t:(r.t+' · '+(down>15?'high &amp; dry at −'+Math.round(down)+' ft':'water ≈ '+Math.max(0,rp.ft-Math.round(down))+' ft'));
-      var acts='<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(r.q)+'" target="_blank" rel="noopener">Directions</a>';
+      var meta=r.kind==='lost'?(r.story+' <i>Approximate location, from historical accounts. Depths per divers, not this model.</i>'):r.kind==='sight'?r.t:(r.t+' · '+(down>15?'high &amp; dry at −'+Math.round(down)+' ft':'water ≈ '+Math.max(0,rp.ft-Math.round(down))+' ft'));
+      var acts=r.kind==='lost'?'<a href="/jocassee/">Jocassee guide</a>':'<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(r.q)+'" target="_blank" rel="noopener">Directions</a>';
       if(r.id)acts+='<a href="/map/#'+r.id+'">Open in Map</a>';
-      if(r.kind!=='sight'&&r.kind!=='eat')acts+='<a href="/boat-ramps/">All ramps</a>';
+      if(r.kind!=='sight'&&r.kind!=='eat'&&r.kind!=='lost')acts+='<a href="/boat-ramps/">All ramps</a>';
       rcard.innerHTML='<h4>'+r.n+'</h4><div class="rmeta">'+meta+'</div><div class="racts">'+acts+'</div>';
       rcard.style.display='block';
     });
@@ -696,7 +704,7 @@ function tickLabels(){
       rp.el.style.display='block';
       rp.el.style.left=((v.x*0.5+0.5)*w)+'px';
       rp.el.style.top=((-v.y*0.5+0.5)*h)+'px';
-      rp.el.classList.toggle('dry',down>15&&rp.r.kind!=='eat');
+      rp.el.classList.toggle('dry',down>15&&rp.r.kind!=='eat'&&rp.r.kind!=='lost');
       if(openRamp===rp){rcard.style.left=rp.el.style.left;rcard.style.top=(parseFloat(rp.el.style.top)-8)+'px';}
     }else{rp.el.style.display='none';if(openRamp===rp){openRamp=null;rcard.style.display='none';}}
   });
@@ -819,6 +827,10 @@ function updateWater(){
     waterMeshes[name].position.y=elev*EXAG*KM;
     waterMeshes[name].material.uniforms.uWaterY.value=elev;
     if(terrUniforms)terrUniforms[name==='keowee'?'uWaterYK':'uWaterYJ'].value=elev;
+  });
+  var jElev=surfaces.jocassee-(liveDeficit.jocassee+drainFt)*FT;
+  ramps.forEach(function(rp){
+    if(rp.r.kind==='lost')rp.el.classList.toggle('risen',rp.siteElev>jElev);
   });
 }
 var drain=document.getElementById('drain'),drainOut=document.getElementById('drainOut');
