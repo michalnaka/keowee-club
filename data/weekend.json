@@ -1,17 +1,17 @@
 {
   "edition": {
-    "start": "2026-08-06",
-    "end": "2026-08-09",
-    "date_display": "August 6–9",
-    "updated": "2026-08-04",
-    "updated_display": "August 4, 2026",
+    "start": "2026-08-13",
+    "end": "2026-08-16",
+    "date_display": "August 13–16",
+    "updated": "2026-08-11",
+    "updated_display": "August 11, 2026",
     "title": "This weekend on Keowee + Jocassee",
-    "dek": "Free jazz in the alley Thursday, a blues guitarist in Walhalla Friday, a country Saturday, brewery music both nights — and the lake in between.",
+    "dek": "Free jazz in the alley Thursday, a James Taylor tribute in Walhalla Friday, the last Family Adventure Camp of the season — and a six-hour wild river run to close it out Sunday.",
     "events": [
       {
         "day": "Thursday",
-        "date_display": "August 6",
-        "date": "2026-08-06",
+        "date_display": "August 13",
+        "date": "2026-08-13",
         "tag": "Seneca",
         "title": "Jazz on the Alley",
         "body": "Seneca's Thursday-night institution — free live jazz on historic Ram Cat Alley, every week through October. The happy-hour set starts at 5:30, the main act at 6:30. Get dinner downtown and let the weekend start a day early.",
@@ -21,69 +21,69 @@
       },
       {
         "day": "Friday",
-        "date_display": "August 7",
-        "date": "2026-08-07",
+        "date_display": "August 14",
+        "date": "2026-08-14",
         "tag": "Walhalla",
-        "title": "Ally Venable Band at WPAC",
-        "body": "Texas blues-rock guitar in the old Walhalla auditorium — a big-room show twenty minutes from the water. Doors at the Performing Arts Center, show at 7:30pm.",
-        "note": "7:30pm · $37–$57 · Walhalla Performing Arts Center",
-        "url": "https://walhallapac.com/events/ally-venable-band/",
+        "title": "Sweet Baby James — James Taylor Tribute",
+        "body": "Bill Griese brings the Fire and Rain / You've Got a Friend / Steamroller catalog to the old Walhalla auditorium for the venue's own James Taylor night. Big-room sound, twenty minutes from the water.",
+        "note": "7:30pm · $39–$57 · Walhalla Performing Arts Center",
+        "url": "https://walhallapac.com/events/sweet-baby-james/",
         "source": "Walhalla PAC"
       },
       {
         "day": "Friday",
-        "date_display": "August 7",
-        "date": "2026-08-07",
+        "date_display": "August 14",
+        "date": "2026-08-14",
         "tag": "Lake Jocassee",
-        "title": "Jocassee Family Adventure Camp",
-        "body": "The every-Friday, all-ages tour of waterfalls, swimming holes, and salamander habitat that makes the ride home interesting. Limited seats.",
-        "note": "Adults $75 · Ages 4–15 $70 · Park entry separate — confirm with the operator",
+        "title": "Jocassee Family Adventure Camp — last one of the year",
+        "body": "The every-Friday, all-ages tour of caves, waterfalls, and salamander hunting wraps its season with this date. It needs six people to run and seats are limited, so book ahead if you want it.",
+        "note": "Ages 16–64 $75 · Ages 4–15 $70 · 3 & under free with a paid adult · park entry separate",
         "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/",
         "source": "Jocassee Lake Tours"
       },
       {
-        "day": "Saturday",
-        "date_display": "August 8",
-        "date": "2026-08-08",
-        "tag": "Walhalla",
-        "title": "Corey Smith — Southern Drawl Tour",
-        "body": "Georgia country singer-songwriter at the Walhalla Performing Arts Center. If your lake day ends early, this is the Saturday night.",
-        "note": "7:30pm · $49–$69 · Walhalla Performing Arts Center",
-        "url": "https://walhallapac.com/events/corey-smith/",
-        "source": "Walhalla PAC"
-      },
-      {
         "day": "Fri & Sat",
-        "date_display": "August 7–8",
-        "date": "2026-08-07",
+        "date_display": "August 14–15",
+        "date": "2026-08-14",
         "tag": "Breweries",
         "title": "Live music at both lake breweries",
-        "body": "Keowee Brewing in Seneca has free live music every Friday and Saturday. Over in Salem, Jocassee Valley Brewing has West End Strings Friday and Freddie Vanderford Blues Saturday, plus food trucks both nights.",
-        "note": "Free · KBC 6:30–8:30pm · JVB 6:30pm, food trucks 9am–9pm",
+        "body": "Keowee Brewing in Seneca and Jocassee Valley Brewing in Salem both run free live music Friday and Saturday nights, with food trucks at Jocassee Valley. Neither calendar had this week's acts posted as of publish — check the links before you head out.",
+        "note": "Free · Fri & Sat · check each calendar for this week's lineup and set times",
         "url": "https://keoweebrewing.com/events-calendar",
         "source": "Keowee Brewing · Jocassee Valley Brewing"
+      },
+      {
+        "day": "Sunday",
+        "date_display": "August 16",
+        "date": "2026-08-16",
+        "tag": "Lake Jocassee",
+        "title": "Wild River Adventure Tour",
+        "body": "A six-hour push into the gorges by boat — hidden waterfalls, swimming holes, and an old-growth rainforest pocket you can't reach any other way. The operator is upfront that it's for the physically fit.",
+        "note": "$125 · 6 hours · ages 10+ · Jocassee Lake Tours",
+        "url": "https://jocasseelaketours.com/wild-river-adventure-tour/",
+        "source": "Jocassee Lake Tours"
       }
     ],
     "plan": [
       {
         "day": "Friday",
-        "title": "Boat day, blues night",
-        "body": "Afternoon on Keowee, dinner in Seneca, then either the Ally Venable ticket in Walhalla or the free stage at Keowee Brewing.",
-        "url": "https://walhallapac.com/events/ally-venable-band/",
+        "title": "A tribute, or the last camp of the year",
+        "body": "Sweet Baby James takes the WPAC stage at 7:30, or book the season's last Jocassee Family Adventure Camp before it's gone until next year. Either way, get lake time first.",
+        "url": "https://walhallapac.com/events/sweet-baby-james/",
         "label": "Grab Friday tickets ↗",
         "external": true
       },
       {
         "day": "Saturday",
         "title": "Jocassee before the gate line",
-        "body": "Devils Fork early, clear water all morning, then Jocassee Valley Brewing's music and food trucks on the drive home — or clean up for Corey Smith at 7:30.",
+        "body": "Devils Fork early for clear water and empty ramps, then Keowee Brewing or Jocassee Valley Brewing for whatever's on the Saturday stage.",
         "url": "/boat-ramps/",
         "label": "Plan the launch →"
       },
       {
         "day": "Sunday",
-        "title": "The slow one",
-        "body": "Pick a swim beach, get there before the afternoon heat, and let the weekend end on a towel instead of a highway.",
+        "title": "Go big, or keep it slow",
+        "body": "Book the six-hour Wild River Adventure Tour if you want hidden waterfalls and an ancient rainforest pocket. Otherwise pick a swim beach and let the weekend end on a towel instead of a highway.",
         "url": "/swim/",
         "label": "Pick a swim spot →"
       }
@@ -104,6 +104,10 @@
       {
         "label": "Jocassee Lake Tours — Family Adventure Camp",
         "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/"
+      },
+      {
+        "label": "Jocassee Lake Tours — Wild River Adventure Tour",
+        "url": "https://jocasseelaketours.com/wild-river-adventure-tour/"
       },
       {
         "label": "Keowee Brewing — Events calendar",
