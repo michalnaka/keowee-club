@@ -54,7 +54,10 @@ a{color:inherit}
 @media(min-width:760px){.depthbar-inner{padding-left:168px}}
 .depthbar h1{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;text-transform:uppercase;margin-right:6px}
 .depthbar h1 em{font-style:italic;color:var(--clearwater)}
-.live-chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#CFE8E1;border:1.5px solid rgba(82,214,196,.55);border-radius:999px;padding:6px 12px}
+.live-chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#CFE8E1;border:1.5px solid rgba(82,214,196,.55);border-radius:999px;padding:6px 12px;text-decoration:none;transition:background .15s ease,border-color .15s ease}
+.live-chip:hover{background:rgba(82,214,196,.14);border-color:var(--clearwater);color:#fff}
+.live-go{opacity:.65;transition:transform .15s ease,opacity .15s ease}
+.live-chip:hover .live-go{opacity:1;transform:translateX(2px)}
 .live-dot{width:8px;height:8px;border-radius:50%;background:var(--clearwater);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .drain{display:flex;align-items:center;gap:10px;margin-left:auto;font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:#CFE8E1}
@@ -167,7 +170,7 @@ a{color:inherit}
 <div class="depthbar">
   <div class="depthbar-inner">
     <h1>The <em>deep</em> end</h1>
-    <span class="live-chip" id="liveChip"><span class="live-dot"></span><span id="liveText">Checking the gauge…</span></span>
+    <a class="live-chip" id="liveChip" href="/lake-level/" title="Full level history and what it means for the ramps"><span class="live-dot"></span><span id="liveText">Checking the gauge…</span><span class="live-go" aria-hidden="true">→</span></a>
     <div class="seg" role="group" aria-label="Lighting" id="sunSeg">
       <button class="segbtn is-on" type="button" data-sun="day">Day</button>
       <button class="segbtn" type="button" data-sun="sunrise" data-umami-event="sun-mode">Sunrise</button>
