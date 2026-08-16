@@ -61,7 +61,7 @@ a{color:inherit}
 .crumb a{text-decoration:none;opacity:.85}.crumb a:hover{opacity:1}
 .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,7vw,4rem);line-height:1;letter-spacing:-.02em;text-transform:uppercase;max-width:16ch}
 .hero .sub{margin-top:18px;max-width:56ch;color:#CFE8E1;font-size:1.05rem}
-.live-static{margin:18px auto 0;max-width:72ch;color:var(--ink-soft);font-size:.88rem;line-height:1.6}
+.live-static{margin:10px 0 0;max-width:72ch;color:var(--ink-soft);font-size:.88rem;line-height:1.6}
 .live-static b{color:var(--ink)}
 .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
 .levels{display:grid;gap:18px;grid-template-columns:1fr;margin-top:-36px;position:relative;z-index:2}
@@ -95,6 +95,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px;margin-top:
 .history{max-width:1100px;margin:34px auto 0;padding:0 20px}
 .history h2{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:4px}
 .history .hsub{color:var(--ink-soft);margin-bottom:16px;line-height:1.5;max-width:640px}
+.history .hfoot{color:var(--ink-soft);font-size:.88rem;line-height:1.6;margin-top:16px;max-width:72ch}
 .hcard{background:#fff;border-radius:var(--radius-md);box-shadow:0 2px 10px rgba(10,58,52,.07);padding:20px 22px}
 .hrow{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-bottom:12px;font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft)}
 .hkey{display:inline-flex;align-items:center;gap:6px}
@@ -190,12 +191,11 @@ main{padding-top:26px}
       <p class="asof"><span class="dot"></span><span data-fill="asof">Loading…</span> · <a href="/jocassee/" style="color:inherit">More on Jocassee →</a></p>
     </section>
   </div>
-  <!-- live-static:start --><p class="live-static"><b>Latest reading:</b> Lake Keowee is 3.4 ft below full pond (796.6 ft), from Duke Energy's gauge on Aug 13, 2026. Lake Jocassee is 10.0 ft below its 1,110 ft full pond (1,100 ft), reported Aug 16, 2026. Duke's two gauges report on their own schedules, so one can lag the other; we check four times a day.</p><!-- live-static:end -->
 </div>
 
 <section class="history" id="history" aria-label="Lake level history">
   <h2>Lake Keowee water level chart &amp; history</h2>
-  <p class="hsub">A running graph of both lakes. We started logging Duke's gauge in <b>August 2026</b>, four times a day, and we never throw a reading away — the longer this page lives, the further back the chart goes. Hover or tap any point for that day's reading. <span class="trend" id="trendText"></span></p>
+  <p class="hsub">A running graph of both lakes. <span class="trend" id="trendText"></span></p>
   <div class="hcard">
     <div class="hrow">
       <span class="hkey k"><i></i>Keowee</span>
@@ -212,6 +212,8 @@ main{padding-top:26px}
     </div>
     <p class="hnote" id="hnote">Loading history…</p>
   </div>
+  <p class="hfoot">Hover or tap any point for that day's reading. We log Duke's gauge four times a day and never throw a reading away, so the longer this page lives, the further back the chart goes.</p>
+  <!-- live-static:start --><p class="live-static"><b>Latest reading:</b> Lake Keowee is 3.4 ft below full pond (796.6 ft), from Duke Energy's gauge on Aug 13, 2026. Lake Jocassee is 10.0 ft below its 1,110 ft full pond (1,100 ft), reported Aug 16, 2026. Duke's two gauges report on their own schedules, so one can lag the other; we check four times a day.</p><!-- live-static:end -->
 </section>
 
 <article class="prose">
