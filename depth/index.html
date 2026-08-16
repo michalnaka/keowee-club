@@ -61,8 +61,9 @@ a{color:inherit}
 .live-dot{width:8px;height:8px;border-radius:50%;background:var(--clearwater);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .drain{display:flex;align-items:center;gap:10px;margin-left:auto;font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:#CFE8E1}
-.drain input{accent-color:var(--sunset);width:170px}
-.drain output{min-width:74px;font-weight:700;color:#fff}
+.drain input{accent-color:var(--sunset);width:150px}
+.drain output{min-width:74px;font-weight:700;color:var(--goldhour);background:rgba(255,194,75,.12);border:1px solid rgba(255,194,75,.35);border-radius:999px;padding:3px 9px;text-align:center}
+.drain-end{opacity:.55;font-size:.66rem;letter-spacing:.03em;white-space:nowrap}
 .resetv{font-family:var(--mono);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:7px 13px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);background:transparent;color:#CFE8E1;cursor:pointer}
 .resetv:hover{background:rgba(82,214,196,.15)}
 .seg{display:inline-flex;border:1.5px solid rgba(82,214,196,.6);border-radius:999px;overflow:hidden}
@@ -127,6 +128,8 @@ a{color:inherit}
   .live-chip{font-size:.68rem;padding:5px 10px;border-width:1px}
   .drain{margin-left:0;width:100%;font-size:.68rem;gap:8px}
   .drain input{flex:1}
+  .drain-name{display:none}
+  .drain-end{font-size:.58rem}
   .drain output{min-width:58px;font-size:.68rem}
   .resetv{font-size:.68rem;padding:6px 11px}
   .hint{top:10px;font-size:.62rem;padding:5px 11px;max-width:94%;text-align:center}
@@ -176,9 +179,10 @@ a{color:inherit}
       <button class="segbtn" type="button" data-sun="sunrise" data-umami-event="sun-mode">Sunrise</button>
       <button class="segbtn" type="button" data-sun="sunset" data-umami-event="sun-mode">Sunset</button>
     </div>
-    <label class="drain">Drain
-      <input type="range" id="drain" min="0" max="300" value="0" step="5" aria-label="Drain the lake (feet below full pond)">
+    <label class="drain"><span class="drain-name">Water level</span>
       <output id="drainOut">Full pond</output>
+      <input type="range" id="drain" min="0" max="300" value="0" step="5" aria-label="Drain the lake (feet below full pond)">
+      <span class="drain-end">Drained &minus;300 ft</span>
     </label>
     <button class="resetv" id="drainPlay" type="button">Drain it</button>
     <button class="resetv" id="tourBtn" type="button">Fly the lake</button>
