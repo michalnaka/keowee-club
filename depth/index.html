@@ -104,6 +104,19 @@ a{color:inherit}
 .rcard .racts a{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:6px 11px;border-radius:999px;border:1.5px solid rgba(82,214,196,.6);color:#CFE8E1;text-decoration:none}
 .rcard .racts a:hover{background:rgba(82,214,196,.15)}
 .resetv.is-on{background:var(--clearwater);border-color:var(--clearwater);color:var(--keowee-dusk)}
+.subcard{position:fixed;display:none;left:18px;bottom:18px;z-index:1002;width:min(330px,calc(100vw - 36px));background:rgba(6,40,33,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid rgba(82,214,196,.45);border-radius:16px;padding:16px 18px 15px;box-shadow:0 14px 40px rgba(3,20,15,.5)}
+.subcard.show{display:block;animation:subin .35s cubic-bezier(.22,1,.36,1)}
+@keyframes subin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.subcard h4{font-family:var(--display);font-weight:800;font-size:1.02rem;letter-spacing:-.01em;color:#fff;margin:0 0 4px;padding-right:20px}
+.subcard p{font-size:.84rem;line-height:1.5;color:#CFE8E1;margin:0 0 11px}
+.subcard form{display:flex;gap:7px}
+.subcard input{flex:1;min-width:0;padding:9px 11px;border-radius:10px;border:1.5px solid rgba(82,214,196,.4);background:rgba(3,20,15,.5);color:#fff;font-family:var(--body);font-size:.86rem}
+.subcard input::placeholder{color:#7FB0A6}
+.subcard button[type=submit]{font-family:var(--mono);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:var(--sunset);color:#fff;border:none;border-radius:10px;padding:9px 13px;cursor:pointer;white-space:nowrap}
+.subcard button[type=submit]:hover{background:#ff5a3a}
+.subclose{position:absolute;top:8px;right:9px;background:none;border:none;color:#7FB0A6;font-size:1.1rem;line-height:1;padding:4px 6px;cursor:pointer;border-radius:6px}
+.subclose:hover{color:#fff}
+.subdone{font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--clearwater)}
 @media(max-width:759px){
   .depthbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));top:auto;z-index:1001;background:rgba(6,40,33,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(82,214,196,.28);border-radius:18px;padding:10px 12px 12px}
   .depthbar-inner{padding-left:0;gap:8px 8px;min-height:0}
@@ -182,6 +195,18 @@ a{color:inherit}
   <div class="rcard" id="rcard"></div>
   <div class="foot-note">Terrain: USGS via AWS Open Data · Lakebed modeled from shoreline shape, not sonar · Not for navigation</div>
 </div>
+
+<aside class="subcard" id="subCard" aria-label="Newsletter signup">
+  <button class="subclose" id="subClose" type="button" aria-label="No thanks">&times;</button>
+  <h4>Enjoying the deep end?</h4>
+  <p>One email on Tuesdays: the weekend on the lake, from people who actually live here.</p>
+  <form id="subForm" action="https://buttondown.com/api/emails/embed-subscribe/keowee" method="post" target="bd-frame" novalidate>
+    <input type="email" id="subEmail" name="email" placeholder="you@somewhere.com" aria-label="Email address" required>
+    <input type="hidden" name="embed" value="1">
+    <button type="submit">Sign up</button>
+  </form>
+  <iframe name="bd-frame" title="Newsletter signup" style="display:none" aria-hidden="true"></iframe>
+</aside>
 
 <script type="importmap">
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
@@ -918,6 +943,45 @@ function resize(){
 }
 window.addEventListener('resize',resize);
 resize();
+</script>
+<script>
+// Dispatch signup: offered once, only after someone has actually spent time with the map.
+(function(){
+  var card=document.getElementById('subCard'),form=document.getElementById('subForm');
+  var KEY='kc-depth-sub',shown=false;
+  function seen(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+  function remember(v){try{localStorage.setItem(KEY,v);}catch(e){}}
+  if(seen())return;
+  function place(){
+    // on phones the control bar is pinned to the bottom, so sit above it
+    var bar=document.querySelector('.depthbar');
+    if(bar&&getComputedStyle(bar).position==='fixed'){
+      card.style.bottom=(bar.offsetHeight+22)+'px';
+      card.style.left='10px';
+      card.style.width='calc(100vw - 20px)';
+    }
+  }
+  function show(){
+    if(shown||seen())return;
+    shown=true;place();card.classList.add('show');
+  }
+  var timer=setTimeout(show,45000);
+  // sharing is peak enthusiasm — ask right after
+  var share=document.getElementById('shareBtn');
+  if(share)share.addEventListener('click',function(){clearTimeout(timer);setTimeout(show,1800);});
+  window.addEventListener('resize',function(){if(shown)place();});
+  document.getElementById('subClose').addEventListener('click',function(){
+    card.classList.remove('show');remember('dismissed');
+  });
+  form.addEventListener('submit',function(e){
+    var email=document.getElementById('subEmail');
+    if(!email.value||email.value.indexOf('@')<0){e.preventDefault();email.focus();email.style.borderColor='#FF6E52';return;}
+    if(window.umami)umami.track('dispatch-signup',{from:'depth'});
+    remember('subscribed');
+    card.innerHTML='<p class="subdone">🌊 You\'re in. See you Tuesday.</p>';
+    setTimeout(function(){card.classList.remove('show');},2600);
+  });
+})();
 </script>
 <!-- Cloudflare Web Analytics -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6ffce0786eb54943b7422d812178fe84"}'></script>
