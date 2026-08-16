@@ -21,10 +21,10 @@ jobs:
         run: python3 scripts/log_level.py
       - name: Commit if changed
         run: |
-          if ! git diff --quiet data/level-history.json; then
+          if ! git diff --quiet data/level-history.json lake-level/index.html; then
             git config user.name "keowee-level-bot"
             git config user.email "actions@github.com"
-            git add data/level-history.json
+            git add data/level-history.json lake-level/index.html
             git commit -m "Log lake level"
             git pull --rebase origin main
             git push origin main
