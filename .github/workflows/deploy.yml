@@ -26,6 +26,8 @@ jobs:
         with:
           ref: main
           path: main
+          # full history so the IndexNow step can diff against the pushed-from commit
+          fetch-depth: 0
 
       - name: Checkout preview
         uses: actions/checkout@v4
@@ -56,3 +58,13 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Announce changed pages to Bing/Yandex instead of waiting to be crawled.
+      # Main only: preview lives under /preview/ and is disallowed in robots.txt.
+      - name: Ping IndexNow
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        continue-on-error: true
+        working-directory: main
+        run: |
+          python3 scripts/ping_indexnow.py --changed \
+            "${{ github.event.before }}" "${{ github.sha }}"
