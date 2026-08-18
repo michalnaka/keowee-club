@@ -1,17 +1,17 @@
 {
   "edition": {
-    "start": "2026-08-13",
-    "end": "2026-08-16",
-    "date_display": "August 13–16",
-    "updated": "2026-08-11",
-    "updated_display": "August 11, 2026",
+    "start": "2026-08-20",
+    "end": "2026-08-23",
+    "date_display": "August 20–23",
+    "updated": "2026-08-18",
+    "updated_display": "August 18, 2026",
     "title": "This weekend on Keowee + Jocassee",
-    "dek": "Free jazz in the alley Thursday, a James Taylor tribute in Walhalla Friday, the last Family Adventure Camp of the season — and a six-hour wild river run to close it out Sunday.",
+    "dek": "Free jazz in the alley Thursday, an Eagles tribute band takes over Walhalla for three nights straight, a 5K for a good cause Saturday morning — and a slow sunset run out onto Jocassee to close it out.",
     "events": [
       {
         "day": "Thursday",
-        "date_display": "August 13",
-        "date": "2026-08-13",
+        "date_display": "August 20",
+        "date": "2026-08-20",
         "tag": "Seneca",
         "title": "Jazz on the Alley",
         "body": "Seneca's Thursday-night institution — free live jazz on historic Ram Cat Alley, every week through October. The happy-hour set starts at 5:30, the main act at 6:30. Get dinner downtown and let the weekend start a day early.",
@@ -20,31 +20,20 @@
         "source": "City of Seneca"
       },
       {
-        "day": "Friday",
-        "date_display": "August 14",
-        "date": "2026-08-14",
+        "day": "Fri–Sun",
+        "date_display": "August 21–23",
+        "date": "2026-08-21",
         "tag": "Walhalla",
-        "title": "Sweet Baby James — James Taylor Tribute",
-        "body": "Bill Griese brings the Fire and Rain / You've Got a Friend / Steamroller catalog to the old Walhalla auditorium for the venue's own James Taylor night. Big-room sound, twenty minutes from the water.",
-        "note": "7:30pm · $39–$57 · Walhalla Performing Arts Center",
-        "url": "https://walhallapac.com/events/sweet-baby-james/",
+        "title": "7 Bridges — The Ultimate Eagles Experience",
+        "body": "An Eagles tribute band takes over the old Walhalla auditorium for three nights running — no backing tracks, just Hotel California, Take It Easy, and the rest of the catalog played straight. Same show each night, so pick whichever fits your weekend.",
+        "note": "7:30pm Fri–Sun · $54–$74 · Walhalla Performing Arts Center",
+        "url": "https://walhallapac.com/events/7-bridges-the-ultimate-eagles-experience/",
         "source": "Walhalla PAC"
       },
       {
-        "day": "Friday",
-        "date_display": "August 14",
-        "date": "2026-08-14",
-        "tag": "Lake Jocassee",
-        "title": "Jocassee Family Adventure Camp — last one of the year",
-        "body": "The every-Friday, all-ages tour of caves, waterfalls, and salamander hunting wraps its season with this date. It needs six people to run and seats are limited, so book ahead if you want it.",
-        "note": "Ages 16–64 $75 · Ages 4–15 $70 · 3 & under free with a paid adult · park entry separate",
-        "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/",
-        "source": "Jocassee Lake Tours"
-      },
-      {
         "day": "Fri & Sat",
-        "date_display": "August 14–15",
-        "date": "2026-08-14",
+        "date_display": "August 21–22",
+        "date": "2026-08-21",
         "tag": "Breweries",
         "title": "Live music at both lake breweries",
         "body": "Keowee Brewing in Seneca and Jocassee Valley Brewing in Salem both run free live music Friday and Saturday nights, with food trucks at Jocassee Valley. Neither calendar had this week's acts posted as of publish — check the links before you head out.",
@@ -53,37 +42,48 @@
         "source": "Keowee Brewing · Jocassee Valley Brewing"
       },
       {
-        "day": "Sunday",
-        "date_display": "August 16",
-        "date": "2026-08-16",
+        "day": "Saturday",
+        "date_display": "August 22",
+        "date": "2026-08-22",
+        "tag": "Seneca",
+        "title": "Buggy Bee 5K",
+        "body": "The inaugural Buggy Bee 5K, walk, and virtual race benefits First Light, honoring the legacy behind the Gwynnie Bee House. The course starts at Shaver Recreation Complex, with food trucks and sponsor booths after.",
+        "note": "$40 · 8am start · Shaver Recreation Complex, Seneca · registration closes Aug 20",
+        "url": "https://runsignup.com/Race/SC/Seneca/BuggyBeeRace",
+        "source": "Buggy Bee 5K"
+      },
+      {
+        "day": "Saturday",
+        "date_display": "August 22",
+        "date": "2026-08-22",
         "tag": "Lake Jocassee",
-        "title": "Wild River Adventure Tour",
-        "body": "A six-hour push into the gorges by boat — hidden waterfalls, swimming holes, and an old-growth rainforest pocket you can't reach any other way. The operator is upfront that it's for the physically fit.",
-        "note": "$125 · 6 hours · ages 10+ · Jocassee Lake Tours",
-        "url": "https://jocasseelaketours.com/wild-river-adventure-tour/",
+        "title": "Sunset Lake Tour",
+        "body": "A slower two-hour run out onto Jocassee as the light goes gold over the mountains, with a waterfall or two along the way. Runs every Saturday evening through the season.",
+        "note": "$65 · 2 hours · every Saturday · Jocassee Lake Tours",
+        "url": "https://jocasseelaketours.com/all-tours/sunset-lake-tours/",
         "source": "Jocassee Lake Tours"
       }
     ],
     "plan": [
       {
         "day": "Friday",
-        "title": "A tribute, or the last camp of the year",
-        "body": "Sweet Baby James takes the WPAC stage at 7:30, or book the season's last Jocassee Family Adventure Camp before it's gone until next year. Either way, get lake time first.",
-        "url": "https://walhallapac.com/events/sweet-baby-james/",
-        "label": "Grab Friday tickets ↗",
+        "title": "An Eagles tribute, three nights running",
+        "body": "7 Bridges plays the WPAC stage all three nights this weekend — same band, same set. Pick whichever night works, then spend the day on the water before you go.",
+        "url": "https://walhallapac.com/events/7-bridges-the-ultimate-eagles-experience/",
+        "label": "Grab tickets ↗",
         "external": true
       },
       {
         "day": "Saturday",
-        "title": "Jocassee before the gate line",
-        "body": "Devils Fork early for clear water and empty ramps, then Keowee Brewing or Jocassee Valley Brewing for whatever's on the Saturday stage.",
+        "title": "Run it off, then float it off",
+        "body": "The Buggy Bee 5K kicks off at 8am for a good cause, then it's Devils Fork or a lake ramp before the afternoon fills in.",
         "url": "/boat-ramps/",
-        "label": "Plan the launch →"
+        "label": "Find a ramp →"
       },
       {
         "day": "Sunday",
-        "title": "Go big, or keep it slow",
-        "body": "Book the six-hour Wild River Adventure Tour if you want hidden waterfalls and an ancient rainforest pocket. Otherwise pick a swim beach and let the weekend end on a towel instead of a highway.",
+        "title": "Keep it slow before the drive home",
+        "body": "No headline event Sunday — pick a swim beach, check today's lake level, or grab a table on the water before you head out.",
         "url": "/swim/",
         "label": "Pick a swim spot →"
       }
@@ -98,16 +98,20 @@
         "url": "https://walhallapac.com/events/"
       },
       {
+        "label": "Walhalla PAC — 7 Bridges: The Ultimate Eagles Experience",
+        "url": "https://walhallapac.com/events/7-bridges-the-ultimate-eagles-experience/"
+      },
+      {
         "label": "Visit Oconee SC — Events calendar",
         "url": "https://visitoconeesc.com/events/"
       },
       {
-        "label": "Jocassee Lake Tours — Family Adventure Camp",
-        "url": "https://jocasseelaketours.com/all-tours/jocassee-family-adventure-camp/"
+        "label": "Buggy Bee 5K — Registration",
+        "url": "https://runsignup.com/Race/SC/Seneca/BuggyBeeRace"
       },
       {
-        "label": "Jocassee Lake Tours — Wild River Adventure Tour",
-        "url": "https://jocasseelaketours.com/wild-river-adventure-tour/"
+        "label": "Jocassee Lake Tours — Sunset Lake Tour",
+        "url": "https://jocasseelaketours.com/all-tours/sunset-lake-tours/"
       },
       {
         "label": "Keowee Brewing — Events calendar",
