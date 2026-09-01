@@ -1,17 +1,17 @@
 {
   "edition": {
-    "start": "2026-08-27",
-    "end": "2026-08-30",
-    "date_display": "August 27–30",
-    "updated": "2026-08-25",
-    "updated_display": "August 25, 2026",
+    "start": "2026-09-03",
+    "end": "2026-09-06",
+    "date_display": "September 3–6",
+    "updated": "2026-09-01",
+    "updated_display": "September 1, 2026",
     "title": "This weekend on Keowee + Jocassee",
-    "dek": "The Cleverlys bring their Ozark bluegrass-comedy to Walhalla Friday night, a full moon rises over Jocassee the same evening, and Jazz on the Alley still owns Ram Cat Alley on Thursday — while Jocassee Valley Brewing stacks four straight nights of live music through Sunday.",
+    "dek": "No headline show at Walhalla PAC this week — their next one isn't until the 11th — so Jazz on the Alley carries Thursday, and Jocassee Valley Brewing stacks a food truck and a live band every night from Friday through Sunday. The weekly Jocassee sunset run still goes out Saturday evening.",
     "events": [
       {
         "day": "Thursday",
-        "date_display": "August 27",
-        "date": "2026-08-27",
+        "date_display": "September 3",
+        "date": "2026-09-03",
         "tag": "Seneca",
         "title": "Jazz on the Alley",
         "body": "Seneca's Thursday-night institution — free live jazz on historic Ram Cat Alley, every week through October. The happy-hour set starts at 5:30, the main act at 6:30. Get dinner downtown and let the weekend start a day early.",
@@ -20,31 +20,9 @@
         "source": "City of Seneca"
       },
       {
-        "day": "Friday",
-        "date_display": "August 28",
-        "date": "2026-08-28",
-        "tag": "Walhalla",
-        "title": "The Cleverlys",
-        "body": "A bluegrass band out of the remote Ozarks that plays it dead straight and completely absurd at the same time — sharp picking wrapped around deadpan comedy. One night only at the old Walhalla auditorium.",
-        "note": "7:30pm · $32–$52 · Walhalla Performing Arts Center",
-        "url": "https://walhallapac.com/events/",
-        "source": "Walhalla PAC"
-      },
-      {
-        "day": "Friday",
-        "date_display": "August 28",
-        "date": "2026-08-28",
-        "tag": "Lake Jocassee",
-        "title": "Full Moon Rising Tour",
-        "body": "Same easy, slow-moving boat as the Saturday sunset run, timed instead to watch the moon come up full over Jocassee Dam as the sky goes dark. A waterfall or two along the way, as always.",
-        "note": "$65 · 2 hours · Jocassee Lake Tours",
-        "url": "https://jocasseelaketours.com/all-tours/full-moon-rising-tour/",
-        "source": "Jocassee Lake Tours"
-      },
-      {
         "day": "Saturday",
-        "date_display": "August 29",
-        "date": "2026-08-29",
+        "date_display": "September 5",
+        "date": "2026-09-05",
         "tag": "Lake Jocassee",
         "title": "Sunset Lake Tour",
         "body": "A slower two-hour run out onto Jocassee as the light goes gold over the mountains, with a waterfall or two along the way. Runs every Saturday evening through the season.",
@@ -53,24 +31,13 @@
         "source": "Jocassee Lake Tours"
       },
       {
-        "day": "Sunday",
-        "date_display": "August 30",
-        "date": "2026-08-30",
-        "tag": "Lake Jocassee",
-        "title": "Snorkel Adventure Tour",
-        "body": "New this year — a guided look at what's actually swimming around in Jocassee's clear water, fish and invertebrates included. Longer than the boat tours, and good for kids 4 and up.",
-        "note": "$125 · 6 hours · ages 4+ · Jocassee Lake Tours",
-        "url": "https://jocasseelaketours.com/snorkel-adventure-tour/",
-        "source": "Jocassee Lake Tours"
-      },
-      {
-        "day": "Thu–Sun",
-        "date_display": "August 27–30",
-        "date": "2026-08-27",
+        "day": "Fri–Sun",
+        "date_display": "September 4–6",
+        "date": "2026-09-04",
         "tag": "Breweries",
-        "title": "Four nights of live music at Jocassee Valley",
-        "body": "Jocassee Valley Brewing in Salem has a full lineup posted: Old Time Jam Thursday, The Binge Friday, Done Gone Boys Saturday, and Jazzy Trinity closing it out Sunday afternoon, each with a food truck alongside. Keowee Brewing in Seneca runs its usual free Friday and Saturday music too — check its calendar for who's on.",
-        "note": "Free · sets start 6:30pm Thu–Sat, 4pm Sun at Jocassee Valley · Keowee Brewing Fri & Sat, lineup TBD",
+        "title": "Three nights of live music at Jocassee Valley",
+        "body": "Jocassee Valley Brewing in Salem has its lineup posted: Kodesh BBQ & Bowls and According to Taste on Friday, Squeals on Wheels with Finkelstein Three on Saturday, and Farm to Fire pizza with Suze Luna & Dick Wells closing it out Sunday afternoon. Keowee Brewing in Seneca runs its usual free Friday and Saturday music too — check its calendar for who's on.",
+        "note": "Free · sets start 6:30pm Fri & Sat, 4pm Sun at Jocassee Valley · Keowee Brewing Fri & Sat, lineup on their calendar",
         "url": "https://jocasseevalleybrewing.com",
         "source": "Jocassee Valley Brewing · Keowee Brewing"
       }
@@ -78,11 +45,10 @@
     "plan": [
       {
         "day": "Friday",
-        "title": "Comedy, bluegrass, or moonlight on the water",
-        "body": "The Cleverlys hit the WPAC stage at 7:30, or skip the auditorium and catch the full moon rise over Jocassee instead. Either way, get out on the water for the afternoon first.",
-        "url": "https://walhallapac.com/events/",
-        "label": "See the Cleverlys ↗",
-        "external": true
+        "title": "Dinner, then live music at both breweries",
+        "body": "Jocassee Valley Brewing opens with Kodesh BBQ & Bowls and According to Taste at 6:30, while Keowee Brewing runs its usual free Friday set downtown. Grab a table at either before the sets fill in.",
+        "url": "/eat-and-drink/",
+        "label": "Find a spot to eat & drink →"
       },
       {
         "day": "Saturday",
@@ -93,8 +59,8 @@
       },
       {
         "day": "Sunday",
-        "title": "Snorkel it, or just keep it slow",
-        "body": "The new snorkel tour runs most of the day if you want something different. Otherwise pick a swim beach, check today's lake level, or grab a table on the water before you head out.",
+        "title": "Keep it slow, then close it out at Jocassee Valley",
+        "body": "Pick a swim spot or check today's lake level, then wind down with Suze Luna & Dick Wells at 4pm and Farm to Fire pizza back at Jocassee Valley Brewing.",
         "url": "/swim/",
         "label": "Pick a swim spot →"
       }
@@ -105,24 +71,16 @@
         "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley"
       },
       {
-        "label": "Walhalla PAC — Events calendar",
+        "label": "Walhalla PAC — Events calendar (no show Sept 3–6; next is Sept 11)",
         "url": "https://walhallapac.com/events/"
       },
       {
-        "label": "Visit Oconee SC — Events calendar",
+        "label": "Visit Oconee SC — Events calendar (nothing listed Sept 3–6)",
         "url": "https://visitoconeesc.com/events/"
-      },
-      {
-        "label": "Jocassee Lake Tours — Full Moon Rising Tour",
-        "url": "https://jocasseelaketours.com/all-tours/full-moon-rising-tour/"
       },
       {
         "label": "Jocassee Lake Tours — Sunset Lake Tour",
         "url": "https://jocasseelaketours.com/all-tours/sunset-lake-tours/"
-      },
-      {
-        "label": "Jocassee Lake Tours — Snorkel Adventure Tour",
-        "url": "https://jocasseelaketours.com/snorkel-adventure-tour/"
       },
       {
         "label": "Jocassee Valley Brewing",
