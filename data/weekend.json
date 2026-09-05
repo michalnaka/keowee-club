@@ -1,17 +1,17 @@
 {
   "edition": {
-    "start": "2026-08-20",
-    "end": "2026-08-23",
-    "date_display": "August 20–23",
-    "updated": "2026-08-18",
-    "updated_display": "August 18, 2026",
+    "start": "2026-09-03",
+    "end": "2026-09-06",
+    "date_display": "September 3–6",
+    "updated": "2026-09-01",
+    "updated_display": "September 1, 2026",
     "title": "This weekend on Keowee + Jocassee",
-    "dek": "Free jazz in the alley Thursday, an Eagles tribute band takes over Walhalla for three nights straight, a 5K for a good cause Saturday morning — and a slow sunset run out onto Jocassee to close it out.",
+    "dek": "No headline show at Walhalla PAC this week — their next one isn't until the 11th — so Jazz on the Alley carries Thursday, and Jocassee Valley Brewing stacks a food truck and a live band every night from Friday through Sunday. The weekly Jocassee sunset run still goes out Saturday evening.",
     "events": [
       {
         "day": "Thursday",
-        "date_display": "August 20",
-        "date": "2026-08-20",
+        "date_display": "September 3",
+        "date": "2026-09-03",
         "tag": "Seneca",
         "title": "Jazz on the Alley",
         "body": "Seneca's Thursday-night institution — free live jazz on historic Ram Cat Alley, every week through October. The happy-hour set starts at 5:30, the main act at 6:30. Get dinner downtown and let the weekend start a day early.",
@@ -20,70 +20,47 @@
         "source": "City of Seneca"
       },
       {
-        "day": "Fri–Sun",
-        "date_display": "August 21–23",
-        "date": "2026-08-21",
-        "tag": "Walhalla",
-        "title": "7 Bridges — The Ultimate Eagles Experience",
-        "body": "An Eagles tribute band takes over the old Walhalla auditorium for three nights running — no backing tracks, just Hotel California, Take It Easy, and the rest of the catalog played straight. Same show each night, so pick whichever fits your weekend.",
-        "note": "7:30pm Fri–Sun · $54–$74 · Walhalla Performing Arts Center",
-        "url": "https://walhallapac.com/events/7-bridges-the-ultimate-eagles-experience/",
-        "source": "Walhalla PAC"
-      },
-      {
-        "day": "Fri & Sat",
-        "date_display": "August 21–22",
-        "date": "2026-08-21",
-        "tag": "Breweries",
-        "title": "Live music at both lake breweries",
-        "body": "Keowee Brewing in Seneca and Jocassee Valley Brewing in Salem both run free live music Friday and Saturday nights, with food trucks at Jocassee Valley. Neither calendar had this week's acts posted as of publish — check the links before you head out.",
-        "note": "Free · Fri & Sat · check each calendar for this week's lineup and set times",
-        "url": "https://keoweebrewing.com/events-calendar",
-        "source": "Keowee Brewing · Jocassee Valley Brewing"
-      },
-      {
         "day": "Saturday",
-        "date_display": "August 22",
-        "date": "2026-08-22",
-        "tag": "Seneca",
-        "title": "Buggy Bee 5K",
-        "body": "The inaugural Buggy Bee 5K, walk, and virtual race benefits First Light, honoring the legacy behind the Gwynnie Bee House. The course starts at Shaver Recreation Complex, with food trucks and sponsor booths after.",
-        "note": "$40 · 8am start · Shaver Recreation Complex, Seneca · registration closes Aug 20",
-        "url": "https://runsignup.com/Race/SC/Seneca/BuggyBeeRace",
-        "source": "Buggy Bee 5K"
-      },
-      {
-        "day": "Saturday",
-        "date_display": "August 22",
-        "date": "2026-08-22",
+        "date_display": "September 5",
+        "date": "2026-09-05",
         "tag": "Lake Jocassee",
         "title": "Sunset Lake Tour",
         "body": "A slower two-hour run out onto Jocassee as the light goes gold over the mountains, with a waterfall or two along the way. Runs every Saturday evening through the season.",
         "note": "$65 · 2 hours · every Saturday · Jocassee Lake Tours",
         "url": "https://jocasseelaketours.com/all-tours/sunset-lake-tours/",
         "source": "Jocassee Lake Tours"
+      },
+      {
+        "day": "Fri–Sun",
+        "date_display": "September 4–6",
+        "date": "2026-09-04",
+        "tag": "Breweries",
+        "title": "Three nights of live music at Jocassee Valley",
+        "body": "Jocassee Valley Brewing in Salem has its lineup posted: Kodesh BBQ & Bowls and According to Taste on Friday, Squeals on Wheels with Finkelstein Three on Saturday, and Farm to Fire pizza with Suze Luna & Dick Wells closing it out Sunday afternoon. Keowee Brewing in Seneca runs its usual free Friday and Saturday music too — check its calendar for who's on.",
+        "note": "Free · sets start 6:30pm Fri & Sat, 4pm Sun at Jocassee Valley · Keowee Brewing Fri & Sat, lineup on their calendar",
+        "url": "https://jocasseevalleybrewing.com",
+        "source": "Jocassee Valley Brewing · Keowee Brewing"
       }
     ],
     "plan": [
       {
         "day": "Friday",
-        "title": "An Eagles tribute, three nights running",
-        "body": "7 Bridges plays the WPAC stage all three nights this weekend — same band, same set. Pick whichever night works, then spend the day on the water before you go.",
-        "url": "https://walhallapac.com/events/7-bridges-the-ultimate-eagles-experience/",
-        "label": "Grab tickets ↗",
-        "external": true
+        "title": "Dinner, then live music at both breweries",
+        "body": "Jocassee Valley Brewing opens with Kodesh BBQ & Bowls and According to Taste at 6:30, while Keowee Brewing runs its usual free Friday set downtown. Grab a table at either before the sets fill in.",
+        "url": "/eat-and-drink/",
+        "label": "Find a spot to eat & drink →"
       },
       {
         "day": "Saturday",
-        "title": "Run it off, then float it off",
-        "body": "The Buggy Bee 5K kicks off at 8am for a good cause, then it's Devils Fork or a lake ramp before the afternoon fills in.",
+        "title": "A ramp, a swim, then the sunset tour",
+        "body": "No headline event Saturday during the day — find a ramp, get on the water, then book the Jocassee sunset run for the evening.",
         "url": "/boat-ramps/",
         "label": "Find a ramp →"
       },
       {
         "day": "Sunday",
-        "title": "Keep it slow before the drive home",
-        "body": "No headline event Sunday — pick a swim beach, check today's lake level, or grab a table on the water before you head out.",
+        "title": "Keep it slow, then close it out at Jocassee Valley",
+        "body": "Pick a swim spot or check today's lake level, then wind down with Suze Luna & Dick Wells at 4pm and Farm to Fire pizza back at Jocassee Valley Brewing.",
         "url": "/swim/",
         "label": "Pick a swim spot →"
       }
@@ -94,32 +71,24 @@
         "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley"
       },
       {
-        "label": "Walhalla PAC — Events calendar",
+        "label": "Walhalla PAC — Events calendar (no show Sept 3–6; next is Sept 11)",
         "url": "https://walhallapac.com/events/"
       },
       {
-        "label": "Walhalla PAC — 7 Bridges: The Ultimate Eagles Experience",
-        "url": "https://walhallapac.com/events/7-bridges-the-ultimate-eagles-experience/"
-      },
-      {
-        "label": "Visit Oconee SC — Events calendar",
+        "label": "Visit Oconee SC — Events calendar (nothing listed Sept 3–6)",
         "url": "https://visitoconeesc.com/events/"
-      },
-      {
-        "label": "Buggy Bee 5K — Registration",
-        "url": "https://runsignup.com/Race/SC/Seneca/BuggyBeeRace"
       },
       {
         "label": "Jocassee Lake Tours — Sunset Lake Tour",
         "url": "https://jocasseelaketours.com/all-tours/sunset-lake-tours/"
       },
       {
-        "label": "Keowee Brewing — Events calendar",
-        "url": "https://keoweebrewing.com/events-calendar"
-      },
-      {
         "label": "Jocassee Valley Brewing",
         "url": "https://jocasseevalleybrewing.com/"
+      },
+      {
+        "label": "Keowee Brewing — Events calendar",
+        "url": "https://keoweebrewing.com/events-calendar"
       },
       {
         "label": "National Weather Service — Lake Keowee forecast",
