@@ -138,6 +138,19 @@ main{max-width:1100px;margin:0 auto;padding:26px 20px 20px}
 .xlinks a{font-family:var(--mono);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;padding:10px 16px;border-radius:999px;background:var(--keowee-deep);color:#fff}
 .xlinks a:hover{background:#0d4a40}
 .loadmsg{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);padding:30px 0}
+.skel-report{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:860px){.skel-report{grid-template-columns:1.4fr 1fr}}
+.skel-card{border-radius:var(--radius-lg);padding:26px;background:#fff;box-shadow:0 2px 10px rgba(10,58,52,.07)}
+.skel-card.dark{background:var(--keowee-deep)}
+.sk{display:block;height:14px;border-radius:7px;margin-bottom:13px;background:linear-gradient(90deg,#E2EEE8 25%,#F2F8F5 50%,#E2EEE8 75%);background-size:200% 100%;animation:skshine 1.3s linear infinite}
+.skel-card.dark .sk{background:linear-gradient(90deg,rgba(82,214,196,.14) 25%,rgba(82,214,196,.28) 50%,rgba(82,214,196,.14) 75%);background-size:200% 100%}
+.sk.big{height:54px;border-radius:12px}
+.skrow{margin-top:14px}
+.sk.chip{display:inline-block;height:28px;width:86px;border-radius:999px;margin:0 8px 0 0}
+.skel-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:22px}
+.sk.cell{height:84px;border-radius:14px;margin:0}
+@keyframes skshine{to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.sk{animation:none}}
 
 footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:20px}
 .foot-marks{display:flex;justify-content:center;margin-bottom:14px}
@@ -222,7 +235,13 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
 
 <main>
   <div id="alertBar" style="display:none"></div>
-  <div class="loadmsg" id="loadMsg">Reading the sky and the gauge…</div>
+  <div id="loadMsg" aria-hidden="true">
+    <div class="skel-report">
+      <div class="skel-card dark"><i class="sk" style="width:38%"></i><i class="sk big" style="width:34%"></i><i class="sk" style="width:72%"></i><div class="skrow"><i class="sk chip"></i><i class="sk chip"></i><i class="sk chip"></i><i class="sk chip"></i></div></div>
+      <div class="skel-card"><i class="sk" style="width:42%"></i><i class="sk" style="width:92%"></i><i class="sk" style="width:80%"></i><i class="sk" style="width:86%"></i><i class="sk" style="width:64%"></i></div>
+    </div>
+    <div class="skel-cal"><i class="sk cell"></i><i class="sk cell"></i><i class="sk cell"></i><i class="sk cell"></i><i class="sk cell"></i><i class="sk cell"></i><i class="sk cell"></i></div>
+  </div>
   <div class="report" id="report" style="display:none">
     <section class="verdict" id="verdict" aria-label="Today's lake day score">
       <p class="vday" id="vDay">Today</p>
@@ -375,12 +394,14 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     if(s>=3.5)return 'Iffy out there. The brave get the lake to themselves.';
     return 'Not today. The lake will forgive you.';
   }
+  // Gusts and alerts are decoration, not the verdict: fetch them in parallel
+  // but never let them delay the score card.
+  var pGrid=fetch('https://api.weather.gov/gridpoints/GSP/45,41',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties;}).catch(function(){return null;});
+  var pAlerts=fetch('https://api.weather.gov/alerts/active?point=34.85,-82.93',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.features||[];}).catch(function(){return [];});
   Promise.all([
     fetch(FC,{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}),
     fetch(DUKE).then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return null;}),
-    fetch(FC+'/hourly',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties.periods||null;}).catch(function(){return null;}),
-    fetch('https://api.weather.gov/gridpoints/GSP/45,41',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties;}).catch(function(){return null;}),
-    fetch('https://api.weather.gov/alerts/active?point=34.85,-82.93',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.features||[];}).catch(function(){return [];})
+    fetch(FC+'/hourly',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.properties.periods||null;}).catch(function(){return null;})
   ]).then(function(res){
     var periods=res[0].properties.periods||[];
     var lakes=res[1];
@@ -449,9 +470,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       var rainBit='rain '+w.ds.rain+'%'+(w.sw?' ('+(w.sw.allDay?'on and off all day':w.sw.label)+')':'');
       det.innerHTML='<b>'+w.p.name+': '+fmtS(w.ds.s)+'/10.</b> '+w.p.temperature+'°, '+rainBit+', wind '+(w.ds.wind||'under 5')+' mph. '+(w.p.shortForecast||'')+'.';
     }
-    var grid=res[3];
-    var alerts=res[4]||[];
-    if(alerts.length){
+    pAlerts.then(function(alerts){
+      if(!alerts.length)return;
       var order={Warning:0,Watch:1,Advisory:2,Statement:3};
       alerts.sort(function(a,b){
         var ea=(a.properties.event||'').split(' ').pop(),eb=(b.properties.event||'').split(' ').pop();
@@ -463,7 +483,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       var bar=document.getElementById('alertBar');
       bar.innerHTML='<div class="alert '+(isWarn?'warn':'watch')+'" role="alert"><b>&#9888; '+esc(al.event)+'</b>'+esc(al.headline||'Active for the Lake Keowee area.')+' <a href="https://www.weather.gov/gsp/" rel="noopener" target="_blank">Details at weather.gov</a></div>';
       bar.style.display='block';
-    }
+    });
     function keyH(d){return d.toISOString().slice(0,13);}
     function expandSeries(series){
       var m={};
@@ -477,8 +497,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       });
       return m;
     }
-    var gustMap=grid?expandSeries(grid.windGust):{};
-    var dirMap=grid?expandSeries(grid.windDirection):{};
+    var gustMap={},dirMap={};
     var COMPASS={N:0,NNE:22.5,NE:45,ENE:67.5,E:90,ESE:112.5,SE:135,SSE:157.5,S:180,SSW:202.5,SW:225,WSW:247.5,W:270,WNW:292.5,NW:315,NNW:337.5};
     function hourScore(pop,w,t){
       var s=10;
@@ -538,9 +557,15 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       hourlySec.style.display='block';
     }
     cal.addEventListener('click',function(e){var b=e.target.closest('.calc');if(b){selectDay(+b.getAttribute('data-i'));if(window.umami)umami.track('outlook-day',{i:+b.getAttribute('data-i')});}});
-    var _sel=selectDay;
-    selectDay=function(i){_sel(i);renderHourly(i);};
+    var _sel=selectDay,curDay=0;
+    selectDay=function(i){curDay=i;_sel(i);renderHourly(i);};
     selectDay(0);
+    pGrid.then(function(grid){
+      if(!grid)return;
+      gustMap=expandSeries(grid.windGust);
+      dirMap=expandSeries(grid.windDirection);
+      renderHourly(curDay);
+    });
     function fh(h){return h===12?'12 PM':h>12?(h-12)+' PM':h+' AM';}
     (function(){
       if(!hourly)return;
@@ -586,7 +611,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     document.getElementById('loadMsg').style.display='none';
     document.getElementById('report').style.display='grid';
   }).catch(function(){
-    document.getElementById('loadMsg').textContent='The forecast feed is not answering right now. Try a refresh, or check keowee.club/lake-level/ for the water.';
+    document.getElementById('loadMsg').innerHTML='<p class="loadmsg">The forecast feed is not answering right now. Try a refresh, or check keowee.club/lake-level/ for the water.</p>';
   });
 })();
 (function(){
