@@ -204,6 +204,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
   .beta{font-size:.55rem;padding:4px 7px 3px;vertical-align:.4em}
 }
 </style>
+<link rel="stylesheet" href="/assets/navigation.css">
+<script defer src="/assets/navigation.js"></script>
 </head>
 <body>
 
@@ -212,6 +214,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
     <a class="wordmark" href="/" aria-label="Keowee Club home">
       <img class="pennant-logo" src="../brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
     </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav-menu">Menu</button>
+    <div class="nav-menu" id="main-nav-menu">
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
       <li><a href="/today/" aria-current="page">Today</a></li>
@@ -221,6 +225,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:26px 20px;margin-top:
       <li><a href="/depth/">Depth Map</a></li>
     </ul>
     <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
+    </div>
   </div>
 </nav>
 

@@ -150,6 +150,8 @@ a{color:inherit}
   .hero .sub{font-size:.98rem;margin-top:12px}
 }
 </style>
+<link rel="stylesheet" href="/assets/navigation.css">
+<script defer src="/assets/navigation.js"></script>
 </head>
 <body>
 
@@ -158,6 +160,8 @@ a{color:inherit}
     <a class="wordmark" href="/" aria-label="Keowee Club home">
       <img class="pennant-logo" src="../brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
     </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav-menu">Menu</button>
+    <div class="nav-menu" id="main-nav-menu">
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
             <li><a href="/today/">Today</a></li>
@@ -167,6 +171,7 @@ a{color:inherit}
       <li><a href="/depth/" aria-current="page">Depth Map</a></li>
     </ul>
     <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
+    </div>
   </div>
 </nav>
 

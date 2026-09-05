@@ -72,7 +72,7 @@ a{color:inherit}
 }
 
 /* ---------- HERO ---------- */
-.hero{background:var(--keowee-deep);color:#fff;position:relative;overflow:hidden;padding:64px 20px 88px}
+.hero{background:var(--keowee-deep);color:#fff;position:relative;overflow:hidden;padding:48px 20px 48px}
 .hero-inner{max-width:1100px;margin:0 auto;position:relative}
 .eyebrow{font-family:var(--mono);font-size:.75rem;font-weight:400;text-transform:uppercase;letter-spacing:.14em;color:var(--clearwater);margin-bottom:18px}
 .hero .display-title{font-family:var(--display);font-weight:800;font-size:clamp(2.9rem,11vw,6.5rem);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;max-width:11ch}
@@ -83,15 +83,9 @@ a{color:inherit}
 .btn:hover{transform:translateY(-2px)}
 .btn-coral{background:var(--sunset);color:#fff}
 .btn-ghost{border:2px solid var(--clearwater);color:var(--clearwater)}
-#todayBtn b{color:var(--goldhour)}
+.hero-guide{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;color:#CFE8E1;font-size:.95rem;text-underline-offset:5px}
+.hero-guide:hover{color:#fff}
 .hero-wave{position:absolute;left:0;right:0;bottom:-1px;display:block;width:100%}
-.lake-report{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:10px 16px;border-radius:999px;background:rgba(82,214,196,.1);border:1px solid rgba(82,214,196,.35);text-decoration:none;font-family:var(--mono);font-size:.8rem;color:#CFE8E1;transition:background .15s ease,border-color .15s ease}
-.lake-report:hover{background:rgba(82,214,196,.18);border-color:var(--clearwater)}
-.lake-report-text b{color:var(--clearwater);font-weight:700}
-.lake-report-dot{width:9px;height:9px;border-radius:50%;background:var(--clearwater);box-shadow:0 0 0 0 rgba(82,214,196,.6);animation:pulse 2.4s infinite}
-.lake-report[data-state="low"] .lake-report-dot{background:var(--goldhour);box-shadow:0 0 0 0 rgba(255,194,75,.6)}
-.lake-report[data-state="low"] .lake-report-text b{color:var(--goldhour)}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(82,214,196,.5)}70%{box-shadow:0 0 0 7px rgba(82,214,196,0)}100%{box-shadow:0 0 0 0 rgba(82,214,196,0)}}
 /* The hero background IS the lake: water fills to the live level */
 .hero-inner{z-index:2}
 .hero-water{position:absolute;left:0;right:0;bottom:0;height:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(82,214,196,.30) 0,rgba(38,150,131,.34) 45%,rgba(23,126,111,.40));box-shadow:inset 0 14px 30px -12px rgba(191,243,234,.35);transition:height 1.8s cubic-bezier(.22,1,.36,1)}
@@ -100,29 +94,20 @@ a{color:inherit}
 @keyframes waveslide{to{transform:translateX(-50%)}}
 .hero[data-lake="low"] .hero-water{background:linear-gradient(180deg,rgba(255,194,75,.14),rgba(224,122,62,.18))}
 .hero[data-lake="low"] .water-wave path{fill:rgba(255,194,75,.14)}
-.waterline-chip{position:absolute;left:50%;margin-left:-90px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:var(--keowee-dusk);border:1.5px solid rgba(82,214,196,.55);font-family:var(--mono);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#CFE8E1;text-decoration:none;transform:translateY(50%);transition:border-color .15s ease}
-.waterline-chip:hover{border-color:var(--clearwater);color:#fff}
-.waterline-chip b{color:var(--clearwater)}
-.hero[data-lake="low"] .waterline-chip{border-color:rgba(255,194,75,.6)}
-.hero[data-lake="low"] .waterline-chip b{color:var(--goldhour)}
-@media(min-width:900px){.lake-report{display:none}}
-@media(prefers-reduced-motion:reduce){.lake-report-dot{animation:none}.water-wave{animation:none}.hero-water{transition:none}}
+@media(prefers-reduced-motion:reduce){.water-wave{animation:none}.hero-water{transition:none}}
 
-/* ---------- TICKER ---------- */
-.ticker{background:var(--keowee-dusk);color:var(--clearwater);overflow:hidden;border-top:1px solid rgba(82,214,196,.25);border-bottom:1px solid rgba(82,214,196,.25)}
-.ticker-track{display:flex;width:max-content;animation:scroll 32s linear infinite;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;padding:11px 0}
-.ticker-set{display:flex}
-.ticker-track span{padding:0 26px;white-space:nowrap}
-.ticker-track a{color:inherit;text-decoration:none}
-.ticker-track a:hover{color:#fff}
-.ticker:hover .ticker-track,.ticker:focus-within .ticker-track{animation-play-state:paused}
-.ticker-track b{color:var(--goldhour);font-weight:700}
-@keyframes scroll{to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){
-  .ticker-track{animation:none;width:100%;padding:8px 0}
-  .ticker-dup{display:none}
-  .ticker-set{flex-wrap:wrap;justify-content:center;width:100%}
-  .ticker-set span{padding:4px 14px}
+/* ---------- LAKE CONDITIONS ---------- */
+.conditions{background:var(--keowee-dusk);color:#CFE8E1;border-top:1px solid rgba(82,214,196,.25)}
+.conditions-inner{max-width:1100px;margin:0 auto;padding:18px 20px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.condition{display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:54px;text-decoration:none;line-height:1.4}
+.condition-label{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--clearwater)}
+.condition b{font-size:.93rem;font-weight:600}
+.conditions a:hover b{text-decoration:underline;text-underline-offset:4px;color:#fff}
+@media(max-width:680px){
+  .conditions-inner{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;padding:16px 18px}
+  .condition b{font-size:.85rem}
+  .hero-actions{gap:10px;margin-top:24px}
+  .hero-actions .btn{font-size:.72rem;padding:14px 18px}
 }
 
 /* ---------- THIS WEEKEND ---------- */
@@ -276,6 +261,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
 }
 </script>
 <!-- spots-schema:end -->
+<link rel="stylesheet" href="/assets/navigation.css">
+<script defer src="/assets/navigation.js"></script>
 </head>
 <body>
 
@@ -284,6 +271,8 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
     <a class="wordmark" href="#top" aria-label="keowee.club home">
       <img class="pennant-logo" src="brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
     </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav-menu">Menu</button>
+    <div class="nav-menu" id="main-nav-menu">
     <ul class="nav-links">
       <li><a href="/" aria-current="page">Home</a></li>
             <li><a href="/today/">Today</a></li>
@@ -293,6 +282,7 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
       <li><a href="/depth/">Depth Map</a></li>
     </ul>
     <a class="nav-cta" href="#dispatch">Get the Dispatch</a>
+    </div>
   </div>
 </nav>
 
@@ -300,37 +290,29 @@ footer{background:var(--keowee-dusk);color:#8FBFB5;padding:36px 20px}
   <div class="hero-inner">
     <h1 class="eyebrow">The unofficial guide to Lake Keowee &amp; Lake Jocassee</h1>
     <p class="display-title">Go jump in a <em>lake.</em></p>
-    <p>Where locals eat and drink, a live lake report, and a map of every spot worth docking at — curated by people who actually live on this water, not a tourism board.</p>
+    <p>Where to eat, what’s happening, and how the lake’s looking. Curated by people who live on this water.</p>
     <div class="hero-actions">
       <a class="btn btn-coral" href="/weekend/">This weekend</a>
       <a class="btn btn-ghost" id="todayBtn" href="/today/">Today's lake report</a>
-      <a class="btn btn-ghost" href="/guides/lake-keowee-first-timer/">First-timer guide</a>
     </div>
-    <a class="lake-report" id="lakeReport" href="/lake-level/" hidden>
-      <span class="lake-report-dot" aria-hidden="true"></span>
-      <span class="lake-report-text"></span>
-    </a>
+    <a class="hero-guide" href="/guides/lake-keowee-first-timer/">New here? Start with the first-timer guide →</a>
   </div>
   <div class="hero-water" id="heroWater" aria-hidden="true">
     <svg class="water-wave" viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M0 12 Q6 2 12.5 6 T25 6 T37.5 6 T50 6 T62.5 6 T75 6 T87.5 6 T100 6 T112.5 6 T125 6 T137.5 6 T150 6 T162.5 6 T175 6 T187.5 6 T200 6 V12 Z"/></svg>
   </div>
-  <a class="waterline-chip" id="waterChip" href="/lake-level/" hidden>
-    <span class="lake-report-dot" aria-hidden="true"></span>
-    <span id="waterChipText"></span>
-  </a>
   <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C180 60 360 0 540 20s360 40 540 15 300-25 360-10V60H0Z" fill="#062821"/></svg>
 </header>
 
-<div class="ticker">
-  <div class="ticker-track">
-    <div class="ticker-set">
-      <span><a class="weather-link" href="https://forecast.weather.gov/MapClick.php?lat=34.85&amp;lon=-82.93" aria-label="Lake Keowee weather forecast from the National Weather Service">🌤️ <b class="js-wx">clear skies</b></a></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span class="js-event">🎷 Jazz Night in Seneca <b>Thursdays</b></span><span>🎣 Fishing report <b>they're biting</b></span>
-    </div>
-    <div class="ticker-set ticker-dup" aria-hidden="true">
-      <span><a class="weather-link" href="https://forecast.weather.gov/MapClick.php?lat=34.85&amp;lon=-82.93" tabindex="-1">🌤️ <b class="js-wx">clear skies</b></a></span><span>🌅 Sunset <b class="js-sunset">this evening</b></span><span>📏 Keowee <b class="js-level">full pond</b></span><span>💧 Jocassee <b class="js-joco">full pond</b></span><span class="js-event">🎷 Jazz Night in Seneca <b>Thursdays</b></span><span>🎣 Fishing report <b>they're biting</b></span>
-    </div>
+<section class="conditions" aria-label="Lake conditions">
+  <div class="conditions-inner">
+    <a class="condition" href="https://forecast.weather.gov/MapClick.php?lat=34.85&amp;lon=-82.93" title="Lake Keowee forecast from the National Weather Service">
+      <span class="condition-label">Weather</span><b class="js-wx">Check forecast →</b>
+    </a>
+    <div class="condition"><span class="condition-label">Sunset</span><b class="js-sunset">This evening</b></div>
+    <a class="condition" href="/lake-level/"><span class="condition-label">Keowee level</span><b class="js-level">Check levels →</b></a>
+    <a class="condition" href="/lake-level/"><span class="condition-label">Jocassee level</span><b class="js-joco">Check levels →</b></a>
   </div>
-</div>
+</section>
 
 <main>
 
@@ -513,70 +495,31 @@ document.addEventListener('click',function(e){
   if(count)count.textContent=(n<10?'0':'')+n+' spots';
 });
 
-// Today's lake day score for the hero chip. Fails silently to the static label.
-(function(){
-  var btn=document.getElementById('todayBtn');
-  if(!btn)return;
-  Promise.all([
-    fetch('https://api.weather.gov/gridpoints/GSP/45,41/forecast',{headers:{'Accept':'application/geo+json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}),
-    fetch('https://api.hydro-derived.duke-energy.app/lakes/current-level').then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return null;})
-  ]).then(function(res){
-    var p=(res[0].properties.periods||[]).filter(function(x){return x.isDaytime;})[0];
-    if(!p)return;
-    var down=null;
-    if(res[1]){var k=res[1].find(function(l){return l.LakeName==='KEOWEE';});var a=k&&parseFloat(k.Actual);if(a&&!isNaN(a))down=Math.max(0,100-a);}
-    var rain=(p.probabilityOfPrecipitation&&p.probabilityOfPrecipitation.value)||0;
-    var m=(p.windSpeed||'').match(/(\d+)(?:\s*to\s*(\d+))?\s*mph/);
-    var w=m?+(m[2]||m[1]):0,t=p.temperature,s=10;
-    if(rain>=60)s-=4;else if(rain>=40)s-=2.5;else if(rain>=20)s-=1;
-    if(w>20)s-=4;else if(w>14)s-=2.5;else if(w>8)s-=1;
-    if(t<60)s-=4;else if(t<70)s-=2;else if(t>95)s-=1;
-    if(down!=null&&down>4)s-=1;
-    s=Math.max(1,Math.min(10,Math.round(s*2)/2));
-    btn.innerHTML='Today: <b>'+(s%1?s.toFixed(1):s)+'/10</b>';
-  }).catch(function(){});
-})();
-
-// Live lake + sky data for the hero badge and ticker. Each piece fails silently to its static text.
+// Live lake + sky data. Navigation and honest fallback links work without it.
 (function(){
   function setAll(sel,txt){Array.prototype.forEach.call(document.querySelectorAll(sel),function(el){el.textContent=txt;});}
 
   // Lake levels — Duke Energy
-  function kVerdict(p){
-    if(p>=97) return {tick:'basically full',hero:'basically full pond. Go.',low:false};
-    if(p>=95) return {tick:'plenty deep',hero:'plenty of water. Go.',low:false};
-    if(p>=93.5) return {tick:'holding',hero:'a little low, still good.',low:false};
-    return {tick:'running low',hero:'getting skinny — launch at South Cove.',low:true};
-  }
   fetch('https://api.hydro-derived.duke-energy.app/lakes/current-level')
     .then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(lakes){
       var k=lakes.find(function(l){return l.LakeName==='KEOWEE';});
       var kp=k&&parseFloat(k.Actual);
       if(kp&&!isNaN(kp)){
-        var v=kVerdict(kp),below=Math.max(0,Math.round((100-kp)*10)/10);
-        setAll('.js-level',below.toFixed(1)+' ft down · '+v.tick);
-        var rpt=document.getElementById('lakeReport');
-        rpt.querySelector('.lake-report-text').innerHTML='Keowee’s down <b>'+below.toFixed(1)+' ft</b> — '+v.hero;
-        if(v.low)rpt.setAttribute('data-state','low');
-        rpt.hidden=false;
-        var hw=document.getElementById('heroWater'),chip=document.getElementById('waterChip');
+        var below=Math.max(0,Math.round((100-kp)*10)/10);
+        setAll('.js-level',below.toFixed(1)+' ft below full pond');
+        var hw=document.getElementById('heroWater');
         if(hw){
           var lvl=Math.max(4,Math.min(100,kp));
           hw.style.height=lvl+'%';
-          if(v.low)document.querySelector('.hero').setAttribute('data-lake','low');
-          if(chip){
-            document.getElementById('waterChipText').innerHTML='<b>−'+below.toFixed(1)+' ft</b>&nbsp;· '+v.tick;
-            chip.style.bottom=lvl+'%';
-            chip.hidden=false;
-          }
+          if(kp<93.5)document.querySelector('.hero').setAttribute('data-lake','low');
         }
       }
       var j=lakes.find(function(l){return l.LakeName==='JOCASSEE';});
       var jp=j&&parseFloat(j.Actual);
-      if(jp&&!isNaN(jp)) setAll('.js-joco',(Math.max(0,Math.round((100-jp)*10)/10)).toFixed(1)+' ft down');
+      if(jp&&!isNaN(jp)) setAll('.js-joco',(Math.max(0,Math.round((100-jp)*10)/10)).toFixed(1)+' ft below full pond');
     })
-    .catch(function(){/* keep static fallback */});
+    .catch(function(){/* Keep the forecast and level links available. */});
 
   // Sunset over the lake — computed locally, no network needed
   function sunset(lat,lng,date){
@@ -601,38 +544,16 @@ document.addEventListener('click',function(e){
     if(s) setAll('.js-sunset',s.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'}).toLowerCase());
   }catch(e){}
 
-  // Thursday events: Jazz on the Alley runs April–October; show trivia off-season
-  try{
-    var mo=new Date().getMonth(); // 0=Jan … 11=Dec
-    if(mo<3||mo>9){
-      Array.prototype.forEach.call(document.querySelectorAll('.js-event'),function(el){
-        el.innerHTML='🍺 Trivia @ Keowee Brewing <b>Mondays</b>';
-      });
-    }
-  }catch(e){}
-
   // Weather at the lake — National Weather Service (station KCEU, Clemson-Oconee)
-  function wxEmoji(d){d=(d||'').toLowerCase();
-    if(/thunder|storm/.test(d))return '⛈️';
-    if(/snow|sleet|ice/.test(d))return '❄️';
-    if(/rain|shower|drizzle/.test(d))return '🌧️';
-    if(/fog|mist|haze|smoke/.test(d))return '🌫️';
-    if(/cloud|overcast/.test(d))return '☁️';
-    if(/clear|sunny|fair/.test(d))return '☀️';
-    return '🌤️';}
   fetch('https://api.weather.gov/stations/KCEU/observations/latest')
     .then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(o){
       var p=o.properties,c=p.temperature&&p.temperature.value,desc=(p.textDescription||'').trim();
       if(c==null&&!desc)return;
       var f=(c!=null)?Math.round(c*9/5+32)+'°':'';
-      setAll('.js-wx',(desc+(desc&&f?' · ':'')+f)||'clear skies');
-      var em=wxEmoji(desc)+' ';
-      Array.prototype.forEach.call(document.querySelectorAll('.js-wx'),function(el){
-        if(el.parentNode&&el.parentNode.firstChild)el.parentNode.firstChild.nodeValue=em;
-      });
+      setAll('.js-wx',(desc+(desc&&f?' · ':'')+f)||'Check forecast →');
     })
-    .catch(function(){/* keep static fallback */});
+    .catch(function(){/* Keep the forecast and level links available. */});
 })();
 </script>
 <!-- Cloudflare Web Analytics -->

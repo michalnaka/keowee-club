@@ -220,6 +220,8 @@ def render_guide(guide: dict) -> str:
 <script type="application/ld+json">
 {schema_for(guide)}
 </script>
+<link rel="stylesheet" href="/assets/navigation.css">
+<script defer src="/assets/navigation.js"></script>
 </head>
 <body>
 <nav class="nav" aria-label="Main">
@@ -227,6 +229,8 @@ def render_guide(guide: dict) -> str:
     <a class="wordmark" href="/" aria-label="Keowee Club home">
       <img class="pennant-logo" src="/brand/keoweeclub.svg" alt="Keowee Club" width="383" height="312">
     </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav-menu">Menu</button>
+    <div class="nav-menu" id="main-nav-menu">
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
       <li><a href="/today/">Today</a></li>
@@ -236,6 +240,7 @@ def render_guide(guide: dict) -> str:
       <li><a href="/depth/">Depth Map</a></li>
     </ul>
     <a class="nav-cta" href="/#dispatch">Get the Dispatch</a>
+    </div>
   </div>
 </nav>
 
