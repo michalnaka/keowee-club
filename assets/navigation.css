@@ -1,0 +1,20 @@
+/* Shared navigation: loaded after each page's legacy header styles. */
+.nav .nav-menu{display:contents}
+.nav .nav-toggle{display:none}
+.nav .nav-links a{min-height:44px;display:flex;align-items:center}
+.nav .nav-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;background:transparent;border:1px solid rgba(191,243,234,.55);color:#CFE8E1}
+.nav .nav-cta:hover{background:rgba(82,214,196,.12);color:#fff}
+.nav :focus-visible{outline:3px solid var(--sunset);outline-offset:3px}
+@media(max-width:1023px){
+  .nav .nav-inner{position:relative;flex-wrap:wrap;padding:8px 18px;gap:0 16px}
+  .nav .pennant-logo{width:68px;margin:0}
+  .nav.nav-ready .nav-toggle{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:44px;padding:10px 16px;border:1px solid rgba(191,243,234,.55);border-radius:999px;background:transparent;color:#fff;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+  .nav .nav-toggle::after{content:'+';font-size:1.25rem;line-height:1}
+  .nav .nav-toggle[aria-expanded="true"]::after{content:'−'}
+  .nav .nav-menu{display:grid;gap:12px;width:100%;padding:12px 0}
+  .nav.nav-ready .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;padding:16px 18px 20px;background:var(--keowee-deep);border-top:1px solid rgba(191,243,234,.2);box-shadow:0 16px 24px rgba(6,40,33,.2);max-height:calc(100dvh - 76px);overflow-y:auto}
+  .nav.nav-open .nav-menu{display:grid}
+  .nav .nav-links{order:initial;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:6px;padding:0;border:0;border-radius:0;background:none;overflow:visible;font-size:.75rem}
+  .nav .nav-links a{padding:12px;border-radius:10px;white-space:normal}
+  .nav .nav-cta{justify-self:start;font-size:.72rem;padding:10px 14px}
+}

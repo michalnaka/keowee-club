@@ -1,17 +1,17 @@
 {
   "edition": {
-    "start": "2026-09-03",
-    "end": "2026-09-06",
-    "date_display": "September 3–6",
-    "updated": "2026-09-01",
-    "updated_display": "September 1, 2026",
+    "start": "2026-09-10",
+    "end": "2026-09-13",
+    "date_display": "September 10–13",
+    "updated": "2026-09-08",
+    "updated_display": "September 8, 2026",
     "title": "This weekend on Keowee + Jocassee",
-    "dek": "No headline show at Walhalla PAC this week — their next one isn't until the 11th — so Jazz on the Alley carries Thursday, and Jocassee Valley Brewing stacks a food truck and a live band every night from Friday through Sunday. The weekly Jocassee sunset run still goes out Saturday evening.",
+    "dek": "Walhalla PAC's headline slot is back: Ashley McBryde plays the stage Friday night, the first big show since the summer wound down. Jazz on the Alley still owns Thursday downtown, the weekly Jocassee sunset run goes out Saturday evening, and both breweries keep their usual free Friday–Saturday music going — check their calendars for who's actually playing before you head out.",
     "events": [
       {
         "day": "Thursday",
-        "date_display": "September 3",
-        "date": "2026-09-03",
+        "date_display": "September 10",
+        "date": "2026-09-10",
         "tag": "Seneca",
         "title": "Jazz on the Alley",
         "body": "Seneca's Thursday-night institution — free live jazz on historic Ram Cat Alley, every week through October. The happy-hour set starts at 5:30, the main act at 6:30. Get dinner downtown and let the weekend start a day early.",
@@ -20,24 +20,35 @@
         "source": "City of Seneca"
       },
       {
+        "day": "Friday",
+        "date_display": "September 11",
+        "date": "2026-09-11",
+        "tag": "Walhalla",
+        "title": "Ashley McBryde at Walhalla PAC",
+        "body": "The Performing Arts Center's headline slot returns after a quiet week: country singer-songwriter Ashley McBryde plays the room in downtown Walhalla. It's a small venue for a name this size — check with the box office on what's left.",
+        "note": "7:30pm · Walhalla Performing Arts Center · check the venue for remaining tickets & pricing",
+        "url": "https://walhallapac.com/events/",
+        "source": "Walhalla Performing Arts Center"
+      },
+      {
         "day": "Saturday",
-        "date_display": "September 5",
-        "date": "2026-09-05",
+        "date_display": "September 12",
+        "date": "2026-09-12",
         "tag": "Lake Jocassee",
         "title": "Sunset Lake Tour",
-        "body": "A slower two-hour run out onto Jocassee as the light goes gold over the mountains, with a waterfall or two along the way. Runs every Saturday evening through the season.",
+        "body": "A slower two-hour run out onto Jocassee as the light goes gold over the mountains, with a waterfall or two along the way. Runs every Saturday evening through the season; needs six bookings to go out, so reserve ahead.",
         "note": "$65 · 2 hours · every Saturday · Jocassee Lake Tours",
         "url": "https://jocasseelaketours.com/all-tours/sunset-lake-tours/",
         "source": "Jocassee Lake Tours"
       },
       {
-        "day": "Fri–Sun",
-        "date_display": "September 4–6",
-        "date": "2026-09-04",
+        "day": "Fri–Sat",
+        "date_display": "September 11–12",
+        "date": "2026-09-11",
         "tag": "Breweries",
-        "title": "Three nights of live music at Jocassee Valley",
-        "body": "Jocassee Valley Brewing in Salem has its lineup posted: Kodesh BBQ & Bowls and According to Taste on Friday, Squeals on Wheels with Finkelstein Three on Saturday, and Farm to Fire pizza with Suze Luna & Dick Wells closing it out Sunday afternoon. Keowee Brewing in Seneca runs its usual free Friday and Saturday music too — check its calendar for who's on.",
-        "note": "Free · sets start 6:30pm Fri & Sat, 4pm Sun at Jocassee Valley · Keowee Brewing Fri & Sat, lineup on their calendar",
+        "title": "Free live music at both breweries",
+        "body": "Jocassee Valley Brewing in Salem and Keowee Brewing in Seneca both run their usual free Friday and Saturday night sets, with food trucks at Jocassee Valley. Neither had this week's lineup posted as of publish time — check each calendar for who's actually on before you go.",
+        "note": "Free · Fri & Sat nights · lineups posted on each venue's own calendar",
         "url": "https://jocasseevalleybrewing.com",
         "source": "Jocassee Valley Brewing · Keowee Brewing"
       }
@@ -45,22 +56,22 @@
     "plan": [
       {
         "day": "Friday",
-        "title": "Dinner, then live music at both breweries",
-        "body": "Jocassee Valley Brewing opens with Kodesh BBQ & Bowls and According to Taste at 6:30, while Keowee Brewing runs its usual free Friday set downtown. Grab a table at either before the sets fill in.",
+        "title": "Dinner, then Ashley McBryde at Walhalla PAC",
+        "body": "Grab dinner downtown before the show — Walhalla PAC's headline slot is back this week. No ticket? Keowee Brewing and Jocassee Valley Brewing both have their usual free Friday music going too.",
         "url": "/eat-and-drink/",
         "label": "Find a spot to eat & drink →"
       },
       {
         "day": "Saturday",
         "title": "A ramp, a swim, then the sunset tour",
-        "body": "No headline event Saturday during the day — find a ramp, get on the water, then book the Jocassee sunset run for the evening.",
+        "body": "No headline event Saturday during the day — find a ramp, get on the water, then book the Jocassee sunset run for the evening. Both breweries run free music again that night.",
         "url": "/boat-ramps/",
         "label": "Find a ramp →"
       },
       {
         "day": "Sunday",
-        "title": "Keep it slow, then close it out at Jocassee Valley",
-        "body": "Pick a swim spot or check today's lake level, then wind down with Suze Luna & Dick Wells at 4pm and Farm to Fire pizza back at Jocassee Valley Brewing.",
+        "title": "Keep it slow, check the level",
+        "body": "Nothing dated is on the calendar for Sunday this week — pick a swim spot, check today's lake level, and make your own plan for the last day of the weekend.",
         "url": "/swim/",
         "label": "Pick a swim spot →"
       }
@@ -71,11 +82,11 @@
         "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley"
       },
       {
-        "label": "Walhalla PAC — Events calendar (no show Sept 3–6; next is Sept 11)",
+        "label": "Walhalla PAC — Events calendar (Ashley McBryde, Sept 11)",
         "url": "https://walhallapac.com/events/"
       },
       {
-        "label": "Visit Oconee SC — Events calendar (nothing listed Sept 3–6)",
+        "label": "Visit Oconee SC — Events calendar (nothing listed Sept 10–13; next is Sept 19)",
         "url": "https://visitoconeesc.com/events/"
       },
       {
