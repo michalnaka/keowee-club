@@ -91,10 +91,10 @@
         "date": "2026-09-18",
         "tag": "Breweries",
         "title": "Free live music at both breweries",
-        "body": "Jocassee Valley Brewing in Salem has Big Eyes Parker playing Friday and Crank Dogs Saturday, both at 6:30pm, with food trucks alongside. Keowee Brewing in Seneca runs its usual free Friday–Saturday sets too — check their calendar for who's actually on before you go.",
-        "note": "Free · Fri & Sat, 6:30pm · lineups confirmed on each venue's own calendar",
-        "url": "https://jocasseevalleybrewing.com",
-        "source": "Jocassee Valley Brewing · Keowee Brewing"
+        "body": "Jocassee Valley Brewing in Salem has Big Eyes Parker playing Friday and Crank Dogs Saturday, with food trucks alongside. Keowee Brewing in Seneca has Jeff Holley Friday and BJ Callihan Saturday. All four sets are free and run 6:30–8:30pm.",
+        "note": "Free · Fri & Sat, 6:30–8:30pm · Jeff Holley & BJ Callihan at Keowee · Big Eyes Parker & Crank Dogs at Jocassee Valley",
+        "url": "https://keoweebrewing.com/events-calendar",
+        "source": "Keowee Brewing · Jocassee Valley Brewing"
       }
     ],
     "plan": [
@@ -146,12 +146,12 @@
         "url": "https://visitoconeesc.com/events/"
       },
       {
-        "label": "Jocassee Valley Brewing",
-        "url": "https://jocasseevalleybrewing.com/"
+        "label": "Keowee Brewing — Events calendar (Jeff Holley Sept 18, BJ Callihan Sept 19)",
+        "url": "https://keoweebrewing.com/events-calendar"
       },
       {
-        "label": "Keowee Brewing — Events calendar",
-        "url": "https://keoweebrewing.com/events-calendar"
+        "label": "Jocassee Valley Brewing",
+        "url": "https://jocasseevalleybrewing.com/"
       },
       {
         "label": "National Weather Service — Lake Keowee forecast",
