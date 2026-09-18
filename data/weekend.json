@@ -1,105 +1,157 @@
 {
   "edition": {
-    "start": "2026-09-10",
-    "end": "2026-09-13",
-    "date_display": "September 10–13",
-    "updated": "2026-09-08",
-    "updated_display": "September 8, 2026",
+    "start": "2026-09-17",
+    "end": "2026-09-20",
+    "date_display": "September 17–20",
+    "updated": "2026-09-15",
+    "updated_display": "September 15, 2026",
     "title": "This weekend on Keowee + Jocassee",
-    "dek": "Walhalla PAC's headline slot is back: Ashley McBryde plays the stage Friday night, the first big show since the summer wound down. Jazz on the Alley still owns Thursday downtown, the weekly Jocassee sunset run goes out Saturday evening, and both breweries keep their usual free Friday–Saturday music going — check their calendars for who's actually playing before you head out.",
+    "dek": "This is the biggest stretch Walhalla PAC has run all year: a Crosby, Stills, Nash & Young tribute Friday, Marty Stuart & His Fabulous Superlatives Saturday, and Jason Crabb's gospel show Sunday — three nights, three different crowds. Saturday during the day belongs to Walhalla itself, with the Hispanic Heritage Festival at Owens Park and the countywide Fall Farm Crawl running at the same time. Jazz on the Alley still owns Thursday downtown, and both breweries keep their usual Friday–Saturday music going.",
     "events": [
       {
         "day": "Thursday",
-        "date_display": "September 10",
-        "date": "2026-09-10",
+        "date_display": "September 17",
+        "date": "2026-09-17",
         "tag": "Seneca",
-        "title": "Jazz on the Alley",
-        "body": "Seneca's Thursday-night institution — free live jazz on historic Ram Cat Alley, every week through October. The happy-hour set starts at 5:30, the main act at 6:30. Get dinner downtown and let the weekend start a day early.",
-        "note": "Free · 6:30–9pm (happy hour 5:30) · Ram Cat Alley, downtown Seneca",
-        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley",
+        "title": "Jazz on the Alley featuring Jamie Wright",
+        "body": "Seneca's Thursday-night institution — free live jazz on historic Ram Cat Alley, every week through October. This week's main act is Jamie Wright, with the Happy Hour Showcase ahead of her set. Get dinner downtown and let the weekend start a day early.",
+        "note": "Free · Happy Hour Showcase 5:30–6:30pm, main set 7–9pm · Ram Cat Alley, downtown Seneca",
+        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley/jazz-on-the-alley-2026-september-schedule",
         "source": "City of Seneca"
       },
       {
         "day": "Friday",
-        "date_display": "September 11",
-        "date": "2026-09-11",
+        "date_display": "September 18",
+        "date": "2026-09-18",
         "tag": "Walhalla",
-        "title": "Ashley McBryde at Walhalla PAC",
-        "body": "The Performing Arts Center's headline slot returns after a quiet week: country singer-songwriter Ashley McBryde plays the room in downtown Walhalla. It's a small venue for a name this size — check with the box office on what's left.",
+        "title": "Harvest Moon: A Crosby, Stills, Nash & Young Tribute at Walhalla PAC",
+        "body": "The Performing Arts Center opens a three-night run with a tribute act built around CSNY's harmonies — a good seated-show anchor if you want dinner downtown first and a real evening out.",
         "note": "7:30pm · Walhalla Performing Arts Center · check the venue for remaining tickets & pricing",
         "url": "https://walhallapac.com/events/",
         "source": "Walhalla Performing Arts Center"
       },
       {
+        "day": "Friday",
+        "date_display": "September 18",
+        "date": "2026-09-18",
+        "tag": "Seneca",
+        "title": "Blue Ridge Arts Center opening reception",
+        "body": "New exhibit opening in downtown Seneca — the Blue Ridge Photographic Society's show, up through late October. The reception is free and open to the public; pairs easily with dinner on Ram Cat Alley beforehand.",
+        "note": "Free · 5:30–7pm · Blue Ridge Arts Center, Seneca",
+        "url": "https://www.blueridgeartscenter.com/exhibitions/",
+        "source": "Blue Ridge Arts Center"
+      },
+      {
         "day": "Saturday",
-        "date_display": "September 12",
-        "date": "2026-09-12",
-        "tag": "Lake Jocassee",
-        "title": "Sunset Lake Tour",
-        "body": "A slower two-hour run out onto Jocassee as the light goes gold over the mountains, with a waterfall or two along the way. Runs every Saturday evening through the season; needs six bookings to go out, so reserve ahead.",
-        "note": "$65 · 2 hours · every Saturday · Jocassee Lake Tours",
-        "url": "https://jocasseelaketours.com/all-tours/sunset-lake-tours/",
-        "source": "Jocassee Lake Tours"
+        "date_display": "September 19",
+        "date": "2026-09-19",
+        "tag": "Walhalla",
+        "title": "Hispanic Heritage Festival",
+        "body": "The weekend's flagship free event: a full day of mariachi, folklorico dancing, salsa and norteño, and a DJ finale at Owens Park. The city's posted a full schedule of acts — worth building the day around if you're bringing kids.",
+        "note": "Free · 11am–6pm · Owens Park, Walhalla",
+        "url": "https://www.cityofwalhalla.com/communityevents/",
+        "source": "City of Walhalla"
+      },
+      {
+        "day": "Saturday",
+        "date_display": "September 19",
+        "date": "2026-09-19",
+        "tag": "Oconee County",
+        "title": "2026 Fall Farm Crawl",
+        "body": "Self-guided drive between local farms — pick your own order, stay as long as you want at each stop. Check in at Chattooga Belle Farm, Walhalla PAC, or Lifeline Community Church in Westminster to get your wristband and map.",
+        "note": "$12/person (4 & under free) · 9am–5pm, check-in 8:30–10am · three check-in locations countywide",
+        "url": "https://www.oconeefarmcrawl.com/",
+        "source": "Oconee Farm Crawl"
+      },
+      {
+        "day": "Saturday",
+        "date_display": "September 19",
+        "date": "2026-09-19",
+        "tag": "Walhalla",
+        "title": "Marty Stuart & His Fabulous Superlatives at Walhalla PAC",
+        "body": "The best ticket of the weekend: a genuine country-and-bluegrass legend playing a small-town arts center. If you're only picking one night at the PAC this week, this is probably it.",
+        "note": "7:30pm · Walhalla Performing Arts Center · check the venue for remaining tickets & pricing",
+        "url": "https://walhallapac.com/events/",
+        "source": "Walhalla Performing Arts Center"
+      },
+      {
+        "day": "Sunday",
+        "date_display": "September 20",
+        "date": "2026-09-20",
+        "tag": "Walhalla",
+        "title": "Jason Crabb at Walhalla PAC",
+        "body": "The PAC closes its three-night run with an evening of gospel from the award-winning Christian artist. A quieter way to end the weekend than the last two nights.",
+        "note": "7pm (doors ~6pm) · Walhalla Performing Arts Center · tickets from $64",
+        "url": "https://walhallapac.com/events/",
+        "source": "Walhalla Performing Arts Center"
       },
       {
         "day": "Fri–Sat",
-        "date_display": "September 11–12",
-        "date": "2026-09-11",
+        "date_display": "September 18–19",
+        "date": "2026-09-18",
         "tag": "Breweries",
         "title": "Free live music at both breweries",
-        "body": "Jocassee Valley Brewing in Salem and Keowee Brewing in Seneca both run their usual free Friday and Saturday night sets, with food trucks at Jocassee Valley. Neither had this week's lineup posted as of publish time — check each calendar for who's actually on before you go.",
-        "note": "Free · Fri & Sat nights · lineups posted on each venue's own calendar",
-        "url": "https://jocasseevalleybrewing.com",
-        "source": "Jocassee Valley Brewing · Keowee Brewing"
+        "body": "Jocassee Valley Brewing in Salem has Big Eyes Parker playing Friday and Crank Dogs Saturday, with food trucks alongside. Keowee Brewing in Seneca has Jeff Holley Friday and BJ Callihan Saturday. All four sets are free and run 6:30–8:30pm.",
+        "note": "Free · Fri & Sat, 6:30–8:30pm · Jeff Holley & BJ Callihan at Keowee · Big Eyes Parker & Crank Dogs at Jocassee Valley",
+        "url": "https://keoweebrewing.com/events-calendar",
+        "source": "Keowee Brewing · Jocassee Valley Brewing"
       }
     ],
     "plan": [
       {
         "day": "Friday",
-        "title": "Dinner, then Ashley McBryde at Walhalla PAC",
-        "body": "Grab dinner downtown before the show — Walhalla PAC's headline slot is back this week. No ticket? Keowee Brewing and Jocassee Valley Brewing both have their usual free Friday music going too.",
+        "title": "Reception, dinner, then Harvest Moon at WPAC",
+        "body": "Stop by the Blue Ridge Arts Center's opening reception in Seneca at 5:30, grab dinner on Ram Cat Alley, then head to Walhalla for the CSNY tribute that opens the PAC's three-night run.",
         "url": "/eat-and-drink/",
         "label": "Find a spot to eat & drink →"
       },
       {
         "day": "Saturday",
-        "title": "A ramp, a swim, then the sunset tour",
-        "body": "No headline event Saturday during the day — find a ramp, get on the water, then book the Jocassee sunset run for the evening. Both breweries run free music again that night.",
+        "title": "Farm Crawl by day, Marty Stuart by night",
+        "body": "The county's biggest Saturday of the season: the Fall Farm Crawl and the Hispanic Heritage Festival both run all day, so pick one (or split the difference) before Marty Stuart takes the PAC stage that evening. Get an early paddle in if you want the water to yourself first.",
         "url": "/boat-ramps/",
         "label": "Find a ramp →"
       },
       {
         "day": "Sunday",
-        "title": "Keep it slow, check the level",
-        "body": "Nothing dated is on the calendar for Sunday this week — pick a swim spot, check today's lake level, and make your own plan for the last day of the weekend.",
+        "title": "A swim, then Jason Crabb closes the weekend",
+        "body": "Nothing dated during the day — pick a swim spot, check today's lake level, and save the gospel show at WPAC for the evening. Jocassee Valley Brewing also has music at 4pm if you want a lower-key close.",
         "url": "/swim/",
         "label": "Pick a swim spot →"
       }
     ],
     "sources": [
       {
-        "label": "City of Seneca — Jazz on the Alley",
-        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley"
+        "label": "City of Seneca — Jazz on the Alley (Jamie Wright, Sept 17)",
+        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley/jazz-on-the-alley-2026-september-schedule"
       },
       {
-        "label": "Walhalla PAC — Events calendar (Ashley McBryde, Sept 11)",
+        "label": "Walhalla PAC — Events calendar (Harvest Moon Sept 18, Marty Stuart Sept 19, Jason Crabb Sept 20)",
         "url": "https://walhallapac.com/events/"
       },
       {
-        "label": "Visit Oconee SC — Events calendar (nothing listed Sept 10–13; next is Sept 19)",
+        "label": "City of Walhalla — Hispanic Heritage Festival, Owens Park, Sept 19",
+        "url": "https://www.cityofwalhalla.com/communityevents/"
+      },
+      {
+        "label": "Oconee Farm Crawl — 2026 Fall Farm Crawl, Sept 19",
+        "url": "https://www.oconeefarmcrawl.com/"
+      },
+      {
+        "label": "Blue Ridge Arts Center — exhibition calendar",
+        "url": "https://www.blueridgeartscenter.com/exhibitions/"
+      },
+      {
+        "label": "Visit Oconee SC — Events calendar",
         "url": "https://visitoconeesc.com/events/"
       },
       {
-        "label": "Jocassee Lake Tours — Sunset Lake Tour",
-        "url": "https://jocasseelaketours.com/all-tours/sunset-lake-tours/"
+        "label": "Keowee Brewing — Events calendar (Jeff Holley Sept 18, BJ Callihan Sept 19)",
+        "url": "https://keoweebrewing.com/events-calendar"
       },
       {
         "label": "Jocassee Valley Brewing",
         "url": "https://jocasseevalleybrewing.com/"
-      },
-      {
-        "label": "Keowee Brewing — Events calendar",
-        "url": "https://keoweebrewing.com/events-calendar"
       },
       {
         "label": "National Weather Service — Lake Keowee forecast",
