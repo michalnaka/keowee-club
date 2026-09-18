@@ -652,7 +652,7 @@ function frame(){
   }
   if(tour){
     var tt=(performance.now()-tour)/46000;
-    if(tt>=1){endTour();}
+    if(tt>=1){endTour(true);}
     else{
       camera.position.copy(tourCurve.getPointAt(tt));
       var g=tourLook.getPointAt(Math.min(1,tt+0.05));
@@ -751,12 +751,13 @@ function homeCam(t){
   camera.position.set(t.x+14,t.y+11,t.z+17);
   controls.target.copy(t);
 }
-function endTour(){
+function endTour(completed){
   tour=null;tourFeat=null;
   probe.classList.remove('tourcap');
   document.querySelectorAll('.lit').forEach(function(e){e.classList.remove('lit');});
   probe.style.display='none';
   document.getElementById('tourBtn').textContent='Fly the lake';
+  if(completed)document.dispatchEvent(new Event('lake-tour-done'));
   if(controls.target)homeCam(controls.target.clone());
   controls.autoRotate=true;
 }
@@ -957,7 +958,8 @@ window.addEventListener('resize',resize);
 resize();
 </script>
 <script>
-// Dispatch signup: offered once, only after someone has actually spent time with the map.
+// Dispatch signup: offered once, timed to a delight moment (tour finished, just shared)
+// rather than a blind timer that can interrupt someone mid-exploration.
 (function(){
   var card=document.getElementById('subCard'),form=document.getElementById('subForm');
   var KEY='kc-depth-sub',shown=false;
@@ -977,7 +979,10 @@ resize();
     if(shown||seen())return;
     shown=true;place();card.classList.add('show');
   }
-  var timer=setTimeout(show,45000);
+  // fallback for people who never trigger a delight moment below
+  var timer=setTimeout(show,75000);
+  // finishing the flyover tour is peak delight — ask right after it lands
+  document.addEventListener('lake-tour-done',function(){clearTimeout(timer);setTimeout(show,1500);});
   // sharing is peak enthusiasm — ask right after
   var share=document.getElementById('shareBtn');
   if(share)share.addEventListener('click',function(){clearTimeout(timer);setTimeout(show,1800);});
