@@ -1,64 +1,75 @@
 {
   "edition": {
-    "start": "2026-10-01",
-    "end": "2026-10-04",
-    "date_display": "October 1–4",
-    "updated": "2026-09-29",
-    "updated_display": "September 29, 2026",
+    "start": "2026-10-08",
+    "end": "2026-10-11",
+    "date_display": "October 8–11",
+    "updated": "2026-10-06",
+    "updated_display": "October 6, 2026",
     "title": "This weekend on Keowee + Jocassee",
-    "dek": "Jazz on the Alley keeps its Thursday residency in Ram Cat Alley — the city hadn't posted an October lineup as of this writing, so it's a surprise headliner this week. Both breweries carry the weekend from there: Keowee Brewing has Amy Kincaid Friday and Angela Easterling Saturday, plus a First Friday Fish & Chips special. Jocassee Valley Brewing goes bigger on Saturday with its own Octobeerfest — German food, the PaddleSplash Awards at noon, and music into the evening — then closes Sunday with West End Strings. Walhalla PAC's and Visit Oconee's own event pages were blocking automated access when we checked, so we're leaving anything unverified off this week's list rather than guess.",
+    "dek": "Jazz on the Alley names its act this time: Nathan Angelo plays Ram Cat Alley Thursday. From there the weekend gets crowded in a good way — Hannah Harper plays two nights at Walhalla PAC, Westminster throws its annual Bigfoot Festival, and Oconee County runs its Veterans Appreciation Festival Saturday. Both breweries keep their usual Friday–Saturday music going underneath all of it, and Jocassee Valley Brewing closes things out Sunday afternoon.",
     "events": [
       {
         "day": "Thursday",
-        "date_display": "October 1",
-        "date": "2026-10-01",
+        "date_display": "October 8",
+        "date": "2026-10-08",
         "tag": "Seneca",
-        "title": "Jazz on the Alley",
-        "body": "Seneca's Thursday-night institution keeps going through October: free live jazz on historic Ram Cat Alley, with the Happy Hour Showcase warming up the street beforehand. The city's flyer confirms the series runs every Thursday through October, but hadn't named this week's headliner as of this writing — check the page below before you head down.",
-        "note": "Free · Happy Hour Showcase 5:30–6:30pm, main set 7–9pm · Ram Cat Alley, downtown Seneca · this week's act wasn't posted yet",
+        "title": "Jazz on the Alley: Nathan Angelo",
+        "body": "The city's October lineup is out, and this week's headliner is Nathan Angelo. Same free-and-easy setup as always — the Happy Hour Showcase warms up the street, then the main act takes over.",
+        "note": "Free · Happy Hour Showcase 5:30–6:30pm, Nathan Angelo 7–9pm · Ram Cat Alley, downtown Seneca",
         "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley/",
         "source": "City of Seneca"
       },
       {
         "day": "Friday",
-        "date_display": "October 2",
-        "date": "2026-10-02",
+        "date_display": "October 9",
+        "date": "2026-10-09",
+        "tag": "Westminster",
+        "title": "SC Bigfoot Festival",
+        "body": "Westminster's main street turns over to Bigfoot for the weekend — live music, vendors, Sasquatch-themed competitions, speakers, and kid stuff, running Friday into Saturday. It's a drive from the lake, but it's the kind of unabashedly weird regional event worth the trip once.",
+        "note": "Free to attend · Fri–Sat, times TBD — check the operator · Main Street, Westminster",
+        "url": "https://www.scbigfootfestival.com/",
+        "source": "SC Bigfoot Festival"
+      },
+      {
+        "day": "Friday",
+        "date_display": "October 9",
+        "date": "2026-10-09",
+        "tag": "Walhalla",
+        "title": "Hannah Harper, two nights at Walhalla PAC",
+        "body": "The rising country act plays back-to-back shows Friday and Saturday — same set time both nights. Walhalla PAC's room is small enough that it never feels like a big-venue show, which is most of its appeal.",
+        "note": "$59–$79 · 7:30pm both nights · Walhalla Performing Arts Center, 101 E. North Broad St, Walhalla",
+        "url": "https://walhallapac.com/events/",
+        "source": "Walhalla Performing Arts Center"
+      },
+      {
+        "day": "Saturday",
+        "date_display": "October 10",
+        "date": "2026-10-10",
+        "tag": "Oconee County",
+        "title": "Veterans Appreciation Festival & Ride of Honor",
+        "body": "Oconee County's 5th annual Veterans Festival adds a first this year: the Ride of Honor, a motorcycle ride held the same day. Start time and route weren't posted when we checked — the festival's Facebook page is the best source before you head out.",
+        "note": "Check the operator for times · Oconee County",
+        "url": "https://www.facebook.com/share/1LSEHwnjFU/",
+        "source": "Oconee County Veterans Appreciation Festival"
+      },
+      {
+        "day": "Saturday",
+        "date_display": "October 10",
+        "date": "2026-10-10",
         "tag": "Breweries",
-        "title": "First Friday specials and live music at both breweries",
-        "body": "Keowee Brewing runs a First Friday Fish & Chips special most of the day and has Amy Kincaid playing that evening. Over in Salem, Jocassee Valley Brewing has Chris Wayne with the Just a Smile Caribbean food truck out front.",
-        "note": "Free · Keowee Brewing Fish & Chips 11am–9pm, music 6:30–8:30pm · Jocassee Valley Brewing music 6:30pm, food truck from 4pm",
-        "url": "https://keoweebrewing.com/events-calendar",
-        "source": "Keowee Brewing · Jocassee Valley Brewing"
-      },
-      {
-        "day": "Saturday",
-        "date_display": "October 3",
-        "date": "2026-10-03",
-        "tag": "Salem",
-        "title": "Octobeerfest at Jocassee Valley Brewing",
-        "body": "Jocassee Valley Brewing's own spin on Oktoberfest — German food from multiple vendors, the PaddleSplash Awards at noon, and music running Water Kickers in the early afternoon into Jaguar 4 that evening.",
-        "note": "German food & vendors 11am–7pm · PaddleSplash Awards 12pm · Water Kickers 1:30pm, Jaguar 4 6:30pm · Jocassee Valley Brewing, Salem",
+        "title": "Brewery music carries on underneath it all",
+        "body": "If Bigfoot and the Veterans Festival aren't your Saturday, both breweries run their usual live-music night: Jocassee Valley Brewing has Alma Russ with the Pachuys food truck, and Keowee Brewing has its regular Friday–Saturday set (check their calendar for who's playing — it wasn't posted by name when we checked).",
+        "note": "Free · Jocassee Valley Brewing music 6:30pm · Keowee Brewing music 6:30–8:30pm",
         "url": "https://jocasseevalleybrewing.com/",
-        "source": "Jocassee Valley Brewing"
-      },
-      {
-        "day": "Saturday",
-        "date_display": "October 3",
-        "date": "2026-10-03",
-        "tag": "Seneca",
-        "title": "Live music at Keowee Brewing",
-        "body": "A quieter Saturday option in Seneca if Octobeerfest isn't your scene: Angela Easterling plays the taproom on Main Street.",
-        "note": "Free · 6:30–8:30pm · Keowee Brewing, 401 E Main St, Seneca",
-        "url": "https://keoweebrewing.com/events-calendar",
-        "source": "Keowee Brewing"
+        "source": "Jocassee Valley Brewing · Keowee Brewing"
       },
       {
         "day": "Sunday",
-        "date_display": "October 4",
-        "date": "2026-10-04",
+        "date_display": "October 11",
+        "date": "2026-10-11",
         "tag": "Salem",
-        "title": "Live music closes the weekend at Jocassee Valley Brewing",
-        "body": "West End Strings plays an early-evening set, with Farm to Fire Fermentery pizza out front. A calmer way to end the weekend than Saturday's Octobeerfest crowd.",
+        "title": "Jocassee Valley Brewing closes the weekend",
+        "body": "Marshall Goers and Lucy Allen play an early-evening set with Majoes Filipino food out front — a calm landing after a loud Saturday.",
         "note": "Free · Music at 4pm · open 12–7pm · Jocassee Valley Brewing, Salem",
         "url": "https://jocasseevalleybrewing.com/",
         "source": "Jocassee Valley Brewing"
@@ -67,50 +78,58 @@
     "plan": [
       {
         "day": "Friday",
-        "title": "First Friday fish & chips, then pick a brewery",
-        "body": "Start with Keowee Brewing's First Friday Fish & Chips special, then decide between Amy Kincaid in Seneca or Chris Wayne in Salem for the evening.",
+        "title": "Eat first, then pick your Friday",
+        "body": "Grab dinner before deciding: Hannah Harper's first night at Walhalla PAC, or the drive out to Westminster for Bigfoot Festival's opening night.",
         "url": "/eat-and-drink/",
         "label": "Find a spot to eat & drink →"
       },
       {
         "day": "Saturday",
-        "title": "Get a paddle in before Octobeerfest",
-        "body": "Saturday's the busy one between Jocassee Valley's Octobeerfest and Keowee Brewing's Angela Easterling set — launch early and beat both the heat and the crowd.",
+        "title": "Launch early — Saturday's the busy one",
+        "body": "Between Bigfoot Festival, the Veterans Festival, and both breweries' music nights, Saturday has more pulling at it than usual. Get on the water in the morning before any of it starts.",
         "url": "/boat-ramps/",
         "label": "Find a ramp →"
       },
       {
         "day": "Sunday",
-        "title": "A swim, then West End Strings closes it out",
-        "body": "Nothing else dated during the day — pick a swim spot, check today's lake level, and save West End Strings at Jocassee Valley Brewing for the late afternoon.",
+        "title": "A swim, then let Jocassee Valley close it out",
+        "body": "Nothing else dated during the day — pick a swim spot, check today's lake level, and save Marshall Goers and Lucy Allen's set for late afternoon.",
         "url": "/swim/",
         "label": "Pick a swim spot →"
       }
     ],
     "sources": [
       {
-        "label": "City of Seneca — Jazz on the Alley (confirms every Thursday through October; October lineup not yet posted)",
-        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley/"
+        "label": "City of Seneca — Jazz on the Alley October schedule (Nathan Angelo, Oct 8)",
+        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley/jazz-on-the-alley-2026-october-schedule"
       },
       {
-        "label": "Walhalla PAC — Events calendar (site was blocking automated access when we checked; nothing confirmed for Oct 1–4)",
+        "label": "Walhalla PAC — Events calendar (Hannah Harper, Oct 9 & 10)",
         "url": "https://walhallapac.com/events/"
       },
       {
-        "label": "Visit Oconee SC — Events calendar (site was blocking automated access when we checked)",
+        "label": "Visit Oconee SC — Events calendar",
         "url": "https://visitoconeesc.com/events/"
       },
       {
-        "label": "Keowee Brewing — Events calendar (Amy Kincaid Oct 2, Angela Easterling Oct 3, First Friday Fish & Chips Oct 2)",
+        "label": "SC Bigfoot Festival — Oct 9–10, Westminster",
+        "url": "https://www.scbigfootfestival.com/"
+      },
+      {
+        "label": "Oconee County Veterans Appreciation Festival & Ride of Honor — Oct 10 (Facebook)",
+        "url": "https://www.facebook.com/share/1LSEHwnjFU/"
+      },
+      {
+        "label": "Keowee Brewing — Events calendar (recurring Fri–Sat live music; specific act not posted when checked)",
         "url": "https://keoweebrewing.com/events-calendar"
       },
       {
-        "label": "Jocassee Valley Brewing (Chris Wayne Oct 2, Octobeerfest Oct 3, West End Strings Oct 4)",
+        "label": "Jocassee Valley Brewing (Old Time Jam Oct 8, Ethan Harrison Smith Oct 9, Alma Russ Oct 10, Marshall Goers & Lucy Allen Oct 11)",
         "url": "https://jocasseevalleybrewing.com/"
       },
       {
         "label": "Jocassee Lake Tours (no dated tours in this window; next special is the All the Falls Tour, Oct 24)",
-        "url": "https://jocasseelaketours.com/special-events-2/"
+        "url": "https://jocasseelaketours.com/"
       },
       {
         "label": "National Weather Service — Lake Keowee forecast",
