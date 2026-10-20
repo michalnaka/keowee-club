@@ -1,136 +1,173 @@
 {
-  "edition": {
-    "start": "2026-10-15",
-    "end": "2026-10-18",
-    "date_display": "October 15–18",
-    "updated": "2026-10-13",
-    "updated_display": "October 13, 2026",
-    "title": "This weekend on Keowee + Jocassee",
-    "dek": "Jazz on the Alley's penultimate Thursday brings The Odyssey Band to Ram Cat Alley, then Walhalla's Oktoberfest takes over Sertoma Field for three full days — German food, carnival rides, and fireworks. Chattooga Belle Farm runs its first-ever Fall Harvest Festival Saturday morning, and Jocassee Valley Brewing has a full four-day run: a trail talk, two live sets, and an amber ale release.",
-    "events": [
-      {
-        "day": "Thursday",
-        "date_display": "October 15",
-        "date": "2026-10-15",
-        "tag": "Seneca",
-        "title": "Jazz on the Alley: The Odyssey Band",
-        "body": "One of two Thursdays left in this year's run. The Happy Hour Showcase opens the street, then The Odyssey Band takes the main set.",
-        "note": "Free · Happy Hour Showcase 5:30–6:30pm, The Odyssey Band 7–9pm · Ram Cat Alley, downtown Seneca",
-        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley/",
-        "source": "City of Seneca"
-      },
-      {
-        "day": "Friday",
-        "date_display": "October 16",
-        "date": "2026-10-16",
-        "tag": "Walhalla",
-        "title": "Walhalla Oktoberfest opens its three-day run",
-        "body": "Running since 1979, Walhalla's Oktoberfest takes over Sertoma Field with German food, live music, craft vendors, and carnival rides through the weekend. Fireworks are part of the festival, though the exact night wasn't posted when we checked.",
-        "note": "$5 admission (ages 6+, under 6 free) · carnival wristbands $30/day Fri–Sat, $25 Sun · Sertoma Field, 272 Tulip Dr, Walhalla · Fri–Sun",
-        "url": "https://thewalhallaoktoberfest.com/",
-        "source": "Walhalla Oktoberfest"
-      },
-      {
-        "day": "Friday",
-        "date_display": "October 16",
-        "date": "2026-10-16",
-        "tag": "Salem",
-        "title": "Jocassee Valley Brewing: Rachel Van Slyke",
-        "body": "One Armed Smoker parks out front for the day, then Rachel Van Slyke plays an evening set.",
-        "note": "Free · Music at 6:30pm · open 9am–9pm · Jocassee Valley Brewing, Salem",
-        "url": "https://jocasseevalleybrewing.com/",
-        "source": "Jocassee Valley Brewing"
-      },
-      {
-        "day": "Saturday",
-        "date_display": "October 17",
-        "date": "2026-10-17",
-        "tag": "Long Creek",
-        "title": "Chattooga Belle Farm's first Fall Harvest Festival",
-        "body": "A new one this year: local vendors, hayrides, apples and apple cider donuts, live music, and Belle's Bistro's Choc's BBQ food truck on-site for the morning.",
-        "note": "10am–3pm · 454 Damascus Church Rd, Long Creek",
-        "url": "https://chattoogabellefarm.com/event-details/chattooga-belle-fall-harvest-festival-2026",
-        "source": "Chattooga Belle Farm"
-      },
-      {
-        "day": "Saturday",
-        "date_display": "October 17",
-        "date": "2026-10-17",
-        "tag": "Breweries",
-        "title": "Brewery music carries on under Oktoberfest",
-        "body": "If Oktoberfest and the harvest festival aren't your Saturday night, both breweries run their usual live-music set: Jocassee Valley Brewing has Freddie Vanderford playing Piedmont blues with Majoe's Filipino food out front, and Keowee Brewing runs its regular Friday–Saturday set (check their calendar for who's playing — it wasn't posted by name when we checked).",
-        "note": "Free · Jocassee Valley Brewing music 6:30pm · Keowee Brewing — see calendar for set time",
-        "url": "https://jocasseevalleybrewing.com/",
-        "source": "Jocassee Valley Brewing · Keowee Brewing"
-      },
-      {
-        "day": "Sunday",
-        "date_display": "October 18",
-        "date": "2026-10-18",
-        "tag": "Salem",
-        "title": "Jocassee Valley Brewing: Singer-Songwriter Showcase",
-        "body": "Rick Malec hosts a singer-songwriter showcase to close the weekend, with the Farm to Fire Fermentery food truck out front for the afternoon.",
-        "note": "Free · Music at 4pm · open 12–7pm · Jocassee Valley Brewing, Salem",
-        "url": "https://jocasseevalleybrewing.com/",
-        "source": "Jocassee Valley Brewing"
-      }
-    ],
-    "plan": [
-      {
-        "day": "Thursday",
-        "title": "Catch Jazz on the Alley, then plan your Oktoberfest run",
-        "body": "The Odyssey Band plays Ram Cat Alley at 7pm — grab dinner downtown first, since Walhalla's three-day Oktoberfest and all the brewery music start stacking up Friday.",
-        "url": "/eat-and-drink/",
-        "label": "Find a spot to eat & drink →"
-      },
-      {
-        "day": "Saturday",
-        "title": "Launch early — Saturday's the busy one",
-        "body": "Between Oktoberfest, the Chattooga Belle harvest festival, and both breweries' music nights, Saturday has the most pulling at it. Get on the water in the morning before any of it starts.",
-        "url": "/boat-ramps/",
-        "label": "Find a ramp →"
-      },
-      {
-        "day": "Sunday",
-        "title": "A swim, then let Jocassee Valley close it out",
-        "body": "Nothing else dated during the day — pick a swim spot, check today's lake level, and save Rick Malec's showcase for late afternoon.",
-        "url": "/swim/",
-        "label": "Pick a swim spot →"
-      }
-    ],
-    "sources": [
-      {
-        "label": "City of Seneca — Jazz on the Alley October schedule (The Odyssey Band, Oct 15)",
-        "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley/jazz-on-the-alley-2026-october-schedule"
-      },
-      {
-        "label": "Walhalla Oktoberfest — Oct 16–18, Sertoma Field",
-        "url": "https://thewalhallaoktoberfest.com/"
-      },
-      {
-        "label": "Visit Oconee SC — Events calendar",
-        "url": "https://visitoconeesc.com/events/"
-      },
-      {
-        "label": "Chattooga Belle Farm — Fall Harvest Festival, Oct 17",
-        "url": "https://chattoogabellefarm.com/event-details/chattooga-belle-fall-harvest-festival-2026"
-      },
-      {
-        "label": "Keowee Brewing — Events calendar (recurring Fri–Sat live music; specific act not posted when checked)",
-        "url": "https://keoweebrewing.com/events-calendar"
-      },
-      {
-        "label": "Jocassee Valley Brewing (Palmetto Trail Talk & Gap Creek Amber Ale release Oct 15, Rachel Van Slyke Oct 16, Freddie Vanderford Oct 17, Singer-Songwriter Showcase Oct 18)",
-        "url": "https://jocasseevalleybrewing.com/"
-      },
-      {
-        "label": "Jocassee Lake Tours (no dated tours confirmed for this window; next confirmed special is the Full Moon Rising Tour, Oct 25)",
-        "url": "https://jocasseelaketours.com/"
-      },
-      {
-        "label": "National Weather Service — Lake Keowee forecast",
-        "url": "https://forecast.weather.gov/MapClick.php?lat=34.85&lon=-82.93"
-      }
-    ]
-  }
+    "edition": {
+        "start": "2026-10-22",
+        "end": "2026-10-25",
+        "date_display": "October 22–25",
+        "updated": "2026-10-20",
+        "updated_display": "October 20, 2026",
+        "title": "This weekend on Keowee + Jocassee",
+        "dek": "Jazz on the Alley's penultimate Thursday brings Funk Factory 5 to Ram Cat Alley, then both lakeside breweries run music four nights straight — Jennifer Gregory Band and Done Gone Boys Friday, Hammock Theory and The Warcry Duo Saturday. Walhalla's Main Street fills up for Walhalloween, Jocassee Lake Tours runs a six-hour waterfall tour and a Hunter's Moon night run, and Keowee Marina closes the weekend with a free Fall Festival Sunday afternoon.",
+        "events": [
+            {
+                "day": "Thursday",
+                "date_display": "October 22",
+                "date": "2026-10-22",
+                "tag": "Seneca",
+                "title": "Jazz on the Alley: Funk Factory 5",
+                "body": "One of the last two Thursdays in this year's run — Funk Factory 5 takes Ram Cat Alley before the season wraps up October 29.",
+                "note": "Free · Ram Cat Alley, downtown Seneca · music 7–9pm",
+                "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley/",
+                "source": "City of Seneca · Visit Oconee SC"
+            },
+            {
+                "day": "Thursday",
+                "date_display": "October 22",
+                "date": "2026-10-22",
+                "tag": "Salem",
+                "title": "Jocassee Valley Brewing: Old Time Jam",
+                "body": "Farm to Fire Fermentery's wood-fired pizza sets up for the day, then an old-time jam session takes over the evening.",
+                "note": "Free · Music at 6:30pm · open 9am–9pm · Jocassee Valley Brewing, Salem",
+                "url": "https://jocasseevalleybrewing.com/",
+                "source": "Jocassee Valley Brewing"
+            },
+            {
+                "day": "Friday",
+                "date_display": "October 23",
+                "date": "2026-10-23",
+                "tag": "Breweries",
+                "title": "Friday night, two breweries: Jennifer Gregory Band and Done Gone Boys",
+                "body": "Jocassee Valley Brewing has the Jennifer Gregory Band with Just A Smile's Caribbean food truck out front; across the water, Keowee Brewing has the Done Gone Boys playing downtown Seneca.",
+                "note": "Free · Both start 6:30pm · Jocassee Valley Brewing, Salem & Keowee Brewing, 401 E. Main St, Seneca",
+                "url": "https://jocasseevalleybrewing.com/",
+                "source": "Jocassee Valley Brewing · Keowee Brewing"
+            },
+            {
+                "day": "Saturday",
+                "date_display": "October 24",
+                "date": "2026-10-24",
+                "tag": "Walhalla",
+                "title": "Walhalloween: trick-or-treat on Main Street",
+                "body": "Kids trick-or-treat along Walhalla's Main Street while a dog parade struts through Owens Park. The exact start time wasn't posted when we checked, so plan for the afternoon and confirm with the city before heading over.",
+                "note": "Free · Main Street & Owens Park, Walhalla · time not yet posted",
+                "url": "https://www.cityofwalhalla.com/events/",
+                "source": "Visit Oconee SC · City of Walhalla"
+            },
+            {
+                "day": "Saturday",
+                "date_display": "October 24",
+                "date": "2026-10-24",
+                "tag": "Lake Jocassee",
+                "title": "Jocassee Lake Tours: \"All The Falls\" Tour",
+                "body": "A six-hour run past Jocassee's waterfalls. Seating is limited, so this one's worth booking ahead rather than showing up and hoping.",
+                "note": "From $125 · 6 hours · limited seating · call to book",
+                "url": "https://jocasseelaketours.com/",
+                "source": "Jocassee Lake Tours"
+            },
+            {
+                "day": "Saturday",
+                "date_display": "October 24",
+                "date": "2026-10-24",
+                "tag": "Breweries",
+                "title": "Saturday night, two breweries: Hammock Theory and The Warcry Duo",
+                "body": "Jocassee Valley Brewing has Hammock Theory with Fresco Luna's food truck out front; Keowee Brewing has The Warcry Duo playing Southern rock downtown.",
+                "note": "Free · Both start 6:30pm · Jocassee Valley Brewing, Salem & Keowee Brewing, Seneca",
+                "url": "https://keoweebrewing.com/events-calendar",
+                "source": "Jocassee Valley Brewing · Keowee Brewing"
+            },
+            {
+                "day": "Sunday",
+                "date_display": "October 25",
+                "date": "2026-10-25",
+                "tag": "Seneca",
+                "title": "Keowee Marina's Fall Festival",
+                "body": "Games, candy, vendors, a DJ, and costumes at the marina — a low-key family afternoon to close out the weekend.",
+                "note": "Free · 1–4pm · Keowee Marina",
+                "url": "https://www.keoweemarina.com",
+                "source": "Visit Oconee SC · Keowee Marina"
+            },
+            {
+                "day": "Sunday",
+                "date_display": "October 25",
+                "date": "2026-10-25",
+                "tag": "Lake Jocassee",
+                "title": "Jocassee Lake Tours: Full Moon Rising Tour",
+                "body": "A two-hour evening run timed to October's Hunter's Moon rising over the water.",
+                "note": "From $65 · 2 hours",
+                "url": "https://jocasseelaketours.com/",
+                "source": "Jocassee Lake Tours"
+            },
+            {
+                "day": "Sunday",
+                "date_display": "October 25",
+                "date": "2026-10-25",
+                "tag": "Salem",
+                "title": "Jocassee Valley Brewing: Conservation Theory",
+                "body": "Conservation Theory closes out the weekend with an afternoon set, Farm to Fire Fermentery's food truck back for the day.",
+                "note": "Free · Music at 4pm · open 12–7pm · Jocassee Valley Brewing, Salem",
+                "url": "https://jocasseevalleybrewing.com/",
+                "source": "Jocassee Valley Brewing"
+            }
+        ],
+        "plan": [
+            {
+                "day": "Thursday",
+                "title": "Catch Jazz on the Alley, then decide how far you're driving",
+                "body": "Funk Factory 5 plays Ram Cat Alley at 7pm. Grab dinner downtown first if you'd rather not make the drive out to Salem after.",
+                "url": "/eat-and-drink/",
+                "label": "Find a spot to eat & drink →"
+            },
+            {
+                "day": "Saturday",
+                "title": "Launch early — Saturday's stacked",
+                "body": "Walhalloween, the Jocassee waterfall tour, and both breweries' music are all happening Saturday. Get on the water in the morning before any of it starts.",
+                "url": "/boat-ramps/",
+                "label": "Find a ramp →"
+            },
+            {
+                "day": "Sunday",
+                "title": "A swim, the marina festival, then let the Hunter's Moon close it out",
+                "body": "Keowee Marina's Fall Festival runs 1–4pm. Pick a swim spot for the morning, and save Jocassee Lake Tours' Full Moon Rising Tour for the evening.",
+                "url": "/swim/",
+                "label": "Pick a swim spot →"
+            }
+        ],
+        "sources": [
+            {
+                "label": "City of Seneca — Jazz on the Alley",
+                "url": "https://seneca.sc.us/government/departments/events-and-happenings/jazz-on-the-alley/"
+            },
+            {
+                "label": "Visit Oconee SC — Events calendar (Funk Factory 5 Oct 22, Walhalloween Oct 24, Keowee Marina Fall Festival Oct 25)",
+                "url": "https://visitoconeesc.com/events/"
+            },
+            {
+                "label": "Jocassee Valley Brewing (Old Time Jam Oct 22, Jennifer Gregory Band Oct 23, Hammock Theory Oct 24, Conservation Theory Oct 25)",
+                "url": "https://jocasseevalleybrewing.com/"
+            },
+            {
+                "label": "Keowee Brewing — Events calendar (Done Gone Boys Oct 23, The Warcry Duo Oct 24)",
+                "url": "https://keoweebrewing.com/events-calendar"
+            },
+            {
+                "label": "Jocassee Lake Tours (\"All The Falls\" Tour Oct 24, Full Moon Rising Tour Oct 25)",
+                "url": "https://jocasseelaketours.com/"
+            },
+            {
+                "label": "City of Walhalla — Events (Walhalloween; exact time not posted when checked)",
+                "url": "https://www.cityofwalhalla.com/events/"
+            },
+            {
+                "label": "Keowee Marina — Fall Festival, Oct 25",
+                "url": "https://www.keoweemarina.com"
+            },
+            {
+                "label": "Walhalla Performing Arts Center (no shows in this window; next listed is Oct 30)",
+                "url": "https://walhallapac.com/events/"
+            },
+            {
+                "label": "National Weather Service — Lake Keowee forecast",
+                "url": "https://forecast.weather.gov/MapClick.php?lat=34.85&lon=-82.93"
+            }
+        ]
+    }
 }
