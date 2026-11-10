@@ -1,64 +1,75 @@
 {
     "edition": {
-        "start": "2026-11-06",
-        "end": "2026-11-08",
-        "date_display": "November 6–8",
-        "updated": "2026-11-03",
-        "updated_display": "November 3, 2026",
+        "start": "2026-11-13",
+        "end": "2026-11-15",
+        "date_display": "November 13–15",
+        "updated": "2026-11-10",
+        "updated_display": "November 10, 2026",
         "title": "This weekend on Keowee + Jocassee",
-        "dek": "Jazz on the Alley is done for the year, so the weekend shifts to the breweries and High Falls County Park's Día de los Muertos Festival Saturday — with live music at Keowee Brewing and Jocassee Valley Brewing all three nights.",
+        "dek": "Walhalla Performing Arts Center stacks two heavy hitters back to back — Sammy Kershaw Friday, Sam Bush Saturday — while Jocassee Valley Brewing runs music and food trucks all three nights, opening Friday with a brook trout fireside chat before the band.",
         "events": [
             {
                 "day": "Friday",
-                "date_display": "November 6",
-                "date": "2026-11-06",
-                "tag": "Seneca",
-                "title": "First Friday Fish & Chips, then J. Stephens at Keowee Brewing",
-                "body": "The brewery runs its First Friday fish & chips special all day, then J. Stephens takes the stage in the evening.",
-                "note": "Free to attend · Fish & chips 11am–9pm, music 6:30–8:30pm · Keowee Brewing, 401 E. Main St., Seneca",
-                "url": "https://keoweebrewing.com/events-calendar",
-                "source": "Keowee Brewing"
+                "date_display": "November 13",
+                "date": "2026-11-13",
+                "tag": "Walhalla",
+                "title": "Sammy Kershaw at Walhalla Performing Arts Center",
+                "body": "The \"Cadillac Style\" honky-tonk veteran headlines WPAC's stage for one night only.",
+                "note": "$79–$99 · 7:30pm · Walhalla Performing Arts Center, 101 E. North Broad St., Walhalla",
+                "url": "https://walhallapac.com/events/",
+                "source": "Walhalla Performing Arts Center"
             },
             {
                 "day": "Friday",
-                "date_display": "November 6",
-                "date": "2026-11-06",
+                "date_display": "November 13",
+                "date": "2026-11-13",
                 "tag": "Salem",
-                "title": "Jocassee Valley Brewing: Dog Gone Boys + Simple Sammies",
-                "body": "Live music from the Dog Gone Boys, with Simple Sammies' food truck out front for the evening.",
-                "note": "Free · Open 9am–9pm, music 6:30pm · Jocassee Valley Brewing, Salem",
+                "title": "Brook trout fireside chat, then Isaiah Breedlove at Jocassee Valley Brewing",
+                "body": "Friends of Jocassee and SCDNR's Hailey Goyette talk Southern Appalachian brook trout restoration before the music starts; Majoes Filipino's truck is out front for dinner.",
+                "note": "Free · Fireside chat 5:30pm, music 6:30pm · open 9am–9pm · Jocassee Valley Brewing, Salem",
+                "url": "https://friendsofjocassee.org/",
+                "source": "Friends of Jocassee · Jocassee Valley Brewing"
+            },
+            {
+                "day": "Friday",
+                "date_display": "November 13 & 14",
+                "date": "2026-11-13",
+                "tag": "Seneca",
+                "title": "Free live music Friday and Saturday at Keowee Brewing",
+                "body": "Keowee Brewing runs live music both nights like clockwork — the brewery doesn't post who's playing until close to showtime, so check their calendar or Facebook day-of.",
+                "note": "Free · 6:30–8:30pm Fri & Sat · Keowee Brewing, 401 E. Main St., Seneca",
+                "url": "https://keoweebrewing.com/events",
+                "source": "Keowee Brewing"
+            },
+            {
+                "day": "Saturday",
+                "date_display": "November 14",
+                "date": "2026-11-14",
+                "tag": "Walhalla",
+                "title": "Sam Bush: Father of Newgrass at Walhalla Performing Arts Center",
+                "body": "The mandolin player who helped name the genre brings his band back through the Upstate.",
+                "note": "$54–$74 · 7:30pm · Walhalla Performing Arts Center, 101 E. North Broad St., Walhalla",
+                "url": "https://walhallapac.com/events/",
+                "source": "Walhalla Performing Arts Center"
+            },
+            {
+                "day": "Saturday",
+                "date_display": "November 14",
+                "date": "2026-11-14",
+                "tag": "Salem",
+                "title": "Oyster roast and gumbo, then Doug Hendrix at Jocassee Valley Brewing",
+                "body": "OPUS Trust's oyster roast and gumbo lands midafternoon, with Doug Hendrix playing in the evening.",
+                "note": "Free to attend · Food 4pm, music 6:30pm · open 9am–9pm · Jocassee Valley Brewing, Salem",
                 "url": "https://jocasseevalleybrewing.com",
                 "source": "Jocassee Valley Brewing"
             },
             {
-                "day": "Saturday",
-                "date_display": "November 7",
-                "date": "2026-11-07",
-                "tag": "Seneca",
-                "title": "Día de los Muertos Festival at High Falls County Park",
-                "body": "Art, music, dancing, food, and family activities on the Lake Keowee shoreline at High Falls. Ticketed through Eventbrite — price wasn't listed when we checked, so confirm there.",
-                "note": "3–9pm · High Falls County Park, 671 High Falls Rd., Seneca · check Eventbrite for price",
-                "url": "https://www.eventbrite.com/e/dia-de-los-muertos-festival-tickets-1997150450760",
-                "source": "High Falls County Park"
-            },
-            {
-                "day": "Saturday",
-                "date_display": "November 7",
-                "date": "2026-11-07",
-                "tag": "Breweries",
-                "title": "Saturday night, two breweries: Billy Bauer and Big Eyes Parker",
-                "body": "Keowee Brewing has Billy Bauer playing downtown Seneca; across the water, Jocassee Valley Brewing has Big Eyes Parker with Buns & Bones' food truck out front.",
-                "note": "Free · Both start 6:30pm · Keowee Brewing, 401 E. Main St., Seneca & Jocassee Valley Brewing, Salem",
-                "url": "https://keoweebrewing.com/events-calendar",
-                "source": "Keowee Brewing · Jocassee Valley Brewing"
-            },
-            {
                 "day": "Sunday",
-                "date_display": "November 8",
-                "date": "2026-11-08",
+                "date_display": "November 15",
+                "date": "2026-11-15",
                 "tag": "Salem",
-                "title": "Jocassee Valley Brewing: Down Homesteaders",
-                "body": "An afternoon set closes out the weekend, Farm to Fire Fermentery's food truck back for the day.",
+                "title": "Goers & Allen close out the weekend at Jocassee Valley Brewing",
+                "body": "An afternoon set to end things, with Farm to Fire Fermentery's wood-fired pizza truck out front.",
                 "note": "Free · Music at 4pm · open 12–7pm · Jocassee Valley Brewing, Salem",
                 "url": "https://jocasseevalleybrewing.com",
                 "source": "Jocassee Valley Brewing"
@@ -67,46 +78,46 @@
         "plan": [
             {
                 "day": "Friday",
-                "title": "Fish & chips at Keowee Brewing, then J. Stephens",
-                "body": "The First Friday special runs all day; music starts at 6:30. Good excuse to make it dinner.",
+                "title": "Eat in Walhalla before Sammy Kershaw",
+                "body": "WPAC doors run prompt for a 7:30 start, so grab dinner first rather than rushing in.",
                 "url": "/eat-and-drink/",
                 "label": "Find a spot to eat & drink →"
             },
             {
                 "day": "Saturday",
-                "title": "Get on the water before High Falls fills up for Día de los Muertos",
-                "body": "The festival runs 3–9pm at High Falls County Park. Launch early and have the lake to yourself in the morning.",
+                "title": "Get on the water before the oyster roast",
+                "body": "Launch early on Keowee or Jocassee while the lake is quiet, then head to Jocassee Valley Brewing for the 4pm oyster roast and gumbo.",
                 "url": "/boat-ramps/",
                 "label": "Find a ramp →"
             },
             {
                 "day": "Sunday",
-                "title": "Check the lake level before the Down Homesteaders' set",
-                "body": "Jocassee Valley Brewing's music starts at 4pm. See where Keowee and Jocassee stand before you head out for the afternoon.",
+                "title": "Check the lake level before the Sunday set",
+                "body": "Music at Jocassee Valley Brewing starts at 4pm — see where Keowee and Jocassee stand before you head out for the afternoon.",
                 "url": "/lake-level/",
                 "label": "Check the lake level →"
             }
         ],
         "sources": [
             {
-                "label": "Visit Oconee SC — Events calendar (Día de los Muertos Festival, Nov 7)",
-                "url": "https://visitoconeesc.com/events/"
+                "label": "Walhalla Performing Arts Center — Events calendar (Sammy Kershaw Nov 13, Sam Bush Nov 14)",
+                "url": "https://walhallapac.com/events/"
             },
             {
-                "label": "Eventbrite — Día de los Muertos Festival at High Falls County Park",
-                "url": "https://www.eventbrite.com/e/dia-de-los-muertos-festival-tickets-1997150450760"
-            },
-            {
-                "label": "Keowee Brewing — Events calendar (First Friday Fish & Chips + J. Stephens Nov 6, Billy Bauer Nov 7)",
-                "url": "https://keoweebrewing.com/events-calendar"
-            },
-            {
-                "label": "Jocassee Valley Brewing (Dog Gone Boys Nov 6, Big Eyes Parker Nov 7, Down Homesteaders Nov 8)",
+                "label": "Jocassee Valley Brewing — weekly schedule (Isaiah Breedlove Nov 13, Doug Hendrix Nov 14, Goers & Allen Nov 15, food trucks)",
                 "url": "https://jocasseevalleybrewing.com/"
             },
             {
-                "label": "Walhalla Performing Arts Center — Events calendar (nothing scheduled Nov 6–8; next show is Sammy Kershaw, Nov 13)",
-                "url": "https://walhallapac.com/events/"
+                "label": "Friends of Jocassee — November Jocassee Fireside Chat: brook trout restoration, Nov 13",
+                "url": "https://friendsofjocassee.org/"
+            },
+            {
+                "label": "Visit Oconee SC — Events calendar",
+                "url": "https://visitoconeesc.com/events/"
+            },
+            {
+                "label": "Keowee Brewing — Events (free live music Fri & Sat, performer not posted in advance)",
+                "url": "https://keoweebrewing.com/events"
             },
             {
                 "label": "National Weather Service — Lake Keowee forecast",
