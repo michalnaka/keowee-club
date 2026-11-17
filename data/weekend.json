@@ -1,123 +1,101 @@
 {
     "edition": {
-        "start": "2026-11-13",
-        "end": "2026-11-15",
-        "date_display": "November 13–15",
-        "updated": "2026-11-10",
-        "updated_display": "November 10, 2026",
+        "start": "2026-11-20",
+        "end": "2026-11-22",
+        "date_display": "November 20–22",
+        "updated": "2026-11-17",
+        "updated_display": "November 17, 2026",
         "title": "This weekend on Keowee + Jocassee",
-        "dek": "Walhalla Performing Arts Center stacks two heavy hitters back to back — Sammy Kershaw Friday, Sam Bush Saturday — while Jocassee Valley Brewing runs music and food trucks all three nights, opening Friday with a brook trout fireside chat before the band.",
+        "dek": "Jazz on the Alley has gone quiet for the season, but Seneca's Blue Ridge Arts Center opens four new exhibits Friday, Keowee Brewing and Jocassee Valley Brewing both keep their free Friday–Saturday music going, and a Jocassee Wild Child benefit closes the weekend with live music and food trucks.",
         "events": [
             {
                 "day": "Friday",
-                "date_display": "November 13",
-                "date": "2026-11-13",
-                "tag": "Walhalla",
-                "title": "Sammy Kershaw at Walhalla Performing Arts Center",
-                "body": "The \"Cadillac Style\" honky-tonk veteran headlines WPAC's stage for one night only.",
-                "note": "$79–$99 · 7:30pm · Walhalla Performing Arts Center, 101 E. North Broad St., Walhalla",
-                "url": "https://walhallapac.com/events/",
-                "source": "Walhalla Performing Arts Center"
+                "date_display": "November 20",
+                "date": "2026-11-20",
+                "tag": "Seneca",
+                "title": "Opening reception: four new exhibits at Blue Ridge Arts Center",
+                "body": "\"Shared Vision,\" \"Gray with a Pop of Color,\" \"Same, Same, But Different,\" and \"The Art of Learning\" all open together, with local artists on hand. The shows run through December 18.",
+                "note": "Free · Reception 5:30–7pm · Blue Ridge Arts Center, 111 E. South 2nd St., Seneca",
+                "url": "https://visitoconeesc.com/events/",
+                "source": "Visit Oconee SC"
             },
             {
-                "day": "Friday",
-                "date_display": "November 13",
-                "date": "2026-11-13",
-                "tag": "Salem",
-                "title": "Brook trout fireside chat, then Isaiah Breedlove at Jocassee Valley Brewing",
-                "body": "Friends of Jocassee and SCDNR's Hailey Goyette talk Southern Appalachian brook trout restoration before the music starts; Majoes Filipino's truck is out front for dinner.",
-                "note": "Free · Fireside chat 5:30pm, music 6:30pm · open 9am–9pm · Jocassee Valley Brewing, Salem",
-                "url": "https://friendsofjocassee.org/",
-                "source": "Friends of Jocassee · Jocassee Valley Brewing"
-            },
-            {
-                "day": "Friday",
-                "date_display": "November 13 & 14",
-                "date": "2026-11-13",
+                "day": "Friday & Saturday",
+                "date_display": "November 20 & 21",
+                "date": "2026-11-20",
                 "tag": "Seneca",
                 "title": "Free live music Friday and Saturday at Keowee Brewing",
-                "body": "Keowee Brewing runs live music both nights like clockwork — the brewery doesn't post who's playing until close to showtime, so check their calendar or Facebook day-of.",
+                "body": "Keowee Brewing runs live music both nights, rain or shine, like clockwork — the lineup posts to their Facebook events page closer to showtime rather than the website, so check there or ask at the bar.",
                 "note": "Free · 6:30–8:30pm Fri & Sat · Keowee Brewing, 401 E. Main St., Seneca",
                 "url": "https://keoweebrewing.com/events",
                 "source": "Keowee Brewing"
             },
             {
-                "day": "Saturday",
-                "date_display": "November 14",
-                "date": "2026-11-14",
-                "tag": "Walhalla",
-                "title": "Sam Bush: Father of Newgrass at Walhalla Performing Arts Center",
-                "body": "The mandolin player who helped name the genre brings his band back through the Upstate.",
-                "note": "$54–$74 · 7:30pm · Walhalla Performing Arts Center, 101 E. North Broad St., Walhalla",
-                "url": "https://walhallapac.com/events/",
-                "source": "Walhalla Performing Arts Center"
-            },
-            {
-                "day": "Saturday",
-                "date_display": "November 14",
-                "date": "2026-11-14",
+                "day": "Friday–Sunday",
+                "date_display": "November 20–22",
+                "date": "2026-11-20",
                 "tag": "Salem",
-                "title": "Oyster roast and gumbo, then Doug Hendrix at Jocassee Valley Brewing",
-                "body": "OPUS Trust's oyster roast and gumbo lands midafternoon, with Doug Hendrix playing in the evening.",
-                "note": "Free to attend · Food 4pm, music 6:30pm · open 9am–9pm · Jocassee Valley Brewing, Salem",
+                "title": "Weekend music and food trucks at Jocassee Valley Brewing",
+                "body": "No specific acts were posted for this weekend as of publish time, but Jocassee Valley Brewing's live music and food truck lineup runs Friday and Saturday as usual — check their calendar for who's playing before you head out.",
+                "note": "Free to attend · Open Wed–Sat 9am–9pm, Sun 12–7pm · Jocassee Valley Brewing, Salem",
                 "url": "https://jocasseevalleybrewing.com",
                 "source": "Jocassee Valley Brewing"
             },
             {
                 "day": "Sunday",
-                "date_display": "November 15",
-                "date": "2026-11-15",
-                "tag": "Salem",
-                "title": "Goers & Allen close out the weekend at Jocassee Valley Brewing",
-                "body": "An afternoon set to end things, with Farm to Fire Fermentery's wood-fired pizza truck out front.",
-                "note": "Free · Music at 4pm · open 12–7pm · Jocassee Valley Brewing, Salem",
-                "url": "https://jocasseevalleybrewing.com",
-                "source": "Jocassee Valley Brewing"
+                "date_display": "November 22",
+                "date": "2026-11-22",
+                "tag": "Oconee County",
+                "title": "Jocassee Wild Child benefit: live music, vendors, and food trucks",
+                "body": "A benefit for Jocassee Wild Child's outdoor environmental education programs, with music from Three Rivers, Matt Phillips, and the Blue Wall Ramblers, local vendors, and Farm to Fire Pizza's wood-fired truck.",
+                "note": "Time and location weren't posted yet — check Visit Oconee's events calendar or call (800) 910-4371",
+                "url": "https://visitoconeesc.com/events/",
+                "source": "Visit Oconee SC"
             }
         ],
         "plan": [
             {
                 "day": "Friday",
-                "title": "Eat in Walhalla before Sammy Kershaw",
-                "body": "WPAC doors run prompt for a 7:30 start, so grab dinner first rather than rushing in.",
+                "title": "Eat in Seneca before the Blue Ridge Arts Center reception",
+                "body": "The opening reception runs 5:30–7pm, so grab an early dinner downtown first.",
                 "url": "/eat-and-drink/",
                 "label": "Find a spot to eat & drink →"
             },
             {
                 "day": "Saturday",
-                "title": "Get on the water before the oyster roast",
-                "body": "Launch early on Keowee or Jocassee while the lake is quiet, then head to Jocassee Valley Brewing for the 4pm oyster roast and gumbo.",
+                "title": "Get on the water while it's quiet",
+                "body": "Mid-November mornings are calm and the ramps are empty — launch early on Keowee or Jocassee before the Saturday brewery crowds pick up.",
                 "url": "/boat-ramps/",
                 "label": "Find a ramp →"
             },
             {
                 "day": "Sunday",
-                "title": "Check the lake level before the Sunday set",
-                "body": "Music at Jocassee Valley Brewing starts at 4pm — see where Keowee and Jocassee stand before you head out for the afternoon.",
+                "title": "Check the lake level before heading to the benefit",
+                "body": "See where Keowee and Jocassee stand before you head out for the Jocassee Wild Child benefit.",
                 "url": "/lake-level/",
                 "label": "Check the lake level →"
             }
         ],
         "sources": [
             {
-                "label": "Walhalla Performing Arts Center — Events calendar (Sammy Kershaw Nov 13, Sam Bush Nov 14)",
+                "label": "Walhalla Performing Arts Center — Events calendar (no shows Nov 19–22; ticket resellers list an unconfirmed Nov 20 Pink Floyd tribute not on the venue's own calendar)",
                 "url": "https://walhallapac.com/events/"
             },
             {
-                "label": "Jocassee Valley Brewing — weekly schedule (Isaiah Breedlove Nov 13, Doug Hendrix Nov 14, Goers & Allen Nov 15, food trucks)",
-                "url": "https://jocasseevalleybrewing.com/"
-            },
-            {
-                "label": "Friends of Jocassee — November Jocassee Fireside Chat: brook trout restoration, Nov 13",
-                "url": "https://friendsofjocassee.org/"
-            },
-            {
-                "label": "Visit Oconee SC — Events calendar",
+                "label": "Visit Oconee SC — Events calendar (Blue Ridge Arts Center opening Nov 20, Jocassee Wild Child benefit Nov 22)",
                 "url": "https://visitoconeesc.com/events/"
             },
             {
-                "label": "Keowee Brewing — Events (free live music Fri & Sat, performer not posted in advance)",
+                "label": "SC Living — Opening Reception, Blue Ridge Arts Center, Nov 20, 2026, 5:30–7pm",
+                "url": "https://scliving.coop/events/opening-reception-blue-ridge-arts-center-0/"
+            },
+            {
+                "label": "Keowee Brewing — Events (free live music Fri & Sat, lineup posted on Facebook)",
                 "url": "https://keoweebrewing.com/events"
+            },
+            {
+                "label": "Jocassee Valley Brewing — hours & weekly schedule",
+                "url": "https://jocasseevalleybrewing.com/"
             },
             {
                 "label": "National Weather Service — Lake Keowee forecast",
