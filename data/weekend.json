@@ -1,101 +1,127 @@
 {
     "edition": {
-        "start": "2026-11-20",
-        "end": "2026-11-22",
-        "date_display": "November 20–22",
-        "updated": "2026-11-17",
-        "updated_display": "November 17, 2026",
+        "start": "2026-11-27",
+        "end": "2026-11-29",
+        "date_display": "November 27–29",
+        "updated": "2026-11-24",
+        "updated_display": "November 24, 2026",
         "title": "This weekend on Keowee + Jocassee",
-        "dek": "Jazz on the Alley has gone quiet for the season, but Seneca's Blue Ridge Arts Center opens four new exhibits Friday, Keowee Brewing and Jocassee Valley Brewing both keep their free Friday–Saturday music going, and a Jocassee Wild Child benefit closes the weekend with live music and food trucks.",
+        "dek": "Thanksgiving weekend brings two shows to Walhalla Performing Arts Center — a Fleetwood Mac tribute Friday and Celtic Angels Christmas Sunday — plus a window-decorating contest and a little man-made snow downtown, a holiday market and workshops at the Seneca Treehouse Project, and both lakeside breweries running their usual Friday-through-Sunday music and food trucks.",
         "events": [
             {
                 "day": "Friday",
-                "date_display": "November 20",
-                "date": "2026-11-20",
-                "tag": "Seneca",
-                "title": "Opening reception: four new exhibits at Blue Ridge Arts Center",
-                "body": "\"Shared Vision,\" \"Gray with a Pop of Color,\" \"Same, Same, But Different,\" and \"The Art of Learning\" all open together, with local artists on hand. The shows run through December 18.",
-                "note": "Free · Reception 5:30–7pm · Blue Ridge Arts Center, 111 E. South 2nd St., Seneca",
+                "date_display": "November 27",
+                "date": "2026-11-27",
+                "tag": "Walhalla",
+                "title": "Rumours: A Fleetwood Mac Tribute Returns 2026",
+                "body": "The long-running Fleetwood Mac tribute act plays the Walhalla Performing Arts Center stage for a post-Thanksgiving night out. Note: some ticket resellers list this wrong — the venue's own calendar confirms Friday.",
+                "note": "$57–$77 · 7:30pm · Walhalla Performing Arts Center",
+                "url": "https://walhallapac.com/events/",
+                "source": "Walhalla Performing Arts Center"
+            },
+            {
+                "day": "Friday",
+                "date_display": "November 27",
+                "date": "2026-11-27",
+                "tag": "Walhalla",
+                "title": "Window decorating contest and a little snow, downtown Walhalla",
+                "body": "Downtown businesses deck out their storefronts for the City of Walhalla's holiday window contest, with community leaders judging and prizes for the winners. Up the street at the Sunni Ann Mercantile, \"It's Snowing at the Mercantile\" brings artificial snowfall, giveaways, and specials for a half hour.",
+                "note": "Snow event free, 1–1:30pm · window contest all day, downtown Walhalla",
                 "url": "https://visitoconeesc.com/events/",
                 "source": "Visit Oconee SC"
             },
             {
                 "day": "Friday & Saturday",
-                "date_display": "November 20 & 21",
-                "date": "2026-11-20",
+                "date_display": "November 27 & 28",
+                "date": "2026-11-27",
                 "tag": "Seneca",
                 "title": "Free live music Friday and Saturday at Keowee Brewing",
                 "body": "Keowee Brewing runs live music both nights, rain or shine, like clockwork — the lineup posts to their Facebook events page closer to showtime rather than the website, so check there or ask at the bar.",
                 "note": "Free · 6:30–8:30pm Fri & Sat · Keowee Brewing, 401 E. Main St., Seneca",
-                "url": "https://keoweebrewing.com/events",
+                "url": "https://keoweebrewing.com/events-calendar",
                 "source": "Keowee Brewing"
             },
             {
                 "day": "Friday–Sunday",
-                "date_display": "November 20–22",
-                "date": "2026-11-20",
+                "date_display": "November 27–29",
+                "date": "2026-11-27",
                 "tag": "Salem",
                 "title": "Weekend music and food trucks at Jocassee Valley Brewing",
-                "body": "No specific acts were posted for this weekend as of publish time, but Jocassee Valley Brewing's live music and food truck lineup runs Friday and Saturday as usual — check their calendar for who's playing before you head out.",
-                "note": "Free to attend · Open Wed–Sat 9am–9pm, Sun 12–7pm · Jocassee Valley Brewing, Salem",
+                "body": "Closed Thanksgiving Day, Jocassee Valley Brewing reopens Friday at noon with Spalding McIntosh (Caribbean) and Just A Smile's truck, Saturday brings West End Strings and Buns and Bones, and Sunday closes with Jay Maybry (country) and Farm to Fire Fermentery's wood-fired pizza.",
+                "note": "Free to attend · Fri 12–9pm, Sat 9am–9pm, Sun 12–7pm · Jocassee Valley Brewing, Salem",
                 "url": "https://jocasseevalleybrewing.com",
                 "source": "Jocassee Valley Brewing"
             },
             {
-                "day": "Sunday",
-                "date_display": "November 22",
-                "date": "2026-11-22",
-                "tag": "Oconee County",
-                "title": "Jocassee Wild Child benefit: live music, vendors, and food trucks",
-                "body": "A benefit for Jocassee Wild Child's outdoor environmental education programs, with music from Three Rivers, Matt Phillips, and the Blue Wall Ramblers, local vendors, and Farm to Fire Pizza's wood-fired truck.",
-                "note": "Time and location weren't posted yet — check Visit Oconee's events calendar or call (800) 910-4371",
+                "day": "Saturday",
+                "date_display": "November 28",
+                "date": "2026-11-28",
+                "tag": "Seneca",
+                "title": "Green Saturday holiday market and make-n-take workshops",
+                "body": "The Seneca Treehouse Project's holiday market is free to browse — handmade gifts and vendors — with ticketed make-n-take workshops (charcuterie boards, infused oil rollers, intention candles) and kids' activities alongside it. Check the event page for the workshop schedule and the VIP All Access Pass.",
+                "note": "Market free · workshops ticketed · Seneca Treehouse Project",
                 "url": "https://visitoconeesc.com/events/",
                 "source": "Visit Oconee SC"
+            },
+            {
+                "day": "Sunday",
+                "date_display": "November 29",
+                "date": "2026-11-29",
+                "tag": "Walhalla",
+                "title": "Celtic Angels Christmas 2026",
+                "body": "A Sunday matinee of Irish and Celtic holiday music and dance closes out the weekend at the Walhalla Performing Arts Center.",
+                "note": "$44–$64 · 3:00pm · Walhalla Performing Arts Center",
+                "url": "https://walhallapac.com/events/",
+                "source": "Walhalla Performing Arts Center"
             }
         ],
         "plan": [
             {
                 "day": "Friday",
-                "title": "Eat in Seneca before the Blue Ridge Arts Center reception",
-                "body": "The opening reception runs 5:30–7pm, so grab an early dinner downtown first.",
+                "title": "Eat in Walhalla before the Fleetwood Mac tribute",
+                "body": "The show starts at 7:30pm, so grab dinner downtown first — there's plenty within walking distance of the PAC.",
                 "url": "/eat-and-drink/",
                 "label": "Find a spot to eat & drink →"
             },
             {
                 "day": "Saturday",
-                "title": "Get on the water while it's quiet",
-                "body": "Mid-November mornings are calm and the ramps are empty — launch early on Keowee or Jocassee before the Saturday brewery crowds pick up.",
+                "title": "Get on the water before the holiday crowds",
+                "body": "Late-November mornings are cold and quiet and the ramps are empty — launch early on Keowee or Jocassee before heading into town for the Treehouse market.",
                 "url": "/boat-ramps/",
                 "label": "Find a ramp →"
             },
             {
                 "day": "Sunday",
-                "title": "Check the lake level before heading to the benefit",
-                "body": "See where Keowee and Jocassee stand before you head out for the Jocassee Wild Child benefit.",
+                "title": "Check the lake level before the Celtic Angels matinee",
+                "body": "See where Keowee and Jocassee stand before you wrap up the long weekend with the 3pm show in Walhalla.",
                 "url": "/lake-level/",
                 "label": "Check the lake level →"
             }
         ],
         "sources": [
             {
-                "label": "Walhalla Performing Arts Center — Events calendar (no shows Nov 19–22; ticket resellers list an unconfirmed Nov 20 Pink Floyd tribute not on the venue's own calendar)",
+                "label": "Walhalla Performing Arts Center — Events calendar (Rumours: A Fleetwood Mac Tribute, Nov 27, 7:30pm; Celtic Angels Christmas 2026, Nov 29, 3pm — confirmed from the venue's own date/price blocks; several ticket-reseller sites agree on the Nov 27 Rumours date, but always defer to this calendar)",
                 "url": "https://walhallapac.com/events/"
             },
             {
-                "label": "Visit Oconee SC — Events calendar (Blue Ridge Arts Center opening Nov 20, Jocassee Wild Child benefit Nov 22)",
+                "label": "Visit Oconee SC — Events calendar (Walhalla window decorating contest, Snowing at the Mercantile, Green Saturday market at the Seneca Treehouse Project)",
                 "url": "https://visitoconeesc.com/events/"
             },
             {
-                "label": "SC Living — Opening Reception, Blue Ridge Arts Center, Nov 20, 2026, 5:30–7pm",
-                "url": "https://scliving.coop/events/opening-reception-blue-ridge-arts-center-0/"
+                "label": "Seneca Treehouse Project — Green Saturday Make-n-Take Workshops & Holiday Market details",
+                "url": "https://treehousetradeschool.com/events"
             },
             {
                 "label": "Keowee Brewing — Events (free live music Fri & Sat, lineup posted on Facebook)",
-                "url": "https://keoweebrewing.com/events"
+                "url": "https://keoweebrewing.com/events-calendar"
             },
             {
-                "label": "Jocassee Valley Brewing — hours & weekly schedule",
+                "label": "Jocassee Valley Brewing — weekly lineup and Thanksgiving-week hours",
                 "url": "https://jocasseevalleybrewing.com/"
+            },
+            {
+                "label": "Jocassee Lake Tours — no Family Adventure Camp or special tours confirmed for this weekend; site shows Cool Season hours (Oct 1–Apr 30), so the camp appears to be off for the season",
+                "url": "https://jocasseelaketours.com"
             },
             {
                 "label": "National Weather Service — Lake Keowee forecast",
